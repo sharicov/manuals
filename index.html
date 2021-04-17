@@ -156,6 +156,8 @@ Error message and password prompt
 
 <li>$:/GitHub/Username</li>
 
+<li>$:/Import</li>
+
 <li>$:/isEncrypted</li>
 
 <li>$:/state/tab-1749438307</li>
@@ -173,6 +175,8 @@ Error message and password prompt
 <li>$:/themes/tiddlywiki/vanilla</li>
 
 <li>Draft of 'New Tiddler'</li>
+
+<li>yunohost raspberry disk system samba yandex screen rsync ssh v16</li>
 
 </ul>
 </p>
@@ -10094,6 +10098,11 @@ Error message and password prompt
 <div created="20210417205137610" modified="20210417205138676" title="$:/GitHub/Username">
 <pre>sharicov</pre>
 </div>
+<div status="complete" title="$:/Import">
+<pre>The following tiddlers were imported:
+
+# [[yunohost raspberry disk system samba yandex screen rsync ssh v16]]</pre>
+</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -10103,13 +10112,13 @@ Error message and password prompt
 <div created="20210417205132934" modified="20210417205135238" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/GitHub</pre>
 </div>
-<div created="20210417210311324" modified="20210417210422259" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20210417210311324" modified="20210417210554205" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Tools</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210417210456035" list="$:/ControlPanel [[Draft of 'New Tiddler']] GettingStarted" modified="20210417210456035" title="$:/StoryList">
+<div created="20210417210456035" list="$:/Import $:/ControlPanel [[Draft of 'New Tiddler']] GettingStarted" modified="20210417210456035" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10223,6 +10232,137 @@ Error message and password prompt
 </div>
 <div created="20210417210431703" draft.of="New Tiddler" draft.title="test" modified="20210417210438561" tags="" title="Draft of 'New Tiddler'">
 <pre>test</pre>
+</div>
+<div created="20210416140522745" creator="sharicov" modified="20210417204626447" modifier="sharicov" revision="41" tags="manual" title="yunohost raspberry disk system samba yandex screen rsync ssh v16" type="text/vnd.tiddlywiki">
+<pre>test github save 121341 ./
+
+!!! Open port in yunohost firewall: 
+```
+sudo yunohost firewall allow TCP 445 
+```
+{{USB disk mount (fstab)}}
+```
+{{SAMBA}}
+
+
+{{Check NTFS disk in Linux}}
+```
+
+{{Free space in Linux}}
+
+
+ 
+
+!!! Restart web gui: 
+
+
+```
+sudo systemctl restart yunohost-api 
+```
+
+
+{{Test disk speed}}
+
+ 
+
+{{usb disk uasp protocol}}
+
+
+!!! Show used capacity per folder: 
+
+
+```
+sudo ncdu / --exclude /media --exclude /dev/ --exclude /proc/ 
+```
+
+
+{{Linux processes and services}}
+
+{{ssh autologin}}
+
+{{aria2 torrent native}}
+
+{{dav2fs mount yandex}}
+
+
+Rclone installation: 
+
+
+```
+curl https://rclone.org/install.sh | sudo bash 
+```
+
+
+Rclone script(run with sudo for config backup to work) running parameters: 
+
+
+```
+screen -S sync sudo ./sync 
+```
+
+
+{{Script backup}}
+
+{{Screen command}}
+
+{{Rsync automatic on change}}
+ 
+
+!!! Check disk usage by process: 
+
+
+```
+sudo fuser –mv /media/usbdown/yandex.disk online 
+```
+
+
+Output: 
+
+
+```
+                     USER        PID ACCESS COMMAND 
+
+/media/usbdown/yandex.disk.online: 
+
+                     root     kernel mount /media/usbdown/yandex.disk.online 
+
+                     nextcloud   2609 f.... php7.3 
+
+```
+
+Check process info: 
+
+
+```
+Sudo ps –aef | grep 2609 
+```
+
+
+{{Certificate install (yunohost dyndns)}}
+
+ 
+
+{{Log2RAM}}
+ 
+
+{{Linux Swap setup}}
+
+ 
+
+Offline app installation: 
+
+If you are only talking about installing apps without internet connection, you can copy apps you needed to your server with the command git clone repository and then install them with sudo yunohost app install /path/to/the/app. 
+
+ 
+
+[[Experimental not working]]
+
+
+ 
+
+[[Show all installed packages in linux (yunohost)]]
+
+ </pre>
 </div>
 
 
