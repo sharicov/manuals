@@ -180,9 +180,69 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
+<li>15th April 2021</li>
+
+<li>aria2 torrent native</li>
+
+<li>Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3</li>
+
+<li>Certificate install (yunohost dyndns)</li>
+
+<li>Check NTFS disk in Linux</li>
+
+<li>dav2fs mount yandex</li>
+
+<li>Disk info</li>
+
+<li>Download link</li>
+
+<li>Experimental not working</li>
+
+<li>Extract .xz image</li>
+
+<li>Free space in Linux</li>
+
+<li>Linux processes and services</li>
+
+<li>Linux Swap setup</li>
+
+<li>Log2RAM</li>
+
+<li>R4S Yunohost installation from scratch</li>
+
+<li>Raspberry Pi4 wifi auto connect</li>
+
+<li>Rsync automatic on change inotifywait</li>
+
+<li>SAMBA</li>
+
+<li>Screen command</li>
+
+<li>Script backup</li>
+
+<li>Show all installed packages in linux (yunohost)</li>
+
+<li>ssh autologin</li>
+
+<li>Test disk speed</li>
+
 <li>tiddlers.html</li>
 
+<li>tinycore_2021_v1</li>
+
+<li>Untitled</li>
+
+<li>USB disk mount (fstab)</li>
+
+<li>usb disk uasp protocol</li>
+
+<li>usbmount</li>
+
+<li>Write image to SSD</li>
+
 <li>yunohost raspberry disk system samba yandex screen rsync ssh v16</li>
+
+<li>yunohost raspberry general v4</li>
 
 </ul>
 </p>
@@ -10110,7 +10170,36 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[tiddlers.html]]</pre>
+# [[15th April 2021]]
+# [[aria2 torrent native]]
+# [[Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3]]
+# [[Certificate install (yunohost dyndns)]]
+# [[Check NTFS disk in Linux]]
+# [[dav2fs mount yandex]]
+# [[Disk info]]
+# [[Download link]]
+# [[Experimental not working]]
+# [[Extract .xz image]]
+# [[Free space in Linux]]
+# [[Linux processes and services]]
+# [[Linux Swap setup]]
+# [[Log2RAM]]
+# [[R4S Yunohost installation from scratch]]
+# [[Raspberry Pi4 wifi auto connect]]
+# [[Rsync automatic on change inotifywait]]
+# [[SAMBA]]
+# [[Screen command]]
+# [[Script backup]]
+# [[Show all installed packages in linux (yunohost)]]
+# [[ssh autologin]]
+# [[Test disk speed]]
+# [[tinycore_2021_v1]]
+# [[Untitled]]
+# [[USB disk mount (fstab)]]
+# [[usb disk uasp protocol]]
+# [[usbmount]]
+# [[Write image to SSD]]
+# [[yunohost raspberry general v4]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10118,7 +10207,7 @@ Error message and password prompt
 <div created="20210417211012813" modified="20210417211023115" title="$:/SiteSubtitle">
 <pre>Manuals in github</pre>
 </div>
-<div created="20210417210700988" modified="20210417210816067" title="$:/state/sidebar">
+<div created="20210417210700988" modified="20210417212241506" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
@@ -10133,7 +10222,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="$:/Import" title="$:/StoryList">
+<div created="20210417212215730" list="$:/Import" modified="20210417212215730" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10244,6 +10333,3785 @@ Error message and password prompt
         }
     }
 }</pre>
+</div>
+<div bag="default" created="20210415150649678" creator="sharicov" modified="20210415150659547" modifier="sharicov" revision="1" tags="[[R4S Yunohost installation from scratch]] Journal" title="15th April 2021" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div bag="default" created="20210417190028247" creator="sharicov" modified="20210417190149443" modifier="sharicov" revision="2" tags="manual" title="aria2 torrent native" type="text/vnd.tiddlywiki">
+<pre>!! Aria2 torrent (to run aria2 in docker please refer to separate manual- more CPU required): 
+
+
+```
+sudo apt install aria2 
+```
+
+
+Configuration: 
+
+
+```
+nano /home/admin/aria2.conf 
+
+```
+
+Config file: 
+
+
+```
+dir=/media/usbdown/Downloads 
+
+max-overall-upload-limit=100K 
+
+disk-cache=0 
+
+#file-allocation=trunc 
+
+file-allocation=falloc 
+
+seed-time=0 
+
+check-integrity=true 
+
+realtime-chunk-checksum=true 
+
+always-resume=true 
+
+auto-file-renaming=false 
+
+continue=true 
+
+remote-time=true 
+
+rpc-user=sharicov 
+
+rpc-passwd=password 
+
+#daemon 
+
+log=/media/usbdown/Downloads/aria2c.log 
+
+log-level=error 
+
+bt-exclude-tracker="*" 
+
+```
+
+ 
+
+!!! To run on boot (nano /etc/rc.local): 
+
+
+```
+sh aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all -D --conf-path=/home/admin/aria2.conf 
+```
+</pre>
+</div>
+<div bag="default" created="20210416140603562" creator="sharicov" modified="20210416140744743" modifier="sharicov" revision="1" tags="manual" title="Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3" type="text/vnd.tiddlywiki">
+<pre>Remove previous docker installation: 
+
+sudo apt-get purge docker-ce docker-ce-cli containerd.io 
+
+cd /var/lib/ 
+
+sudo rm -rf docker 
+
+Install new: 
+
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io 
+
+Install portainer (docker web manager): 
+
+sudo docker volume create portainer_data 
+
+sudo docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce 
+
+sudo docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent 
+
+Example install aria2 with AriaNG and FileBrowser on port 8080 with ARM support: 
+
+Open 8080 port: 
+
+sudo yunohost firewall allow TCP 8080 
+
+sudo docker run -d --name ariang -p 8080:8080 hurlenko/aria2-ariang 
+
+Open 6800 port: 
+
+sudo yunohost firewall allow TCP 8080 
+
+sudo docker run -d --name ariang -p 8080:8080 hurlenko/aria2-ariang 
+
+ 
+
+ 
+
+hurlenko/aria2-ariang (docker.com) 
+
+Container’s configuration: 
+
+Restart policy to start on boot 
+
+Volume bind to physical location to store to external HDD 
+
+ 
+
+ 
+
+In Yunohost add Redirect App with the address: 
+
+http://192.168.3.3:8080 
+
+Manual config: 
+
+Enter console: 
+
+ 
+
+cd config 
+
+cp aria2.conf aria2.conf.backup 
+
+vi aria2.conf 
+
+Change prealloc to falloc </pre>
+</div>
+<div bag="default" created="20210417194439087" creator="sharicov" modified="20210417194545777" modifier="sharicov" revision="2" tags="manual" title="Certificate install (yunohost dyndns)" type="text/vnd.tiddlywiki">
+<pre>Certificate install (yunohost dyndns): 
+
+
+```
+sudo yunohost domain cert-install sharicov.nohost.me --no-checks 
+```
+
+
+To release domain name ask to remove in the forum: 
+
+https://forum.yunohost.org/t/nohost-domain-recovery-suppression-de-domaine-en-nohost-me-noho-st-et-ynh-fr/442/1347 </pre>
+</div>
+<div bag="default" created="20210417195803868" creator="sharicov" modified="20210417195943231" modifier="sharicov" revision="3" tags="manual" title="Check NTFS disk in Linux" type="text/vnd.tiddlywiki">
+<pre>!! Check ntfs(part of ntfsprogs): 
+
+
+```
+sudo ntfsfix /dev/sdXX
+```
+
+Find the right disk with:
+
+```
+sudo fdisk -l
+```
+</pre>
+</div>
+<div bag="default" created="20210417190417443" creator="sharicov" modified="20210417191001780" modifier="sharicov" revision="2" tags="manual" title="dav2fs mount yandex" type="text/vnd.tiddlywiki">
+<pre>!!! Connect to yandex.disk davfs2: 
+
+
+```
+sudo apt install davfs2 
+sudo dpkg-reconfigure davfs2 
+sudo mkdir -m 1777 /media/usbdown/yandex.disk.online 
+sudo mount -t davfs https://webdav.yandex.ru /media/usbdown/ yandex.disk.online 
+df -h /media/usbdown/ yandex.disk.online / 
+```
+
+
+Store yandex credentials: 
+
+
+```
+sudo nano /etc/davfs2/secrets 
+```
+
+
+Add: 
+
+
+```
+https://webdav.yandex.ru userpassword 
+```
+
+
+Automount yandex.disk on boot - systemd: 
+
+
+```
+cat &lt;&lt; EOF | sudo tee /etc/systemd/system/media-usbdown-yandex.disk.online.mount 
+
+[Unit] 
+Description=Mount yandex.disk WebDAV 
+After=network-online.target 
+Wants=network-online.target 
+
+[Mount] 
+What=https://webdav.yandex.ru/ 
+Where=/media/usbdown/yandex.disk.online/ 
+Options=noauto,user,uid=pi,gid=pi 
+Type=davfs 
+TimeoutSec=60 
+
+[Install] 
+WantedBy=remote-fs.target 
+EOF 
+
+```
+
+ 
+```
+
+cat &lt;&lt; EOF | sudo tee /etc/systemd/system/media-usbdown-yandex.disk.online.automount 
+
+[Unit] 
+Description=Mount yandex.disk WebDAV automount 
+After=network-online.target 
+Wants=network-online.target 
+
+[Automount] 
+Where=/media/usbdown/yandex.disk.online/ 
+TimeoutIdleSec=300 
+
+[Install] 
+WantedBy=remote-fs.target 
+
+EOF 
+
+```
+
+Run:
+
+```
+sudo systemctl daemon-reload 
+sudo systemctl enable media-usbdown-yandex.disk.online.automount 
+sudo systemctl start media-usbdown-yandex.disk.online.automount 
+```
+
+
+!!!!Note: 
+Make sure mount and automount names reflect actual path with / replaced by- 
+</pre>
+</div>
+<div bag="default" created="20210415150148462" creator="sharicov" modified="20210416131050436" modifier="sharicov" revision="2" tags="manual" title="Disk info" type="text/vnd.tiddlywiki">
+<pre>How to check disk position in the system</pre>
+</div>
+<div bag="default" created="20210415141054752" creator="sharicov" modified="20210416140309601" modifier="sharicov" revision="3" tags="manual" title="Download link" type="text/vnd.tiddlywiki">
+<pre>Armbian image download link from here: 
+
+https://www.armbian.com/nanopi-r4s/ 
+
+!!!! Note: only daily Hirsute build worked with both USB at the time of writing this manual</pre>
+</div>
+<div bag="default" created="20210417195628912" creator="sharicov" modified="20210417195644504" modifier="sharicov" revision="2" tags="manual" title="Experimental not working" type="text/vnd.tiddlywiki">
+<pre>Experimental NOT WORKING: 
+
+Dmesg error troubleshooting: 
+
+Error: 
+
+Workqueue: events_freezable mmc_rescan 
+
+Solution: 
+
+sudo sysctl -w vm.dirty_ratio=10 
+sudo sysctl -w vm.dirty_background_ratio=5 
+sudo sysctl -p 
+
+Page Break
+Configure raspberry as hostpot: 
+
+wpa_cli terminate 
+sudo ifconfig wlan0 down 
+sudo iwconfig wlan0 mode ad-hoc 
+sudo iwconfig wlan0 essid my-adhoc-name 
+sudo iwconfig wlan0 channel 1 
+sudo ifconfig wlan0 up 
+
+https://elinux.org/RPI-Wireless-Hotspot 
+
+sudo apt-get install hostapd udhcpd 
+
+ 
+
+ 
+
+ 
+
+sudo nano /etc/hostapd/hostapd.conf 
+
+interface=wlan0 
+
+driver=nl80211 
+
+ssid=My_AP 
+
+hw_mode=g 
+
+channel=6 
+
+macaddr_acl=0 
+
+auth_algs=1 
+
+ignore_broadcast_ssid=0 
+
+wpa=2 
+
+wpa_passphrase=My_Passphrase 
+
+wpa_key_mgmt=WPA-PSK 
+
+#wpa_pairwise=TKIP    # You better do not use this weak encryption (only used by old client devices) 
+
+rsn_pairwise=CCMP 
+
+ 
+
+https://raspberrypi.stackexchange.com/questions/108675/hostapd-problems-while-setting-up-pi-4-as-access-point 
+
+https://github.com/raspberrypi/documentation/issues/1018 
+
+https://www.qlcplus.org/forum/viewtopic.php?t=12468#p54247 
+
+Format existing disk,create gpt ext4(parted https://askubuntu.com/questions/517354/terminal-method-of-formatting-storage-drive ): 
+
+sudo su 
+
+fdisk –l 
+
+sudo parted  
+
+select /dev/sda 
+
+mklabel gpt 
+
+Y 
+
+print free 
+
+mkpart primary 0% 100% 
+
+quit 
+
+mkfs.ext4 /dev/sda1 
+
+Yes 
+
+ 
+
+sudo fdisk -l 
+
+sudo blkid |grep sda 
+
+sudo nano /etc/fstab 
+
+PARTUUID="35395c61-d264-4001-8ecf-c398b2f7a7e2" /media/usbdown ext4 defaults   0    2 
+
+ 
+
+sudo chown admin /media/usbdown/ 
+
+Troubleshoot exe not executing: 
+
+Rightclick folder in windows-&gt;security-&gt;add full permissions to admin 
+
+Not working: 
+
+https://github.com/billz/raspap-webgui 
+
+After the reboot at the end of the installation the wireless network will be configured as an access point as follows: 
+
+IP address: 10.3.141.1 
+
+Username: admin 
+
+Password: secret 
+
+DHCP range: 10.3.141.50 to 10.3.141.255 
+
+SSID: raspi-webgui 
+
+Password: ChangeMe 
+
+ 
+
+NOT WORKING with rsync Scheduled synchronization (https://opensource.com/article/20/7/systemd-timers): 
+
+Check timezone (time) is correct: 
+
+date 
+
+Fix timezone(if needed) 
+
+sudo rm -rf /etc/localtime 
+
+sudo ln -s /usr/share/zoneinfo/Israel /etc/localtime 
+
+date 
+
+Show existing timers: 
+
+systemctl status *timer 
+
+at now + 1 minutes –f script.sh 
+
+echo “ command to run”| at now + 1 minutes 
+
+Backup yunohost: 
+
+https://yunohost.org/#/backup 
+
+From the command line 
+
+You can create a new backup archive with the command line. Here are a few simple example of commands and their corresponding behavior: 
+
+Backing up everything (all system parts and apps): 
+
+yunohost backup create 
+
+Backing up only apps 
+
+yunohost backup create --apps 
+
+Backing up only two apps (wordpress and shaarli) 
+
+yunohost backup create --apps wordpress shaarli 
+
+Backing up only mails 
+
+yunohost backup create --system data_mail 
+
+Backing up mails and wordpress 
+
+yunohost backup create --system data_mail --apps wordpress 
+
+For more informations and options about backup creation, consult yunohost backup create --help. You can also list system parts that can be backuped with yunohost hook list backup. 
+
+Downloading and uploading backups 
+
+After creating backup archives, it is possible to list and inspect them via the corresponding views in the webadmin, or via yunohost backup list and yunohost backup info &lt;archivename&gt; from the command line. By default, backups are stored in /home/yunohost.backup/archives/. 
+
+Currently, the most accessible way to download archives is to use the program FileZilla as explained in this page. 
+
+Alternatively, a solution can be to install Nextcloud or a similar app and configure it to be able to access files in /home/yunohost.backup/archives/ from a web browser. 
+
+One solution consists in using scp (a program based on ssh) to copy files between two machines via the command line. Hence, from a machine running Linux, you should be able to run the following to download a specific backup: 
+
+scp admin@your.domain.tld:/home/yunohost.backup/archives/&lt;archivename&gt;.tar.gz ./ 
+
+Similarly, you can upload a backup from a machine to your server with: 
+
+scp /path/to/your/&lt;archivename&gt;.tar.gz admin@your.domain.tld:/home/yunohost.backup/archives/ 
+
+From the command line 
+
+From the command line, you can run yunohost backup restore &lt;archivename&gt; (without the .tar.gz) to restore an archive. As for yunohost backup create, this will restore everything in the archive by default. If you want to restore only specific items, you can use for instance yunohost backup restore --apps wordpress which will restore only the wordpress app. 
+
+Constraints 
+
+To restore an app, the domain on which it was installed should already be configured (or you need to restore the corresponding system configuration). You also cannot restore an app which is already installed... which means that to restore an old version of an app, you must first uninstall it. 
+
+Restoring during the postinstall 
+
+One specific feature is the ability to restore a full archive instead of the postinstall step. This makes it useful when you want to reinstall a system entirely from an existing backup. To be able to do this, you will need to upload the archive on the server and place it in /home/yunohost.backup/archives. Then, instead of yunohost tools postinstall you can run: 
+
+yunohost backup restore &lt;archivename&gt; 
+
+Note: If your archive isn't in /home/yunohost.backup/archives, you can create the directory, move the archive into it, and restore it like this: 
+
+mkdir -p /home/yunohost.backup/archivesmv /path/to/&lt;archivename&gt; /home/yunohost.backup/archives/yunohost backup restore &lt;archivename&gt; 
+
+To go futher 
+
+Storing backups on a different drive 
+
+If you want, you can connect and mount an external drive to store backup archives on it (among other things). For this, plug in the drive and make sure that next time it is mounted automatically, by following the instruction at Adding an external storage to your server. 
+
+Then, move the existing archives and then add a symbolic link. 
+
+PATH_TO_DRIVE="/media/my_external_drive" # For instance, depends of where you mounted your drivemkdir $PATH_TO_DRIVE/yunohost_backup_archives # On your external drive create the folder where the backups will gomv /home/yunohost.backup/archives $PATH_TO_DRIVE/yunohost_backup_archives # Move the archive folder including existing backups (if you made them) to the new folder on the external driveln -s $PATH_TO_DRIVE/yunohost_backup_archives /home/yunohost.backup/archives # Create a symbolic link from the old local folder to the new folder on the external drive 
+
+Automatic backups 
+
+You can add a simple cron job to trigger automatic backups regularly. For instance, to backup your wordpress weekly, create a file /etc/cron.weekly/backup-wordpress with the following content: 
+
+#!/bin/bashyunohost backup create --apps wordpress 
+
+then make it executable: 
+
+chmod +x /etc/cron.weekly/backup-wordpress 
+
+Be careful what you backup exactly and when: you don't want to end up with your whole disk space saturated because you backuped 30 GB of data every day. 
+
+Backing your server on a remote server 
+
+You can follow this tutorial on the forum to setup Borg between two servers: https://forum.yunohost.org/t/how-to-backup-your-yunohost-server-on-another-server/3153 
+
+Alternatively, the app Archivist allows to setup a similar system: https://forum.yunohost.org/t/new-app-archivist/3747 
+
+Avoiding the backup of some folders 
+
+If needed, you can specify that some /home/user folders are left out of the yunohost backup command, by creating a blank file named .nobackup in them. 
+
+Full backup with dd 
+
+If you are using an ARM board, another method for doing a full backup can be to create an image of the SD card. For this, poweroff your ARM board, get the SD card in your computer then create a full image with something like: 
+
+dd if=/dev/mmcblk0 of=./backup.img status=progress 
+
+(replace /dev/mmcblk0 with the actual device of your SD card) 
+
+You can also create a compressed image using gzip this way: 
+
+dd if=/dev/mmcblk0 | gzip &gt; ./image.gz </pre>
+</div>
+<div bag="default" created="20210415141955591" creator="sharicov" modified="20210416131106790" modifier="sharicov" revision="3" tags="manual" title="Extract .xz image" type="text/vnd.tiddlywiki">
+<pre>Install xz-utils:
+
+
+```
+sudo apt-get install xz-utils
+```
+
+
+Extract image:
+
+```
+unxz [ImageName]
+```
+
+</pre>
+</div>
+<div bag="default" created="20210417200034754" creator="sharicov" modified="20210417200240191" modifier="sharicov" revision="2" tags="manual" title="Free space in Linux" type="text/vnd.tiddlywiki">
+<pre>!!! Remove locales to free space: 
+
+
+```
+sudo apt install localepurge; sudo localepurge 
+```
+
+!!!Remove package PackageName with all dependencies:
+
+```
+sudo apt purge PackageName
+sudo autoremove
+```
+</pre>
+</div>
+<div bag="default" created="20210417200321316" creator="sharicov" modified="20210417200457366" modifier="sharicov" revision="1" tags="manual" title="Linux processes and services" type="text/vnd.tiddlywiki">
+<pre>!!! Show running processes with parameters (ps command): 
+
+
+```
+sudo  ps -eo args   
+
+```
+
+!!! Show running services: 
+
+
+```
+sudo service --status-all 
+
+```
+
+Restart php service to fix solve 502 error (get exact phpX.X-fpm use service –status all command) 
+
+
+```
+sudo systemctl restart php7.3-fpm 
+```
+</pre>
+</div>
+<div bag="default" created="20210417195046693" creator="sharicov" modified="20210417195455610" modifier="sharicov" revision="3" tags="manual" title="Linux Swap setup" type="text/vnd.tiddlywiki">
+<pre>Linux SWAP setup 
+
+Source: http://manpages.ubuntu.com/manpages/bionic/man8/dphys-swapfile.8.html
+
+Check swap file location and usage (default /var/swap) 
+
+
+```
+swapon -s 
+
+```
+
+Disable default swap 
+
+
+```
+sudo dphys-swapfile swapoff 
+
+```
+
+Edit setting (to 1GB) 
+
+
+```
+sudo nano /etc/dphys-swapfile 
+
+```
+
+Change swap size from 100 to 1000  
+
+`CONF_SWAPSIZE=1000`
+
+Start swap 
+
+
+```
+sudo dphys-swapfile swapon 
+```
+</pre>
+</div>
+<div bag="default" created="20210417194706725" creator="sharicov" modified="20210417195506074" modifier="sharicov" revision="4" tags="manual" title="Log2RAM" type="text/vnd.tiddlywiki">
+<pre>!! Log2RAM to save SD card from unnecessary writes
+
+https://github.com/azlux/log2ram 
+
+Installation log2ram: 
+
+
+```
+sudo su 
+echo "deb http://packages.azlux.fr/debian/ buster main" | sudo tee /etc/apt/sources.list.d/azlux.listwget -qO - https://azlux.fr/repo.gpg.key | sudo apt-key add -apt update
+apt install log2ram 
+
+```
+
+Check actual size of current logs: 
+
+
+```
+sudo du -sh /var/log 
+```
+
+
+Sample output: 
+
+
+```
+190M    /var/log 
+```
+
+
+Change log2ram size accordingly (bigger than log size): 
+
+
+```
+sudo nano /etc/log2ram.conf 
+```
+
+
+Change 40M to sufficient size: 
+
+
+```
+SIZE=500M 
+```
+
+
+Start log2ram service: 
+
+
+```
+sudo service log2ram start 
+```
+
+
+Check no errors and service running: 
+
+
+```
+sudo service log2ram status 
+```
+
+
+Reboot (optional) 
+
+
+```
+sudo reboot 
+```
+
+</pre>
+</div>
+<div bag="default" created="20210415140628464" creator="sharicov" modified="20210415181354890" modifier="sharicov" revision="14" tags="ynh yunohost manual nanopi r4s" title="R4S Yunohost installation from scratch" type="text/vnd.tiddlywiki">
+<pre>
+
+!!!Download Armbian image for R4S
+{{Download link}}
+
+!!! Extract Armbian image locally
+{{ Extract .xz image}}
+
+!!! Flash image to the SD card
+{{Write image to SSD}}
+
+SSH connect to 
+
+```
+ssh root@IP
+```
+
+password: 1234
+Set a new password
+Ctrl+C on create new user
+apt update &amp; apt upgrade
+apt install -y htop atop iotop ncdu mc lxd docker.io screen samba samba-common-bin usbmount
+
+USB disks (if connected)
+mkdir /media/usb1
+mkdir /media/usb2
+
+mount /dev/sda1 /media/usb1
+mount /dev/sdb1 /media/usb2
+
+Note: disks/partitions can be different, check with: fdisk -l | grep sd
+
+Automount on boot:
+add to /etc/fstab
+/dev/sdb1 /media/usb1 ext4 defaults,noatime 0 1
+Or for specific disk to be mounted to /media/usb1:
+blkid |grep sd
+Copy PARTUUID="XXXXXX" to /etc/fstab
+ PARTUUID="XXXXXX" /media/usb1 ext4 defaults,noatime 0 1
+
+Samba share 
+Create new password, user must be existent:
+smbpasswd -a root
+mv /etc/samba/smb.conf{,.backup}
+nano /etc/sambe/smb.conf
+
+Add:
+======START========
+[R4S_USB1]
+Comment = Home NAS
+Path = /media/usb1
+Browseable = yes 
+Writeable = Yes
+only guest = no
+create mask = 0777
+directory mask = 0777
+Public = yes
+Guest ok = yes
+
+[R4S_USB2]
+Comment = Home NAS
+Path = /media/usb2
+Browseable = yes
+Writeable = Yes
+only guest = no
+create mask = 0777
+directory mask = 0777
+Public = yes
+Guest ok = yes
+=======END=========
+
+systemctl restart smbd 
+hostname -I
+smbclient -L 127.0.0.1
+
+Rclone (sync between clouds):
+curl https://rclone.org/install.sh | sudo bash 
+rclone configure
+n
+choose provider
+all defaults besides NO autoconfig (authentication on another PC with GUI with SAME version of rclone)
+create sync.sh in home directory
+Add:
+=====Start======
+#!/bin/sh
+echo Backup HPE to Yandex 
+rclone copy -u --progress HPE:/ Yandex:/Documents/HPE/ 
+
+echo Yandex to Local backup 
+rclone copy -u --progress Yandex: /media/usb1/Yandex.Disk.Backup/ 
+
+echo Backup Documents from Yandex to Mail.ru 
+rclone copy -u --progress Yandex:/Documents mailru:/Documents 
+
+echo Backup Tools from Yandex to Mail.ru 
+rclone copy -u --progress Yandex:/Tools mailru:/Tools 
+=====End=======
+chmod +x sync.sh
+
+Run rclone script every 30 min 
+sudo crontab -e 
+Add
+*/30 * * * * sh /root/sync.sh &gt;/dev/null 2&lt;&amp;1 
+
+Docker:
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce 
+
+access in web browser IP:9000 to configure
+Select Docker, then Connect
+Note: If cannot connect look for open ports on r4s:
+lsof -i -P -n | grep LISTEN
+
+In portainer page create new password
+Endpoint/Local/Public IP -&gt; Set r4s ip to fix 0.0.0.0
+
+Aria2-ariang container for torrents:
+Containers/Add container
+Give a name
+In image field add hurlenko/aria2-ariang
+Publish a new network port
+8080 -&gt; 8080
+6800 -&gt; 6800
+
+Restart policy / Unless stopped
+
+Volumes
+/aria2/data #Bind
+/media/usb1/Downloads
+
+Run the aria2-ariang container
+enter command prompt &gt;_ select /bin/ash
+vi conf/aria2.conf
+change prealloc to falloc
+Disconnect
+Restart the container
+
+Access aria2-airng server vi web browser IP:8080
+
+talescale vpn install:
+
+curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.gpg | sudo apt-key add -
+
+curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+
+apt update
+apt install tailscale
+sudo tailscale up
+
+#or tailscale up --advertise-exit-node # to use as an exit node to internet from other pears of the private network
+
+Enable IP routing on R4S:
+echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p /etc/sysctl.conf
+
+Check the page https://login.tailscale.com/admin/machines to view your VPN network.
+
+If IP routing required, enable it on the site, press on 3 dots menu (...)
+Review route settings
+Use as exit node -&gt; ON
+
+Yunohost in lxd (lxc) container name *ynh*:
+
+lxd init (choose 30GB, BTRFS)
+lxc launch images:debian/buster ynh
+lxc config device add ynh myport80 proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80
+lxc config device add ynh myport443 proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443
+lxc config set ynh boot.autostart true
+lxc list --columns ns4
+lxc exec ynh bash
+apt update
+apt upgrade 
+apt install curl
+curl https://install.yunohost.org | bash
+If you have backup to restore from BEFORE connecting from web or running postinstall 
+copy backup to home directory from the r4s main system (host) into lxd container:
+Run in the lxd container
+mkdir /home/yunohost.backup
+mkdir /home/yunohost.backup/archives
+
+ scp root@10.122.31.1:/media/usb1/Backup/yunohost_configs_backup/yunohost.backup/archives/20210413-131004_r4s.noho.st_certificate.*/home/yunohost.backup/archives
+
+yunohost backup restore 20210413-131004_r4s.noho.st_certificate
+
+Create new user:
+yunohost user create &lt;username&gt;
+
+Note: when loading from backup several users can be restored, please note wich is administarative user in nextcloud (no app addition possible for non administrative user).
+It is better only to restore system backup with certificates and not the full application backup (transmittion was not restored at all, freshrss didn't keep rss feeds etc...)
+
+Bonus:
+Yunohost themes:
+Show available:
+ ls /usr/share/ssowat/portal/assets/themes/
+Change:
+Then you can use nano /etc/ssowat/conf.json.persistent to enable the theme you choose like this:
+
+{"theme": "clouds"}
+
+FreshRSS extensions:
+
+cd /var/www/FreshRSS/extensions/
+wget https://github.com/kevinpapst/freshrss-youtube/archive/master.zip
+unzip master.zip
+mv freshrss-youtube-master/xExtension-YouTube .
+rm -rf freshrss-youtube-master/
+
+In nextcloud add external folders (samba) InstantUpload and .Contacts-Backup (to upload photos and contacts from the phone via nextcloud app)
+If .Contacts-Backup already exists delete it using Settings gear (bottom left/show hidden files)
+In nextcloud android app set auto apload: camera folder to sync / three vertical dots for settings of the folder and check use subfolders (per month); uncheck "also upload existing files"
+
+Find duplicates:
+apt install fdupes
+fdupes -rd /media/usb1/
+type help to get a manual
+
+Emby:
+run on r4s host (not container)
+lxc config device add ynh myport8096 proxy listen=tcp:0.0.0.0:8096 connect=tcp:127.0.0.1:8096
+lxc config device add ynh myport8920 proxy listen=tcp:0.0.0.0:8920 connect=tcp:127.0.0.1:8920
+lxc config device add ynh vartest disk source=/media/usb1/Movies path=/media
+
+</pre>
+</div>
+<div bag="default" created="20210416145721673" creator="sharicov" modified="20210416145948283" modifier="sharicov" revision="1" tags="manual" title="Raspberry Pi4 wifi auto connect" type="text/vnd.tiddlywiki">
+<pre> sudo raspi-config
+System Options/S1 Wireless LAN
+Enter SSID
+Enter password
+
+Raspberry will connect automatically each time wifi present
+
+Can be used as backup link to phone hotspot in case of Ethernet failure</pre>
+</div>
+<div bag="default" created="20210417192328826" creator="sharicov" modified="20210417192853677" modifier="sharicov" revision="1" tags="manual" title="Rsync automatic on change inotifywait" type="text/vnd.tiddlywiki">
+<pre>!! Rsync yandex disk(recommended to use rclone instead, separate manual): 
+
+Simulation: 
+
+
+```
+sudo rsync –dry-run –razu --progress /media/usbdown/yandex.disk.online/ /media/usbdown/Yandex.Disk.Backup/ 
+
+```
+
+Real sync: 
+
+
+```
+nano yandex_sync 
+```
+
+Add:
+
+```
+rsync -razu --progress /media/usbdown/yandex.disk.online/ /media/usbdown/Yandex.Disk.Backup/ 
+
+```
+
+Run:
+
+```
+cmode +x yandex_sync 
+screen –t yandex_sync 
+```
+
+
+Rsync each time souce changed: 
+
+
+```
+sudo apt install inotify-tools 
+
+nano  /home/admin/sync_yandex.sh 
+```
+
+Add:
+
+```
+#!/usr/bin/bash 
+while inotifywait -r -e modify,create,delete /media/usbdown/yandex.disk.online 
+do 
+rsync -razu /media/usbdown/yandex.disk.online/ /media/usbdown/Yandex.Disk.Backup/ 
+done 
+
+```
+Run:
+
+
+```
+chmod +x sync_yandex.sh 
+```
+
+</pre>
+</div>
+<div bag="default" created="20210417195404217" creator="sharicov" modified="20210417195430802" modifier="sharicov" revision="2" tags="manual" title="SAMBA" type="text/vnd.tiddlywiki">
+<pre>!!! SAMBA: 
+```
+sudo apt-get install samba samba-common-bin –y 
+```
+!!! Create samba user (same username as existing one) 
+
+sudo smbpasswd -a admin 
+
+Configure samba: 
+
+```
+sudo mv /etc/samba/smb.conf{,.backup} 
+sudo nano /etc/samba/smb.conf 
+```
+!!!!Add: 
+```
+[NAS] 
+
+Comment = Home NAS 
+
+Path = /media/usbdown 
+
+Browseable = yes 
+
+Writeable = Yes 
+
+only guest = no 
+
+create mask = 0777 
+
+directory mask = 0777 
+
+Public = yes 
+
+Guest ok = yes 
+
+Restart samba: 
+
+sudo systemctl restart smbd 
+
+Check IP/hostname: 
+
+hostname –I 
+```
+!!!!On client windows: 
+```
+net use z: \\192.168.3.3\nas /user:admin 
+```
+To connect directly go to wifi properties, share, than connect with ethernet cable to raspberry and get the address:
+
+```
+arp –a 
+```
+!!!!Ping to both sides might be required for computers to recognize each other 
+
+Check connected clients: 
+
+```
+sudo smbstatus –shares 
+```</pre>
+</div>
+<div bag="default" created="20210417191240847" creator="sharicov" modified="20210417191911902" modifier="sharicov" revision="2" tags="manual" title="Screen command" type="text/vnd.tiddlywiki">
+<pre>!! Screen command with examples
+
+https://kapeli.com/cheat_sheets/screen.docset/Contents/Resources/Documents/index : 
+
+Full shortcut list: https://www.computerhope.com/unix/screen.htm 
+
+To exit stopping commands running in screen: `CTRL+D `
+
+To exit without closing (so commands are still running) `CTRL+a d` or just close the window, or type exit 
+
+Show running screens: 
+
+
+```
+screen -ls 
+```
+
+
+To reattach existing screen:  
+
+
+```
+screen -r 
+```
+
+
+Multi-user (without detaching): 
+
+
+```
+screen –x 
+```
+
+
+Split screen: 
+
+
+```
+CTRL+a S 
+```
+
+
+Switch regions: 
+
+`CTRL+a TAB `
+
+New window: 
+
+`CTRL+A c `
+
+Screen example (opening two horisontal screen: upper with htop and bottom with iotop, detaching and reattaching): 
+
+```
+screen –S monitoring (create screen session with lable monitoring) 
+```
+
+Run:
+
+```
+Htop or bpytop 
+```
+
+
+`CTRL+a A` (change window lable) type in htop 
+
+`CTRL+a | `(split vertically) 
+
+`CTRL+a TAB `(switch to the new created window) 
+
+`CTRL+a c` (create new window) 
+
+
+```
+sudo tail –f /var/log/messages 
+```
+
+
+`CTRL+a A` (change window label) type in logs 
+
+`CTRL+a TAB` (switch back to htop region) 
+
+`CTRL+a S `(split horisontaly) 
+
+`CTRL+a TAB` (switch to the new created window) 
+
+`CTRL+a c` (create new window) 
+
+
+```
+sudo itop 
+```
+
+
+`CTRL+a A `(change window lable) type in iotop 
+
+Or: 
+
+
+```
+ iostat -x -m 3 
+```
+
+
+Or: 
+
+
+```
+duf (like htop for disk) 
+```
+
+
+To close any region switch to it with `CTRL+a TAB` and press `CTRL+a X `
+
+To switch content of each region switch to it with` CTRL+a TAB` and then `CTRL+a “ `
+
+And choose from dropdown list with arrows or using respective numeric values of the menu `0,1,2`... 
+
+Disconnect without stopping: 
+
+`CTRL+a d `
+
+
+```
+screen –ls 
+```
+
+
+
+```
+screen –r 
+```
+
+
+`CTRL+a S` 
+
+`CTRL+a TAB` 
+
+`CTRL+a “ `
+
+`1 `
+
+Close splitted window: 
+
+`CTRL+A X` 
+
+Rename existing screen (example of screen -ls returning 597.test): 
+
+
+```
+screen -S 597.test -X sessionname monitoring 
+```
+
+
+Or `CTRL+a A` and then type in new session name 
+
+Show owners of running screen sessions: 
+
+
+```
+ls -R /var/run/screen 
+```
+
+
+Lock screen(unlocks with admin password): 
+
+`CTRL+a x `
+
+Record all scroll buffer to file: 
+
+`CTRL+a : `
+
+`hardcopy –h /path/filename `</pre>
+</div>
+<div bag="default" created="20210417182846508" creator="sharicov" modified="20210417182911380" modifier="sharicov" revision="2" tags="manual" title="Script backup" type="text/vnd.tiddlywiki">
+<pre>Script: 
+
+```
+echo Backing up settings 
+
+echo transmission 
+
+
+
+cp /var/lib/transmission-daemon/.config/transmission-daemon/settings.json /home/admin/yunohost_backup/settings.json.`date +"%d-%m-%Y"` 
+
+
+
+echo nextcloud 
+
+
+
+cp /var/www/nextcloud/lib/private/Installer.php /home/admin/yunohost_backup/Installer.php.`date +"%d-%m-%Y"` 
+
+
+
+echo rc.local 
+
+
+
+cp /etc/rc.local /home/admin/yunohost_backup/rc.local.`date +"%d-%m-%Y"` 
+
+
+
+echo squid 
+
+cp /etc/squid/squid.conf /home/admin/yunohost_backup/squid.conf.`date +"%d-%m-%Y"` 
+
+echo fstab 
+
+cp /etc/fstab /home/admin/yunohost_backup/fstab.`date +"%d-%m-%Y"` 
+
+echo smb.conf 
+
+cp /etc/samba/smb.conf /home/admin/yunohost_backup/smb.conf.`date +"%d-%m-%Y"` 
+
+#echo davfs2 secrets 
+
+#cp /etc/davfs2/secrets /home/admin/yunohost_backup/secrets.`date +"%d-%m-%Y"` 
+
+echo sync script 
+
+cp sync /home/admin/yunohost_backup/sync.`date +"%d-%m-%Y"` 
+
+echo log2ram.conf 
+
+cp /etc/log2ram.conf  /home/admin/yunohost_backup/log2ram.conf.`date +"%d-%m-%Y"` 
+
+#sync hostapd 
+
+#cp /etc/hostapd/hostapd.conf /home/admin/yunohost_backup/conf.`date +"%d-%m-%Y"` 
+
+echo sync aria2.conf 
+
+cp aria2.conf /home/admin/yunohost_backup/aria2.conf.`date +"%d-%m-%Y"` 
+
+  
+
+echo removing old archived logs 
+
+rm -vf /home/admin/yunohost_backup/*.zip 
+
+  
+
+echo compressing new logs 
+
+zip /home/admin/yunohost_backup/yunohost_backup_`date +"%d-%m-%Y"`.zip /home/admin/yunohost_backup/* 
+
+  
+
+echo Removing uncompressed logs before uploading to cloud 
+
+`rm -vf /home/admin/yunohost_backup/!(*.zip)` 
+
+  
+
+echo Backing up configuration to Yandex /Tools/Manuals/yunohost_backup/ 
+
+rclone copy -u --progress /home/admin/yunohost_backup/  Yandex:/Tools/Manuals/yunohost_backup/ 
+
+  
+
+echo copy yunohost backups to Local repository 
+
+cp /home/yunohost.backup/archives/* /media/usbdown/Backup/yunohost_configs_backup/yunohost.backup/archives/ 
+
+  
+
+echo Backing up nextcloud contacts to Yandex /Documents/Contacts/ 
+
+sudo rclone copy -u --progress /home/yunohost.app/nextcloud/data/sharicov/files/.Contacts-Backup/ Yandex:/Documents/Contacts/ 
+
+  
+
+echo Backup HPE to Yandex 
+
+rclone copy -u --progress HPE:/ Yandex:/Documents/HPE/ 
+
+#rclone copy -u --progress Yandex: mailru: 
+
+  
+
+echo Yandex to Local backup 
+
+rclone copy -u --progress Yandex: /media/usbdown/Yandex.Disk.Backup/ 
+
+  
+
+echo Backup Tools from Yandex to Mail.ru 
+
+rclone copy -u --progress Yandex:/Tools mailru:/Tools 
+
+  
+
+echo Backup Documents from Yandex to Mail.ru 
+
+rclone copy -u --progress Yandex:/Documents mailru:/Documents 
+
+  
+
+  
+
+echo Backup all Yandex to Mail.ru 
+
+  
+
+rclone copy -u --progress Yandex: mailru: --exclude '*.JPG' --exclude '*.jpg' --exclude '*.MP4' --exclude '*.PNG' --exclude '*.jpeg' --exclude '*.mp4' --exclude '*.MOV' 
+
+```
+</pre>
+</div>
+<div bag="default" created="20210417193157648" creator="sharicov" modified="20210417194012285" modifier="sharicov" revision="4" tags="manual" title="Show all installed packages in linux (yunohost)" type="text/vnd.tiddlywiki">
+<pre>All installed packages: 
+
+
+```
+sudo apt list --installed 
+
+```
+
+Date taken on `sharicov.noho.st`:  ''09.02.2021''
+
+```
+acl/stable,now 2.2.53-4 armhf [installed,automatic] 
+
+adduser/stable,now 3.118 all [installed] 
+
+alsa-utils/stable,now 1.1.8-2 armhf [installed,automatic] 
+
+apt-listchanges/stable,now 3.19 all [installed] 
+
+apt-transport-https/stable,now 1.8.2.2 all [installed] 
+
+apt-utils/stable,now 1.8.2.2 armhf [installed] 
+
+apt/stable,now 1.8.2.2 armhf [installed] 
+
+aria2/stable,now 1.34.0-4 armhf [installed] 
+
+at/stable,now 3.1.23-1 armhf [installed,automatic] 
+
+attr/stable,now 1:2.4.48-4 armhf [installed,automatic] 
+
+autoconf-archive/stable,now 20180313-1 all [installed,automatic] 
+
+autoconf/stable,now 2.69-11 all [installed,automatic] 
+
+autogen-doc/stable,now 1:5.18.12-4 all [installed,automatic] 
+
+autogen/stable,now 1:5.18.12-4 armhf [installed,automatic] 
+
+automake/stable,now 1:1.16.1-4 all [installed,automatic] 
+
+autopoint/stable,now 0.19.8.1-9 all [installed,automatic] 
+
+autotools-dev/stable,now 20180224.1 all [installed,automatic] 
+
+avahi-daemon/stable,now 0.7-4+b1 armhf [installed] 
+
+base-files/stable,now 10.3+rpi1+deb10u8 armhf [installed] 
+
+base-passwd/stable,now 3.5.46 armhf [installed] 
+
+bash-completion/stable,now 1:2.8-6 all [installed] 
+
+bash/stable,now 5.0-4 armhf [installed] 
+
+bc/stable,now 1.07.1-2 armhf [installed,automatic] 
+
+bind9-host/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+bind9utils/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+binutils-arm-linux-gnueabihf/stable,now 2.31.1-16+rpi2 armhf [installed,automatic] 
+
+binutils-common/stable,now 2.31.1-16+rpi2 armhf [installed,automatic] 
+
+binutils/stable,now 2.31.1-16+rpi2 armhf [installed,automatic] 
+
+bluez-firmware/testing,now 1.2-4+rpt8 all [installed,automatic] 
+
+bluez/testing,now 5.50-1.2~deb10u1+rpt2 armhf [installed,automatic] 
+
+bozon-ynh-deps/now 2.4.18~ynh1 all [installed,local] 
+
+bpytop/stable,now 1.0.61 all [installed] 
+
+bsdmainutils/stable,now 11.1.2 armhf [installed] 
+
+bsdutils/stable,now 1:2.33.1-0.1 armhf [installed] 
+
+build-essential/stable,now 12.6 armhf [installed] 
+
+busybox/stable,now 1:1.30.1-4 armhf [installed,automatic] 
+
+bzip2/stable,now 1.0.6-9.2~deb10u1 armhf [installed,automatic] 
+
+ca-certificates/stable,now 20200601~deb10u2 all [installed] 
+
+cgroupfs-mount/stable,now 1.4 all [installed,automatic] 
+
+cifs-utils/stable,now 2:6.8-2 armhf [installed] 
+
+cmake-data/stable,now 3.13.4-1 all [installed,automatic] 
+
+cmake/stable,now 3.13.4-1 armhf [installed,automatic] 
+
+console-setup-linux/stable,now 1.193~deb10u1 all [installed,automatic] 
+
+console-setup/stable,now 1.193~deb10u1 all [installed] 
+
+containerd.io/buster,now 1.4.3-1 armhf [installed,automatic] 
+
+coreutils/stable,now 8.30-3 armhf [installed] 
+
+cpio/stable,now 2.12+dfsg-9 armhf [installed] 
+
+cpp-8/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+cpp/stable,now 4:8.3.0-1+rpi2 armhf [installed,automatic] 
+
+crda/stable,now 3.18-1 armhf [installed] 
+
+cron/stable,now 3.0pl1-134+deb10u1 armhf [installed] 
+
+ctop/stable,now 1.0.0-2 all [installed] 
+
+curl/stable,now 7.64.0-4+deb10u1 armhf [installed] 
+
+dash/stable,now 0.5.10.2-5 armhf [installed] 
+
+db-util/stable,now 5.3.1+nmu1 all [installed,automatic] 
+
+db5.3-util/stable,now 5.3.28+dfsg1-0.5 armhf [installed,automatic] 
+
+dbus/stable,now 1.12.20-0+deb10u1 armhf [installed,automatic] 
+
+dc/stable,now 1.07.1-2 armhf [installed,automatic] 
+
+debconf-i18n/stable,now 1.5.71 all [installed] 
+
+debconf-utils/stable,now 1.5.71 all [installed] 
+
+debconf/stable,now 1.5.71 all [installed] 
+
+debhelper/testing,now 13.2~bpo10+1 all [installed] 
+
+debianutils/stable,now 4.8.6.1 armhf [installed] 
+
+device-tree-compiler/stable,now 1.4.7-4 armhf [installed,automatic] 
+
+dh-autoreconf/stable,now 19 all [installed] 
+
+dh-python/stable,now 3.20190308 all [installed,automatic] 
+
+dh-strip-nondeterminism/stable,now 1.1.2-1 all [installed,automatic] 
+
+dhcpcd5/testing,now 1:8.1.2-1+rpt1 armhf [installed] 
+
+diffutils/stable,now 1:3.7-3 armhf [installed] 
+
+dirmngr/stable,now 2.2.12-1+rpi1+deb10u1 armhf [installed] 
+
+distro-info-data/stable,now 0.41+deb10u3 all [installed,automatic] 
+
+dmidecode/stable,now 3.2-1 armhf [installed] 
+
+dmsetup/stable,now 2:1.02.155-3 armhf [installed] 
+
+dns-root-data/stable,now 2019031302 all [installed,automatic] 
+
+dnsmasq-base/testing,now 2.80-1+rpt1+deb10u1 armhf [installed,automatic] 
+
+dnsmasq/testing,now 2.80-1+rpt1+deb10u1 all [installed,automatic] 
+
+dnsutils/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+docker-ce-cli/buster,now 5:20.10.3~3-0~raspbian-buster armhf [installed,automatic] 
+
+docker-ce/buster,now 5:20.10.3~3-0~raspbian-buster armhf [installed] 
+
+docker-compose/stable,now 1.21.0-3 all [installed] 
+
+dosfstools/stable,now 4.1-2 armhf [installed] 
+
+dovecot-antispam/stable,now 2.0+20171229-1+b6 armhf [installed,automatic] 
+
+dovecot-core/stable,now 1:2.3.4.1-5+deb10u6 armhf [installed,automatic] 
+
+dovecot-imapd/stable,now 1:2.3.4.1-5+deb10u6 armhf [installed,automatic] 
+
+dovecot-ldap/stable,now 1:2.3.4.1-5+deb10u6 armhf [installed,automatic] 
+
+dovecot-lmtpd/stable,now 1:2.3.4.1-5+deb10u6 armhf [installed,automatic] 
+
+dovecot-managesieved/stable,now 1:2.3.4.1-5+deb10u6 armhf [installed,automatic] 
+
+dovecot-sieve/stable,now 1:2.3.4.1-5+deb10u6 armhf [installed,automatic] 
+
+dphys-swapfile/testing,now 20100506-5+rpt2 all [installed] 
+
+dpkg-dev/stable,now 1.19.7 all [installed,automatic] 
+
+dpkg/stable,now 1.19.7 armhf [installed] 
+
+duf/stable,now 0.6.0 armhf [installed] 
+
+dwz/stable,now 0.12-3 armhf [installed,automatic] 
+
+e2fsprogs/stable,now 1.44.5-1+deb10u3 armhf [installed] 
+
+ed/stable,now 1.15-1 armhf [installed] 
+
+emby-server/now 4.4.2.0 armhf [installed,local] 
+
+equivs/stable,now 2.2.0 all [installed,automatic] 
+
+ethtool/stable,now 1:4.19-1 armhf [installed] 
+
+fail2ban/stable,now 0.10.2-2.1 all [installed,automatic] 
+
+fake-hwclock/testing,now 0.11+rpt1 all [installed] 
+
+fakeroot/stable,now 1.23-1 armhf [installed,automatic] 
+
+fbset/stable,now 2.1-30 armhf [installed] 
+
+fdisk/stable,now 2.33.1-0.1 armhf [installed] 
+
+ffmpeg/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+file/stable,now 1:5.35-4+deb10u2 armhf [installed,automatic] 
+
+findutils/stable,now 4.6.0+git+20190209-2 armhf [installed] 
+
+firmware-amd-graphics/testing,now 1:20190114-1+rpt11 all [installed,automatic] 
+
+firmware-atheros/testing,now 1:20190114-1+rpt11 all [installed] 
+
+firmware-brcm80211/testing,now 1:20190114-1+rpt11 all [installed] 
+
+firmware-libertas/testing,now 1:20190114-1+rpt11 all [installed] 
+
+firmware-linux-free/stable,now 3.4 all [installed,automatic] 
+
+firmware-linux-nonfree/testing,now 1:20190114-1+rpt11 all [installed,automatic] 
+
+firmware-misc-nonfree/testing,now 1:20190114-1+rpt11 all [installed] 
+
+firmware-realtek/testing,now 1:20190114-1+rpt11 all [installed] 
+
+flashrom/stable,now 1.0-1 armhf [installed,automatic] 
+
+fontconfig-config/stable,now 2.13.1-2 all [installed,automatic] 
+
+fontconfig/stable,now 2.13.1-2 armhf [installed,automatic] 
+
+fonts-dejavu-core/stable,now 2.37-1 all [installed,automatic] 
+
+fonts-droid-fallback/stable,now 1:6.0.1r16-1.1 all [installed,automatic] 
+
+fonts-glyphicons-halflings/stable,now 1.009~3.4.1+dfsg-1 all [installed,automatic] 
+
+fonts-noto-mono/stable,now 20181227-1 all [installed,automatic] 
+
+freeipmi-common/stable,now 1.6.3-1.1 all [installed,automatic] 
+
+fuse/stable,now 2.9.9-1+deb10u1 armhf [installed,automatic] 
+
+g++-8/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+g++/stable,now 4:8.3.0-1+rpi2 armhf [installed,automatic] 
+
+galera-3/stable,now 25.3.25-2 armhf [installed,automatic] 
+
+gawk/stable,now 1:4.2.1+dfsg-1 armhf [installed,automatic] 
+
+gcc-4.9-base/stable,now 4.9.4-2+rpi1+b19 armhf [installed] 
+
+gcc-5-base/stable,now 5.5.0-8 armhf [installed] 
+
+gcc-6-base/stable,now 6.5.0-1+rpi1+b1 armhf [installed] 
+
+gcc-7-base/stable,now 7.3.0-19 armhf [installed] 
+
+gcc-8-base/stable,now 8.3.0-6+rpi1 armhf [installed] 
+
+gcc-8/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+gcc/stable,now 4:8.3.0-1+rpi2 armhf [installed,automatic] 
+
+gdb/stable,now 8.2.1-2 armhf [installed] 
+
+gdbm-l10n/stable,now 1.18.1-4 all [installed] 
+
+geoip-database/stable,now 20181108-1 all [installed,automatic] 
+
+gettext-base/stable,now 0.19.8.1-9 armhf [installed,automatic] 
+
+gettext/stable,now 0.19.8.1-9 armhf [installed,automatic] 
+
+ghostscript/stable,now 9.27~dfsg-2+deb10u4 armhf [installed,automatic] 
+
+gir1.2-glib-2.0/stable,now 1.58.3-2 armhf [installed,automatic] 
+
+git-man/stable,now 1:2.20.1-2+deb10u3 all [installed,automatic] 
+
+git/stable,now 1:2.20.1-2+deb10u3 armhf [installed] 
+
+gnupg-l10n/stable,now 2.2.12-1+rpi1+deb10u1 all [installed] 
+
+gnupg-utils/stable,now 2.2.12-1+rpi1+deb10u1 armhf [installed] 
+
+gnupg/stable,now 2.2.12-1+rpi1+deb10u1 all [installed] 
+
+gnustep-base-common/stable,now 1.26.0-4+deb10u1 all [installed,automatic] 
+
+gnustep-base-runtime/stable,now 1.26.0-4+deb10u1 armhf [installed,automatic] 
+
+gnustep-common/stable,now 2.7.0-4 armhf [installed,automatic] 
+
+golang-docker-credential-helpers/stable,now 0.6.1-2 armhf [installed,automatic] 
+
+gpg-agent/stable,now 2.2.12-1+rpi1+deb10u1 armhf [installed] 
+
+gpg-wks-client/stable,now 2.2.12-1+rpi1+deb10u1 armhf [installed] 
+
+gpg-wks-server/stable,now 2.2.12-1+rpi1+deb10u1 armhf [installed] 
+
+gpg/stable,now 2.2.12-1+rpi1+deb10u1 armhf [installed] 
+
+gpgconf/stable,now 2.2.12-1+rpi1+deb10u1 armhf [installed] 
+
+gpgsm/stable,now 2.2.12-1+rpi1+deb10u1 armhf [installed] 
+
+gpgv/stable,now 2.2.12-1+rpi1+deb10u1 armhf [installed] 
+
+grep/stable,now 3.3-1 armhf [installed] 
+
+groff-base/stable,now 1.22.4-3 armhf [installed] 
+
+gsfonts/stable,now 1:8.11+urwcyr1.0.7~pre44-4.4 all [installed,automatic] 
+
+guile-2.0-libs/stable,now 2.0.13+1-5.1 armhf [installed,automatic] 
+
+guile-2.2-libs/stable,now 2.2.4+1-2+deb10u1 armhf [installed,automatic] 
+
+gzip/stable,now 1.9-3 armhf [installed] 
+
+hardlink/stable,now 0.3.2 armhf [installed] 
+
+haveged/stable,now 1.9.1-7 armhf [installed,automatic] 
+
+hdparm/stable,now 9.58+ds-1 armhf [installed] 
+
+hicolor-icon-theme/stable,now 0.17-2 all [installed,automatic] 
+
+hostapd/stable,now 2:2.7+git20190128+0c1e29f-6+deb10u2 armhf [installed] 
+
+hostname/stable,now 3.21 armhf [installed] 
+
+htop/stable,now 2.2.0-1 armhf [installed] 
+
+ibverbs-providers/stable,now 22.1-1 armhf [installed,automatic] 
+
+idn2/stable,now 2.0.5-1+deb10u1 armhf [installed,automatic] 
+
+ifupdown/stable,now 0.8.35 armhf [installed] 
+
+imagemagick-6-common/stable,now 8:6.9.10.23+dfsg-2.1+deb10u1 all [installed,automatic] 
+
+imagemagick-6.q16/stable,now 8:6.9.10.23+dfsg-2.1+deb10u1 armhf [installed,automatic] 
+
+imagemagick/stable,now 8:6.9.10.23+dfsg-2.1+deb10u1 armhf [installed,automatic] 
+
+info/stable,now 6.5.0.dfsg.1-4+b1 armhf [installed] 
+
+init-system-helpers/stable,now 1.56+nmu1 all [installed] 
+
+init/stable,now 1.56+nmu1 armhf [installed] 
+
+initramfs-tools-core/stable,now 0.133+deb10u1 all [installed,automatic] 
+
+initramfs-tools/stable,now 0.133+deb10u1 all [installed,automatic] 
+
+insserv/stable,now 1.18.0-2 armhf [installed] 
+
+install-info/stable,now 6.5.0.dfsg.1-4+b1 armhf [installed] 
+
+intltool-debian/stable,now 0.35.0+20060710.5 all [installed,automatic] 
+
+iotop/stable,now 0.6-24-g733f3f8-1 armhf [installed] 
+
+iproute2/stable,now 4.20.0-2+deb10u1 armhf [installed] 
+
+iptables/stable,now 1.8.2-4 armhf [installed] 
+
+iputils-ping/stable,now 3:20180629-2+deb10u1 armhf [installed] 
+
+isc-dhcp-client/stable,now 4.4.1-2 armhf [installed] 
+
+isc-dhcp-common/stable,now 4.4.1-2 armhf [installed] 
+
+iso-codes/stable,now 4.2-1 all [installed,automatic] 
+
+iw/stable,now 5.0.1-1 armhf [installed,automatic] 
+
+javascript-common/stable,now 11 all [installed,automatic] 
+
+jellyfin-ffmpeg/now 4.3.1-3-buster armhf [installed,local] 
+
+jellyfin-server/now 10.6.4-1 armhf [installed,local] 
+
+jellyfin-web/now 10.6.4-1 all [installed,local] 
+
+jellyfin-ynh-deps/now 10.6.4~ynh3 all [installed,local] 
+
+jellyfin/now 10.6.4-1 all [installed,local] 
+
+jq/stable,now 1.5+dfsg-2+b1 armhf [installed,automatic] 
+
+kbd/stable,now 2.0.4-4 armhf [installed,automatic] 
+
+keyboard-configuration/stable,now 1.193~deb10u1 all [installed] 
+
+keyutils/stable,now 1.6-6 armhf [installed,automatic] 
+
+klibc-utils/stable,now 2.0.6-1+rpi1 armhf [installed,automatic] 
+
+kmod/stable,now 26-1 armhf [installed] 
+
+ldap-utils/stable,now 2.4.47+dfsg-3+rpi1+deb10u5 armhf [installed,automatic] 
+
+less/stable,now 487-0.1 armhf [installed] 
+
+libaacs0/stable,now 0.9.0-2 armhf [installed,automatic] 
+
+libacl1/stable,now 2.2.53-4 armhf [installed] 
+
+libaio1/stable,now 0.3.112-3 armhf [installed,automatic] 
+
+libalgorithm-diff-perl/stable,now 1.19.03-2 all [installed,automatic] 
+
+libalgorithm-diff-xs-perl/stable,now 0.04-5+b1 armhf [installed,automatic] 
+
+libalgorithm-merge-perl/stable,now 0.08-3 all [installed,automatic] 
+
+libaom0/stable,now 1.0.0-3 armhf [installed,automatic] 
+
+libapparmor1/stable,now 2.13.2-10 armhf [installed] 
+
+libapt-inst2.0/stable,now 1.8.2.2 armhf [installed] 
+
+libapt-pkg5.0/stable,now 1.8.2.2 armhf [installed] 
+
+libarchive-cpio-perl/stable,now 0.10-1 all [installed,automatic] 
+
+libarchive-zip-perl/stable,now 1.64-1 all [installed,automatic] 
+
+libarchive13/stable,now 3.3.3-4+deb10u1 armhf [installed,automatic] 
+
+libargon2-1/stable,now 0~20171227-0.2 armhf [installed] 
+
+libaria2-0-dev/stable,now 1.34.0-4 armhf [installed] 
+
+libaria2-0/stable,now 1.34.0-4 armhf [installed] 
+
+libaria2/stable,now 2.8.0+repack-1.2 armhf [installed] 
+
+libasan5/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+libasound2-data/testing,now 1.1.8-1+rpt1 all [installed,automatic] 
+
+libasound2/testing,now 1.1.8-1+rpt1 armhf [installed,automatic] 
+
+libass9/stable,now 1:0.14.0-2 armhf [installed,automatic] 
+
+libassuan0/stable,now 2.5.2-1 armhf [installed] 
+
+libasyncns0/stable,now 0.8-6 armhf [installed,automatic] 
+
+libatomic1/stable,now 8.3.0-6+rpi1 armhf [installed] 
+
+libattr1/stable,now 1:2.4.48-4 armhf [installed] 
+
+libaudit-common/stable,now 1:2.8.4-3 all [installed] 
+
+libaudit1/stable,now 1:2.8.4-3 armhf [installed] 
+
+libauthen-sasl-perl/stable,now 2.1600-1 all [installed,automatic] 
+
+libavahi-client3/stable,now 0.7-4+b1 armhf [installed,automatic] 
+
+libavahi-common-data/stable,now 0.7-4+b1 armhf [installed,automatic] 
+
+libavahi-common3/stable,now 0.7-4+b1 armhf [installed,automatic] 
+
+libavahi-core7/stable,now 0.7-4+b1 armhf [installed,automatic] 
+
+libavc1394-0/stable,now 0.5.4-5 armhf [installed,automatic] 
+
+libavcodec58/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+libavdevice58/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+libavfilter7/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+libavformat58/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+libavresample4/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+libavutil56/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+libbabeltrace1/stable,now 1.5.6-2+deb10u1 armhf [installed,automatic] 
+
+libbdplus0/stable,now 0.1.2-3 armhf [installed,automatic] 
+
+libbind9-161/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+libbinutils/stable,now 2.31.1-16+rpi2 armhf [installed,automatic] 
+
+libblkid1/stable,now 2.33.1-0.1 armhf [installed] 
+
+libbluetooth3/testing,now 5.50-1.2~deb10u1+rpt2 armhf [installed,automatic] 
+
+libbluray2/stable,now 1:1.1.0-1 armhf [installed,automatic] 
+
+libboost-atomic1.67.0/stable,now 1.67.0-13+deb10u1 armhf [installed,automatic] 
+
+libboost-iostreams1.58.0/stable,now 1.58.0+dfsg-5.1+rpi1+b4 armhf [installed] 
+
+libboost-iostreams1.67.0/stable,now 1.67.0-13+deb10u1 armhf [installed,automatic] 
+
+libboost-regex1.67.0/stable,now 1.67.0-13+deb10u1 armhf [installed,automatic] 
+
+libboost-system1.67.0/stable,now 1.67.0-13+deb10u1 armhf [installed,automatic] 
+
+libboost-thread1.67.0/stable,now 1.67.0-13+deb10u1 armhf [installed,automatic] 
+
+libbrotli1/stable,now 1.0.7-2+deb10u1 armhf [installed,automatic] 
+
+libbs2b0/stable,now 3.1.0+dfsg-2.2 armhf [installed,automatic] 
+
+libbsd0/stable,now 0.9.1-2 armhf [installed] 
+
+libbz2-1.0/stable,now 1.0.6-9.2~deb10u1 armhf [installed] 
+
+libc-ares2/stable,now 1.14.0-1 armhf [installed,automatic] 
+
+libc-bin/stable,now 2.28-10+rpi1 armhf [installed] 
+
+libc-client2007e/stable,now 8:2007f~dfsg-6 armhf [installed,automatic] 
+
+libc-dev-bin/stable,now 2.28-10+rpi1 armhf [installed,automatic] 
+
+libc-l10n/stable,now 2.28-10+rpi1 all [installed,automatic] 
+
+libc6-dbg/stable,now 2.28-10+rpi1 armhf [installed,automatic] 
+
+libc6-dev/stable,now 2.28-10+rpi1 armhf [installed,automatic] 
+
+libc6/stable,now 2.28-10+rpi1 armhf [installed] 
+
+libcaca0/stable,now 0.99.beta19-2.1 armhf [installed,automatic] 
+
+libcairo2/testing,now 1.16.0-4+rpt1 armhf [installed,automatic] 
+
+libcap-ng0/stable,now 0.7.9-2 armhf [installed] 
+
+libcap2-bin/stable,now 1:2.25-2 armhf [installed] 
+
+libcap2/stable,now 1:2.25-2 armhf [installed] 
+
+libcc1-0/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+libcdio-cdda2/stable,now 10.2+0.94+2-4 armhf [installed,automatic] 
+
+libcdio-paranoia2/stable,now 10.2+0.94+2-4 armhf [installed,automatic] 
+
+libcdio18/stable,now 2.0.0-2 armhf [installed,automatic] 
+
+libcephfs2/stable,now 12.2.11+dfsg1-2.1+rpi1 armhf [installed,automatic] 
+
+libcgi-fast-perl/stable,now 1:2.13-1 all [installed,automatic] 
+
+libcgi-pm-perl/stable,now 4.40-1 all [installed,automatic] 
+
+libchromaprint1/stable,now 1.4.3-3 armhf [installed,automatic] 
+
+libcodec2-0.8.1/stable,now 0.8.1-2 armhf [installed,automatic] 
+
+libcom-err2/stable,now 1.44.5-1+deb10u3 armhf [installed] 
+
+libconfig-inifiles-perl/stable,now 3.000001-1 all [installed,automatic] 
+
+libconvert-asn1-perl/stable,now 0.27-2 all [installed,automatic] 
+
+libcroco3/stable,now 0.6.12-3 armhf [installed,automatic] 
+
+libcryptsetup12/stable,now 2:2.1.0-5+deb10u2 armhf [installed] 
+
+libcups2/stable,now 2.2.10-6+deb10u4 armhf [installed,automatic] 
+
+libcupsfilters1/testing,now 1.21.6-5+rpt1 armhf [installed,automatic] 
+
+libcupsimage2/stable,now 2.2.10-6+deb10u4 armhf [installed,automatic] 
+
+libcurl3-gnutls/stable,now 7.64.0-4+deb10u1 armhf [installed,automatic] 
+
+libcurl4/stable,now 7.64.0-4+deb10u1 armhf [installed,automatic] 
+
+libdaemon0/stable,now 0.14-7 armhf [installed,automatic] 
+
+libdata-dump-perl/stable,now 1.23-1 all [installed,automatic] 
+
+libdatrie1/stable,now 0.2.12-2 armhf [installed,automatic] 
+
+libdb5.3/stable,now 5.3.28+dfsg1-0.5 armhf [installed] 
+
+libdbd-ldap-perl/stable,now 0.20-1 all [installed,automatic] 
+
+libdbd-mysql-perl/stable,now 4.050-2 armhf [installed,automatic] 
+
+libdbi-perl/stable,now 1.642-1+deb10u2 armhf [installed,automatic] 
+
+libdbus-1-3/stable,now 1.12.20-0+deb10u1 armhf [installed,automatic] 
+
+libdc1394-22/stable,now 2.2.5-1 armhf [installed,automatic] 
+
+libde265-0/stable,now 1.0.3-1+rpi1+b9 armhf [installed,automatic] 
+
+libdebconfclient0/stable,now 0.249 armhf [installed] 
+
+libdebhelper-perl/testing,now 13.2~bpo10+1 all [installed,automatic] 
+
+libdevmapper1.02.1/stable,now 2:1.02.155-3 armhf [installed] 
+
+libdigest-bubblebabble-perl/stable,now 0.02-2 all [installed,automatic] 
+
+libdigest-hmac-perl/stable,now 1.03+dfsg-2 all [installed,automatic] 
+
+libdjvulibre-text/stable,now 3.5.27.1-10 all [installed,automatic] 
+
+libdjvulibre21/stable,now 3.5.27.1-10 armhf [installed,automatic] 
+
+libdns-export1104/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed] 
+
+libdns1104/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+libdpkg-perl/stable,now 1.19.7 all [installed,automatic] 
+
+libdrm-amdgpu1/testing,now 2.4.100-4+rpi1~bpo10+1 armhf [installed,automatic] 
+
+libdrm-common/testing,now 2.4.100-4+rpi1~bpo10+1 all [installed,automatic] 
+
+libdrm-nouveau2/testing,now 2.4.100-4+rpi1~bpo10+1 armhf [installed,automatic] 
+
+libdrm-radeon1/testing,now 2.4.100-4+rpi1~bpo10+1 armhf [installed,automatic] 
+
+libdrm2/testing,now 2.4.100-4+rpi1~bpo10+1 armhf [installed,automatic] 
+
+libdw1/stable,now 0.176-1.1 armhf [installed,automatic] 
+
+libecap3/stable,now 1.0.1-3.2+rpi1 armhf [installed,automatic] 
+
+libedit2/stable,now 3.1-20181209-1 armhf [installed,automatic] 
+
+libelf1/stable,now 0.176-1.1 armhf [installed] 
+
+libencode-locale-perl/stable,now 1.05-1 all [installed,automatic] 
+
+liberror-perl/stable,now 0.17027-2 all [installed,automatic] 
+
+libestr0/stable,now 0.1.10-2.1 armhf [installed] 
+
+libevent-2.1-6/stable,now 2.1.8-stable-4 armhf [installed,automatic] 
+
+libevent-core-2.1-6/stable,now 2.1.8-stable-4 armhf [installed,automatic] 
+
+libevent-pthreads-2.1-6/stable,now 2.1.8-stable-4 armhf [installed,automatic] 
+
+libexpat1-dev/stable,now 2.2.6-2+deb10u1 armhf [installed,automatic] 
+
+libexpat1/stable,now 2.2.6-2+deb10u1 armhf [installed,automatic] 
+
+libext2fs2/stable,now 1.44.5-1+deb10u3 armhf [installed] 
+
+libexttextcat-2.0-0/stable,now 3.4.5-1 armhf [installed,automatic] 
+
+libexttextcat-data/stable,now 3.4.5-1 all [installed,automatic] 
+
+libfakeroot/stable,now 1.23-1 armhf [installed,automatic] 
+
+libfastjson4/stable,now 0.99.8-2 armhf [installed] 
+
+libfcgi-perl/stable,now 0.78-2+b2 armhf [installed,automatic] 
+
+libfdisk1/stable,now 2.33.1-0.1 armhf [installed] 
+
+libffi6/stable,now 3.2.1-9 armhf [installed] 
+
+libfftw3-double3/stable,now 3.3.8-2 armhf [installed,automatic] 
+
+libfftw3-single3/stable,now 3.3.8-2 armhf [installed,automatic] 
+
+libfile-fcntllock-perl/stable,now 0.22-3+b4 armhf [installed,automatic] 
+
+libfile-listing-perl/stable,now 6.04-1 all [installed,automatic] 
+
+libfile-stripnondeterminism-perl/stable,now 1.1.2-1 all [installed,automatic] 
+
+libfl2/stable,now 2.6.4-6.2 armhf [installed,automatic] 
+
+libflac8/stable,now 1.3.2-3 armhf [installed,automatic] 
+
+libflite1/stable,now 2.1-release-3 armhf [installed,automatic] 
+
+libfont-afm-perl/stable,now 1.20-2 all [installed,automatic] 
+
+libfontconfig1/stable,now 2.13.1-2 armhf [installed,automatic] 
+
+libfreeipmi17/stable,now 1.6.3-1.1 armhf [installed,automatic] 
+
+libfreetype6-dev/stable,now 2.9.1-3+deb10u2 armhf [installed] 
+
+libfreetype6/stable,now 2.9.1-3+deb10u2 armhf [installed,automatic] 
+
+libfribidi0/stable,now 1.0.5-3.1+deb10u1 armhf [installed,automatic] 
+
+libfstrm0/stable,now 0.4.0-1 armhf [installed,automatic] 
+
+libftdi1-2/stable,now 1.4-1+b2 armhf [installed,automatic] 
+
+libfuse2/stable,now 2.9.9-1+deb10u1 armhf [installed,automatic] 
+
+libgc1c2/stable,now 1:7.6.4-0.4 armhf [installed,automatic] 
+
+libgcc-8-dev/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+libgcc1/stable,now 1:8.3.0-6+rpi1 armhf [installed] 
+
+libgcrypt20/stable,now 1.8.4-5 armhf [installed] 
+
+libgd3/stable,now 2.2.5-5.2 armhf [installed,automatic] 
+
+libgdbm-compat4/stable,now 1.18.1-4 armhf [installed,automatic] 
+
+libgdbm6/stable,now 1.18.1-4 armhf [installed] 
+
+libgdk-pixbuf2.0-0/stable,now 2.38.1+dfsg-1 armhf [installed,automatic] 
+
+libgdk-pixbuf2.0-bin/stable,now 2.38.1+dfsg-1 armhf [installed,automatic] 
+
+libgdk-pixbuf2.0-common/stable,now 2.38.1+dfsg-1 all [installed,automatic] 
+
+libgeoip1/stable,now 1.6.12-1 armhf [installed,automatic] 
+
+libgfapi0/stable,now 5.5-3 armhf [installed,automatic] 
+
+libgfrpc0/stable,now 5.5-3 armhf [installed,automatic] 
+
+libgfxdr0/stable,now 5.5-3 armhf [installed,automatic] 
+
+libgirepository-1.0-1/stable,now 1.58.3-2 armhf [installed,automatic] 
+
+libgl1-mesa-dri/testing,now 19.3.2-1~bpo10+1~rpt3 armhf [installed,automatic] 
+
+libgl1/testing,now 1.3.0-7~bpo10+1 armhf [installed,automatic] 
+
+libglapi-mesa/testing,now 19.3.2-1~bpo10+1~rpt3 armhf [installed,automatic] 
+
+libglib2.0-0/stable,now 2.58.3-2+deb10u2 armhf [installed,automatic] 
+
+libglib2.0-data/stable,now 2.58.3-2+deb10u2 all [installed,automatic] 
+
+libglusterfs0/stable,now 5.5-3 armhf [installed,automatic] 
+
+libglvnd0/testing,now 1.3.0-7~bpo10+1 armhf [installed,automatic] 
+
+libglx-mesa0/testing,now 19.3.2-1~bpo10+1~rpt3 armhf [installed,automatic] 
+
+libglx0/testing,now 1.3.0-7~bpo10+1 armhf [installed,automatic] 
+
+libgme0/stable,now 0.6.2-1 armhf [installed,automatic] 
+
+libgmp10/stable,now 2:6.1.2+dfsg-4 armhf [installed] 
+
+libgnustep-base1.26/stable,now 1.26.0-4+deb10u1 armhf [installed,automatic] 
+
+libgnutls30/stable,now 3.6.7-4+deb10u6 armhf [installed] 
+
+libgomp1/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+libgpg-error0/stable,now 1.35-1 armhf [installed] 
+
+libgpgme11/stable,now 1.12.0-6 armhf [installed,automatic] 
+
+libgpm2/stable,now 1.20.7-5 armhf [installed,automatic] 
+
+libgraphite2-3/stable,now 1.3.13-7 armhf [installed,automatic] 
+
+libgs9-common/stable,now 9.27~dfsg-2+deb10u4 all [installed,automatic] 
+
+libgs9/stable,now 9.27~dfsg-2+deb10u4 armhf [installed,automatic] 
+
+libgsasl7/stable,now 1.8.0-8+b1 armhf [installed,automatic] 
+
+libgsm1/stable,now 1.0.18-2 armhf [installed,automatic] 
+
+libgssapi-krb5-2/stable,now 1.17-3+deb10u1 armhf [installed,automatic] 
+
+libgssapi-perl/stable,now 0.28-3+b1 armhf [installed,automatic] 
+
+libgudev-1.0-0/stable,now 232-2+rpi1 armhf [installed,automatic] 
+
+libharfbuzz0b/stable,now 2.3.1-1 armhf [installed,automatic] 
+
+libhavege1/stable,now 1.9.1-7 armhf [installed,automatic] 
+
+libheif1/stable,now 1.3.2-2~deb10u1 armhf [installed,automatic] 
+
+libhiredis0.14/stable,now 0.14.0-3 armhf [installed,automatic] 
+
+libhogweed4/stable,now 3.4.1-1 armhf [installed] 
+
+libhtml-form-perl/stable,now 6.03-1 all [installed,automatic] 
+
+libhtml-format-perl/stable,now 2.12-1 all [installed,automatic] 
+
+libhtml-parser-perl/stable,now 3.72-3+b2 armhf [installed,automatic] 
+
+libhtml-tagset-perl/stable,now 3.20-3 all [installed,automatic] 
+
+libhtml-template-perl/stable,now 2.97-1 all [installed,automatic] 
+
+libhtml-tree-perl/stable,now 5.07-2 all [installed,automatic] 
+
+libhttp-cookies-perl/stable,now 6.04-1 all [installed,automatic] 
+
+libhttp-daemon-perl/stable,now 6.01-3 all [installed,automatic] 
+
+libhttp-date-perl/stable,now 6.02-1 all [installed,automatic] 
+
+libhttp-message-perl/stable,now 6.18-1 all [installed,automatic] 
+
+libhttp-negotiate-perl/stable,now 6.01-1 all [installed,automatic] 
+
+libibverbs1/stable,now 22.1-1 armhf [installed,automatic] 
+
+libice6/stable,now 2:1.0.9-2 armhf [installed,automatic] 
+
+libicu63/stable,now 63.1-6+deb10u1 armhf [installed,automatic] 
+
+libident/stable,now 0.22-3.1 armhf [installed] 
+
+libidn11/stable,now 1.33-2.2 armhf [installed] 
+
+libidn2-0/stable,now 2.0.5-1+deb10u1 armhf [installed] 
+
+libiec61883-0/stable,now 1.2.0-3 armhf [installed,automatic] 
+
+libijs-0.35/stable,now 0.35-14 armhf [installed,automatic] 
+
+libilmbase23/stable,now 2.2.1-2 armhf [installed,automatic] 
+
+libintl-perl/stable,now 1.26-2 all [installed,automatic] 
+
+libintl-xs-perl/stable,now 1.26-2+b3 armhf [installed,automatic] 
+
+libio-html-perl/stable,now 1.001-1 all [installed,automatic] 
+
+libio-socket-ssl-perl/stable,now 2.060-3 all [installed,automatic] 
+
+libip4tc0/stable,now 1.8.2-4 armhf [installed] 
+
+libip6tc0/stable,now 1.8.2-4 armhf [installed] 
+
+libipmimonitoring-dev/stable,now 1.6.3-1.1 armhf [installed,automatic] 
+
+libipmimonitoring6/stable,now 1.6.3-1.1 armhf [installed,automatic] 
+
+libiptc0/stable,now 1.8.2-4 armhf [installed] 
+
+libirs161/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+libisc-export1100/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed] 
+
+libisc1100/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+libisccc161/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+libisccfg163/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+libisl19/stable,now 0.20-2 armhf [installed,automatic] 
+
+libiw30/stable,now 30~pre9-13 armhf [installed,automatic] 
+
+libjack-jackd2-0/stable,now 1.9.12~dfsg-2 armhf [installed,automatic] 
+
+libjansson4/stable,now 2.12-1 armhf [installed,automatic] 
+
+libjbig0/stable,now 2.1-3.1+b2 armhf [installed,automatic] 
+
+libjbig2dec0/stable,now 0.16-1 armhf [installed,automatic] 
+
+libjemalloc2/stable,now 5.1.0-3 armhf [installed,automatic] 
+
+libjim0.77/stable,now 0.77+dfsg0-3 armhf [installed,automatic] 
+
+libjpeg62-turbo/stable,now 1:1.5.2-2+deb10u1 armhf [installed,automatic] 
+
+libjq1/stable,now 1.5+dfsg-2+b1 armhf [installed,automatic] 
+
+libjs-bootstrap/stable,now 3.4.1+dfsg-1 all [installed,automatic] 
+
+libjs-d3/stable,now 3.5.17-2 all [installed,automatic] 
+
+libjs-jquery/stable,now 3.3.1~dfsg-3 all [installed,automatic] 
+
+libjs-requirejs/stable,now 2.3.6-1 all [installed,automatic] 
+
+libjs-sphinxdoc/stable,now 1.8.4-1 all [installed,automatic] 
+
+libjs-underscore/stable,now 1.9.1~dfsg-1 all [installed,automatic] 
+
+libjson-c3/stable,now 0.12.1+ds-2+deb10u1 armhf [installed] 
+
+libjsoncpp1/stable,now 1.7.4-3 armhf [installed,automatic] 
+
+libjudy-dev/stable,now 1.0.5-5 armhf [installed,automatic] 
+
+libjudydebian1/stable,now 1.0.5-5 armhf [installed,automatic] 
+
+libjxr-tools/stable,now 1.1-6 armhf [installed,automatic] 
+
+libjxr0/stable,now 1.1-6 armhf [installed,automatic] 
+
+libk5crypto3/stable,now 1.17-3+deb10u1 armhf [installed,automatic] 
+
+libkeyutils1/stable,now 1.6-6 armhf [installed,automatic] 
+
+libklibc/stable,now 2.0.6-1+rpi1 armhf [installed,automatic] 
+
+libkmod2/stable,now 26-1 armhf [installed] 
+
+libkrb5-3/stable,now 1.17-3+deb10u1 armhf [installed,automatic] 
+
+libkrb5support0/stable,now 1.17-3+deb10u1 armhf [installed,automatic] 
+
+libksba8/stable,now 1.3.5-2 armhf [installed] 
+
+libkyotocabinet16v5/stable,now 1.2.76-4.2+rpi1 armhf [installed,automatic] 
+
+liblcms2-2/stable,now 2.9-3 armhf [installed,automatic] 
+
+libldap-2.4-2/stable,now 2.4.47+dfsg-3+rpi1+deb10u5 armhf [installed] 
+
+libldap-common/stable,now 2.4.47+dfsg-3+rpi1+deb10u5 all [installed] 
+
+libldb1/stable,now 2:1.5.1+really1.4.6-3 armhf [installed,automatic] 
+
+liblilv-0-0/stable,now 0.24.2~dfsg0-2 armhf [installed,automatic] 
+
+libllvm7/stable,now 1:7.0.1-8+rpi3+deb10u2 armhf [installed,automatic] 
+
+libllvm9/testing,now 1:9.0.1-6+rpi1~bpo10+1 armhf [installed,automatic] 
+
+liblmdb0/stable,now 0.9.22-1 armhf [installed,automatic] 
+
+liblocale-gettext-perl/stable,now 1.07-3+b3 armhf [installed] 
+
+liblognorm5/stable,now 2.0.5-1 armhf [installed] 
+
+liblqr-1-0/stable,now 0.4.2-2.1 armhf [installed,automatic] 
+
+libltdl-dev/stable,now 2.4.6-9 armhf [installed,automatic] 
+
+libltdl7/stable,now 2.4.6-9 armhf [installed,automatic] 
+
+liblua5.1-0/stable,now 5.1.5-8.1+b1 armhf [installed,automatic] 
+
+liblua5.3-0/stable,now 5.3.3-1.1 armhf [installed,automatic] 
+
+libluajit-5.1-2/stable,now 2.1.0~beta3+dfsg-5.1 armhf [installed,automatic] 
+
+libluajit-5.1-common/stable,now 2.1.0~beta3+dfsg-5.1 all [installed,automatic] 
+
+liblwp-mediatypes-perl/stable,now 6.02-1 all [installed,automatic] 
+
+liblwp-protocol-https-perl/stable,now 6.07-2 all [installed,automatic] 
+
+liblwres161/stable,now 1:9.11.5.P4+dfsg-5.1+deb10u2 armhf [installed,automatic] 
+
+liblz1/stable,now 1.11-3 armhf [installed,automatic] 
+
+liblz4-1/stable,now 1.8.3-1 armhf [installed] 
+
+liblz4-dev/stable,now 1.8.3-1 armhf [installed,automatic] 
+
+liblzma5/stable,now 5.2.4-1 armhf [installed] 
+
+liblzo2-2/stable,now 2.10-0.1 armhf [installed,automatic] 
+
+libmagic-mgc/stable,now 1:5.35-4+deb10u2 armhf [installed,automatic] 
+
+libmagic1/stable,now 1:5.35-4+deb10u2 armhf [installed,automatic] 
+
+libmagickcore-6.q16-6-extra/stable,now 8:6.9.10.23+dfsg-2.1+deb10u1 armhf [installed,automatic] 
+
+libmagickcore-6.q16-6/stable,now 8:6.9.10.23+dfsg-2.1+deb10u1 armhf [installed,automatic] 
+
+libmagickwand-6.q16-6/stable,now 8:6.9.10.23+dfsg-2.1+deb10u1 armhf [installed,automatic] 
+
+libmail-sendmail-perl/stable,now 0.80-1 all [installed,automatic] 
+
+libmail-spf-perl/stable,now 2.9.0-4 all [installed,automatic] 
+
+libmailtools-perl/stable,now 2.18-1 all [installed,automatic] 
+
+libmailutils5/stable,now 1:3.5-4 armhf [installed,automatic] 
+
+libmariadb3/stable,now 1:10.3.27-0+deb10u1 armhf [installed,automatic] 
+
+libmbim-glib4/stable,now 1.18.0-1 armhf [installed,automatic] 
+
+libmbim-proxy/stable,now 1.18.0-1 armhf [installed,automatic] 
+
+libmemcached11/stable,now 1.0.18-4.2 armhf [installed,automatic] 
+
+libmemcachedutil2/stable,now 1.0.18-4.2 armhf [installed,automatic] 
+
+libminiupnpc17/stable,now 2.1-1+ynh10 armhf [installed,automatic] 
+
+libmm-glib0/stable,now 1.10.0-1 armhf [installed,automatic] 
+
+libmnl-dev/stable,now 1.0.4-2 armhf [installed] 
+
+libmnl0/stable,now 1.0.4-2 armhf [installed] 
+
+libmodule-find-perl/stable,now 0.13-1 all [installed,automatic] 
+
+libmodule-scandeps-perl/stable,now 1.27-1 all [installed,automatic] 
+
+libmount1/stable,now 2.33.1-0.1 armhf [installed] 
+
+libmp3lame0/stable,now 3.100-2+b1 armhf [installed,automatic] 
+
+libmpc3/stable,now 1.1.0-1 armhf [installed,automatic] 
+
+libmpdec2/stable,now 2.4.2-2 armhf [installed,automatic] 
+
+libmpfr6/stable,now 4.0.2-1 armhf [installed,automatic] 
+
+libmpg123-0/stable,now 1.25.10-2 armhf [installed,automatic] 
+
+libmtp-common/stable,now 1.1.16-2 all [installed,automatic] 
+
+libmtp-runtime/stable,now 1.1.16-2 armhf [installed] 
+
+libmtp9/stable,now 1.1.16-2 armhf [installed,automatic] 
+
+libmysofa0/stable,now 0.6~dfsg0-3+deb10u1 armhf [installed,automatic] 
+
+libnatpmp1/stable,now 20150609-7 armhf [installed,automatic] 
+
+libncurses6/stable,now 6.1+20181013-2+deb10u2 armhf [installed] 
+
+libncursesw5/stable,now 6.1+20181013-2+deb10u2 armhf [installed,automatic] 
+
+libncursesw6/stable,now 6.1+20181013-2+deb10u2 armhf [installed] 
+
+libndp0/stable,now 1.6-1 armhf [installed,automatic] 
+
+libnet-dns-perl/stable,now 1.19-1 all [installed] 
+
+libnet-dns-sec-perl/stable,now 1.11-1 armhf [installed,automatic] 
+
+libnet-http-perl/stable,now 6.18-1 all [installed,automatic] 
+
+libnet-ip-perl/stable,now 1.26-2 all [installed,automatic] 
+
+libnet-ldap-perl/stable,now 1:0.6500+dfsg-1 all [installed,automatic] 
+
+libnet-libidn-perl/stable,now 0.12.ds-3+b1 armhf [installed,automatic] 
+
+libnet-smtp-ssl-perl/stable,now 1.04-1 all [installed,automatic] 
+
+libnet-ssleay-perl/stable,now 1.85-2+b1 armhf [installed,automatic] 
+
+libnetaddr-ip-perl/stable,now 4.079+dfsg-1+b3 armhf [installed,automatic] 
+
+libnetfilter-conntrack3/stable,now 1.0.7-1 armhf [installed] 
+
+libnetpbm10/stable,now 2:10.0-15.3 armhf [installed,automatic] 
+
+libnettle6/stable,now 3.4.1-1 armhf [installed] 
+
+libnewt0.52/stable,now 0.52.20-8 armhf [installed,automatic] 
+
+libnfnetlink0/stable,now 1.0.1-3 armhf [installed] 
+
+libnfsidmap2/stable,now 0.25-5.1 armhf [installed,automatic] 
+
+libnftnl11/stable,now 1.1.2-2 armhf [installed] 
+
+libnghttp2-14/stable,now 1.36.0-2+deb10u1 armhf [installed,automatic] 
+
+libnginx-mod-http-auth-pam/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-cache-purge/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-dav-ext/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-echo/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-fancyindex/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-geoip/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-headers-more-filter/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-image-filter/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-lua/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-ndk/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-perl/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-subs-filter/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-uploadprogress/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-upstream-fair/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-http-xslt-filter/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-mail/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-nchan/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnginx-mod-stream/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+libnl-3-200/stable,now 3.4.0-1 armhf [installed,automatic] 
+
+libnl-genl-3-200/stable,now 3.4.0-1 armhf [installed,automatic] 
+
+libnl-route-3-200/stable,now 3.4.0-1 armhf [installed,automatic] 
+
+libnm0/stable,now 1.14.6-2+deb10u1 armhf [installed,automatic] 
+
+libnode64/stable,now 10.23.1~dfsg-1~deb10u1 armhf [installed,automatic] 
+
+libnorm1/stable,now 1.5.8+dfsg2-1 armhf [installed,automatic] 
+
+libnpth0/stable,now 1.6-1 armhf [installed] 
+
+libnspr4/stable,now 2:4.20-1 armhf [installed,automatic] 
+
+libnss-ldapd/stable,now 0.9.10-2 armhf [installed,automatic] 
+
+libnss-mdns/stable,now 0.14.1-1+b5 armhf [installed,automatic] 
+
+libnss-myhostname/stable,now 241-7~deb10u6+rpi1 armhf [installed,automatic] 
+
+libnss3/stable,now 2:3.42.1-1+deb10u3 armhf [installed,automatic] 
+
+libntfs-3g883/stable,now 1:2017.3.23AR.3-3 armhf [installed,automatic] 
+
+libntlm0/stable,now 1.5-1+deb10u1 armhf [installed,automatic] 
+
+libobjc4/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+libodbc1/stable,now 2.3.6-0.1 armhf [installed,automatic] 
+
+libogg0/stable,now 1.3.2-1+b2 armhf [installed,automatic] 
+
+libonig5/stable,now 6.9.1-1 armhf [installed,automatic] 
+
+libopenal-data/stable,now 1:1.19.1-1 all [installed,automatic] 
+
+libopenal1/stable,now 1:1.19.1-1 armhf [installed,automatic] 
+
+libopendbx1-sqlite3/stable,now 1.4.6-13+b1 armhf [installed,automatic] 
+
+libopendbx1/stable,now 1.4.6-13+b1 armhf [installed,automatic] 
+
+libopendkim11/stable,now 2.11.0~alpha-12 armhf [installed,automatic] 
+
+libopenexr23/stable,now 2.2.1-4.1 armhf [installed,automatic] 
+
+libopenjp2-7/stable,now 2.3.0-2+deb10u1 armhf [installed,automatic] 
+
+libopenmpt0/stable,now 0.4.3-1+deb10u1 armhf [installed,automatic] 
+
+libopts25-dev/stable,now 1:5.18.12-4 armhf [installed,automatic] 
+
+libopts25/stable,now 1:5.18.12-4 armhf [installed,automatic] 
+
+libopus0/stable,now 1.3-1 armhf [installed,automatic] 
+
+libp11-kit0/stable,now 0.23.15-2+deb10u1 armhf [installed] 
+
+libpam-chksshpwd/testing,now 1.3.1-5+rpt2 armhf [installed] 
+
+libpam-ldapd/stable,now 0.9.10-2 armhf [installed,automatic] 
+
+libpam-modules-bin/testing,now 1.3.1-5+rpt2 armhf [installed] 
+
+libpam-modules/testing,now 1.3.1-5+rpt2 armhf [installed] 
+
+libpam-runtime/testing,now 1.3.1-5+rpt2 all [installed] 
+
+libpam-systemd/stable,now 241-7~deb10u6+rpi1 armhf [installed,automatic] 
+
+libpam0g/testing,now 1.3.1-5+rpt2 armhf [installed] 
+
+libpango-1.0-0/stable,now 1.42.4-8~deb10u1 armhf [installed,automatic] 
+
+libpangocairo-1.0-0/stable,now 1.42.4-8~deb10u1 armhf [installed,automatic] 
+
+libpangoft2-1.0-0/stable,now 1.42.4-8~deb10u1 armhf [installed,automatic] 
+
+libpaper-utils/stable,now 1.1.28 armhf [installed,automatic] 
+
+libpaper1/stable,now 1.1.28 armhf [installed,automatic] 
+
+libparted2/stable,now 3.2-25 armhf [installed,automatic] 
+
+libpcap0.8/stable,now 1.8.1-6 armhf [installed,automatic] 
+
+libpci3/stable,now 1:3.5.2-1 armhf [installed,automatic] 
+
+libpcre2-8-0/stable,now 10.32-5 armhf [installed,automatic] 
+
+libpcre2-posix0/stable,now 10.32-5 armhf [installed,automatic] 
+
+libpcre3/stable,now 2:8.39-12 armhf [installed] 
+
+libpcsclite1/stable,now 1.8.24-1 armhf [installed,automatic] 
+
+libperl5.28/stable,now 5.28.1-6 armhf [installed,automatic] 
+
+libpgm-5.2-0/stable,now 5.2.122~dfsg-3 armhf [installed,automatic] 
+
+libpipeline1/stable,now 1.5.1-2 armhf [installed] 
+
+libpixman-1-0/testing,now 0.36.0-1+rpt1 armhf [installed,automatic] 
+
+libpng-dev/stable,now 1.6.36-6 armhf [installed,automatic] 
+
+libpng-tools/stable,now 1.6.36-6 armhf [installed,automatic] 
+
+libpng12-0/stable,now 1.2.54-6 armhf [installed,automatic] 
+
+libpng16-16/stable,now 1.6.36-6 armhf [installed,automatic] 
+
+libpolkit-agent-1-0/testing,now 0.105-25+rpt1 armhf [installed,automatic] 
+
+libpolkit-backend-1-0/testing,now 0.105-25+rpt1 armhf [installed,automatic] 
+
+libpolkit-gobject-1-0/testing,now 0.105-25+rpt1 armhf [installed,automatic] 
+
+libpopt0/stable,now 1.16-12 armhf [installed] 
+
+libpostproc55/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+libpq5/stable,now 11.10-0+deb10u1 armhf [installed,automatic] 
+
+libproc-processtable-perl/stable,now 0.56-1 armhf [installed,automatic] 
+
+libprocps7/stable,now 2:3.3.15-2 armhf [installed] 
+
+libprotobuf-c1/stable,now 1.3.1-1+b1 armhf [installed,automatic] 
+
+libpsl5/stable,now 0.20.2-2 armhf [installed,automatic] 
+
+libpulse0/testing,now 12.2-4+deb10u1+rpi3 armhf [installed,automatic] 
+
+libpython-all-dev/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+libpython-dev/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+libpython-stdlib/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+libpython2-dev/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+libpython2-stdlib/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+libpython2.7-dev/stable,now 2.7.16-2+deb10u1 armhf [installed,automatic] 
+
+libpython2.7-minimal/stable,now 2.7.16-2+deb10u1 armhf [installed,automatic] 
+
+libpython2.7-stdlib/stable,now 2.7.16-2+deb10u1 armhf [installed,automatic] 
+
+libpython2.7/stable,now 2.7.16-2+deb10u1 armhf [installed,automatic] 
+
+libpython3-dev/stable,now 3.7.3-1 armhf [installed,automatic] 
+
+libpython3-stdlib/stable,now 3.7.3-1 armhf [installed,automatic] 
+
+libpython3.7-dev/stable,now 3.7.3-2+deb10u2 armhf [installed,automatic] 
+
+libpython3.7-minimal/stable,now 3.7.3-2+deb10u2 armhf [installed,automatic] 
+
+libpython3.7-stdlib/stable,now 3.7.3-2+deb10u2 armhf [installed,automatic] 
+
+libpython3.7/stable,now 3.7.3-2+deb10u2 armhf [installed,automatic] 
+
+libqmi-glib5/stable,now 1.22.0-1.2 armhf [installed,automatic] 
+
+libqmi-proxy/stable,now 1.22.0-1.2 armhf [installed,automatic] 
+
+librados2/stable,now 12.2.11+dfsg1-2.1+rpi1 armhf [installed,automatic] 
+
+libraspberrypi-bin/testing,now 1.20210201-1 armhf [installed] 
+
+libraspberrypi-dev/testing,now 1.20210201-1 armhf [installed] 
+
+libraspberrypi-doc/testing,now 1.20210201-1 armhf [installed] 
+
+libraspberrypi0/testing,now 1.20210201-1 armhf [installed] 
+
+libraw1394-11/stable,now 2.1.2-1+b1 armhf [installed,automatic] 
+
+librbl1/stable,now 2.11.0~alpha-12 armhf [installed,automatic] 
+
+libreadline5/stable,now 5.2+dfsg-3 armhf [installed,automatic] 
+
+libreadline6/stable,now 6.3-9 armhf [installed] 
+
+libreadline7/stable,now 7.0-5 armhf [installed] 
+
+librhash0/stable,now 1.3.8-1 armhf [installed,automatic] 
+
+librsvg2-2/stable,now 2.44.10-2.1+rpi1 armhf [installed,automatic] 
+
+librsvg2-common/stable,now 2.44.10-2.1+rpi1 armhf [installed,automatic] 
+
+librtmp1/stable,now 2.4+20151223.gitfa8646d.1-2 armhf [installed,automatic] 
+
+librubberband2/stable,now 1.8.1-7 armhf [installed,automatic] 
+
+libsamplerate0/stable,now 0.1.9-2 armhf [installed,automatic] 
+
+libsasl2-2/stable,now 2.1.27+dfsg-1+deb10u1 armhf [installed] 
+
+libsasl2-modules-db/stable,now 2.1.27+dfsg-1+deb10u1 armhf [installed] 
+
+libsasl2-modules/stable,now 2.1.27+dfsg-1+deb10u1 armhf [installed,automatic] 
+
+libsdl2-2.0-0/testing,now 2.0.9+dfsg1-1+rpt1 armhf [installed,automatic] 
+
+libseccomp2/stable,now 2.3.3-4 armhf [installed] 
+
+libsecret-1-0/stable,now 0.18.7-1 armhf [installed,automatic] 
+
+libsecret-common/stable,now 0.18.7-1 all [installed,automatic] 
+
+libselinux1/stable,now 2.8-1+b1 armhf [installed] 
+
+libsemanage-common/stable,now 2.8-2 all [installed] 
+
+libsemanage1/stable,now 2.8-2 armhf [installed] 
+
+libsensors-config/stable,now 1:3.5.0-3 all [installed,automatic] 
+
+libsensors5/stable,now 1:3.5.0-3 armhf [installed,automatic] 
+
+libsepol1/stable,now 2.8-1 armhf [installed] 
+
+libserd-0-0/stable,now 0.28.0~dfsg0-1 armhf [installed,automatic] 
+
+libshine3/stable,now 3.1.1-2+b1 armhf [installed,automatic] 
+
+libsigc++-1.2-5c2/stable,now 1.2.7-2+b1 armhf [installed] 
+
+libsigsegv2/stable,now 2.12-2 armhf [installed,automatic] 
+
+libslang2/stable,now 2.3.2-2 armhf [installed,automatic] 
+
+libsm6/stable,now 2:1.2.3-1 armhf [installed,automatic] 
+
+libsmartcols1/stable,now 2.33.1-0.1 armhf [installed] 
+
+libsmbclient/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 armhf [installed,automatic] 
+
+libsnappy1v5/stable,now 1.1.7-1 armhf [installed,automatic] 
+
+libsndfile1/stable,now 1.0.28-6 armhf [installed,automatic] 
+
+libsndio7.0/stable,now 1.5.0-3 armhf [installed,automatic] 
+
+libsocket6-perl/stable,now 0.29-1+b1 armhf [installed,automatic] 
+
+libsodium23/stable,now 1.0.17-1 armhf [installed,automatic] 
+
+libsord-0-0/stable,now 0.16.0~dfsg0-1+b1 armhf [installed,automatic] 
+
+libsort-naturally-perl/stable,now 1.03-2 all [installed,automatic] 
+
+libsoxr0/stable,now 0.1.2-3 armhf [installed,automatic] 
+
+libspeex1/stable,now 1.2~rc1.2-1+b2 armhf [installed,automatic] 
+
+libsqlite0/stable,now 2.8.17-15 armhf [installed,automatic] 
+
+libsqlite3-0/stable,now 3.27.2-3+deb10u1 armhf [installed] 
+
+libsratom-0-0/stable,now 0.6.0~dfsg0-1 armhf [installed,automatic] 
+
+libss2/stable,now 1.44.5-1+deb10u3 armhf [installed] 
+
+libssh-gcrypt-4/stable,now 0.8.7-1+deb10u1 armhf [installed,automatic] 
+
+libssh2-1/stable,now 1.8.0-2.1 armhf [installed,automatic] 
+
+libssl-dev/testing,now 1.1.1d-0+deb10u4+rpt1 armhf [installed,automatic] 
+
+libssl1.1/testing,now 1.1.1d-0+deb10u4+rpt1 armhf [installed] 
+
+libstdc++-8-dev/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+libstdc++6/stable,now 8.3.0-6+rpi1 armhf [installed] 
+
+libstemmer0d/stable,now 0+svn585-1 armhf [installed,automatic] 
+
+libswresample3/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+libswscale5/testing,now 7:4.1.6-1~deb10u1+rpt1 armhf [installed,automatic] 
+
+libsys-hostname-long-perl/stable,now 1.5-1 all [installed,automatic] 
+
+libsystemd0/stable,now 241-7~deb10u6+rpi1 armhf [installed] 
+
+libtalloc2/stable,now 2.1.14-2 armhf [installed,automatic] 
+
+libtasn1-6/stable,now 4.13-3 armhf [installed] 
+
+libtdb1/stable,now 1.3.16-2+b1 armhf [installed,automatic] 
+
+libteamdctl0/stable,now 1.28-1 armhf [installed,automatic] 
+
+libterm-readkey-perl/stable,now 2.38-1 armhf [installed,automatic] 
+
+libtevent0/stable,now 0.9.37-1 armhf [installed,automatic] 
+
+libtext-charwidth-perl/stable,now 0.04-7.1+b1 armhf [installed] 
+
+libtext-iconv-perl/stable,now 1.7-5+b10 armhf [installed] 
+
+libtext-wrapi18n-perl/stable,now 0.06-7.1 all [installed] 
+
+libthai-data/stable,now 0.1.28-2 all [installed,automatic] 
+
+libthai0/stable,now 0.1.28-2 armhf [installed,automatic] 
+
+libtheora0/stable,now 1.1.1+dfsg.1-15 armhf [installed,automatic] 
+
+libtidy5deb1/stable,now 2:5.6.0-10 armhf [installed,automatic] 
+
+libtiff5/stable,now 4.1.0+git191117-2~deb10u1 armhf [installed,automatic] 
+
+libtimedate-perl/stable,now 2.3000-2+deb10u1 all [installed,automatic] 
+
+libtinfo5/stable,now 6.1+20181013-2+deb10u2 armhf [installed] 
+
+libtinfo6/stable,now 6.1+20181013-2+deb10u2 armhf [installed] 
+
+libtirpc-common/stable,now 1.1.4-0.4 all [installed,automatic] 
+
+libtirpc3/stable,now 1.1.4-0.4 armhf [installed,automatic] 
+
+libtool/stable,now 2.4.6-9 all [installed,automatic] 
+
+libtry-tiny-perl/stable,now 0.30-1 all [installed,automatic] 
+
+libtwolame0/stable,now 0.3.13-4 armhf [installed,automatic] 
+
+libubsan1/stable,now 8.3.0-6+rpi1 armhf [installed,automatic] 
+
+libuchardet0/stable,now 0.0.6-3 armhf [installed] 
+
+libudev0/stable,now 175-7.2 armhf [installed] 
+
+libudev1/stable,now 241-7~deb10u6+rpi1 armhf [installed] 
+
+libunbound8/stable,now 1.9.0-2+deb10u2 armhf [installed,automatic] 
+
+libunistring2/stable,now 0.9.10-1 armhf [installed] 
+
+libunwind8/stable,now 1.2.1-10~deb10u1 armhf [installed,automatic] 
+
+liburi-perl/stable,now 1.76-1 all [installed,automatic] 
+
+libusb-0.1-4/stable,now 2:0.1.12-32 armhf [installed,automatic] 
+
+libusb-1.0-0/stable,now 2:1.0.22-2 armhf [installed,automatic] 
+
+libutempter0/stable,now 1.1.6-3 armhf [installed,automatic] 
+
+libuuid1/stable,now 2.33.1-0.1 armhf [installed] 
+
+libuv1-dev/stable,now 1.24.1-1 armhf [installed,automatic] 
+
+libuv1/stable,now 1.24.1-1 armhf [installed,automatic] 
+
+libv4l-0/stable,now 1.16.3-3 armhf [installed,automatic] 
+
+libv4l2rds0/stable,now 1.16.3-3 armhf [installed,automatic] 
+
+libv4lconvert0/stable,now 1.16.3-3 armhf [installed,automatic] 
+
+libva-drm2/stable,now 2.4.0-1 armhf [installed,automatic] 
+
+libva-x11-2/stable,now 2.4.0-1 armhf [installed,automatic] 
+
+libva2/stable,now 2.4.0-1 armhf [installed,automatic] 
+
+libvbr2/stable,now 2.11.0~alpha-12 armhf [installed,automatic] 
+
+libvdpau-va-gl1/stable,now 0.4.2-1+b1 armhf [installed,automatic] 
+
+libvdpau1/stable,now 1.1.1-10 armhf [installed,automatic] 
+
+libvidstab1.1/stable,now 1.1.0-2 armhf [installed,automatic] 
+
+libvorbis0a/stable,now 1.3.6-2 armhf [installed,automatic] 
+
+libvorbisenc2/stable,now 1.3.6-2 armhf [installed,automatic] 
+
+libvorbisfile3/stable,now 1.3.6-2 armhf [installed,automatic] 
+
+libvpx5/stable,now 1.7.0-3+deb10u1 armhf [installed,automatic] 
+
+libwavpack1/stable,now 5.1.0-6 armhf [installed,automatic] 
+
+libwayland-client0/stable,now 1.16.0-1 armhf [installed,automatic] 
+
+libwayland-cursor0/stable,now 1.16.0-1 armhf [installed,automatic] 
+
+libwayland-egl1/stable,now 1.16.0-1 armhf [installed,automatic] 
+
+libwbclient0/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 armhf [installed,automatic] 
+
+libwebp6/stable,now 0.6.1-2 armhf [installed,automatic] 
+
+libwebpmux3/stable,now 0.6.1-2 armhf [installed,automatic] 
+
+libwmf0.2-7/stable,now 0.2.8.4-14 armhf [installed,automatic] 
+
+libwrap0/stable,now 7.6.q-28 armhf [installed,automatic] 
+
+libwww-perl/stable,now 6.36-2 all [installed,automatic] 
+
+libwww-robotrules-perl/stable,now 6.02-1 all [installed,automatic] 
+
+libx11-6/stable,now 2:1.6.7-1+deb10u1 armhf [installed,automatic] 
+
+libx11-data/stable,now 2:1.6.7-1+deb10u1 all [installed,automatic] 
+
+libx11-xcb1/stable,now 2:1.6.7-1+deb10u1 armhf [installed,automatic] 
+
+libx264-155/stable,now 2:0.155.2917+git0a84d98-2+rpi1 armhf [installed,automatic] 
+
+libx265-165/stable,now 2.9-4 armhf [installed,automatic] 
+
+libxau6/stable,now 1:1.0.8-1+b2 armhf [installed,automatic] 
+
+libxcb-dri2-0/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcb-dri3-0/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcb-glx0/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcb-present0/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcb-render0/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcb-shape0/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcb-shm0/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcb-sync1/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcb-xfixes0/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcb1/stable,now 1.13.1-2 armhf [installed,automatic] 
+
+libxcursor1/stable,now 1:1.1.15-2 armhf [installed,automatic] 
+
+libxdamage1/stable,now 1:1.1.4-3+b3 armhf [installed,automatic] 
+
+libxdmcp6/stable,now 1:1.1.2-3 armhf [installed,automatic] 
+
+libxext6/stable,now 2:1.3.3-1+b2 armhf [installed,automatic] 
+
+libxfixes3/stable,now 1:5.0.3-1 armhf [installed,automatic] 
+
+libxi6/stable,now 2:1.7.9-1 armhf [installed,automatic] 
+
+libxinerama1/stable,now 2:1.1.4-2 armhf [installed,automatic] 
+
+libxkbcommon0/stable,now 0.8.2-1 armhf [installed,automatic] 
+
+libxml2/stable,now 2.9.4+dfsg1-7+deb10u1 armhf [installed,automatic] 
+
+libxmuu1/stable,now 2:1.1.2-2+b3 armhf [installed,automatic] 
+
+libxpm4/stable,now 1:3.5.12-1 armhf [installed,automatic] 
+
+libxrandr2/stable,now 2:1.5.1-1 armhf [installed,automatic] 
+
+libxrender1/stable,now 1:0.9.10-1 armhf [installed,automatic] 
+
+libxshmfence1/stable,now 1.3-1 armhf [installed,automatic] 
+
+libxslt1.1/stable,now 1.1.32-2.2~deb10u1 armhf [installed,automatic] 
+
+libxss1/stable,now 1:1.2.3-1 armhf [installed,automatic] 
+
+libxtables12/stable,now 1.8.2-4 armhf [installed] 
+
+libxtst6/stable,now 2:1.2.3-1 armhf [installed,automatic] 
+
+libxv1/stable,now 2:1.0.11-1 armhf [installed,automatic] 
+
+libxvidcore4/stable,now 2:1.3.5-1 armhf [installed,automatic] 
+
+libxxf86vm1/stable,now 1:1.1.4-1+b2 armhf [installed,automatic] 
+
+libyaml-0-2/stable,now 0.2.1-1 armhf [installed,automatic] 
+
+libzip4/stable,now 1.5.1-4 armhf [installed,automatic] 
+
+libzmq5/stable,now 4.3.1-4+deb10u2 armhf [installed,automatic] 
+
+libzstd1/stable,now 1.3.8+dfsg-3+rpi1 armhf [installed] 
+
+libzvbi-common/stable,now 0.2.35-16 all [installed,automatic] 
+
+libzvbi0/stable,now 0.2.35-16 armhf [installed,automatic] 
+
+links/stable,now 2.18-2 armhf [installed] 
+
+linux-base/stable,now 4.6 all [installed,automatic] 
+
+linux-libc-dev/stable,now 4.18.20-2+rpi1 armhf [installed,automatic] 
+
+localepurge/stable,now 0.7.3.5 all [installed] 
+
+locales-all/stable,now 2.28-10+rpi1 armhf [installed,automatic] 
+
+locales/stable,now 2.28-10+rpi1 all [installed] 
+
+log2ram/stable,now 1.6.0 all [installed] 
+
+login/stable,now 1:4.5-1.1 armhf [installed] 
+
+logrotate/stable,now 3.14.0-4 armhf [installed] 
+
+lsb-base/stable,now 10.2019051400+rpi1 all [installed] 
+
+lsb-release/stable,now 10.2019051400+rpi1 all [installed] 
+
+lsof/stable,now 4.91+dfsg-1 armhf [installed,automatic] 
+
+lua-bitop/stable,now 1.0.2-5 armhf [installed,automatic] 
+
+lua-cjson/stable,now 2.1.0+dfsg-2.1 armhf [installed,automatic] 
+
+lua-event/stable,now 0.4.6-1 armhf [installed,automatic] 
+
+lua-expat/stable,now 1.3.0-4 armhf [installed,automatic] 
+
+lua-filesystem/stable,now 1.6.3-1 armhf [installed,automatic] 
+
+lua-json/stable,now 1.3.4-2 all [installed,automatic] 
+
+lua-ldap/stable,now 1.2.5-1 armhf [installed,automatic] 
+
+lua-lpeg/stable,now 1.0.0-2 armhf [installed,automatic] 
+
+lua-rex-pcre/stable,now 2.7.2-4+b1 armhf [installed,automatic] 
+
+lua-sec/stable,now 0.7-1 armhf [installed,automatic] 
+
+lua-socket/stable,now 3.0~rc1+git+ac3201d-4 armhf [installed,automatic] 
+
+lua-zlib/stable,now 0.2+git+1+9622739-2.1 armhf [installed,automatic] 
+
+lua5.1/stable,now 5.1.5-8.1+b1 armhf [installed] 
+
+luajit/stable,now 2.1.0~beta3+dfsg-5.1 armhf [installed] 
+
+lychee-ynh-deps/now 4.0.8~ynh2 all [installed,local] 
+
+m4/stable,now 1.4.18-2 armhf [installed,automatic] 
+
+mailutils-common/stable,now 1:3.5-4 all [installed,automatic] 
+
+mailutils/stable,now 1:3.5-4 armhf [installed,automatic] 
+
+make/stable,now 4.2.1-1.2 armhf [installed,automatic] 
+
+man-db/stable,now 2.8.5-2 armhf [installed] 
+
+manpages-dev/stable,now 4.16-2 all [installed] 
+
+manpages/stable,now 4.16-2 all [installed,automatic] 
+
+mariadb-client-10.3/stable,now 1:10.3.27-0+deb10u1 armhf [installed,automatic] 
+
+mariadb-client-core-10.3/stable,now 1:10.3.27-0+deb10u1 armhf [installed,automatic] 
+
+mariadb-common/stable,now 1:10.3.27-0+deb10u1 all [installed,automatic] 
+
+mariadb-server-10.3/stable,now 1:10.3.27-0+deb10u1 armhf [installed,automatic] 
+
+mariadb-server-core-10.3/stable,now 1:10.3.27-0+deb10u1 armhf [installed,automatic] 
+
+mariadb-server/stable,now 1:10.3.27-0+deb10u1 all [installed,automatic] 
+
+matomo-ynh-deps/now 3.14.1~ynh1 all [installed,local] 
+
+mawk/stable,now 1.3.3-17 armhf [installed] 
+
+mc-data/stable,now 3:4.8.22-1 all [installed,automatic] 
+
+mc/stable,now 3:4.8.22-1 armhf [installed] 
+
+mesa-va-drivers/testing,now 19.3.2-1~bpo10+1~rpt3 armhf [installed,automatic] 
+
+mesa-vdpau-drivers/testing,now 19.3.2-1~bpo10+1~rpt3 armhf [installed,automatic] 
+
+metronome/stable,now 3.14.1+ynh10-1 armhf [installed,automatic] 
+
+mime-support/stable,now 3.62 all [installed,automatic] 
+
+mlock/stable,now 8:2007f~dfsg-6 armhf [installed,automatic] 
+
+modemmanager/stable,now 1.10.0-1 armhf [installed,automatic] 
+
+moulinette/stable,now 4.1.4 all [installed,automatic] 
+
+mount/stable,now 2.33.1-0.1 armhf [installed] 
+
+multiarch-support/stable,now 2.28-10+rpi1 armhf [installed] 
+
+mysql-common/stable,now 5.8+1.0.5 all [installed,automatic] 
+
+nano/stable,now 3.2-3 armhf [installed] 
+
+ncdu/stable,now 1.13-1 armhf [installed] 
+
+ncurses-base/stable,now 6.1+20181013-2+deb10u2 all [installed] 
+
+ncurses-bin/stable,now 6.1+20181013-2+deb10u2 armhf [installed] 
+
+ncurses-term/stable,now 6.1+20181013-2+deb10u2 all [installed,automatic] 
+
+needrestart/stable,now 3.4-5 all [installed,automatic] 
+
+net-tools/stable,now 1.60+git20180626.aebd88e-1 armhf [installed] 
+
+netbase/stable,now 5.6 all [installed] 
+
+netcat-openbsd/stable,now 1.195-2 armhf [installed] 
+
+netcat-traditional/stable,now 1.10-41.1 armhf [installed] 
+
+netdata-ynh-deps/now 1.29.0~ynh1 all [installed,local] 
+
+netpbm/stable,now 2:10.0-15.3 armhf [installed,automatic] 
+
+network-manager/stable,now 1.14.6-2+deb10u1 armhf [installed] 
+
+nextcloud-ynh-deps/now 20.0.4~ynh1 all [installed,local] 
+
+nfs-common/stable,now 1:1.3.4-2.5+deb10u1 armhf [installed] 
+
+nginx-common/stable,now 1.14.2-2+deb10u3 all [installed,automatic] 
+
+nginx-extras/stable,now 1.14.2-2+deb10u3 armhf [installed,automatic] 
+
+nodejs-doc/stable,now 10.23.1~dfsg-1~deb10u1 all [installed,automatic] 
+
+nodejs/stable,now 10.23.1~dfsg-1~deb10u1 armhf [installed,automatic] 
+
+nrclient/now 2.3-1.4360 armhf [installed,local] 
+
+nrserver/now 2.3-1.4360 armhf [installed,local] 
+
+nslcd-utils/stable,now 0.9.10-2 all [installed,automatic] 
+
+nslcd/stable,now 0.9.10-2 armhf [installed,automatic] 
+
+ntfs-3g/stable,now 1:2017.3.23AR.3-3 armhf [installed] 
+
+ntp/stable,now 1:4.2.8p12+dfsg-4 armhf [installed,automatic] 
+
+opendkim-tools/stable,now 2.11.0~alpha-12 armhf [installed,automatic] 
+
+openssh-client/stable,now 1:7.9p1-10+deb10u2 armhf [installed,automatic] 
+
+openssh-server/stable,now 1:7.9p1-10+deb10u2 armhf [installed,automatic] 
+
+openssh-sftp-server/stable,now 1:7.9p1-10+deb10u2 armhf [installed,automatic] 
+
+openssl/testing,now 1.1.1d-0+deb10u4+rpt1 armhf [installed,automatic] 
+
+p7zip-full/stable,now 16.02+dfsg-6 armhf [installed] 
+
+p7zip/stable,now 16.02+dfsg-6 armhf [installed,automatic] 
+
+parted/stable,now 3.2-25 armhf [installed] 
+
+partimage-server/stable,now 0.6.9-6 armhf [installed] 
+
+passwd/stable,now 1:4.5-1.1 armhf [installed] 
+
+patch/stable,now 2.7.6-3+deb10u1 armhf [installed,automatic] 
+
+paxctld/stable,now 1.2.1-1 armhf [installed] 
+
+pciutils/stable,now 1:3.5.2-1 armhf [installed] 
+
+perl-base/stable,now 5.28.1-6 armhf [installed] 
+
+perl-modules-5.28/stable,now 5.28.1-6 all [installed,automatic] 
+
+perl-openssl-defaults/stable,now 3 armhf [installed,automatic] 
+
+perl/stable,now 5.28.1-6 armhf [installed,automatic] 
+
+php-apcu-bc/stable,now 1.0.4-4 armhf [installed,automatic] 
+
+php-apcu/stable,now 5.1.17+4.0.11-1 armhf [installed,automatic] 
+
+php-common/stable,now 2:69 all [installed,automatic] 
+
+php-gettext/stable,now 1.0.12-0.1 all [installed,automatic] 
+
+php-igbinary/stable,now 3.0.0-1 armhf [installed,automatic] 
+
+php-imagick/stable,now 3.4.3-4.1 armhf [installed,automatic] 
+
+php-mbstring/stable,now 2:7.3+69 all [installed,automatic] 
+
+php-mysql/stable,now 2:7.3+69 all [installed,automatic] 
+
+php-pear/stable,now 1:1.10.6+submodules+notgz-1.1+deb10u1 all [installed,automatic] 
+
+php-php-gettext/stable,now 1.0.12-0.1 all [installed,automatic] 
+
+php-redis/stable,now 4.2.0-1 armhf [installed,automatic] 
+
+php-smbclient/stable,now 0.9.0-3+b1 armhf [installed,automatic] 
+
+php-tidy/stable,now 2:7.3+69 all [installed,automatic] 
+
+php-xml/stable,now 2:7.3+69 all [installed,automatic] 
+
+php7.3-bcmath/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-bz2/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-cli/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-common/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-curl/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-fpm/stable,now 7.3.19-1~deb10u1 armhf [installed] 
+
+php7.3-gd/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-gmp/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-imap/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-intl/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-json/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-ldap/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-mbstring/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-mysql/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-opcache/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-readline/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-sqlite3/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-tidy/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-xml/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+php7.3-zip/stable,now 7.3.19-1~deb10u1 armhf [installed,automatic] 
+
+pi-bluetooth/testing,now 0.1.15 all [installed] 
+
+pigz/stable,now 2.4-1 armhf [installed,automatic] 
+
+pihole-ynh-deps/now 3.3.1~ynh6 all [installed,local] 
+
+pinentry-curses/stable,now 1.1.0-2 armhf [installed] 
+
+pkg-config/stable,now 0.29-6 armhf [installed] 
+
+po-debconf/stable,now 1.0.21 all [installed,automatic] 
+
+policykit-1/testing,now 0.105-25+rpt1 armhf [installed] 
+
+poppler-data/stable,now 0.4.9-2 all [installed,automatic] 
+
+postfix-ldap/stable,now 3.4.14-0+deb10u1 armhf [installed,automatic] 
+
+postfix-pcre/stable,now 3.4.14-0+deb10u1 armhf [installed,automatic] 
+
+postfix-policyd-spf-perl/stable,now 2.011-1 all [installed,automatic] 
+
+postfix/stable,now 3.4.14-0+deb10u1 armhf [installed] 
+
+postgresql-11/stable,now 11.10-0+deb10u1 armhf [installed,automatic] 
+
+postgresql-client-11/stable,now 11.10-0+deb10u1 armhf [installed,automatic] 
+
+postgresql-client-common/stable,now 200+deb10u4 all [installed,automatic] 
+
+postgresql-common/stable,now 200+deb10u4 all [installed,automatic] 
+
+postgresql-contrib/stable,now 11+200+deb10u4 all [installed,automatic] 
+
+postsrsd/stable,now 1.5-2+deb10u1 armhf [installed,automatic] 
+
+powermgmt-base/stable,now 1.34 all [installed,automatic] 
+
+ppp/stable,now 2.4.7-2+4.1+deb10u1 armhf [installed,automatic] 
+
+procmail/stable,now 3.22-26 armhf [installed,automatic] 
+
+procps/stable,now 2:3.3.15-2 armhf [installed] 
+
+psmisc/stable,now 23.2-1 armhf [installed] 
+
+publicsuffix/stable,now 20190415.1030-1 all [installed,automatic] 
+
+python-all-dev/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+python-all/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+python-apt-common/stable,now 1.8.4.3 all [installed,automatic] 
+
+python-argcomplete/stable,now 1.8.1-1 all [installed,automatic] 
+
+python-asn1crypto/stable,now 0.24.0-1 all [installed,automatic] 
+
+python-bottle/stable,now 0.12.15-2+deb10u1 all [installed,automatic] 
+
+python-bson/stable,now 3.7.1-1.1 armhf [installed,automatic] 
+
+python-certifi/stable,now 2018.8.24-1 all [installed,automatic] 
+
+python-cffi-backend/stable,now 1.12.2-1 armhf [installed,automatic] 
+
+python-chardet/stable,now 3.0.4-3 all [installed,automatic] 
+
+python-configparser/stable,now 3.5.0b2-1 all [installed,automatic] 
+
+python-crypto/stable,now 2.6.1-9+b1 armhf [installed,automatic] 
+
+python-cryptography/stable,now 2.6.1-3+deb10u2 armhf [installed,automatic] 
+
+python-dbus/stable,now 1.2.8-3 armhf [installed,automatic] 
+
+python-dev/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+python-dnspython/stable,now 1.16.0-1 all [installed,automatic] 
+
+python-egenix-mxdatetime/stable,now 3.2.9-1 armhf [installed,automatic] 
+
+python-egenix-mxtools/stable,now 3.2.9-1 armhf [installed,automatic] 
+
+python-entrypoints/stable,now 0.3-1 all [installed,automatic] 
+
+python-enum34/stable,now 1.1.6-2 all [installed,automatic] 
+
+python-gevent-websocket/stable,now 0.9.3-1 all [installed,automatic] 
+
+python-gevent/stable,now 1.3.7-1 armhf [installed,automatic] 
+
+python-gi/stable,now 3.30.4-1 armhf [installed,automatic] 
+
+python-gpg/stable,now 1.12.0-6 armhf [installed,automatic] 
+
+python-greenlet/stable,now 0.4.15-2 armhf [installed,automatic] 
+
+python-gridfs/stable,now 3.7.1-1.1 all [installed,automatic] 
+
+python-idna/stable,now 2.6-1 all [installed,automatic] 
+
+python-ipaddress/stable,now 1.0.17-1 all [installed,automatic] 
+
+python-jinja2/stable,now 2.10-2 all [installed,automatic] 
+
+python-keyring/stable,now 17.1.1-1 all [installed,automatic] 
+
+python-keyrings.alt/stable,now 3.1.1-1 all [installed,automatic] 
+
+python-ldap/stable,now 3.1.0-2+b1 armhf [installed,automatic] 
+
+python-ldb/stable,now 2:1.5.1+really1.4.6-3 armhf [installed,automatic] 
+
+python-markupsafe/stable,now 1.1.0-1 armhf [installed,automatic] 
+
+python-minimal/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+python-miniupnpc/stable,now 2.1-1+ynh10 armhf [installed,automatic] 
+
+python-mysqldb/stable,now 1.3.10-2+b1 armhf [installed,automatic] 
+
+python-openssl/stable,now 19.0.0-1 all [installed,automatic] 
+
+python-packaging/stable,now 19.0-1 all [installed,automatic] 
+
+python-pip-whl/testing,now 18.1-5+rpt1 all [installed,automatic] 
+
+python-pip/testing,now 18.1-5+rpt1 all [installed,automatic] 
+
+python-pkg-resources/stable,now 40.8.0-1 all [installed,automatic] 
+
+python-psutil/stable,now 5.5.1-1 armhf [installed,automatic] 
+
+python-psycopg2/stable,now 2.7.7-1 armhf [installed,automatic] 
+
+python-publicsuffix/stable,now 1.1.0-2 all [installed,automatic] 
+
+python-pyasn1-modules/stable,now 0.2.1-0.2 all [installed,automatic] 
+
+python-pyasn1/stable,now 0.4.2-3 all [installed,automatic] 
+
+python-pymongo/stable,now 3.7.1-1.1 armhf [installed,automatic] 
+
+python-pyparsing/stable,now 2.2.0+dfsg1-2 all [installed,automatic] 
+
+python-requests/stable,now 2.21.0-1 all [installed,automatic] 
+
+python-rpi.gpio/testing,now 0.7.0-0.1~bpo10+4 armhf [installed] 
+
+python-samba/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 armhf [installed,automatic] 
+
+python-secretstorage/stable,now 2.3.1-2 all [installed,automatic] 
+
+python-setuptools/stable,now 40.8.0-1 all [installed,automatic] 
+
+python-six/stable,now 1.12.0-1 all [installed,automatic] 
+
+python-talloc/stable,now 2.1.14-2 armhf [installed,automatic] 
+
+python-tdb/stable,now 1.3.16-2+b1 armhf [installed,automatic] 
+
+python-toml/stable,now 0.10.0-1 all [installed,automatic] 
+
+python-tz/stable,now 2019.1-1 all [installed,automatic] 
+
+python-urllib3/stable,now 1.24.1-1 all [installed,automatic] 
+
+python-wheel/stable,now 0.32.3-2 all [installed,automatic] 
+
+python-xdg/stable,now 0.25-5 all [installed,automatic] 
+
+python-yaml/stable,now 3.13-2 armhf [installed,automatic] 
+
+python2-dev/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+python2-minimal/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+python2.7-dev/stable,now 2.7.16-2+deb10u1 armhf [installed,automatic] 
+
+python2.7-minimal/stable,now 2.7.16-2+deb10u1 armhf [installed,automatic] 
+
+python2.7/stable,now 2.7.16-2+deb10u1 armhf [installed,automatic] 
+
+python2/stable,now 2.7.16-1 armhf [installed,automatic] 
+
+python3-apt/stable,now 1.8.4.3 armhf [installed,automatic] 
+
+python3-asn1crypto/stable,now 0.24.0-1 all [installed,automatic] 
+
+python3-cached-property/stable,now 1.5.1-3 all [installed,automatic] 
+
+python3-certifi/stable,now 2018.8.24-1 all [installed,automatic] 
+
+python3-cffi-backend/stable,now 1.12.2-1 armhf [installed,automatic] 
+
+python3-chardet/stable,now 3.0.4-3 all [installed,automatic] 
+
+python3-crypto/stable,now 2.6.1-9+b1 armhf [installed,automatic] 
+
+python3-cryptography/stable,now 2.6.1-3+deb10u2 armhf [installed,automatic] 
+
+python3-dbus/stable,now 1.2.8-3 armhf [installed,automatic] 
+
+python3-debconf/stable,now 1.5.71 all [installed,automatic] 
+
+python3-dev/stable,now 3.7.3-1 armhf [installed,automatic] 
+
+python3-distro-info/stable,now 0.21 all [installed,automatic] 
+
+python3-distutils/stable,now 3.7.3-1 all [installed,automatic] 
+
+python3-docker/stable,now 3.4.1-4 all [installed,automatic] 
+
+python3-dockerpty/stable,now 0.4.1-1 all [installed,automatic] 
+
+python3-dockerpycreds/stable,now 0.3.0-1 all [installed,automatic] 
+
+python3-docopt/stable,now 0.6.2-2 all [installed,automatic] 
+
+python3-entrypoints/stable,now 0.3-1 all [installed,automatic] 
+
+python3-gi/stable,now 3.30.4-1 armhf [installed,automatic] 
+
+python3-idna/stable,now 2.6-1 all [installed,automatic] 
+
+python3-jsonschema/stable,now 2.6.0-4 all [installed,automatic] 
+
+python3-keyring/stable,now 17.1.1-1 all [installed,automatic] 
+
+python3-keyrings.alt/stable,now 3.1.1-1 all [installed,automatic] 
+
+python3-lib2to3/stable,now 3.7.3-1 all [installed,automatic] 
+
+python3-minimal/stable,now 3.7.3-1 armhf [installed,automatic] 
+
+python3-pip/testing,now 18.1-5+rpt1 all [installed,automatic] 
+
+python3-pkg-resources/stable,now 40.8.0-1 all [installed,automatic] 
+
+python3-ply/stable,now 3.11-3 all [installed,automatic] 
+
+python3-pyinotify/stable,now 0.9.6-1 all [installed,automatic] 
+
+python3-requests/stable,now 2.21.0-1 all [installed,automatic] 
+
+python3-secretstorage/stable,now 2.3.1-2 all [installed,automatic] 
+
+python3-setuptools/stable,now 40.8.0-1 all [installed,automatic] 
+
+python3-six/stable,now 1.12.0-1 all [installed,automatic] 
+
+python3-systemd/stable,now 234-2+b1 armhf [installed,automatic] 
+
+python3-texttable/stable,now 1.6.0-1 all [installed,automatic] 
+
+python3-urllib3/stable,now 1.24.1-1 all [installed,automatic] 
+
+python3-websocket/stable,now 0.53.0-1 all [installed,automatic] 
+
+python3-wheel/stable,now 0.32.3-2 all [installed,automatic] 
+
+python3-xdg/stable,now 0.25-5 all [installed,automatic] 
+
+python3-yaml/stable,now 3.13-2 armhf [installed,automatic] 
+
+python3.7-dev/stable,now 3.7.3-2+deb10u2 armhf [installed,automatic] 
+
+python3.7-minimal/stable,now 3.7.3-2+deb10u2 armhf [installed,automatic] 
+
+python3.7/stable,now 3.7.3-2+deb10u2 armhf [installed,automatic] 
+
+python3/stable,now 3.7.3-1 armhf [installed,automatic] 
+
+python/stable,now 2.7.16-1 armhf [installed] 
+
+raspberrypi-bootloader/testing,now 1.20210201-1 armhf [installed] 
+
+raspberrypi-kernel/testing,now 1.20210201-1 armhf [installed] 
+
+raspberrypi-net-mods/testing,now 1.3.0 all [installed] 
+
+raspberrypi-sys-mods/testing,now 20210208 armhf [installed] 
+
+raspbian-archive-keyring/stable,now 20120528.2 all [installed] 
+
+raspi-config/testing,now 20210119 all [installed] 
+
+raspi-copies-and-fills/testing,now 0.13 armhf [installed] 
+
+rclone/stable,now 1.54.0 armhf [installed] 
+
+readline-common/stable,now 7.0-5 all [installed] 
+
+redis-server/stable,now 5:5.0.3-4+deb10u2 armhf [installed,automatic] 
+
+redis-tools/stable,now 5:5.0.3-4+deb10u2 armhf [installed,automatic] 
+
+resolvconf/stable,now 1.79 all [installed] 
+
+rfkill/stable,now 2.33.1-0.1 armhf [installed,automatic] 
+
+rng-tools/stable,now 2-unofficial-mt.14-1 armhf [installed] 
+
+rpcbind/stable,now 1.2.5-0.3+deb10u1 armhf [installed,automatic] 
+
+rpi-eeprom/testing,now 11.6-1 armhf [installed] 
+
+rpi-update/testing,now 20200409 all [installed] 
+
+rpi.gpio-common/testing,now 0.7.0-0.1~bpo10+4 armhf [installed,automatic] 
+
+rspamd/stable,now 1.8.1-2+b1 armhf [installed,automatic] 
+
+rsync/stable,now 3.1.3-6 armhf [installed] 
+
+rsyslog/stable,now 8.1901.0-1 armhf [installed] 
+
+samba-common-bin/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 armhf [installed] 
+
+samba-common/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 all [installed,automatic] 
+
+samba-dsdb-modules/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 armhf [installed,automatic] 
+
+samba-libs/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 armhf [installed,automatic] 
+
+samba-vfs-modules/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 armhf [installed,automatic] 
+
+samba/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 armhf [installed] 
+
+screen/stable,now 4.6.2-3 armhf [installed] 
+
+sed/stable,now 4.7-1 armhf [installed] 
+
+sensible-utils/stable,now 0.0.12 all [installed] 
+
+shared-mime-info/stable,now 1.10-1 armhf [installed,automatic] 
+
+shellinabox/stable,now 2.21 armhf [installed] 
+
+slapd/stable,now 2.4.47+dfsg-3+rpi1+deb10u5 armhf [installed,automatic] 
+
+smbclient/stable,now 2:4.9.5+dfsg-5+deb10u1+rpi1 armhf [installed,automatic] 
+
+sntp/stable,now 1:4.2.8p12+dfsg-4 armhf [installed,automatic] 
+
+socat/stable,now 1.7.3.2-2 armhf [installed,automatic] 
+
+speedtest-cli/stable,now 2.0.2-1+deb10u1 all [installed] 
+
+sqlite3/stable,now 3.27.2-3+deb10u1 armhf [installed,automatic] 
+
+sqlite/stable,now 2.8.17-15 armhf [installed,automatic] 
+
+squid-common/stable,now 4.6-1+deb10u4 all [installed,automatic] 
+
+squid-langpack/stable,now 20190110-1 all [installed,automatic] 
+
+squid3-ynh-deps/now 1.0~ynh2 all [installed,local] 
+
+squid3/stable,now 4.6-1+deb10u4 all [installed,automatic] 
+
+squid/stable,now 4.6-1+deb10u4 armhf [installed,automatic] 
+
+ssh-import-id/stable,now 5.7-1 all [installed] 
+
+ssh/stable,now 1:7.9p1-10+deb10u2 all [installed] 
+
+ssl-cert/stable,now 1.0.39 all [installed,automatic] 
+
+ssowat/stable,now 4.1.3 all [installed,automatic] 
+
+strace/stable,now 4.26-0.2 armhf [installed] 
+
+sudo-ldap/stable,now 1.8.27-1+deb10u3 armhf [installed,automatic] 
+
+sysstat/stable,now 12.0.3-2 armhf [installed,automatic] 
+
+systemd-sysv/stable,now 241-7~deb10u6+rpi1 armhf [installed] 
+
+systemd/stable,now 241-7~deb10u6+rpi1 armhf [installed] 
+
+sysvinit-utils/stable,now 2.93-8 armhf [installed] 
+
+tar/stable,now 1.30+dfsg-6 armhf [installed] 
+
+tasksel-data/stable,now 3.53 all [installed] 
+
+tasksel/stable,now 3.53 all [installed] 
+
+tdb-tools/stable,now 1.3.16-2+b1 armhf [installed,automatic] 
+
+telnet/stable,now 0.17-41.2 armhf [installed] 
+
+traceroute/stable,now 1:2.1.0-2 armhf [installed] 
+
+transmission-cli/stable,now 2.94-2+deb10u2 armhf [installed,automatic] 
+
+transmission-common/stable,now 2.94-2+deb10u2 all [installed,automatic] 
+
+transmission-daemon/stable,now 2.94-2+deb10u2 armhf [installed,automatic] 
+
+transmission-ynh-deps/now 1.0~ynh3 all [installed,local] 
+
+triggerhappy/stable,now 0.5.0-1 armhf [installed,automatic] 
+
+ttf-dejavu-core/stable,now 2.37-1 all [installed,automatic] 
+
+ttrss-ynh-deps/now 20200916~ynh2 all [installed,local] 
+
+tzdata/stable,now 2021a-0+deb10u1 all [installed] 
+
+ucf/stable,now 3.0038+nmu1 all [installed,automatic] 
+
+udev/stable,now 241-7~deb10u6+rpi1 armhf [installed] 
+
+unar/stable,now 1.10.1-2+b4 armhf [installed,automatic] 
+
+unattended-upgrades/stable,now 1.11.2 all [installed,automatic] 
+
+unrar-free/stable,now 1:0.0.1+cvs20140707-4 armhf [installed] 
+
+unscd/stable,now 0.53-1+b2 armhf [installed,automatic] 
+
+unzip/stable,now 6.0-23+deb10u2 armhf [installed] 
+
+usb-modeswitch-data/stable,now 20170806-2 all [installed,automatic] 
+
+usb-modeswitch/stable,now 2.5.2+repack0-2 armhf [installed] 
+
+usb.ids/stable,now 2019.07.27-0+deb10u1 all [installed,automatic] 
+
+usbutils/stable,now 1:010-3 armhf [installed] 
+
+util-linux/stable,now 2.33.1-0.1 armhf [installed] 
+
+uuid-dev/stable,now 2.33.1-0.1 armhf [installed,automatic] 
+
+v4l-utils/stable,now 1.16.3-3 armhf [installed] 
+
+va-driver-all/stable,now 2.4.0-1 armhf [installed,automatic] 
+
+vdpau-driver-all/stable,now 1.1.1-10 armhf [installed,automatic] 
+
+vim-common/stable,now 2:8.1.0875-5 all [installed] 
+
+vim-tiny/stable,now 2:8.1.0875-5 armhf [installed] 
+
+vl805fw/testing,now 0.2 all [installed] 
+
+wallabag2-ynh-deps/now 2.3.8~ynh2 all [installed,local] 
+
+wget/stable,now 1.20.1-1.1 armhf [installed] 
+
+whiptail/stable,now 0.52.20-8 armhf [installed] 
+
+whois/stable,now 5.4.3 armhf [installed,automatic] 
+
+wireless-regdb/testing,now 2018.05.09-0~rpt1 all [installed,automatic] 
+
+wireless-tools/stable,now 30~pre9-13 armhf [installed] 
+
+wpasupplicant/stable,now 2:2.7+git20190128+0c1e29f-6+deb10u2 armhf [installed] 
+
+x11-common/stable,now 1:7.7+19 all [installed,automatic] 
+
+xauth/stable,now 1:1.0.10-1 armhf [installed,automatic] 
+
+xdg-user-dirs/stable,now 0.17-2 armhf [installed,automatic] 
+
+xkb-data/stable,now 2.26-2 all [installed,automatic] 
+
+xxd/stable,now 2:8.1.0875-5 armhf [installed] 
+
+xz-utils/stable,now 5.2.4-1 armhf [installed,automatic] 
+
+yunohost-admin/stable,now 4.1.4 all [installed] 
+
+yunohost/stable,now 4.1.7.1 all [installed] 
+
+zip/stable,now 3.0-11 armhf [installed] 
+
+zlib1g-dev/stable,now 1:1.2.11.dfsg-1 armhf [installed,automatic] 
+
+zlib1g/stable,now 1:1.2.11.dfsg-1 armhf [installed] 
+```
+</pre>
+</div>
+<div bag="default" created="20210417185315014" creator="sharicov" modified="20210417185345421" modifier="sharicov" revision="2" tags="manual" title="ssh autologin" type="text/vnd.tiddlywiki">
+<pre>!! SSH keys exchange to login without password: 
+
+On windows client(no passphrase needed): 
+
+
+```
+ssh-keygen 
+scp C:\Users\sharicov/.ssh/id_rsa.pub admin@HostIP:~/ 
+```
+
+On yunohost: 
+
+
+```
+sudo ssh-copy-id -f -i id_rsa.pub admin@127.0.0.1
+```
+</pre>
+</div>
+<div bag="default" created="20210417184721353" creator="sharicov" modified="20210417184751267" modifier="sharicov" revision="2" tags="manual" title="Test disk speed" type="text/vnd.tiddlywiki">
+<pre>!!! Test disk speed: 
+
+```
+sudo pv -ptebar /dev/sda1 &gt; /dev/null 
+
+sudo hdparm –tT /dev/sdX 
+```
+</pre>
 </div>
 <div title="tiddlers.html" type="text/html">
 <pre>&lt;!doctype html&gt;
@@ -16883,6 +20751,241 @@ sudo reboot &lt;/em&gt;&lt;/p&gt;&lt;/div&gt;
 &lt;/html&gt;
 </pre>
 </div>
+<div bag="default" created="20210416140752339" creator="sharicov" modified="20210416140805831" modifier="sharicov" revision="1" tags="manual" title="tinycore_2021_v1" type="text/vnd.tiddlywiki">
+<pre>TC image x64 with uefi and ventoy support: http://www.tinycorelinux.net/12.x/x86_64/release/ 
+
+TinyCorePure64 with GUI (first option) 
+
+CorePure64 text only 
+
+X server (frame buffer): 
+
+tce-load –wi Xfbdev flwm flwm_topside aterm 
+
+xsetup.sh 
+startx 
+
+ 
+
+NTFS mount r 
+
+tce-load –wi ntfs-3g 
+
+fdisk –l 
+
+sudo ntfs-3g /dev/nvme0n1p1 /mnt/nvme0n1p1  
+
+ 
+
+File managers 
+
+tce-load –wi mc xfe 
+
+ 
+
+VMWare force EFI mode: 
+
+Edit machine’s vmx in notepad. Add: 
+
+firmware = "efi" 
+
+ 
+
+Install (in VMWare use SATA and Fixed disk/ VirtualBox not loading into EFI): 
+
+Boot into tc (first option with graphics) 
+
+tce-load –wi tc-install-GUI tc-install mc ntfs-3g htop wireless_tools firmware-rtlwifi graphics-5.10.3-tinycore64 Xorg-7.7 alsamixergui dropbear parted chromium-browser sshfs samba screen xfe openssl-1.1.1 curl ezremaster lshw ncdu 
+
+cp -u /mnt/sr0/cde/* /tmp/tce/optional/ 
+
+tce-install 
+
+Frugal/Whole Disk/sda/install boot loader/proceed 
+
+Set /tmp/tce for Extensions installation directory 
+
+Reboot 
+
+VMDK to VHD convert (fixed size): 
+
+c:\Program Files\Oracle\VirtualBox&gt;VBoxManage.exe clonehd "D:\VMs\TinyCore_VMWare\TinyCorePure64.vmdk" "D:\VMs\TinyCore_VMWare\TinyCorePure64.vhd" -format VHD --variant Fixed 
+
+Note: use small vmdk file (1KB) 
+
+Note: VHD automatically added to virtualbox’s virtual media manager, so remove it from there if changes are needed. 
+
+Rename .vhd to .vhd.vtoy for Ventoy usage 
+
+Source: http://forum.tinycorelinux.net/index.php/topic,23085.15.html 
+
+ 
+
+ 
+
+Optional: 
+
+FIX UEFI (EFI not working in virtualbox – legacy only) 
+
+Boot in legacy mode (virtual box setting / system / efi unchecked 
+
+curl –O –k https://distro.ibiblio.org/tinycorelinux/12.x/x86_64/release/TinyCorePure64-12.0.iso 
+
+sudo mkdir /mnt/iso 
+
+sudo mkdir /boot 
+
+sudo mount -o loop TinyCorePure64-12.0.iso /mnt/iso 
+
+sudo cp –r /mnt/iso/boot/* /boot/ 
+
+ 
+
+ 
+
+ </pre>
+</div>
+<div bag="default" created="20210416140458850" modified="20210416140458850" revision="1" title="Untitled" type="text/vnd.tiddlywiki">
+<pre>New Tiddler</pre>
+</div>
+<div bag="default" created="20210417195249457" creator="sharicov" modified="20210417195440700" modifier="sharicov" revision="2" tags="manual" title="USB disk mount (fstab)" type="text/vnd.tiddlywiki">
+<pre>!!! Make share directory: 
+```
+sudo mkdir -m 1777 /media/usbdown 
+
+```
+!!! Mount USB disk to the directory:
+```
+sudo fdisk -l 
+sudo mount /dev/sda1 /media/usbdown/ 
+```
+!!! Troubleshooting mount: 
+```
+sudo mount |grep sd 
+sudo umount /dev/sda1 
+```
+!!! Permanent mount (fstab): 
+
+!!!! Find PARTUUID: 
+
+
+```
+sudo fdisk -l 
+sudo blkid |grep sda 
+```
+!!!!Add PARTUUID into fstab: 
+```
+sudo nano /etc/fstab 
+```
+
+
+!!!!Add: 
+```
+PARTUUID="b6d690fd-025a-4dcb-a582-215ac9c29dba" /media/usbdown ntfs-3g  nofail,uid=1000,gid=1000  0  0 </pre>
+</div>
+<div bag="default" created="20210417181410220" creator="sharicov" modified="20210417185716387" modifier="sharicov" revision="5" tags="[[yunohost raspberry disk system samba yandex screen rsync ssh v16]] manual" title="usb disk uasp protocol" type="text/vnd.tiddlywiki">
+<pre>!! Check usb disk uasp (scsi or old protocol): 
+
+
+```
+lsusb -t 
+```
+
+
+Supported should output 
+
+
+```
+Class=Mass Storage, Driver=uas 
+```
+
+
+Unsupported: 
+
+
+```
+Class=Mass Storage, Driver=usb-storage 
+```
+
+
+!!! To blacklist (disconnect problems, slow) for r4s:
+
+```
+lsusb -v | grep id
+```
+
+get vendorid and productid:
+0x4 letters each, WD normally 0x1058
+
+```
+nano /boot/armbianEnv.txt
+```
+
+!!! Add to usb-storage.quirks=
+`0x4letter_vendorID:0x4letter_productID:u` devided by ,
+
+Reboot
+
+!!! For raspberry pi no 0x needed:
+
+```
+sudo nano /boot/cmdline.txt
+```
+
+`4letter_vendorID:4letter_productID:u` devided by `,`
+
+!!! Sources:
+https://www.reddit.com/r/DataHoarder/comments/ho8zgn/one_quick_hack_to_double_wd_elements_drive/
+https://www.raspberrypi.org/forums/viewtopic.php?t=245931
+https://www.jeffgeerling.com/blog/2020/uasp-makes-raspberry-pi-4-disk-io-50-faster
+
+</pre>
+</div>
+<div bag="default" created="20210416142310242" creator="sharicov" modified="20210416152307192" modifier="sharicov" revision="8" tags="manual" title="usbmount" type="text/vnd.tiddlywiki">
+<pre>Automount USB on insert
+
+sudo purge needrestart
+
+sudo apt autoremove
+
+sudo apt install usbmount
+
+sudo nano /lib/systemd/system/systemd-udevd.service
+
+Change: 
+PrivateMounts=yes
+
+To: 
+PrivateMounts=no
+
+Then  restart daemon, or reboot
+
+sudo systemctl daemon-reexec
+
+sudo service systemd-udevd restart
+
+For NTFS mount:
+
+sudo nano /etc/usbmount/usbmount.conf
+
+FILESYSTEMS="vfat ntfs fuseblk ext2 ext3 ext4 hfsplus ntfs fuseblk"
+
+Restart systemd and udev subprocesses (or simply reboot).
+
+sudo systemctl daemon-reexec
+
+sudo service systemd-udevd restart
+
+[img[https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png]]
+
+Source: https://raspberrypi.stackexchange.com/questions/41959/automount-various-usb-stick-file-systems-on-jessie-lite</pre>
+</div>
+<div bag="default" created="20210415145655128" creator="sharicov" modified="20210416140312173" modifier="sharicov" revision="4" tags="manual" title="Write image to SSD" type="text/vnd.tiddlywiki">
+<pre>```
+sudo dd if=[ImageFileName] of=/dev/[sdX] bs=1M status=progress
+```
+[[Disk info]]</pre>
+</div>
 <div created="20210416140522745" creator="sharicov" modified="20210417210828529" modifier="sharicov" revision="41" tags="manual" title="yunohost raspberry disk system samba yandex screen rsync ssh v16" type="text/vnd.tiddlywiki">
 <pre>!!! Open port in yunohost firewall: 
 ```
@@ -17011,6 +21114,450 @@ If you are only talking about installing apps without internet connection, you c
 [[Show all installed packages in linux (yunohost)]]
 
  </pre>
+</div>
+<div bag="default" created="20210416140429809" creator="sharicov" modified="20210416140454018" modifier="sharicov" revision="1" tags="manual" title="yunohost raspberry general v4" type="text/vnd.tiddlywiki">
+<pre>Yunohost apps: https://github.com/YunoHost-Apps 
+
+Samba – separate manual 
+
+Aria2 – separate manual 
+
+Emby multimedia server - https://github.com/YunoHost-Apps/emby_ynh 
+
+Custom folders directories on USB: 
+
+Cache (squid) 
+
+InstandUpload (nextcloud photo upload) 
+
+Downloads (aria2c) 
+
+Yandex.Disk.Backup (rclone) 
+
+Movies (emby) 
+
+temp 
+
+Useful apps: 
+
+FreshRSS with FocusReader android client (profile user&amp;password), blue lagune theme for locked feeds menu, access with: https://hostIP/rss/api/greader.php then user and password 
+
+Tiny Tiny RSS (glitchy) – like Feedly (with feedme android integration requres enabing API in preferences). Enable youtube and other plugins in settings. Install videoframes plugin https://github.com/tribut/ttrss-videoframes unzip and copy videoframes folder to /var/www/ttrss/plugins and enable in settings 
+
+Netdata – remote comprehensive monitoring (with cloud option) 
+
+https:\\app.netdata.cloud (login with gmail) 
+
+Add node in web (More; general; manage war room; node) and copy commmand from the site on raspberry: 
+
+sudo /opt/netdata/usr/sbin/netdata-claim.sh -token=XXXXX -url=https://app.netdata.cloud 
+
+Monitorix – local graphical monitoring 
+
+Phpsysinfo – HW status – like CPUz or HWinfo 
+
+Shellinabox – web based SSH terminal (alternative: wetty_ynh https://github.com/YunoHost-Apps/wetty_ynh) 
+
+Transmission – torrent client (change in sudo nano /var/lib/transmission-daemon/.config/transmission-daemon/settings.json  [/etc/transmission-daemon/settings.json]  [/etc/yunohost/apps/transmission/conf/settings.json] watch directory to /media/usbdown/Downloads) 
+
+Bozon/Droppy/Jirafeau - paste bin for file sharing simple/users/time limit&amp;PWD (/var/www/jirafeau/lib/config.local.php) 
+
+Jellyfin – emby video server better alternative 
+
+Nextcloud –to upload photos from phone create External Storage named InstantUpload in nextcloud home directory 
+
+Wallabag – getpocket 
+
+Lychee – google photo alternative 
+
+Carnet – nextcloud – best notes with android app 
+
+Talk – nextcloud – skype/whatsapp self hosted alternative 
+
+Pi-hole - blocks ads in the network settings:  https://discourse.pi-hole.net/t/how-do-i-configure-my-devices-to-use-pi-hole-as-their-dns-server/245 enable logs in settings to see the statistics, add external dns and on each computer set dns ip as raspberry local ip. 
+
+Settings to avoid external dns requests on port 53: 
+
+ 
+
+Doesn’t work: Pi-hole manual update/install: 
+
+curl -sSL https://install.pi-hole.net | bash 
+
+ 
+
+If squid is used from PC client, Pi-hole automatically filters the requests (no dns settings needed on the PC client) 
+
+Squid proxy server https://github.com/YunoHost-Apps/squid3_ynh (port 8095, user/pwd are yunohost users/pwds)  
+
+Config file: /etc/squid/squid.conf   
+
+Default Cache dir:  /var/spool/squid 10000 16 256 (10GB 16 folders 256 subfolders) 
+
+Add: 
+
+cache_dir aufs /media/usbdown/Cache 10000 16 256 
+
+sudo service squid status 
+
+sudo service squid restart 
+
+Check size of used cache: 
+
+sudo du -ch /var/spool/squid 
+
+Squid manual: https://wiki.squid-cache.org/SquidFaq/ConfiguringSquid#What_.27.27cache_dir.27.27_size_should_I_use.3F 
+
+Squid config parameters: http://break-people.ru/cmsmade/index.php?page=translate_squid_reference_tag_auth_param 
+
+Squid logs: 
+
+/var/log/squid/access.log 
+
+/var/log/squid/cache.log 
+
+Redirect – custom link to site from yunohost portal (any site) 
+
+================= 
+
+Zdownloader – jdownloader replacement, command line, not integrated in yunohost https://github.com/sin2000/zdownloader 
+
+Zdownloader settings: folder settings in .ini ; links to be populated in links.txt (txt location in ini) ./start_zd.sh (gdrive, megaup, zippyshare including uploads) 
+
+Install 7zip for automatic extraction: sudo apt install p7z-full 
+
+================== 
+
+Aria2 with chrome extension: 
+
+Open 6800 port: 
+
+sudo yunohost firewall allow TCP 6800 
+
+sudo apt install aria2c* 
+
+screen –S aria aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all 
+
+To exit 
+
+Killall aria2c 
+
+Aria2 extensions: 
+
+https://chrome.google.com/webstore/detail/aria2-for-chrome/mpkodccbngfoacfalldjimigbofkhgjn/related?hl=en 
+
+https://github.com/alexhua/Aria2-for-chrome 
+
+https://www.crx4chrome.com/go.php?p=85196&amp;s=1&amp;l=https://clients2.googleusercontent.com/crx/blobs/QgAAAC6zw0qH2DJtnXe8Z7rUJP2iXC6eC5m5i8lOcrNuICsNqd05Y6AH2arfrw-guUwVKYZbW9loBHnm277d9SUq7v2ECcJ9kpIjfi4jSFeBdhbDAMZSmuXEU8IIL7xZ435lYw2bKdd2CnAqzQ/extension_1_5_0_0.crx 
+
+In browser open extension screen copy camtd.crx extension from: https://github.com/jae-jae/Camtd/releases tp the extension screen – not capturing automatically 
+
+In settings: AriaNG; RPC; enter ip and port (6800) 
+
+Web version: https://github.com/ziahamza/webui-aria2 
+
+htop replacement: bpytop 
+
+Snap installation(Ubuntu, Kubuntu): 
+
+sudo apt install snapd 
+
+sudo snap install bpytop 
+
+Troubleshooting(crash on lack of permissions): 
+
+sudo snap connect bpytop:mount-observe 
+
+sudo snap connect bpytop:network-control 
+
+sudo snap connect bpytop:hardware-observe 
+
+sudo snap connect bpytop:system-observe 
+
+sudo snap connect bpytop:process-control 
+
+sudo snap connect bpytop:physical-memory-observe 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Optional: 
+
+Ghost – web hosting like WordPress 
+
+Codimd – shared document creation server https://github.com/YunoHost-Apps/codimd_ynh/blob/master/README.md 
+
+LuckySheet: shared spreadsheet creation server: https://github.com/YunoHost-Apps/luckysheet_ynh 
+
+Diagramsnet: shared diagram creation server: https://github.com/YunoHost-Apps/diagramsnet_ynh/blob/master/README.md 
+
+Pirate.box file sharing https://github.com/labriqueinternet/piratebox_ynh (to clear dns in windows: ipconfig /flushdns  in browser: chrome://net-internals/#dns) - hotspot doesn’t work 
+
+Fallback host backs up to secondary server to start it if primary fails  https://github.com/YunoHost-Apps/fallback_ynh/blob/master/README.md 
+
+H5ai web-based file server, read only https://github.com/YunoHost-Apps/h5ai_ynh/blob/master/README.md with preview manual in previous link and at https://larsjung.de/h5ai/ configuration in /var/www/documents/_h5ai/private/conf/options.json 
+
+To make usb disk viewable vi h5ai run: 
+
+sudo ln -s /media/usbdown/ /var/www/documents/usb 
+
+================ 
+
+Onlyoffice (arm64) in nextcloud add app; Office; Collabora Online - Built-in CODE Server (ARM64) and Collabora online 
+
+If timeout error occures, ssh to yunohost( https://github.com/nextcloud/server/issues/19008 ): 
+
+sudo nano /var/www/nextcloud/lib/private/Installer.php 
+
+Search for 120 (CTRL+W) 
+
+Replace with 3000 to look like this 
+
+$timeout = $this-&gt;isCLI ? 0 : 3000; 
+
+Embeded vesion option should appear in Collabora online settings 
+
+Exit nextcloud maintenance mode: 
+
+sudo -i 
+
+cd /var/www/nextcloud 
+sudo -u nextcloud php occ maintenance:mode --off 
+
+Nextcloud logs location: 
+
+Setting -&gt; search for logs (CTRL+F) 
+
+Memory limit change php.ini (nextcloud collabora update error related): 
+
+nano /etc/php/7.3/fpm/php.ini 
+
+Find and replace: 
+
+memory_limit=128M 
+
+With: 
+
+memory_limit=2048M 
+
+Navidrome music server – better use emby (like spotify) https://www.navidrome.org/docs/installation/pre-built-binaries/ 
+
+To change music folder: 
+
+sudo nano /var/lib/navidrome/navidrome.toml 
+
+Modify folder: 
+
+MusicFolder = "/media/usbdown/Music" 
+
+Restart Navidrome daemon: 
+
+sudo systemctl restart navidrome.service 
+
+CLI Nextcloud: 
+
+List installed apps: 
+
+sudo su 
+
+sudo -i 
+sudo -u nextcloud php7.3 /var/www/nextcloud/occ -V 
+
+sudo -u nextcloud php7.3 /var/www/nextcloud/occ app:list 
+
+Manual nextcloud occ installations 
+
+ https://docs.nextcloud.com/server/15/admin_manual/configuration_server/occ_command.html 
+
+sudo su 
+
+sudo -i 
+sudo -u nextcloud php7.3 /var/www/nextcloud/occ -V 
+
+sudo -u nextcloud php7.3 /var/www/nextcloud/occ app:update richdocumentscode_arm64 
+
+richdocumentscode_arm64 new version available: 6.4.14 
+
+https://github.com/CollaboraOnline/richdocumentscode/issues/74 
+
+https://github.com/nextcloud/richdocuments/issues/1136 
+
+Manual update (working with collabora arm64): 
+
+sudo -u nextcloud php7.3 /var/www/nextcloud/occ app:update richdocumentscode_arm64 
+
+Then go to nextcloud page and click start update 
+
+ 
+
+ 
+
+Manual tar.gz app installation in nextcloud: 
+
+sudo su 
+
+cp /media/usbdown/Images/RaspberryPi/yunohost/collabora_arm64/richdocumentscode_arm64.tar.gz /var/www/nextcloud/apps/ 
+
+cd /var/www/nextcloud/apps/ 
+
+ 
+
+ 
+
+https://help.nextcloud.com/t/collabora-integrated-code-server-cannot-start-not-workin-not-reachable-solved/90519 
+
+Nextcloud useful apps: Carnet (notes), Talk (skype like), flow upload (upload big files with resume), extract (right click extract, apt install unrar-free) 
+
+ 
+
+OLD ABSOLETE: 
+
+Seafile – nextcloud alternative (no direct disk access, container only) 
+
+Jdownloader https://github.com/YunoHost-Apps/jdownloader_ynh  
+
+Jdownloader Installing guide 
+
+App can be installed by YunoHost admin web-interface or by running following command: 
+
+$ sudo yunohost app install https://github.com/YunoHost-Apps/jdownloader_ynh 
+
+Create account : 
+
+https://my.jdownloader.org/ 
+
+Run JDownloader for Update : 
+
+$ java -jar /opt/jdownloader/JDownloader.jar -norestart 
+
+Connect JDownloader : 
+
+$ java -jar /opt/jdownloader/JDownloader.jar -norestart in cli type y for connect with your mail and password 
+
+Add to /etc/rc.local (before exit 0) 
+
+java -jar /opt/jdownloader/JDownloader.jar -norestart 
+
+Upgrade this package: 
+
+   $ sudo yunohost app upgrade jdownloader -u https://github.com/YunoHost-Apps/jdownloader_ynh 
+
+ 
+
+Wifi Hotspot - https://github.com/labriqueinternet/hotspot_ynh (separate manual works without password, DHCP configuration not studied) 
+
+FreshRSS – like Feedly  
+
+Rainloop – email client 
+
+Alltube – download from youtube 
+
+Shaarli – bookmarks, like Getpocket; material theme https://github.com/kalvn/Shaarli-Material extract to /var/www/shaarli/tpl 
+
+Xdownloader https://github.com/YunoHost-Apps/xdownloader_ynh 
+
+Etherpad – google keep (notes) - buggy, old 
+
+Simple-torrent (slow freezes) 
+
+Emby manual newer version – https://emby.media/linux-server.html download for armhf 
+
+Laverna – notes no saves (google keep, evernote) https://github.com/YunoHost-Apps/laverna_ynh 
+
+Office NOT WORKING – install nextcloud wopi app/plugin, in settings, office online add server: https://www.office.com/?flight=unauthrefresh&amp;auth=2 (previous login in www.office.com might be required in the same web browser) 
+
+Piwigo – picture gallery (google photo) confog: https://sharicov.nohost.me/piwigo/admin.php 
+
+Piwigo external disk setup: 
+
+mkdir /home/yunohost.app/piwigo/galleries/usb 
+
+sudo mount --bind /media/usbdown/InstantUpload /home/yunohost.app/piwigo/galleries/usb 
+
+https://sharicov.nohost.me/piwigo/admin.php -&gt; Dashbpard -&gt; Quick Local Synchronization (down the screen) 
+
+ 
+
+Nextcloud symlink experimental not working, educational 
+
+sudo ln -s /media/usbdown/Photos/ /home/yunohost.app/nextcloud/data/sharicov/files/InstantUpload 
+
+sudo chown -h nextcloud:nextcloud /home/yunohost.app/nextcloud/data/sharicov/files/InstantUpload 
+
+ 
+
+Solution 2 
+
+https://help.nextcloud.com/t/howto-change-move-data-directory-after-installation/17170/1 
+
+This solution is far simpler and less risky in data corruption concerns, but it does NOT fulfil the security recommendations, e.g. mentioned in admin manual 532. So if you just need to move the data directory for storage reasons, not for security reasons, just create a symbolic link from old to new data directory location. For that you only need to be sure, that symbolic links are correctly handled by your webserver. Nginx should handle symlinks correctly by default, for apache the related option needs to be set in your Nextcloud vhost, as already given by the admin manual example: https://docs.nextcloud.com/server/13/admin_manual/installation/source_installation.html#apache-web-server-configuration 749 
+
+  
+
+&lt;Directory /path/to/nextcloud/&gt; 
+
+  Options +FollowSymlinks 
+
+  ... 
+
+&lt;/Directory&gt; 
+
+If so, then do: 
+
+Steps are also given here: Is there a safe and reliable way to move data directory out of web root? 511 
+
+ 
+
+1. sudo -u www-data php /path/to/nextcloud/occ maintenance:mode --on 
+
+2. mkdir -p /new/path/to/data 
+
+3. cp -a /path/to/data/. /new/path/to/data 
+
+4. mv /path/to/data /path/to/dataBackup 
+
+5. ln -s /new/path/to/data /path/to/data 
+
+6. chown -h www-data:www-data /path/to/data # To set symlink ownership 
+
+7. chown -R www-data:www-data /new/path/to/data # To set actual data dir ownership 
+
+8. sudo -u www-data php /path/to/nextcloud/occ maintenance:mode --off 
+
+Again, if everything works fine, you could remove /path/to/dataBackup or just keep it as regular backup. 
+
+  
+
+Note: If you want to adjust permissions of your new data folder, you need to chmod -R 777 /new/path/to/data, as chmod does not follow symlinks. 
+
+ 
+
+ 
+
+Crontab https://forum.rclone.org/t/rclone-scheduling/642/36 
+
+sudo crontab -e 
+
+Run rclone script every 30 min 
+
+*/30 * * * * sh /home/admin/sync &gt;/dev/null 2&lt;&amp;1 
+
+Temp buffer: 
+
+ sudo mkdir /home/yunohost.app/nextcloud/data/sharicov/files/test 
+
+sudo chown -h nextcloud:nextcloud /home/yunohost.app/nextcloud/data/sharicov/files/test 
+
+sudo chmod -R 777 /home/yunohost.app/nextcloud/data/sharicov/files/test 
+
+sudo ls -alp /home/yunohost.app/nextcloud/data/sharicov/files 
+
+sudo reboot </pre>
 </div>
 
 
