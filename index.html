@@ -164,6 +164,8 @@ Error message and password prompt
 
 <li>$:/SiteSubtitle</li>
 
+<li>$:/state/showeditpreview</li>
+
 <li>$:/state/sidebar</li>
 
 <li>$:/state/tab-1749438307</li>
@@ -195,6 +197,8 @@ Error message and password prompt
 <li>Disk info</li>
 
 <li>Download link</li>
+
+<li>Draft of 'New Tiddler'</li>
 
 <li>Experimental not working</li>
 
@@ -10207,6 +10211,9 @@ Error message and password prompt
 <div created="20210417211012813" modified="20210417211023115" title="$:/SiteSubtitle">
 <pre>Manuals in github</pre>
 </div>
+<div created="20210418175850925" modified="20210418175850925" title="$:/state/showeditpreview">
+<pre>yes</pre>
+</div>
 <div created="20210417210700988" modified="20210417210816067" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
@@ -10222,7 +10229,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="$:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Draft of 'New Tiddler']] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10599,6 +10606,80 @@ Make sure mount and automount names reflect actual path with / replaced by-
 https://www.armbian.com/nanopi-r4s/ 
 
 !!!! Note: only daily Hirsute build worked with both USB at the time of writing this manual</pre>
+</div>
+<div created="20210418175556381" draft.of="New Tiddler" draft.title="fsck check EXT4 disk" modified="20210418175848004" tags="manual" title="Draft of 'New Tiddler'">
+<pre>
+```
+sudo e2fsck -Dy /dev/sdb1
+```
+
+
+
+Use lsof | grep /media/whatever to find out what is using the mount.
+
+Also, consider umount -l (lazy umount) to prevent new processes from using the drive while you clean up.
+
+lsof +f -- /media/usb0
+
+fuser -m /media/usb0
+
+
+Open files
+
+Processes with open files are the usual culprits. Display them:
+
+lsof +f -- &lt;mountpoint or device&gt;
+
+There is an advantage to using /dev/&lt;device&gt; rather than /mountpoint: a mountpoint will disappear after an umount -l, or it may be hidden by an overlaid mount.
+
+fuser can also be used, but to my mind lsof has a more useful output. However fuser is useful when it comes to killing the processes causing your dramas so you can get on with your life.
+
+List files on &lt;mountpoint&gt; (see caveat above):
+
+fuser -vmM &lt;mountpoint&gt;
+
+Interactively kill only processes with files open for writing:
+
+fuser -vmMkiw &lt;mountpoint&gt;
+
+After remounting read-only (mount -o remount,ro &lt;mountpoint&gt;), it is safe(r) to kill all remaining processes:
+
+fuser -vmMk &lt;mountpoint&gt;
+
+Mountpoints
+
+The culprit can be the kernel itself. Another filesystem mounted on the filesystem you are trying to umount will cause grief. Check with:
+
+mount | grep &lt;mountpoint&gt;/
+
+For loopback mounts (thanks Stephen Kitt), also check the output of:
+
+losetup -la
+
+Anonymous inodes (Linux)
+
+Anonymous inodes can be created by:
+
+    Temporary files (open with O_TMPFILE)
+    inotify watches
+    [eventfd]
+    [eventpoll]
+    [timerfd]
+
+These are the most elusive type of pokemon, and appear in lsof's TYPE column as a_inode (which is undocumented in the lsof man page).
+
+They won't appear in lsof +f -- /dev/&lt;device&gt;, so you'll need to:
+
+lsof | grep a_inode
+
+For killing processes holding anonymous inodes, see: List current inotify watches (pathname, PID).
+inotify watches (Linux)
+
+This comment explains why inotify shouldn't prevent an unmount, but this note describes the situations in which it will:
+
+    an unmount can hang in the vx_softcnt_flush() call. The hang occurs because inotify watches increment the i_count variable and cause the v_os_hold value to remain elevated until the inotify watcher releases the hold.
+
+</pre>
 </div>
 <div bag="default" created="20210417195628912" creator="sharicov" modified="20210417195644504" modifier="sharicov" revision="2" tags="manual" title="Experimental not working" type="text/vnd.tiddlywiki">
 <pre>Experimental NOT WORKING: 
