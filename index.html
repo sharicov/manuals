@@ -196,8 +196,6 @@ Error message and password prompt
 
 <li>Download link</li>
 
-<li>Draft of 'Screen command'</li>
-
 <li>Experimental not working</li>
 
 <li>Extract .xz image</li>
@@ -10224,7 +10222,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210418175235187" list="$:/ControlPanel [[Draft of 'Screen command']] $:/Import [[aria2 torrent native]]" modified="20210418175235187" title="$:/StoryList">
+<div created="20210418175235187" list="$:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" modified="20210418175235187" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10601,185 +10599,6 @@ Make sure mount and automount names reflect actual path with / replaced by-
 https://www.armbian.com/nanopi-r4s/ 
 
 !!!! Note: only daily Hirsute build worked with both USB at the time of writing this manual</pre>
-</div>
-<div bag="default" created="20210417191240847" creator="sharicov" draft.of="Screen command" draft.title="Screen command" modified="20210418145039625" modifier="sharicov" revision="2" tags="manual" title="Draft of 'Screen command'" type="text/vnd.tiddlywiki">
-<pre>!! Screen command with examples
-
-https://kapeli.com/cheat_sheets/screen.docset/Contents/Resources/Documents/index : 
-
-Full shortcut list: https://www.computerhope.com/unix/screen.htm 
-
-To exit stopping commands running in screen: `CTRL+D `
-
-To exit without closing (so commands are still running) `CTRL+a d` or just close the window, or type exit 
-
-Show running screens: 
-
-
-```
-screen -ls 
-```
-
-
-To reattach existing screen:  
-
-
-```
-screen -r 
-```
-
-
-Multi-user (without detaching): 
-
-
-```
-screen –x 
-```
-
-
-Split screen: 
-
-
-```
-CTRL+a S 
-```
-
-
-Switch regions: 
-
-`CTRL+a TAB `
-
-New window: 
-
-`CTRL+A c `
-
-Screen example (opening two horisontal screen: upper with htop and bottom with iotop, detaching and reattaching): 
-
-```
-screen –S monitoring (create screen session with lable monitoring) 
-```
-
-Run:
-
-```
-Htop or bpytop 
-```
-
-
-`CTRL+a A` (change window lable) type in htop 
-
-`CTRL+a | `(split vertically) 
-
-`CTRL+a TAB `(switch to the new created window) 
-
-`CTRL+a c` (create new window) 
-
-
-```
-sudo tail –f /var/log/messages 
-```
-
-
-`CTRL+a A` (change window label) type in logs 
-
-`CTRL+a TAB` (switch back to htop region) 
-
-`CTRL+a S `(split horisontaly) 
-
-`CTRL+a TAB` (switch to the new created window) 
-
-`CTRL+a c` (create new window) 
-
-
-```
-sudo itop 
-```
-
-
-`CTRL+a A `(change window lable) type in iotop 
-
-Or: 
-
-
-```
- iostat -x -m 3 
-```
-
-
-Or: 
-
-
-```
-duf (like htop for disk) 
-```
-
-
-To close any region switch to it with `CTRL+a TAB` and press `CTRL+a X `
-
-To switch content of each region switch to it with` CTRL+a TAB` and then `CTRL+a “ `
-
-And choose from dropdown list with arrows or using respective numeric values of the menu `0,1,2`... 
-
-Disconnect without stopping: 
-
-`CTRL+a d `
-
-
-```
-screen –ls 
-```
-
-
-
-```
-screen –r 
-```
-
-
-`CTRL+a S` 
-
-`CTRL+a TAB` 
-
-`CTRL+a “ `
-
-`1 `
-
-Close splitted window: 
-
-`CTRL+A X` 
-
-Rename existing screen (example of screen -ls returning 597.test): 
-
-
-```
-screen -S 597.test -X sessionname monitoring 
-```
-
-
-Or `CTRL+a A` and then type in new session name 
-
-Show owners of running screen sessions: 
-
-
-```
-ls -R /var/run/screen 
-```
-
-
-Lock screen(unlocks with admin password): 
-
-`CTRL+a x `
-
-Record all scroll buffer to file: 
-
-`CTRL+a : `
-
-`hardcopy –h /path/filename `
-
-
-Detach attached screen:
-
-`screen -D`</pre>
 </div>
 <div bag="default" created="20210417195628912" creator="sharicov" modified="20210417195644504" modifier="sharicov" revision="2" tags="manual" title="Experimental not working" type="text/vnd.tiddlywiki">
 <pre>Experimental NOT WORKING: 
@@ -11572,7 +11391,7 @@ Check connected clients:
 sudo smbstatus –shares 
 ```</pre>
 </div>
-<div bag="default" created="20210417191240847" creator="sharicov" modified="20210417191911902" modifier="sharicov" revision="2" tags="manual" title="Screen command" type="text/vnd.tiddlywiki">
+<div bag="default" created="20210417191240847" creator="sharicov" modified="20210418175447293" modifier="sharicov" revision="2" tags="manual" title="Screen command" type="text/vnd.tiddlywiki">
 <pre>!! Screen command with examples
 
 https://kapeli.com/cheat_sheets/screen.docset/Contents/Resources/Documents/index : 
@@ -11744,7 +11563,12 @@ Record all scroll buffer to file:
 
 `CTRL+a : `
 
-`hardcopy –h /path/filename `</pre>
+`hardcopy –h /path/filename `
+
+
+Detach attached screen:
+
+`screen -D`</pre>
 </div>
 <div bag="default" created="20210417182846508" creator="sharicov" modified="20210417182911380" modifier="sharicov" revision="2" tags="manual" title="Script backup" type="text/vnd.tiddlywiki">
 <pre>Script: 
