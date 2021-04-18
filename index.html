@@ -10903,7 +10903,7 @@ sudo autoremove
 ```
 </pre>
 </div>
-<div created="20210418175556381" modified="20210418180029715" tags="manual" title="fsck check EXT4 disk">
+<div created="20210418175556381" modified="20210418180127253" tags="manual" title="fsck check EXT4 disk">
 <pre>
 ```
 sudo e2fsck -Dy /dev/sdb1
@@ -10989,7 +10989,7 @@ This comment explains why inotify shouldn't prevent an unmount, but this note de
 
     an unmount can hang in the vx_softcnt_flush() call. The hang occurs because inotify watches increment the i_count variable and cause the v_os_hold value to remain elevated until the inotify watcher releases the hold.
 
-</pre>
+Source: https://unix.stackexchange.com/questions/3109/how-do-i-find-out-which-processes-are-preventing-unmounting-of-a-device</pre>
 </div>
 <div bag="default" created="20210417200321316" creator="sharicov" modified="20210417200457366" modifier="sharicov" revision="1" tags="manual" title="Linux processes and services" type="text/vnd.tiddlywiki">
 <pre>!!! Show running processes with parameters (ps command): 
