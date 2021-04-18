@@ -10607,7 +10607,7 @@ https://www.armbian.com/nanopi-r4s/
 
 !!!! Note: only daily Hirsute build worked with both USB at the time of writing this manual</pre>
 </div>
-<div created="20210418175556381" draft.of="New Tiddler" draft.title="fsck check EXT4 disk" modified="20210418175848004" tags="manual" title="Draft of 'New Tiddler'">
+<div created="20210418175556381" draft.of="New Tiddler" draft.title="fsck check EXT4 disk" modified="20210418180013033" tags="manual" title="Draft of 'New Tiddler'">
 <pre>
 ```
 sudo e2fsck -Dy /dev/sdb1
@@ -10619,16 +10619,28 @@ Use lsof | grep /media/whatever to find out what is using the mount.
 
 Also, consider umount -l (lazy umount) to prevent new processes from using the drive while you clean up.
 
+
+```
 lsof +f -- /media/usb0
+```
 
+
+
+```
 fuser -m /media/usb0
+```
 
 
-Open files
+
+!! Open files
 
 Processes with open files are the usual culprits. Display them:
 
+
+```
 lsof +f -- &lt;mountpoint or device&gt;
+```
+
 
 There is an advantage to using /dev/&lt;device&gt; rather than /mountpoint: a mountpoint will disappear after an umount -l, or it may be hidden by an overlaid mount.
 
@@ -10636,7 +10648,9 @@ fuser can also be used, but to my mind lsof has a more useful output. However fu
 
 List files on &lt;mountpoint&gt; (see caveat above):
 
+
 fuser -vmM &lt;mountpoint&gt;
+
 
 Interactively kill only processes with files open for writing:
 
