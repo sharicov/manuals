@@ -146,6 +146,10 @@ Error message and password prompt
 
 <li>$:/config/OfficialPluginLibrary</li>
 
+<li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/export-page</li>
+
+<li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/import</li>
+
 <li>$:/config/RelinkOnRename</li>
 
 <li>$:/core</li>
@@ -216,6 +220,8 @@ Error message and password prompt
 
 <li>Install WSL2 in Windows 10</li>
 
+<li>Launcher</li>
+
 <li>Linux processes and services</li>
 
 <li>Linux Swap setup</li>
@@ -279,6 +285,12 @@ Error message and password prompt
 <div caption="{{$:/language/OfficialPluginLibrary}} (Prerelease)" tags="$:/tags/PluginLibrary" title="$:/config/OfficialPluginLibrary" url="https://tiddlywiki.com/prerelease/library/v5.1.24/index.html">
 <pre>The prerelease version of the official ~TiddlyWiki plugin library at tiddlywiki.com. Plugins, themes and language packs are maintained by the core team.
 </pre>
+</div>
+<div created="20210419180711913" modified="20210419180711913" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/export-page">
+<pre>show</pre>
+</div>
+<div created="20210419180711576" modified="20210419180711576" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/import">
+<pre>show</pre>
 </div>
 <div created="20210419130106501" modified="20210419130106501" title="$:/config/RelinkOnRename">
 <pre>yes</pre>
@@ -10191,7 +10203,7 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[R4S Yunohost installation from scratch v2]]</pre>
+# [[Launcher]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10217,7 +10229,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210419135243250" list="Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[R4S Yunohost installation from scratch v2]] [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" modified="20210419135243250" title="$:/StoryList">
+<div list="Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[R4S Yunohost installation from scratch v2]] [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -11158,6 +11170,56 @@ wsl --set-default-version 2
 wsl --list --verbose
 wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;
 ```</pre>
+</div>
+<div created="20210419173608432" creator="user" modified="20210419180541750" modifier="user" tags="manual" title="Launcher" tmap.id="57616a9a-2ebb-4870-b878-ac7daba44c65">
+<pre>
+!Self-hosting Launcher
+
+
+
+&lt;$button message="tm-open-external-window" param="http://192.168.3.70:9000" &gt;
+[img width=164 class="tc-image" [https://mintguide.org/wp-content/uploads/2020/11/logo.png]]
+&lt;/$button&gt;
+|
+&lt;$button message="tm-open-external-window" param="http://192.168.3.70:9999" &gt;
+[img width=164 class="tc-image" [https://www.howtogeek.com/wp-content/uploads/2020/03/NextCloudLogo.png]]
+&lt;/$button&gt;
+|
+&lt;$button message="tm-open-external-window" param="http://192.168.3.70:9090" &gt;
+[img width=164 class="tc-image" [https://pbs.twimg.com/profile_images/889410719925587968/mtnBneRE.jpg]]
+&lt;/$button&gt;
+|
+&lt;$button message="tm-open-external-window" param="http://192.168.3.70:8080" &gt;
+[img width=164 class="tc-image" [https://lh3.googleusercontent.com/MM7DVPrLJD7dITTujbQVLEcu1yxHnpD7ExF1-FZ8rj3Oq7AqNn0HsyDGsUuFceFKmORY]]
+&lt;/$button&gt;
+|
+
+&lt;$button message="tm-open-external-window" param="https://disk.yandex.com/client/disk/Tools/Manuals" &gt;
+[img width=164 class="tc-image" [https://www.webtekno.com/images/editor/default/0002/44/915cbd4e39ef2749431525ceba081dd6ead50614.jpeg]]
+&lt;/$button&gt;
+|
+&lt;$button message="tm-open-external-window" param="https://sharicov.github.io/manuals" &gt;
+[img width=164 class="tc-image" [https://1000logos.net/wp-content/uploads/2018/11/GitHub-logo.png]]
+&lt;/$button&gt;
+|
+&lt;$button message="tm-open-external-window" param="https://r4s.noho.st/yunohost/sso/" &gt;
+[img width=164 class="tc-image" [https://yunohost.org/_assets/logo.png]]
+&lt;/$button&gt;
+|
+
+&lt;$reveal type="nomatch" state="$:/state/SampleReveal2" text="show"&gt;
+
+&lt;$button set="$:/state/SampleReveal2" setTo="show"&gt;Credentials&lt;/$button&gt;
+
+&lt;/$reveal&gt;
+&lt;$reveal type="match" state="$:/state/SampleReveal2" text="show"&gt;
+
+&lt;$button set="$:/state/SampleReveal2" setTo="hide"&gt;Hide me&lt;/$button&gt;
+
+! Made by Sharicov 2021
+
+
+</pre>
 </div>
 <div bag="default" created="20210417200321316" creator="sharicov" modified="20210417200457366" modifier="sharicov" revision="1" tags="manual" title="Linux processes and services" type="text/vnd.tiddlywiki">
 <pre>!!! Show running processes with parameters (ps command): 
