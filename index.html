@@ -10599,7 +10599,7 @@ sudo systemctl start media-usbdown-yandex.disk.online.automount
 Make sure mount and automount names reflect actual path with / replaced by- 
 </pre>
 </div>
-<div created="20210418180621768" modified="20210418181328992" tags="manual" title="Disk health monitoring">
+<div created="20210418180621768" modified="20210419055904336" tags="manual" title="Disk health monitoring">
 <pre>```
 sudo e2fsck -Dy /dev/sdb1
 
@@ -10630,6 +10630,10 @@ hddtemp /dev/sda
 
 ```
 
+
+```
+smartctl -d sat -A /dev/sda
+```
 </pre>
 </div>
 <div bag="default" created="20210415150148462" creator="sharicov" modified="20210416131050436" modifier="sharicov" revision="2" tags="manual" title="Disk info" type="text/vnd.tiddlywiki">
@@ -10939,8 +10943,7 @@ sudo autoremove
 </pre>
 </div>
 <div created="20210418175556381" modified="20210418180127253" tags="manual" title="fsck check EXT4 disk">
-<pre>
-```
+<pre>```
 sudo e2fsck -Dy /dev/sdb1
 ```
 
