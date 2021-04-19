@@ -10660,7 +10660,7 @@ ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_
 <div bag="default" created="20210415150148462" creator="sharicov" modified="20210416131050436" modifier="sharicov" revision="2" tags="manual" title="Disk info" type="text/vnd.tiddlywiki">
 <pre>How to check disk position in the system</pre>
 </div>
-<div created="20210419122621050" modified="20210419131741088" tags="manual" title="Docker apps v2">
+<div created="20210419122621050" modified="20210419132701139" tags="manual" title="Docker apps v2">
 <pre>!! Nextcloud 21 with samba client for external storage
 
 Docker image:
@@ -10681,6 +10681,37 @@ Nextcloud/Settings/Collabora online should be  updated automatically with:
 
 `use your own server: http://192.168.3.70:9999/custom_apps/richdocumentscode_arm64/proxy.php?req=`
 
+!!! External storage (samba)
+Nextcloud +App
+
+`External storages` / `Enable`
+
+`Settings `(top right)
+
+
+```
+External storages
+
+SMB 
+
+Name (ex. InstantUpload)
+
+Host (Home IP 192.168.X.X)
+
+Share name (from  smb.conf on host computer ex. R4S_USB1)
+
+Remote subfolder (/InstantUpload ,or empty for root)
+
+Show hidden files
+
+Username (samba user on the host smbpasswd)
+
+Password (samba password on the host)
+
+Users (select specific nextcloud users allowed to access the smb share)
+```
+
+
 !! Troubleshooting:
 !!! To install package ''inside'' docker (martadinata666 example):
 ```
@@ -10691,7 +10722,12 @@ sudo docker exec -it -u www-data &lt;docker_container&gt; php -d memory_limit=51
 
 For standard Nextcloud installation the `occ path` will be:
 
-`/var/www/nextcloud/occ `</pre>
+`/var/www/nextcloud/occ `
+
+Sources:
+https://www.collaboraoffice.com/code/quick-tryout-nextcloud-docker/
+https://hub.docker.com/r/martadinata666/nextcloud-smb
+</pre>
 </div>
 <div bag="default" created="20210415141054752" creator="sharicov" modified="20210416140309601" modifier="sharicov" revision="3" tags="manual" title="Download link" type="text/vnd.tiddlywiki">
 <pre>Armbian image download link from here: 
