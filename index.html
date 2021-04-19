@@ -146,6 +146,8 @@ Error message and password prompt
 
 <li>$:/config/OfficialPluginLibrary</li>
 
+<li>$:/config/RelinkOnRename</li>
+
 <li>$:/core</li>
 
 <li>$:/DefaultTiddlers</li>
@@ -203,6 +205,8 @@ Error message and password prompt
 <li>Docker apps v1</li>
 
 <li>Download link</li>
+
+<li>Draft of 'Docker apps v1'</li>
 
 <li>Experimental not working</li>
 
@@ -277,6 +281,9 @@ Error message and password prompt
 <div caption="{{$:/language/OfficialPluginLibrary}} (Prerelease)" tags="$:/tags/PluginLibrary" title="$:/config/OfficialPluginLibrary" url="https://tiddlywiki.com/prerelease/library/v5.1.24/index.html">
 <pre>The prerelease version of the official ~TiddlyWiki plugin library at tiddlywiki.com. Plugins, themes and language packs are maintained by the core team.
 </pre>
+</div>
+<div created="20210419130106501" modified="20210419130106501" title="$:/config/RelinkOnRename">
+<pre>yes</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" name="Core" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.24-prerelease">
 <pre>{
@@ -10212,7 +10219,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Docker apps v1]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Draft of 'Docker apps v1']] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10666,6 +10673,24 @@ martadinata666/nextcloud-smb</pre>
 https://www.armbian.com/nanopi-r4s/ 
 
 !!!! Note: only daily Hirsute build worked with both USB at the time of writing this manual</pre>
+</div>
+<div created="20210419122621050" draft.of="Docker apps v1" draft.title="Docker apps v2" modified="20210419130100535" tags="manual" title="Draft of 'Docker apps v1'">
+<pre>Nextcloud 21 with sambaclient for external storage
+
+martadinata666/nextcloud-smb
+
+To install collabora inside the docker run on the `HOST` computer:
+
+
+```
+sudo docker exec -it -u www-data &lt;docker_container&gt; php -d memory_limit=512M /var/www/html/occ app:install richdocumentscode_arm64
+
+sudo docker exec -it -u www-data &lt;docker_container&gt; php -d memory_limit=512M /var/www/html/occ app:install richdocuments
+```
+
+For standard Nextcloud installation the `occ path` will be:
+
+`/var/www/nextcloud/occ `</pre>
 </div>
 <div bag="default" created="20210417195628912" creator="sharicov" modified="20210417195644504" modifier="sharicov" revision="2" tags="manual" title="Experimental not working" type="text/vnd.tiddlywiki">
 <pre>Experimental NOT WORKING: 
