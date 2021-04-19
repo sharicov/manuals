@@ -182,6 +182,8 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
+<li>1</li>
+
 <li>15th April 2021</li>
 
 <li>aria2 torrent native</li>
@@ -10235,7 +10237,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10346,6 +10348,9 @@ Error message and password prompt
         }
     }
 }</pre>
+</div>
+<div created="20210419075440140" modified="20210419075440140" tags="" title="1">
+<pre></pre>
 </div>
 <div bag="default" created="20210415150649678" creator="sharicov" modified="20210415150659547" modifier="sharicov" revision="1" tags="[[R4S Yunohost installation from scratch]] Journal" title="15th April 2021" type="text/vnd.tiddlywiki">
 <pre></pre>
@@ -11065,8 +11070,30 @@ This comment explains why inotify shouldn't prevent an unmount, but this note de
 
 Source: https://unix.stackexchange.com/questions/3109/how-do-i-find-out-which-processes-are-preventing-unmounting-of-a-device</pre>
 </div>
-<div created="20210419075354472" modified="20210419075354472" tags="" title="Install WSL2 in Windows 10">
-<pre></pre>
+<div created="20210419074931136" modified="20210419075237524" tags="manual" title="Install WSL2 in Windows 10">
+<pre>Run PowerShell as Administrator
+
+
+```
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
+
+
+```
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+
+Download and install:
+https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+Continue in PowerShell (version 2 for WSL2 in the last line):
+
+```
+wsl --set-default-version 2
+wsl --list --verbose
+wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;
+```</pre>
 </div>
 <div bag="default" created="20210417200321316" creator="sharicov" modified="20210417200457366" modifier="sharicov" revision="1" tags="manual" title="Linux processes and services" type="text/vnd.tiddlywiki">
 <pre>!!! Show running processes with parameters (ps command): 
@@ -11206,10 +11233,9 @@ sudo reboot
 
 </pre>
 </div>
-<div created="20210419071254047" modified="20210419075405880" tags="manual" title="Mount ext4 in windows wsl">
+<div created="20210419071254047" modified="20210419075456491" tags="manual" title="Mount ext4 in windows wsl">
 <pre>Install WSL
-
-{{Install WSL2 in Windows 10}}
+{{nstall WSL2 in Windows 10}}
 
 From ''PowerShell ''as ''Admin'' run:
 
