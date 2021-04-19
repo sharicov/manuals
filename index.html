@@ -10218,8 +10218,8 @@ Error message and password prompt
 <div created="20210418175850925" modified="20210418175850925" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20210417210700988" modified="20210417210816067" title="$:/state/sidebar">
-<pre>yes</pre>
+<div created="20210417210700988" modified="20210419071716123" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -10601,7 +10601,7 @@ sudo systemctl start media-usbdown-yandex.disk.online.automount
 Make sure mount and automount names reflect actual path with / replaced by- 
 </pre>
 </div>
-<div created="20210418180621768" modified="20210419060016645" tags="manual" title="Disk health monitoring">
+<div created="20210418180621768" modified="20210419071730238" tags="manual" title="Disk health monitoring">
 <pre>```
 sudo e2fsck -Dy /dev/sdb1
 
@@ -10636,6 +10636,37 @@ Show disk temperature
 
 ```
 smartctl -d sat -A /dev/sda
+```
+
+Example output:
+
+
+```
+smartctl -d sat -A /dev/sdb
+smartctl 7.2 2020-12-30 r5155 [aarch64-linux-5.11.14-rockchip64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+SMART Attributes Data Structure revision number: 16
+Vendor Specific SMART Attributes with Thresholds:
+ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
+  1 Raw_Read_Error_Rate     0x002f   200   200   051    Pre-fail  Always       -       0
+  3 Spin_Up_Time            0x0027   253   253   021    Pre-fail  Always       -       3533
+  4 Start_Stop_Count        0x0032   100   100   000    Old_age   Always       -       584
+  5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
+  7 Seek_Error_Rate         0x002e   200   200   000    Old_age   Always       -       0
+  9 Power_On_Hours          0x0032   098   098   000    Old_age   Always       -       2143
+ 10 Spin_Retry_Count        0x0032   100   100   000    Old_age   Always       -       0
+ 11 Calibration_Retry_Count 0x0032   100   100   000    Old_age   Always       -       0
+ 12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       282
+192 Power-Off_Retract_Count 0x0032   200   200   000    Old_age   Always       -       111
+193 Load_Cycle_Count        0x0032   194   194   000    Old_age   Always       -       20893
+194 Temperature_Celsius     0x0022   112   096   000    Old_age   Always       -       40
+196 Reallocated_Event_Count 0x0032   200   200   000    Old_age   Always       -       0
+197 Current_Pending_Sector  0x0032   200   200   000    Old_age   Always       -       0
+198 Offline_Uncorrectable   0x0030   100   253   000    Old_age   Offline      -       0
+199 UDMA_CRC_Error_Count    0x0032   200   200   000    Old_age   Always       -       0
+200 Multi_Zone_Error_Rate   0x0008   100   253   000    Old_age   Offline      -       0
 ```
 </pre>
 </div>
@@ -11170,7 +11201,7 @@ sudo reboot
 
 </pre>
 </div>
-<div created="20210419071254047" modified="20210419071635469" tags="manual" title="Mount ext4 in windows wsl">
+<div created="20210419071254047" modified="20210419071621766" tags="manual" title="Mount ext4 in windows wsl">
 <pre>Install WSL
 
 List available disks:
