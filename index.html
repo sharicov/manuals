@@ -11201,8 +11201,40 @@ sudo reboot
 
 </pre>
 </div>
-<div created="20210419071254047" modified="20210419073447560" tags="manual" title="Mount ext4 in windows wsl">
+<div created="20210419071254047" modified="20210419074808129" tags="manual" title="Mount ext4 in windows wsl">
 <pre>Install WSL
+
+From ''PowerShell ''as ''Admin'' run:
+
+```
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
+
+
+```
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+Download and run:
+https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+Run from ''PowerShell ''as ''Amin'':
+
+```
+wsl --set-default-version 2
+```
+
+List available distros:
+
+
+```
+wsl --list --verbose
+```
+
+Install distro (version 2 for WSL2):
+
+wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;
+
 
 List available disks:
 
