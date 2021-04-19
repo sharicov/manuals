@@ -200,6 +200,8 @@ Error message and password prompt
 
 <li>Download link</li>
 
+<li>Draft of 'Mount ext4 in windows wsl'</li>
+
 <li>Experimental not working</li>
 
 <li>Extract .xz image</li>
@@ -10233,7 +10235,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Draft of 'Mount ext4 in windows wsl']] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10679,6 +10681,58 @@ ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_
 https://www.armbian.com/nanopi-r4s/ 
 
 !!!! Note: only daily Hirsute build worked with both USB at the time of writing this manual</pre>
+</div>
+<div created="20210419071254047" draft.of="Mount ext4 in windows wsl" draft.title="Mount ext4 in windows wsl" modified="20210419073412184" tags="manual" title="Draft of 'Mount ext4 in windows wsl'">
+<pre>Install WSL
+
+List available disks:
+
+```
+wmic diskdrive list brief
+```
+
+Mount ''Drive'':
+
+
+```
+wsl --mount [DiskPath]
+wsl --mount \\.\PHYSICALDRIVE0
+```
+Mount ''Partition'':
+
+```
+wsl --mount [DiskPath] --partition [PartitionNumber]
+wsl --mount \\.\PHYSICALDRIVE0 --partition 1
+```
+
+Unmount:
+
+
+```
+wsl --unmount [Diskpath]
+wsl --unmount \\.\PHYSICALDRIVE0
+```
+
+To mount non EXT4 partition specify type:
+
+```
+wsl --mount [Diskpath] -p [PartitionNumber] -t [filesystem_type]
+wsl --mount \\.\PHYSICALDRIVE0 -p 1 -t vfat
+```
+
+
+WSL2 notes:
+
+The --install command performs the following actions:
+
+* Enables the optional WSL and Virtual Machine Platform components
+* Downloads and installs the latest Linux kernel
+* Sets WSL 2 as the default
+* Downloads and installs a Linux distribution (reboot may be required)
+
+By default, the installed Linux distribution will be ''Ubuntu''. This can be changed using` wsl --install -d &lt;Distribution Name&gt;`. (Replacing `&lt;Distribution Name&gt;` with the name of your desired distribution.) Additional Linux distributions may be added to your machine after the initial install using the` wsl --install -d &lt;Distribution Name&gt;` command.
+
+To see a list of available Linux distributions, enter wsl --list --online.</pre>
 </div>
 <div bag="default" created="20210417195628912" creator="sharicov" modified="20210417195644504" modifier="sharicov" revision="2" tags="manual" title="Experimental not working" type="text/vnd.tiddlywiki">
 <pre>Experimental NOT WORKING: 
