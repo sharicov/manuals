@@ -10217,7 +10217,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Docker apps v2]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" title="$:/StoryList">
+<div created="20210419130256294" list="[[R4S Yunohost installation from scratch v2]] [[Docker apps v2]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] $:/Import [[aria2 torrent native]]" modified="20210419130256294" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10660,14 +10660,29 @@ ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_
 <div bag="default" created="20210415150148462" creator="sharicov" modified="20210416131050436" modifier="sharicov" revision="2" tags="manual" title="Disk info" type="text/vnd.tiddlywiki">
 <pre>How to check disk position in the system</pre>
 </div>
-<div created="20210419122621050" modified="20210419130143439" tags="manual" title="Docker apps v2">
-<pre>Nextcloud 21 with sambaclient for external storage
+<div created="20210419122621050" modified="20210419131706589" tags="manual" title="Docker apps v2">
+<pre>!! Nextcloud 21 with sambaclient for external storage
 
+Docker image:
+
+
+```
 martadinata666/nextcloud-smb
+```
+
 
 To install collabora inside the docker run on the `HOST` computer:
 
+```
+docker run -t -d -p 9980:9980 -e "extra_params=--o:ssl.enable=false" collabora/code
+```
 
+Nextcloud/Settings/Collabora online should be  updated automatically with:
+
+`use your own server: http://192.168.3.70:9999/custom_apps/richdocumentscode_arm64/proxy.php?req=`
+
+!! Troubleshooting:
+!!! To install package ''inside'' docker (martadinata666 example):
 ```
 sudo docker exec -it -u www-data &lt;docker_container&gt; php -d memory_limit=512M /var/www/html/occ app:install richdocumentscode_arm64
 
