@@ -11435,7 +11435,7 @@ sudo reboot
 
 </pre>
 </div>
-<div created="20210421174338601" modified="20210421175110740" tags="" title="LXC GUI manual">
+<div created="20210421174338601" modified="20210421175620315" tags="" title="LXC GUI manual">
 <pre>After installing lxc:
 
 
@@ -11455,11 +11455,43 @@ lxc list --columns ns4
 lxc exec ynh bash
 ```
 
+Container related commands
+
+```
 lxc start/stop/rm ContainerName
+```
+
+
+Directory passthrough into container:
+
+```
+lxc config device add ynh vartest disk source=/media/usb1/Movies path=/media
+```
+
+Show running container:
+
+
+```
+lxc list --columns ns4
+
+```
+
+Port forward (example port `80`):
+
+
+```
+lxc config device add ynh myport80 proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80
+```
+
+
+
+WEB GUI installation
 
 ```
 apt install -y git build-essential libssl-dev python3-venv python3-pip python3-dev zfsutils-linux bridge-utils
 ```
+
+
 
 
 ```
