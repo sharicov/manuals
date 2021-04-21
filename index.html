@@ -226,6 +226,8 @@ Error message and password prompt
 
 <li>Log2RAM</li>
 
+<li>Log2RAM v2</li>
+
 <li>Mount ext4 in windows wsl</li>
 
 <li>R4S Yunohost installation from scratch</li>
@@ -10198,7 +10200,7 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[Launcher]]</pre>
+# [[Log2RAM v2]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10224,7 +10226,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210419180959321" list="Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[R4S Yunohost installation from scratch v2]] [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" modified="20210419180959321" title="$:/StoryList">
+<div list="$:/Import Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[R4S Yunohost installation from scratch v2]] [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -11167,8 +11169,7 @@ wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;
 ```</pre>
 </div>
 <div created="20210419173608432" creator="user" modified="20210419180541750" modifier="user" tags="manual" title="Launcher" tmap.id="57616a9a-2ebb-4870-b878-ac7daba44c65">
-<pre>
-!Self-hosting Launcher
+<pre>!Self-hosting Launcher
 
 
 
@@ -11293,6 +11294,84 @@ Installation log2ram:
 ```
 sudo su 
 echo "deb http://packages.azlux.fr/debian/ buster main" | sudo tee /etc/apt/sources.list.d/azlux.listwget -qO - https://azlux.fr/repo.gpg.key | sudo apt-key add -apt update
+apt install log2ram 
+
+```
+
+Check actual size of current logs: 
+
+
+```
+sudo du -sh /var/log 
+```
+
+
+Sample output: 
+
+
+```
+190M    /var/log 
+```
+
+
+Change log2ram size accordingly (bigger than log size): 
+
+
+```
+sudo nano /etc/log2ram.conf 
+```
+
+
+Change 40M to sufficient size: 
+
+
+```
+SIZE=500M 
+```
+
+
+Start log2ram service: 
+
+
+```
+sudo service log2ram start 
+```
+
+
+Check no errors and service running: 
+
+
+```
+sudo service log2ram status 
+```
+
+
+Reboot (optional) 
+
+
+```
+sudo reboot 
+```
+
+</pre>
+</div>
+<div bag="default" created="20210417194706725" creator="sharicov" modified="20210421092945659" modifier="sharicov" revision="4" tags="manual" title="Log2RAM v2" type="text/vnd.tiddlywiki">
+<pre>!! Log2RAM to save SD card from unnecessary writes
+
+https://github.com/azlux/log2ram 
+
+Installation log2ram: 
+
+
+```
+sudo su 
+echo "deb http://packages.azlux.fr/debian/ buster main" | sudo tee /etc/apt/sources.list.d/azlux.list
+
+wget -qO - https://azlux.fr/repo.gpg.key | sudo apt-key add -
+
+apt update
+
+
 apt install log2ram 
 
 ```
