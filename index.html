@@ -11435,9 +11435,27 @@ sudo reboot
 
 </pre>
 </div>
-<div created="20210421174338601" modified="20210421174916007" tags="" title="LXC GUI manual">
-<pre>After installing lxc
+<div created="20210421174338601" modified="20210421175110740" tags="" title="LXC GUI manual">
+<pre>After installing lxc:
 
+
+```
+lxd init (choose 30GB, BTRFS)
+
+lxc launch images:debian/buster ynh
+
+lxc config device add ynh myport80 proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80
+
+lxc config device add ynh myport443 proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443
+
+lxc config set ynh boot.autostart true
+
+lxc list --columns ns4
+
+lxc exec ynh bash
+```
+
+lxc start/stop/rm ContainerName
 
 ```
 apt install -y git build-essential libssl-dev python3-venv python3-pip python3-dev zfsutils-linux bridge-utils
