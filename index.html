@@ -11570,7 +11570,7 @@ When the app starts open a browser to the following link to access the app: http
 
 Log In. The default account and password are: `admin `| `admin`</pre>
 </div>
-<div created="20210419071254047" modified="20210419075520033" tags="manual" title="Mount ext4 in windows wsl">
+<div created="20210419071254047" modified="20210422071252630" tags="manual" title="Mount ext4 in windows wsl">
 <pre>Install WSL
 
 {{nstall WSL2 in Windows 10}}
@@ -11654,7 +11654,27 @@ The --install command performs the following actions:
 
 By default, the installed Linux distribution will be ''Ubuntu''. This can be changed using` wsl --install -d &lt;Distribution Name&gt;`. (Replacing `&lt;Distribution Name&gt;` with the name of your desired distribution.) Additional Linux distributions may be added to your machine after the initial install using the` wsl --install -d &lt;Distribution Name&gt;` command.
 
-To see a list of available Linux distributions, enter wsl --list --online.</pre>
+To see a list of available Linux distributions, enter wsl --list --online.
+
+!! Optional:
+
+!!! Debian non-free repositories:
+
+
+```
+sudo nano /etc/apt/sources.list
+```
+
+Add:
+
+
+```
+deb http://ftp.debian.org/debian buster-backports main
+deb http://deb.debian.org/debian buster main contrib non-free
+deb http://deb.debian.org/debian-security/ buster/updates main contrib non-free
+deb http://deb.debian.org/debian buster-updates main contrib non-free
+```
+</pre>
 </div>
 <div bag="default" created="20210415140628464" creator="sharicov" modified="20210415181354890" modifier="sharicov" revision="14" tags="ynh yunohost manual nanopi r4s" title="R4S Yunohost installation from scratch" type="text/vnd.tiddlywiki">
 <pre>!!!Download Armbian image for R4S
