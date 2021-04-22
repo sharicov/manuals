@@ -11570,7 +11570,7 @@ When the app starts open a browser to the following link to access the app: http
 
 Log In. The default account and password are: `admin `| `admin`</pre>
 </div>
-<div created="20210419071254047" modified="20210422071252630" tags="manual" title="Mount ext4 in windows wsl">
+<div created="20210419071254047" modified="20210422071525492" tags="manual" title="Mount ext4 in windows wsl">
 <pre>Install WSL
 
 {{nstall WSL2 in Windows 10}}
@@ -11665,14 +11665,18 @@ To see a list of available Linux distributions, enter wsl --list --online.
 sudo nano /etc/apt/sources.list
 ```
 
-Add:
+Replace to get:
 
 
 ```
+#deb http://deb.debian.org/debian buster main
+#deb http://deb.debian.org/debian buster-updates main
+deb http://security.debian.org/debian-security/ buster/updates main
 deb http://ftp.debian.org/debian buster-backports main
 deb http://deb.debian.org/debian buster main contrib non-free
 deb http://deb.debian.org/debian-security/ buster/updates main contrib non-free
 deb http://deb.debian.org/debian buster-updates main contrib non-free
+deb http://deb.debian.org/debian buster-backports main contrib non-free
 ```
 </pre>
 </div>
