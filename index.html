@@ -208,6 +208,8 @@ Error message and password prompt
 
 <li>Download link</li>
 
+<li>Draft of 'redmi twrp'</li>
+
 <li>Experimental not working</li>
 
 <li>Extract .xz image</li>
@@ -237,6 +239,8 @@ Error message and password prompt
 <li>R4S Yunohost installation from scratch v2</li>
 
 <li>Raspberry Pi4 wifi auto connect</li>
+
+<li>redmi twrp</li>
 
 <li>Rsync automatic on change inotifywait</li>
 
@@ -10202,7 +10206,50 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[Log2RAM v2]]</pre>
+# [[1]]
+# [[15th April 2021]]
+# [[aria2 torrent native]]
+# [[Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3]]
+# [[Certificate install (yunohost dyndns)]]
+# [[Check NTFS disk in Linux]]
+# [[dav2fs mount yandex]]
+# [[Disk health monitoring]]
+# [[Disk info]]
+# [[Docker apps v3]]
+# [[Download link]]
+# [[Draft of 'redmi twrp']]
+# [[Experimental not working]]
+# [[Extract .xz image]]
+# [[Free space in Linux]]
+# [[fsck check EXT4 disk]]
+# [[Install WSL2 in Windows 10]]
+# [[Launcher]]
+# [[Linux processes and services]]
+# [[Linux Swap setup]]
+# [[Log2RAM]]
+# [[Log2RAM v2]]
+# [[LXC GUI manual]]
+# [[Mount ext4 in windows wsl]]
+# [[R4S Yunohost installation from scratch]]
+# [[R4S Yunohost installation from scratch v2]]
+# [[Raspberry Pi4 wifi auto connect]]
+# [[redmi twrp]]
+# [[Rsync automatic on change inotifywait]]
+# [[SAMBA]]
+# [[Screen command]]
+# [[Script backup]]
+# [[Show all installed packages in linux (yunohost)]]
+# [[ssh autologin]]
+# [[Test disk speed]]
+# [[tiddlers.html]]
+# [[tinycore_2021_v1]]
+# [[Untitled]]
+# [[USB disk mount (fstab)]]
+# [[usb disk uasp protocol]]
+# [[usbmount]]
+# [[Write image to SSD]]
+# [[yunohost raspberry disk system samba yandex screen rsync ssh v16]]
+# [[yunohost raspberry general v5]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -10761,6 +10808,106 @@ https://hub.docker.com/r/m0wer/tiddlywiki
 https://www.armbian.com/nanopi-r4s/ 
 
 !!!! Note: only daily Hirsute build worked with both USB at the time of writing this manual</pre>
+</div>
+<div created="20210430095719318" draft.of="redmi twrp" draft.title="redmi twrp" modified="20210430103151763" tags="manual" title="Draft of 'redmi twrp'">
+<pre>Source: https://www.maketecheasier.com/install-twrp-recovery-android-no-root/
+
+Manuals for redmi 4 prime:
+
+https://4pda.ru/forum/index.php?showtopic=783994&amp;st=180#entry56648605
+
+Download platform tools:
+
+https://4pda.ru/forum/dl/post/21297028/tools_r30.0.5-windows.zip
+
+Enable developer mode on the phone itself by clicking 5 times on kernel number in about screen, then settings, developer, USB debug `ON`
+
+Check device is connected over USB and run (in the tools folder);
+
+
+```
+adb devices
+```
+
+
+On the phone `accept client`
+
+Reboot phone to fastboot mode:
+
+
+```
+adb reboot bootloader
+```
+
+Flash twrp image:
+
+
+```
+fastboot flash recovery twrp-3.1.X-XXX.img
+```
+
+
+
+Check boot unlocked:
+
+
+```
+fastboot devices 
+fastboot oem device-info
+```
+
+Sould be unlocked `true`
+
+Download twrp for your device: (example redmi 4 prime)
+
+https://4pda.ru/forum/index.php?showtopic=794653&amp;st=30640
+
+
+
+
+
+Boot to twrp from windows without flashing:
+
+
+```
+fastboot boot twrp.img
+```
+
+
+
+Sideload rom zip:
+
+On phone enter `adb sideload mode`
+
+On PC run
+
+
+```
+adb sideload NameOfTheImage.zip
+```
+
+Reboot 
+
+
+Troubleshooting enter password in twrp:
+
+my twrp worked with this solution :
+-reboot into recovery
+-cancel the password require screen
+-swipe to unlock
+- wipe all
+-reboot into recover again
+now no password require anymore , everything should work as usual
+
+Flash twrp permanently (not working)
+
+Phone in fastboot:
+
+On pc run
+
+```
+fastboot flash recovery twrp-3.1.X-XXX.img
+```</pre>
 </div>
 <div bag="default" created="20210417195628912" creator="sharicov" modified="20210417195644504" modifier="sharicov" revision="2" tags="manual" title="Experimental not working" type="text/vnd.tiddlywiki">
 <pre>Experimental NOT WORKING: 
@@ -12285,6 +12432,76 @@ Enter password
 Raspberry will connect automatically each time wifi present
 
 Can be used as backup link to phone hotspot in case of Ethernet failure</pre>
+</div>
+<div created="20210430095719318" modified="20210430100902840" tags="manual" title="redmi twrp">
+<pre>Source: https://www.maketecheasier.com/install-twrp-recovery-android-no-root/
+
+Manuals for redmi 4 prime:
+
+https://4pda.ru/forum/index.php?showtopic=783994&amp;st=180#entry56648605
+
+Download platform tools:
+
+https://4pda.ru/forum/dl/post/21297028/tools_r30.0.5-windows.zip
+
+Enable developer mode on the phone itself by clicking 5 times on kernel number in about screen, then settings, developer, USB debug `ON`
+
+Check device is connected over USB and run (in the tools folder);
+
+
+```
+adb devices
+```
+
+
+On the phone `accept client`
+
+Reboot phone to fastboot mode:
+
+
+```
+adb reboot bootloader
+```
+
+Flash twrp image:
+
+
+```
+fastboot flash recovery twrp-3.1.X-XXX.img
+```
+
+
+
+Check boot unlocked:
+
+
+```
+fastboot devices 
+fastboot oem device-info
+```
+
+Sould be unlocked `true`
+
+Download twrp for your device: (example redmi 4 prime)
+
+https://4pda.ru/forum/index.php?showtopic=794653&amp;st=30640
+
+Boot to android:
+
+
+```
+fastboot flash recovery twrp-3.1.X-XXX.img
+```
+
+
+
+Boot to twrp from windows:
+
+
+```
+fastboot boot twrp.img
+```
+</pre>
 </div>
 <div bag="default" created="20210417192328826" creator="sharicov" modified="20210417192853677" modifier="sharicov" revision="1" tags="manual" title="Rsync automatic on change inotifywait" type="text/vnd.tiddlywiki">
 <pre>!! Rsync yandex disk(recommended to use rclone instead, separate manual): 
