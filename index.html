@@ -238,7 +238,7 @@ Error message and password prompt
 
 <li>Raspberry Pi4 wifi auto connect</li>
 
-<li>redmi twrp</li>
+<li>redmi twrp v2</li>
 
 <li>Rsync automatic on change inotifywait</li>
 
@@ -10258,8 +10258,8 @@ Error message and password prompt
 <div created="20210418175850925" modified="20210418175850925" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20210417210700988" modified="20210419071733178" title="$:/state/sidebar">
-<pre>yes</pre>
+<div created="20210417210700988" modified="20210502081035855" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -10273,7 +10273,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210430103513170" list="[[redmi twrp]] [[LXC GUI manual]] $:/Import Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[R4S Yunohost installation from scratch v2]] [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" modified="20210430103518240" title="$:/StoryList">
+<div list="[[redmi twrp v2]] [[LXC GUI manual]] $:/Import Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[R4S Yunohost installation from scratch v2]] [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -12331,7 +12331,7 @@ Raspberry will connect automatically each time wifi present
 
 Can be used as backup link to phone hotspot in case of Ethernet failure</pre>
 </div>
-<div created="20210430095719318" modified="20210430103526731" tags="manual" title="redmi twrp">
+<div created="20210430095719318" modified="20210502081354466" tags="manual" title="redmi twrp v2">
 <pre>Source: https://www.maketecheasier.com/install-twrp-recovery-android-no-root/
 
 Manuals for redmi 4 prime:
@@ -12361,14 +12361,6 @@ Reboot phone to fastboot mode:
 adb reboot bootloader
 ```
 
-Flash twrp image:
-
-
-```
-fastboot flash recovery twrp-3.1.X-XXX.img
-```
-
-
 
 Check boot unlocked:
 
@@ -12385,7 +12377,7 @@ Download twrp for your device: (example redmi 4 prime)
 https://4pda.ru/forum/index.php?showtopic=794653&amp;st=30640
 
 
-
+Example: twrp-3.2.3-0-`markw`_mod+treble_reload.img
 
 
 Boot to twrp from windows without flashing:
@@ -12399,7 +12391,7 @@ fastboot boot twrp.img
 
 Sideload rom zip:
 
-On phone enter `adb sideload mode`
+On phone twrp enter advanced/ `adb sideload mode`
 
 On PC run
 
@@ -12407,6 +12399,7 @@ On PC run
 ```
 adb sideload NameOfTheImage.zip
 ```
+Example: crDroidAndroid-11.0-20210501-`markw`-v7.5.zip
 
 Reboot 
 
