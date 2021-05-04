@@ -12134,7 +12134,7 @@ Bind `/app/data/images` to InstantUpload folder
 
 Bind `/app/data/temp` to external disk</pre>
 </div>
-<div created="20210504080045062" modified="20210504080647011" tags="manual" title="Piwigo google photos replacement">
+<div created="20210504080045062" modified="20210504080844625" tags="manual" title="Piwigo google photos replacement">
 <pre>Yunohost installation (not fully working)
 
 In yunohost add app piwigo
@@ -12162,7 +12162,21 @@ To delete `InstantUpload` device:
 ```
 lxc config device rm ynh InstantUpload
 ```
-</pre>
+
+To change piwigo default directory:
+
+```
+nano /var/www/piwigo/local/config/config.inc.php
+```
+
+Add:
+
+```
+$conf['upload_dir'] = '/InstantUpload';
+
+```
+
+Before `?&gt;`</pre>
 </div>
 <div bag="default" created="20210415140628464" creator="sharicov" modified="20210415181354890" modifier="sharicov" revision="14" tags="ynh yunohost manual nanopi r4s" title="R4S Yunohost installation from scratch" type="text/vnd.tiddlywiki">
 <pre>!!!Download Armbian image for R4S
