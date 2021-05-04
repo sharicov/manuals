@@ -208,8 +208,6 @@ Error message and password prompt
 
 <li>Download link</li>
 
-<li>Draft of 'R4S Yunohost installation from scratch v2'</li>
-
 <li>Experimental not working</li>
 
 <li>Extract .xz image</li>
@@ -242,7 +240,7 @@ Error message and password prompt
 
 <li>R4S Yunohost installation from scratch</li>
 
-<li>R4S Yunohost installation from scratch v2</li>
+<li>R4S Yunohost installation from scratch v4</li>
 
 <li>Raspberry Pi4 wifi auto connect</li>
 
@@ -10283,7 +10281,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v2]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v2]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Draft of 'R4S Yunohost installation from scratch v2']] [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v4]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v2]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10816,366 +10814,6 @@ https://hub.docker.com/r/m0wer/tiddlywiki
 https://www.armbian.com/nanopi-r4s/ 
 
 !!!! Note: only daily Hirsute build worked with both USB at the time of writing this manual</pre>
-</div>
-<div bag="default" created="20210415140628464" creator="sharicov" draft.of="R4S Yunohost installation from scratch v2" draft.title="R4S Yunohost installation from scratch v3" modified="20210502105952711" modifier="sharicov" revision="14" tags="ynh yunohost manual nanopi r4s" title="Draft of 'R4S Yunohost installation from scratch v2'" type="text/vnd.tiddlywiki">
-<pre>!!!Download Armbian image for R4S
-{{Download link}}
-
-!!! Extract Armbian image locally
-{{ Extract .xz image}}
-
-!!! Flash image to the SD card
-{{Write image to SSD}}
-
-SSH connect to 
-
-```
-ssh root@IP
-```
-
-password: 1234
-Set a new password
-Ctrl+C on create new user
-apt update &amp; apt upgrade
-apt install -y htop atop iotop ncdu mc lxd docker.io screen samba samba-common-bin usbmount
-
-USB disks (if connected)
-mkdir /media/usb1
-mkdir /media/usb2
-
-mount /dev/sda1 /media/usb1
-mount /dev/sdb1 /media/usb2
-
-Note: disks/partitions can be different, check with: fdisk -l | grep sd
-
-Automount on boot:
-add to `/etc/fstab`
-
-`/dev/sdb1 /media/usb1 ext4 defaults,noatime 0 1`
-
-Or for specific disk to be mounted to /media/usb1:
-
-
-```
-blkid |grep sd
-```
-
-Copy `PARTUUID="XXXXXX"` to` /etc/fstab`
- 
-
-```
-PARTUUID="XXXXXX" /media/usb1 ext4 defaults,noatime 0 1
-```
-
-
-!! Samba share 
-Create new password, user must be existent:
-
-```
-smbpasswd -a root
-mv /etc/samba/smb.conf{,.backup}
-nano /etc/sambe/smb.conf
-```
-
-
-Add:
-
-```
-[R4S_USB1]
-Comment = Home NAS
-Path = /media/usb1
-Browseable = yes 
-Writeable = Yes
-only guest = no
-create mask = 0777
-directory mask = 0777
-Public = yes
-Guest ok = yes
-
-[R4S_USB2]
-Comment = Home NAS
-Path = /media/usb2
-Browseable = yes
-Writeable = Yes
-only guest = no
-create mask = 0777
-directory mask = 0777
-Public = yes
-Guest ok = yes
-```
-
-
-```
-systemctl restart smbd 
-hostname -I
-smbclient -L 127.0.0.1
-```
-
-
-!! Rclone (sync between clouds):
-
-```
-curl https://rclone.org/install.sh | sudo bash 
-```
-
-
-```
-rclone configure
-```
-
-
-`n
-choose provider
-all defaults besides NO autoconfig `(authentication on another PC with GUI with SAME version of rclone)
-
-Create `sync.sh` in ''home ''directory
-Add:
-
-
-
-```
-#!/bin/sh
-echo Backup HPE to Yandex 
-rclone copy -u --progress HPE:/ Yandex:/Documents/HPE/ 
-
-echo Yandex to Local backup 
-rclone copy -u --progress Yandex: /media/usb1/Yandex.Disk.Backup/ 
-
-echo Backup Documents from Yandex to Mail.ru 
-rclone copy -u --progress Yandex:/Documents mailru:/Documents 
-
-echo Backup Tools from Yandex to Mail.ru 
-rclone copy -u --progress Yandex:/Tools mailru:/Tools 
-```
-Make executable:
-
-```
-chmod +x sync.sh
-```
-
-
-
-
-
-!! Run rclone script every 30 min 
-
-
-```
-sudo crontab -e 
-```
-
-Add
-
-`*/30 * * * * sh /root/sync.sh &gt;/dev/null 2&lt;&amp;1 `
-
-!! Docker:
-
-```
-docker volume create portainer_data
-docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce 
-```
-
-
-access in web browser `IP:9000 `to configure
-
-Select `Docker`, then `Connect`
-
-`Note:` If cannot connect look for open ports on r4s:
-
-```
-lsof -i -P -n | grep LISTEN
-```
-
-
-In portainer page create new password
-
-`Endpoint/Local/Public IP -&gt; Set r4s ip to fix 0.0.0.0`
-
-!! Aria2-ariang container for torrents:
-`Containers`/`Add container`
-
-Give a name
-
-In image field add `hurlenko/aria2-ariang`
-
-
-```
-Publish a new network port
-8080 -&gt; 8080
-6800 -&gt; 6800
-```
-
-
-
-```
-Restart policy` / `Unless stopped
-```
-
-```
-Volumes
-/aria2/data #Bind
-/media/usb1/Downloads
-
-```
-
-Run the aria2-ariang container
-
-enter command prompt `&gt;_` select `/bin/ash`
-
-
-```
-vi conf/aria2.conf
-```
-
-change `prealloc `to `falloc`
-
-`Disconnect `from console
-
-Restart the container
-
-Access aria2-airng server vi web browser `IP:8080`
-
-!! talescale vpn install:
-
-
-```
-curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.gpg | sudo apt-key add -
-curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.list | sudo tee /etc/apt/sources.list.d/tailscale.list
-apt update
-apt install tailscale
-sudo tailscale up
-
-```
-
-Or `tailscale up --advertise-exit-node` to use as an `exit node to internet` from other pears of the private network
-
-!!! Enable IP routing on R4S:
-
-```
-echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf
-echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf
-sudo sysctl -p /etc/sysctl.conf
-```
-
-
-Check the page https://login.tailscale.com/admin/machines to view your VPN network.
-
-If IP routing required, enable it on the site above, press on 3 dots menu (`...`)
-
-`Review route settings`
-
-`Use as exit node -&gt; ON`
-
-!! Yunohost in lxd (lxc) container name *ynh*:
-
-
-```
-lxd init (choose 30GB, BTRFS)
-lxc launch images:debian/buster ynh
-lxc config device add ynh myport80 proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80
-lxc config device add ynh myport443 proxy listen=tcp:0.0.0.0:443 connect=tcp:127.0.0.1:443
-lxc config set ynh boot.autostart true
-lxc list --columns ns4
-lxc exec ynh bash
-apt update
-apt upgrade 
-apt install curl
-curl https://install.yunohost.org | bash
-```
-
-If you have backup to restore from ''BEFORE'' connecting from web or running postinstall 
-
-copy backup to home directory from the r4s main system (host) into lxd container:
-
-Enter lxc container named ynh:
-
-
-```
-lxc exec ynh bash
-```
-Run in the lxd container:
-
-
-```
-mkdir /home/yunohost.backup
-mkdir /home/yunohost.backup/archives
-```
-
-Copy backup:
-
-```
- scp root@10.122.31.1:/media/usb1/Backup/yunohost_configs_backup/yunohost.backup/archives/20210413-131004_r4s.noho.st_certificate.*/home/yunohost.backup/archives
-```
-Restore the backup:
-
-
-```
-yunohost backup restore 20210413-131004_r4s.noho.st_certificate
-```
-
-
-Create new user:
-
-
-```
-yunohost user create &lt;username&gt;
-```
-
-
-Note: when loading from backup several users can be restored, please note wich is administarative user in nextcloud (no app addition possible for non administrative user).
-It is better only to restore system backup with certificates and not the full application backup (transmittion was not restored at all, freshrss didn't keep rss feeds etc...)
-
-!! Bonus:
-
-!!! Yunohost themes:
-
-Show available:
-
-```
- ls /usr/share/ssowat/portal/assets/themes/
-```
-
-Change:
-Then you can use nano /etc/ssowat/conf.json.persistent to enable the theme you choose like this:
-
-`{"theme": "clouds"}`
-
-!!! FreshRSS extensions:
-
-
-```
-cd /var/www/FreshRSS/extensions/
-wget https://github.com/kevinpapst/freshrss-youtube/archive/master.zip
-unzip master.zip
-mv freshrss-youtube-master/xExtension-YouTube .
-rm -rf freshrss-youtube-master/
-```
-
-
-In nextcloud add external folders (samba) InstantUpload and .Contacts-Backup (to upload photos and contacts from the phone via nextcloud app)
-If .Contacts-Backup already exists delete it using Settings gear (bottom left/show hidden files)
-In nextcloud android app set auto apload: camera folder to sync / three vertical dots for settings of the folder and check use subfolders (per month); uncheck "also upload existing files"
-
-!!! Find duplicates:
-
-```
-apt install fdupes
-fdupes -rd /media/usb1/
-type help to get a manual
-```
-
-
-!!! Emby:
-run on r4s host (not container)
-
-```
-lxc config device add ynh myport8096 proxy listen=tcp:0.0.0.0:8096 connect=tcp:127.0.0.1:8096
-lxc config device add ynh myport8920 proxy listen=tcp:0.0.0.0:8920 connect=tcp:127.0.0.1:8920
-lxc config device add ynh vartest disk source=/media/usb1/Movies path=/media
-```
-
-
-</pre>
 </div>
 <div bag="default" created="20210417195628912" creator="sharicov" modified="20210417195644504" modifier="sharicov" revision="2" tags="manual" title="Experimental not working" type="text/vnd.tiddlywiki">
 <pre>Experimental NOT WORKING: 
@@ -12444,7 +12082,7 @@ lxc config device add ynh vartest disk source=/media/usb1/Movies path=/media
 
 </pre>
 </div>
-<div bag="default" created="20210415140628464" creator="sharicov" modified="20210419095513551" modifier="sharicov" revision="14" tags="ynh yunohost manual nanopi r4s" title="R4S Yunohost installation from scratch v2" type="text/vnd.tiddlywiki">
+<div bag="default" created="20210415140628464" creator="sharicov" modified="20210504102548478" modifier="sharicov" revision="14" tags="ynh yunohost manual nanopi r4s" title="R4S Yunohost installation from scratch v4" type="text/vnd.tiddlywiki">
 <pre>!!!Download Armbian image for R4S
 {{Download link}}
 
@@ -12573,6 +12211,10 @@ rclone copy -u --progress Yandex:/Documents mailru:/Documents
 
 echo Backup Tools from Yandex to Mail.ru 
 rclone copy -u --progress Yandex:/Tools mailru:/Tools 
+
+echo Backup Yandex photos to Mail.ru
+rclone copy Yandex:/Camera\ Uploads mailru:/Photos/Camera\ Uploads
+
 ```
 Make executable:
 
