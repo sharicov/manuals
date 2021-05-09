@@ -246,7 +246,7 @@ Error message and password prompt
 
 <li>Raspberry Pi4 wifi auto connect</li>
 
-<li>redmi twrp v2</li>
+<li>redmi twrp v3</li>
 
 <li>Rsync automatic on change inotifywait</li>
 
@@ -10283,7 +10283,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v4]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v2]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v4]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v3]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -12502,7 +12502,7 @@ Raspberry will connect automatically each time wifi present
 
 Can be used as backup link to phone hotspot in case of Ethernet failure</pre>
 </div>
-<div created="20210430095719318" modified="20210502095129025" tags="manual" title="redmi twrp v2">
+<div created="20210430095719318" modified="20210509111812459" tags="manual" title="redmi twrp v3">
 <pre>Source: https://www.maketecheasier.com/install-twrp-recovery-android-no-root/
 
 Manuals for redmi 4 prime:
@@ -12566,11 +12566,23 @@ On phone twrp enter advanced/ `adb sideload mode`
 
 On PC run
 
+To install rom:
 
 ```
 adb sideload NameOfTheImage.zip
 ```
 Example: crDroidAndroid-11.0-20210501-`markw`-v7.5.zip
+
+To install google apps:
+
+download here: https://sourceforge.net/projects/nikgapps/files/Releases/NikGapps-R/
+
+
+
+```
+adb sideload NameOfTheImage.zip
+```
+
 
 Reboot 
 
