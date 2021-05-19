@@ -246,6 +246,8 @@ Error message and password prompt
 
 <li>Pigallery 2 google photo replacement best</li>
 
+<li>PiKVM manual v4</li>
+
 <li>Piwigo google photos replacement</li>
 
 <li>R4S Yunohost installation from scratch</li>
@@ -10294,7 +10296,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v6]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[PiKVM manual v4]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v6]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -11916,6 +11918,406 @@ Bind `/app/data/temp` to external disk
 ln -s /media/usb1/Yandex.Disk.Backup/Camera\ Uploads /media/usb1/InstantUpload/Camera
 ```
 </pre>
+</div>
+<div created="20210519151229776" modified="20210519151252640" tags="" title="PiKVM manual v4">
+<pre>Credentials: 
+
+Ssh root:root 
+
+Web/VNC admin:admin 
+
+Wifi troublshooting: 
+
+Comment whole line in config.txt in order to connect keyboard/ethernet adapter (gadgets won’t be available while commented 
+
+#dtoverlay=dwc2 
+
+Login locally (or SSH over Ethernet) as user:root password:root 
+
+Check adapters and connnectivity 
+
+Ifconfig 
+
+iwconfig 
+
+If wlan0 present run wifi menu 
+
+rw 
+
+systemctl enable netctl-auto@wlan0.service 
+
+wifi-menu –o 
+
+Select desired network, give name to the profile and provide password. 
+
+Several network profiles can be created (pikvm will connect one of the available networks 
+
+Install tailscale to have permanent IP 
+
+# pacman -Syy 
+
+# pacman -S tailscale-pikvm 
+
+# systemctl enable --now tailscaled 
+
+# tailscale up 
+
+Follow the link to authorize this installation. 
+
+After success, perform soft reboot using reboot command to make sure that everything will work correctly. 
+
+Perform command ip addr show tailscale0 to view the Tailscale IP address. 
+
+On the workstation side 
+
+Download and install tailscale for your OS: https://tailscale.com/download 
+
+Check the page https://login.tailscale.com/admin/machines to view your VPN network. 
+
+Follow the URL in the web browser: https://&lt;tailscale_kvm_ip&gt; and you will see Pi-KVM web interface. 
+
+!!! Enable the gadget mode by removing # in config.txt (dtoverlay=dwc2 line) 
+
+Sources: 
+
+https://github.com/pikvm/pikvm/blob/master/pages/wifi_config.md 
+
+https://github.com/pikvm/pikvm/issues/194 
+
+https://github.com/pikvm/pikvm/blob/master/pages/tailscale.md 
+
+ 
+
+Disable ATX in web GUI: 
+
+Add to /etc/kvmd/override.yaml 
+
+kvmd: 
+
+    atx: 
+
+        type: disabled 
+
+ 
+
+Enable VNC (use BVNC client for android): 
+
+Add to /etc/kvmd/override.yaml 
+
+vnc: 
+
+    auth: 
+
+        vncauth: 
+
+            enabled: true 
+
+To set passphrases edit file /etc/kvmd/vncpasswd. 
+
+Enable kvmd-vnc daemon. VNC will be available on the port 5900:  
+
+systemctl enable --now kvmd-vnc 
+
+Configuring the client 
+
+We recommend TigerVNC for a better experience on desktop. Here are our recommended settings for TigerVNC: 
+
+ Compression tab: 
+
+Choose Tight encoding as preferred and color-level Full. 
+
+Disable automatic quality adjust settings Auto Select. 
+
+Enable Allow JPEG compression. 
+
+Security tab: 
+
+Enable None, X.509 TLS and Anonymous TLS encryption (or choose one preferred mode). 
+
+Enable Username and password authentication. 
+
+ 
+
+Upload images directly to microSD card: 
+
+Mount third partition of the microSD card (the largest one). 
+
+ISO: Copy iso image to images directory and create an empty file in meta directory with the same name and extension with .complete at the end (use sudo to copy and touch ...complete) 
+
+Mass storage: Create .bin image in images with dd and .complete in meta  
+
+Check available space: df –h (let’s assume 40GB are available) 
+
+Create .bin file sized 40GB in the images directory: 
+
+sudo dd if=/dev/zero of=image_dir/filename.bin bs=1M count=40000 status=progress 
+
+sudo touch meta_dir/filename.bin.complete  
+
+Insert microSD into pikvm, boot, choose image.bin as flash disk and then install ventoy on the bin file from the host computer  (ventoy download: https://github.com/ventoy/Ventoy/releases extract with tar xvzf), quick format ventoy exfat partition to NTFS (in order to boot from VHD files) 
+
+Possibly permissions need to fixed on pikvm itself: 
+
+ kvmd-helper-otgmsd-remount rw 
+
+chown kvmd:kvmd /var/lib/kvmd/msd/images/* 
+
+chown kvmd:kvmd /var/lib/kvmd/msd/meta/* 
+
+kvmd-helper-otgmsd-remount ro 
+
+ 
+
+Mass storage manual commands for rw flash in case of issues (-i 0 for web gui device): 
+
+kvmd-helper-otgmsd-remount rw 
+
+kvmd-otgmsd -i 0 --set-rw=1 --set-cdrom=0 --set-image=/var/lib/kvmd/msd/images/ventoy.bin 
+
+kvmd-otgmsd -i 0 --unlock --eject 
+
+Host might be needed to be rebooted when changing media types from CDROM to Hard Drive 
+
+Also “kvmd-helper-otgmsd-remount rw” should be switched to ro and back to rw 
+
+See in windows disk manager on the host computer that the type is disk and it’s not read only 
+
+Web interface for flash only connects .bin as CDROM 
+
+How to enable extra drives: 
+
+ Switch the root filesystem to rw mode. 
+
+Edit /etc/kvmd/override.yaml (remove {} if this your first configuration entry) and add these lines: 
+
+otg: 
+
+    devices: 
+
+        drives: 
+
+            enabled: true  # Set it to true to enable 
+
+            count: 1  # +1 drive, default value 
+
+            default:  # Default configuration for the all extra drives 
+
+                cdrom: false  # Default value (false for the generic flash drive) 
+
+                rw: false # Read-only by default 
+
+ 
+
+If you specify count: N, you will create N additional drives configured the same way, as described in the default section. 
+
+Reboot. 
+
+Source: https://github.com/pikvm/pikvm/blob/master/pages/cookbook.md#create-a-microsoft-windows-based-flash-disk-image 
+
+ 
+
+ 
+
+ 
+
+Login over ssh(default password root): 
+
+sh root@pikvm 
+
+Add user: 
+
+sudo useradd -m sharicov 
+
+Allow wheel group: 
+
+nano /etc/sudoers 
+
+Uncomment  
+
+%wheel ALL=(ALL) ALL 
+
+Add user to wheel group 
+
+usermod --append --groups wheel sharicov 
+
+ 
+
+Mass storage gadget (only manual way works): 
+
+https://github.com/pikvm/pikvm/blob/master/pages/cookbook.md#create-a-microsoft-windows-based-flash-disk-image 
+
+https://github.com/pikvm/pikvm/blob/master/pages/cookbook.md#mass-storage-drives 
+
+ 
+
+Experimental extrase (partially working) 
+
+Mass Storage Drives 
+
+Specifically to v2. Unless explicitly disabled by default, Pi-KVM creates only one drive for Mass Storage emulation. However, you can create additional drives and manage them manually via the terminal. This is useful if you want to boot the server from a ISO CD (specified in the web interface), then connect a virtual flash drive to the server and download some files from to Pi-KVM from it. 
+
+❗ The presence of an additional Mass Storage device should not interfere with the boot, but for reasons of compatibility paranoia, this is disabled by default. We recommend setting up the drives in advance, making sure that booting from the ISO CD is still working, and then using the drives as needed. 
+
+How to enable extra drives: 
+
+Switch the root filesystem to rw mode. 
+
+Edit /etc/kvmd/override.yaml (remove {} if this your first configuration entry) and add these lines: 
+
+otg: 
+
+    devices: 
+
+        drives: 
+
+            enabled: true  # Set it to true to enable 
+
+            count: 1  # +1 drive, default value 
+
+            default:  # Default configuration for the all extra drives 
+
+                cdrom: false  # Default value (false for the generic flash drive) 
+
+                rw: false # Read-only by default 
+
+If you specify count: N, you will create N additional drives configured the same way, as described in the default section. 
+
+Reboot. 
+
+How to create RW flash drive: 
+
+Switch the root filesystem to rw mode:# rw 
+
+Create the empty image file of the desire size (1Gb in this example).# dd if=/dev/zero of= /var/lib/kvmd/msd/images/flash.img bs=1024 count=8 
+
+# chown kvmd:kvmd /var/lib/kvmd/msd/images/flash.img# touch /var/lib/kvmd/msd/meta/windows10-2004.bin.complete 
+
+Connect it to the drive 1: 
+
+# kvmd-otgmsd -i 1 --set-rw=1 --set-cdrom=0 --set-image= /var/lib/kvmd/msd/images/flash.img 
+
+After that you will have access to the flash drive from the server. 
+❗ Drive 0 represents a drive that is controlled via a web interface and API. Don't use it with kvmd-otgmsd if you don't know exactly what you're doing. 
+
+View the driver state: 
+
+# kvmd-otgmsd -i 1Image file: /var/lib/kvmd/msd/images/flash.img CD-ROM flag: noRW flag:     yes 
+
+To disable the flash drive and view the files on it from the KVM, run: 
+
+# kvmd-otgmsd -i 1 --unlock --eject 
+
+❗ This command will interrupt the current IO operation on ALL DRIVES including the one that is managed via the web interface. The same result is achieved by clicking the disable media button in the web interface. Right now, the Linux kernel does not allow to distinguish between internal threads that manage different drives. It is recommended to eject the media when you know that this will not cause problems for the other media. 
+
+Don't forget to remount the root filesystem to read-only mode:# ro 
+
+You can download the resulting image via SCP or mount it as a loop device on the Pi-KVM. 
+
+ 
+
+ 
+
+Bluetooth setup( https://github.com/pikvm/pikvm/blob/b489f9741246c04c14edc33f444d919480ff2429/pages/bluetooth_hid.md ): 
+
+Bluetooth HID (pikvm emulates BT keyboard) 
+
+Pi-KVM is able to emulate a Bluetooth keyboard &amp; mouse. This is not the main case of using Pi-KVM since you still need it to pair with a remote host, but can be used for something like mobile KVM. 
+
+❗ Using Bluetooth HID requires additional configuration of the operating system. For v2, this means losing the UART port, since it will be used by Bluetooth. Also, Bluetooth operation was tested only on RPi4 and v2 platform. Other boards may require different system service settings. 
+
+❗ Bluetooth mouse can work only in relative mode. The reason is that many Bluetooth host drivers do not correctly implement HID descriptors. Horizontal scrolling is not supported for the same reason. 
+
+Configuring the OS 
+
+Switch filesystem to RW-mode, perform update and install some packages:h 
+
+# rw# pacman -Syu# pacman -S bluez bluez-utils raspberrypi-bluetoot 
+
+Edit /boot/config.txt and comment these lines: 
+
+#enable_uart=1#dtoverlay=disable-bt 
+
+ 
+
+Create an empty directory /var/lib/bluetooth and add mountpoint to /etc/fstab: 
+
+# mkdir /var/lib/bluetooth# echo 'tmpfs /var/lib/bluetooth tmpfs nodev,nosuid,mode=0755 0 0' &gt;&gt; /etc/fstab 
+
+ 
+
+Override and enable the services: 
+
+# mkdir /etc/systemd/system/bluetooth.service.d# cat &lt;&lt; EOF &gt; /etc/systemd/system/bluetooth.service.d/override.conf[Service]ExecStart=ExecStart=/usr/lib/bluetooth/bluetoothd --noplugin=*EOF 
+
+# systemctl enable bluetooth# systemctl enable raspberrypi-btuart 
+
+ 
+
+Override kvmd service: 
+
+# mkdir /etc/systemd/system/kvmd.service.d# cat &lt;&lt; EOF &gt; /etc/systemd/system/kvmd.service.d/override.conf[Service]AmbientCapabilities=CAP_NET_RAW CAP_NET_BIND_SERVICE CAP_SYS_ADMIN CAP_SETUID CAP_SETGID CAP_CHOWNCapabilityBoundingSet=CAP_NET_RAW CAP_NET_BIND_SERVICE CAP_SYS_ADMIN CAP_SETUID CAP_SETGID CAP_CHOWNEOF 
+
+Add following lines to /etc/kvmd/override.yaml: 
+
+kvmd:    hid:        type: bt 
+
+ 
+
+Perform reboot: 
+
+reboot 
+
+Using Bluetooth HID (pikvm pretending to be a Bluetooth keyboard and mouse) 
+
+After a reboot, the Pi-KVM will be ready for detection and pairing with no auth. You will see the Pi-KVM HID device. 
+
+Once the server is connected, Pi-KVM will no longer be discoverable and pairable to other clients until you unpair the server. 
+
+If something went wrong, use the web menu System -&gt; Reset keyboard &amp; mouse. This will cause unpair the device and switch the Pi-KVM to public mode before the first client is connected. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+==================== 
+
+NOT yet WORKING: https://www.tech-knowhow.com/2016/06/raspberry-pi-3-bluetooth-arch-linux/ 
+
+Install bluetooth stack(https://archlinuxarm.org/forum/viewtopic.php?f=65&amp;t=11413): 
+
+pacman -S bluez-utils bluez bluez-utils-compat 
+
+Make buetooth rasberry package: 
+
+ 
+
+Start bluetooth: 
+
+modprobe btusb 
+
+systemctl start bluetooth 
+
+Enter bluetooth console: 
+
+bluetoothctl 
+
+ </pre>
 </div>
 <div created="20210504080045062" modified="20210504080647011" tags="manual" title="Piwigo google photos replacement">
 <pre>Yunohost installation (not fully working)
