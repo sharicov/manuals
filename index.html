@@ -11919,7 +11919,7 @@ ln -s /media/usb1/Yandex.Disk.Backup/Camera\ Uploads /media/usb1/InstantUpload/C
 ```
 </pre>
 </div>
-<div created="20210519151229776" modified="20210519151252640" tags="" title="PiKVM manual v4">
+<div created="20210519151229776" modified="20210519152002348" tags="" title="PiKVM manual v4">
 <pre>Credentials: 
 
 Ssh root:root 
@@ -11954,11 +11954,15 @@ Several network profiles can be created (pikvm will connect one of the available
 
 Install tailscale to have permanent IP 
 
+su root (password root)
+
+rw
+
 # pacman -Syy 
 
 # pacman -S tailscale-pikvm 
 
-# systemctl enable --now tailscaled 
+# systemctl enable --now tailscaled.service
 
 # tailscale up 
 
