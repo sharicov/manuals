@@ -11919,7 +11919,7 @@ ln -s /media/usb1/Yandex.Disk.Backup/Camera\ Uploads /media/usb1/InstantUpload/C
 ```
 </pre>
 </div>
-<div created="20210519151229776" modified="20210526070057737" tags="" title="PiKVM manual v6">
+<div created="20210519151229776" modified="20210526071252038" tags="" title="PiKVM manual v6">
 <pre>!! Credentials: 
 
 Ssh root:root 
@@ -11978,6 +11978,19 @@ Switch fille system back to read-only:
 
 ```
 ro
+```
+
+!! Troubleshoot configuration:
+
+```
+journalctl -u kvmd
+```
+
+!! Configuration file:
+
+
+```
+/etc/kvmd/override.yaml
 ```
 
 
