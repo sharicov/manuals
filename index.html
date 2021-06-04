@@ -286,6 +286,8 @@ Error message and password prompt
 
 <li>webmin web based monitoring and management</li>
 
+<li>Windows Server 2022 settings</li>
+
 <li>Write image to SSD</li>
 
 <li>yunohost raspberry disk system samba yandex screen rsync ssh v16</li>
@@ -10281,8 +10283,8 @@ Error message and password prompt
 <div created="20210418175850925" modified="20210418175850925" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20210417210700988" modified="20210526062930917" title="$:/state/sidebar">
-<pre>no</pre>
+<div created="20210417210700988" modified="20210604055832253" title="$:/state/sidebar">
+<pre>yes</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -10296,7 +10298,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[PiKVM manual v6]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v6]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Windows Server 2022 settings]] [[PiKVM manual v6]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v6]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -22978,6 +22980,69 @@ cp webmin.pem /etc/webmin/miniserv.pem
 /etc/init.d/webmin restart
 ```
 </pre>
+</div>
+<div created="20210604055941956" modified="20210604060004541" tags="manual" title="Windows Server 2022 settings">
+<pre>!! Enable audio service in `services.msc`
+
+In Add roles and features add wireless LAN for Bluetooth and WiFi.
+
+!! Disable server manager on start: in server manger: 
+
+Manage/ properties/ do not start
+
+!! To enable disk graph in task manager 
+
+Run in powershell `diskperf -y` (creates additional load on filing system and overall performance.
+Better use resource monitor in performance tab. (`diskperf -n` to disable and restart task manager).
+
+!! To disable CTRL-ALT-DEL on boot:
+Server manager/ Tools/ Local Security/ Local policies/ Security options/ Interactive logon ctrl/ Enabled
+
+!! Additional settings
+
+Win+X system/ Advanced/ :
+
+Visual Effects tab:
+Settings/ Best experience
+
+Advanced tab:
+Programs
+Change/ disable automatically/ No paging for disk C/ Set
+
+!! To install MS store item 
+
+Go to MS Store site:
+
+https://www.microsoft.com/en-us/p/xodo-pdf/9wzdncrdjxp4?activetab=pivot:overviewtab
+
+Search for app and copy the link address
+
+Paste into:
+
+https://store.rg-adguard.net/
+
+Download `.AppxBundle` or `.Emsixbundle` file.
+
+Install from powershell:
+
+```
+Add-AppxPackage -Path  5E8FC25E.XODODOCS_4.5.16.70_neutral___3v3sf0k6w2rec.Emsixbundle
+```
+
+!! Fixing OneDrive shell context menu
+Uninstall onedrive
+
+Download installer:
+
+https://www.microsoft.com/en-gb/microsoft-365/onedrive/download
+
+Install as admin with `/Allusers` parameter
+
+!! Useful apps:
+
+Xodo
+
+Daily picture</pre>
 </div>
 <div bag="default" created="20210415145655128" creator="sharicov" modified="20210416140312173" modifier="sharicov" revision="4" tags="manual" title="Write image to SSD" type="text/vnd.tiddlywiki">
 <pre>```
