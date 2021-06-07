@@ -222,6 +222,8 @@ Error message and password prompt
 
 <li>Generate github token, setup TiddlyWiki on github</li>
 
+<li>Gparted ISO remaster</li>
+
 <li>Install WSL2 in Windows 10</li>
 
 <li>Launcher</li>
@@ -10229,50 +10231,7 @@ Error message and password prompt
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[1]]
-# [[15th April 2021]]
-# [[aria2 torrent native]]
-# [[Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3]]
-# [[Certificate install (yunohost dyndns)]]
-# [[Check NTFS disk in Linux]]
-# [[dav2fs mount yandex]]
-# [[Disk health monitoring]]
-# [[Disk info]]
-# [[Docker apps v3]]
-# [[Download link]]
-# [[Draft of 'redmi twrp']]
-# [[Experimental not working]]
-# [[Extract .xz image]]
-# [[Free space in Linux]]
-# [[fsck check EXT4 disk]]
-# [[Install WSL2 in Windows 10]]
-# [[Launcher]]
-# [[Linux processes and services]]
-# [[Linux Swap setup]]
-# [[Log2RAM]]
-# [[Log2RAM v2]]
-# [[LXC GUI manual]]
-# [[Mount ext4 in windows wsl]]
-# [[R4S Yunohost installation from scratch]]
-# [[R4S Yunohost installation from scratch v2]]
-# [[Raspberry Pi4 wifi auto connect]]
-# [[redmi twrp]]
-# [[Rsync automatic on change inotifywait]]
-# [[SAMBA]]
-# [[Screen command]]
-# [[Script backup]]
-# [[Show all installed packages in linux (yunohost)]]
-# [[ssh autologin]]
-# [[Test disk speed]]
-# [[tiddlers.html]]
-# [[tinycore_2021_v1]]
-# [[Untitled]]
-# [[USB disk mount (fstab)]]
-# [[usb disk uasp protocol]]
-# [[usbmount]]
-# [[Write image to SSD]]
-# [[yunohost raspberry disk system samba yandex screen rsync ssh v16]]
-# [[yunohost raspberry general v5]]</pre>
+# [[Gparted ISO remaster]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -11257,6 +11216,523 @@ Server API URL
 
 `https://api.github.com`
 </pre>
+</div>
+<div created="20210418073739526" modified="20210418075712658" tags="manual" title="Gparted ISO remaster">
+<pre>!! Preparations 
+To download files from this machine:  
+
+```
+python3 -m http.server 8080 
+sudo apt-get --reinstall install libc6 
+sudo apt-get install squashfs-tools xorriso 
+cd ~ 
+mkdir iso 
+wget https://downloads.sourceforge.net/gparted/gparted-live-1.1.0-6-amd64.iso 
+sudo mount -o loop gparted-live-1.1.0-6-amd64.iso iso 
+sudo unsquashfs iso/live/filesystem.squashfs 
+sudo du -sh squashfs-root 
+#optional backup: sudo cp -r squashfs-root squashfs-root-backup 
+sudo cp /etc/resolv.conf squashfs-root/etc/ 
+sudo cp /etc/hosts squashfs-root/etc/ 
+sudo mount --bind /dev squashfs-root/dev 
+sudo mount --bind /sys squashfs-root/sys 
+sudo mount --bind /proc squashfs-root/proc 
+whoami 
+```
+
+!! Enter_chroot 
+
+```
+sudo chroot squashfs-root 
+mount -t proc none /proc 
+mount -t sysfs none /sys 
+mount -t devpts none /dev/pts 
+chown root:root /usr/bin/sudo &amp;&amp; chmod 4755 /usr/bin/sudo 
+whoami 
+ping google.com 
+```
+
+ 
+!!! Troubleshoot network: 
+
+```
+ifconfig 
+route add default gw 192.168.3.1 enp0s31f6 
+sudo echo "name server 8.8.8.8"&gt;/etc/resolv.conf 
+```
+
+ 
+!! Remastering 
+!!! Troubleshoot permissions: If couldn't create temporary file /tmp/apt.conf run:  
+
+```
+chmod 1777 /tmp 
+```
+
+#To avoid error: `sudo` must be owned by `uid 0 `
+ 
+
+```
+apt update 
+apt upgrade 
+apt install firmware-iwlwifi rclone iwd bluez bluez-tools htop rfkill iotop ncdu mc screen cifs-utils python3-gi gir1.2-gtk-3.0 aria2 alsa-utils libnspr4 libnss3 exfat-fuse exfat-utils localepurge 
+```
+
+ 
+!!! Optional to be able to remaster from the new livecd 
+
+
+```
+apt-get install squashfs-tools xorriso 
+wget https://github.com/alexheretic/apart-gtk/releases/download/v0.24/apart-gtk_0.24_amd64.deb 
+wget https://download3.operacdn.com/pub/opera/desktop/72.0.3815.148/linux/opera-stable_72.0.3815.148_amd64.deb 
+dpkg -i *.deb 
+```
+
+!!! Troubleshooting if getting dependency errors: 
+
+```
+apt install -f 
+apt autoremove 
+```
+
+Remove all locales besides` utf-8 `
+
+```
+localepurge 
+```
+
+!! PowerISO install 
+
+```
+cd /home 
+wget https://www.poweriso.com/poweriso-x64-1.1.tar.gz 
+tar -xvzf poweriso-x64-1.1.tar.gz 
+rm poweriso-x64-1.1.tar.gz 
+```
+
+ 
+!!! aria2 plugin download 
+
+```
+wget -P /home/ https://github.com/jae-jae/Camtd/releases/download/1.4.2/Camtd.crx  
+```
+
+ 
+!!! Tuning 
+
+```
+nano /etc/initramfs-tools/modules 
+```
+
+Add: 
+`iwlwifi `
+`iwlmvm `
+ 
+
+```
+nano /etc/systemd/network/25-wireless.network 
+```
+
+Add: 
+
+```
+[Match] 
+Name=wlan0 
+[Network] 
+DHCP=ipv4 
+[DHCP] 
+RouteMetric=20 
+```
+
+ 
+
+```
+nano /usr/lib/systemd/network/80-iwd.link 
+```
+
+Add in `[Match] `
+
+```
+Name=wlan0 
+```
+
+ 
+
+```
+nano /etc/fstab 
+```
+
+Add: 
+
+To map SAMBA share `unmark cifs line `and run 
+
+```
+sudo fdisk -a 
+```
+
+`//&lt;vpsa_ip_address&gt;/&lt;export_share&gt; /mnt/local_share cifs user=&lt;user on VPSA&gt;,pass=&lt;passwd on VPSA&gt; 0 0  `
+ 
+Custom desktop menu and readme file from Appendix at the end of this manual can be added here 
+ 
+
+!! Cleanup 
+
+```
+sed -i '$a\driver_name' /etc/initramfs-tools/modules 
+update-initramfs -u 
+dpkg-query --show --showformat='${Package} ${Version}\n' | tee filesystem.manifest 
+apt clean 
+rm -rf /tmp/* 
+rm -rf *.deb 
+umount /proc || umount -lf /proc 
+umount /sys 
+umount /dev/pts 
+umount /dev 
+history -c 
+exit 
+```
+!!! Outside_of_chroot 
+ 
+
+
+```
+ls 
+pwd 
+umount squashfs-root/proc 
+```
+
+
+ 
+
+ 
+If umount doesn't work just `reboot `
+ 
+
+```
+sudo mksquashfs squashfs-root filesystem.squashfs -b 1024k -comp xz -Xbcj x86 -e boot 
+```
+
+ 
+!! Remaster ISO - Linux 
+
+```
+wget https://www.poweriso.com/poweriso-x64-1.1.tar.gz 
+tar -xvzf poweriso-x64-1.1.tar.gz 
+rm poweriso-x64-1.1.tar.gz 
+poweriso-x64/poweriso.sh 
+```
+
+open gparted 1.1.0.6 live cd iso image 
+
+
+remove live/filesystem.squashfs 
+
+add new filesystem.squashfs 
+
+Save as (give a new name) 
+ 
+!! Remaster ISO - Windows 
+
+Use winiso 
+
+open gparted 1.1.0.6 live cd iso image 
+
+remove live/filesystem.squashfs 
+
+add new filesystem.squashfs 
+
+Save as (give a new name) 
+ 
+ 
+
+!!! Not working - linux iso remastering 
+
+
+```
+sudo mksquashfs squashfs-root filesystem.squashfs.new -comp xz 
+ 
+sudo mkdir old_iso new_iso 
+sudo rsync --exclude=filesystem.squashfs -az old_iso/ new_iso/ 
+sudo cp filesystem.squashfs.new new_iso/live/filesystem.squashfs 
+```
+
+ 
+!!! Optional_for_live_system_ISO 
+
+```
+mkdir -p $HOME/custom-iso 
+rsync --exclude=live/filesystem.squashfs -az /mnt/ custom-iso/ 
+cd $HOME/custom-iso/live 
+```
+
+ 
+!!! squashfs 
+
+```
+cp -a $HOME/deepin-live/workdir/filesystem.squashfs.new filesystem.squashfs 
+```
+
+ 
+!! Create_ISO
+
+```
+xorriso -as mkisofs -V 'Deepin Livecd' -cache-inodes -J -l -joliet-long -b isolinux/isolinux.bin -c isolinux/boot.cat -boot-load-size 4 -boot-info-table -no-emul-boot -eltorito-alt-boot -e boot/efi.img -no-emul-boot -isohybrid-gpt-basdat -isohybrid-apm-hfsplus -o ../uos20sp1-custom-amd64.iso . 
+```
+
+ 
+!!! Sources: 
+
+https://wiki.snowfrs.com/Create_a_custom_live_iso 
+ 
+https://unix.stackexchange.com/questions/80305/mounting-a-squashfs-filesystem-in-read-write 
+ 
+https://drbl.org/faq/fine-print.php?path=./2_System/81_add_prog_in_filesystem-squashfs.faq#81_add_prog_in_filesystem-squashfs.faq 
+ 
+https://drbl.org/faq/fine-print.php?path=./2_System/87_create_clonezilla_iso_from_zip.faq#87_create_clonezilla_iso_from_zip.faq 
+ 
+https://github.com/stevenshiau/clonezilla/blob/master/sbin/create-gparted-live 
+ 
+https://gitlab.com/stevenshiau/clonezilla 
+ 
+https://help.ubuntu.com/community/LiveCDCustomization 
+ 
+ 
+!!! To check autostart 
+
+```
+nano /etx/X11/fluxbox/apps 
+```
+
+Add: 
+
+```
+[app] (name=sudo systemctl restart iwd) class..  
+[app] aria2c 
+[app] nano /home/readme 
+ 
+```
+
+ 
+!!! iwlwifi fix to check: 
+
+https://lists.debian.org/debian-kernel/2013/05/msg00147.html 
+sudo journalctl -u iwd.service 
+ 
+ 
+!! Appendix 
+
+```
+nano /home/readme.txt 
+```
+
+Add: 
+
+```
+Bluetooth mouse pair 
+bluetoothctl 
+scan on  
+```
+
+!!! Put mouse in descovery mode and make sure it is found in scan 
+
+```
+scan off 
+pair &lt;bluetooth ID recognized&gt; 
+exit 
+```
+
+ 
+!!! Wifi setup 
+
+```
+sudo systemctl status iwd 
+```
+
+If it's` off `
+
+```
+sudo systemctl restart iwd 
+iwctl device list  
+```
+
+Let's assume wifi device is` wlan0 `
+
+```
+iwctl station wlan0 scan 
+iwctl station wlan0 get-networks 
+iwctl station wlan0 connect SSID 
+```
+
+Enter wifi `password  `
+
+```
+sudo dhclient wlan0 
+```
+
+If there is ping to IP but no name resolution, assuming gw IP is: `192.168.3.1 `
+
+```
+sudo route add default gw 192.168.3.1 wlan0 
+```
+
+ 
+{{Minimal WEB server}}
+ 
+
+!!! To setup sound run; volume up and unmute (M): 
+
+```
+alamixer  
+```
+
+ 
+!!! Aria2 downloader (torrent, http, ftp) manual start: 
+
+```
+aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all --conf-path=/home/aria2.conf -D 
+```
+
+Just in case there is an offline version of aria2 `crx `extension in `/home` to install `drag&amp;drop` it into opera's extension screen if doesn't work from the menu 
+ 
+
+```
+nano /home/manual 
+```
+
+Add this whole manual inside 
+ 
+
+```
+rm /etc/X11/fluxbox/fluxbox.menu-user 
+nano /etc/X11/fluxbox/fluxbox.menu-user 
+```
+
+!! Fluxbox window manager 
+
+Menu file locations: `fluxbox -i` after login located in` /home/user/.fluxbox/menu `
+
+Add: 
+
+```
+
+# Generated by fluxbox-generate_menu 
+# Copy to /home/user/.fluxbox/menu 
+# If you read this it means you want to edit this file manually, so here 
+# are some useful tips: 
+# 
+# - You can add your own menu-entries to ~/.fluxbox/usermenu 
+# 
+# - If you miss apps please let me know and I will add them for the next 
+# release. 
+# 
+# - The -r option prevents removing of empty menu entries and lines which 
+# makes things much more readable. 
+# 
+# - To prevent any other app from overwriting your menu 
+# you can change the menu name in .fluxbox/init to: 
+# session.menuFile: /home/you/.fluxbox/my-menu 
+#  
+# Updated manually by Sharicov on Oct/27/2020. 
+# 
+[begin] (Fluxbox) 
+[exec] (Opera) {opera} 
+[separator] 
+[exec] (Terminal) {lxterminal --geometry=80x25} 
+[exec] (MC) {lxterminal -e mc} 
+# [submenu] (Terminals) 
+# [exec] (lxterminal) {lxterminal}  
+# [exec] (lxterminal with root privileges) {sudo -i lxterminal}  
+# [end] 
+# [submenu] (Editors) 
+# [exec] (geany) {geany}  
+# [exec] (nano) {lxterminal -e nano}  
+# [exec] (vi) {lxterminal -e vi}  
+# [end] 
+[exec] (File Manager) {pcmanfm} 
+[submenu] (File/System utils) 
+[exec] (apart-gtk) {sudo apart-gtk} 
+[exec] (GParted) {sudo gparted} 
+[exec] (testdisk) {sudo lxterminal --geometry=80x25 -e testdisk} 
+[exec] (partimage) {sudo lxterminal -e partimage} 
+[exec] (gsmartcontrol) {sudo gsmartcontrol} 
+[exec] (screenshot) {gl-screenshot} 
+[exec] (Netsurf) {netsurf} 
+[exec] (Calculator) {calcoo} 
+[exec] (PowerISO) {cd /home/poweriso-x64/; ./poweriso.sh} 
+[end] 
+[separator] 
+[submenu] (System settings) 
+[exec] (Display) {lxrandr} 
+[exec] (Alsa Mixer) {lxterminal -e alsamixer} 
+[exec] (Bluetooth) {lxterminal -e bluetoothctl} 
+[exec] (Samba) {sudo lxterminal -e nano /etc/fstab} 
+[exec] (aria2 extension) {opera "https://www.crx4chrome.com/go.php?p=85196&amp;s=1&amp;l=https://clients2.googleusercontent.com/crx/blobs/QgAAAC6zw0qH2DJtnXe8Z7rUJP2iXC6eC5m5i8lOcrNuICsNqd05Y6AH2arfrw-guUwVKYZbW9loBHnm277d9SUq7v2ECcJ9kpIjfi4jSFeBdhbDAMZSmuXEU8IIL7xZ435lYw2bKdd2CnAqzQ/extension_1_5_0_0.crx"} 
+[exec] (Restart aria2) {sudo kill all aria2c; aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all --conf-path=/home/aria2.conf -D}  
+[end] 
+[submenu] (Network menu) 
+[exec] (Restart iwd service) {sudo lxterminal -e systemctl restart iwd} 
+[exec] (Wifi networks) {lxterminal -e 'iwctl station wlan0 scan; iwctl station wlan0 get-networks; echo "Type: iwctl station wlan0 connect SSID"; "$SHELL"'} 
+[exec] (DHCP) {sudo lxterminal -l -e gl-live-netcfg} 
+[exec] (Wifi terminal) {lxterminal -e iwctl} 
+[end] 
+[submenu] (fluxbox menu) 
+[config] (Configure) 
+[submenu] (Styles) 
+[include] (/usr/share/fluxbox/menu.d/styles/) 
+[submenu] (System Styles) {Choose a style...} 
+[stylesdir] (/usr/share/fluxbox/styles) 
+[end] 
+[end] 
+[workspaces] (Workspace List) 
+[submenu] (Tools) 
+[exec] (Window name) {xprop WM_CLASS|cut -d \" -f 2|xmessage -file - -center} 
+[end] 
+[commanddialog] (Fluxbox Command) 
+[reconfig] (Reload config) 
+[restart] (Restart) 
+[exec] (Exit X) {gl-killx} 
+[exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) 2&gt; /dev/null | xmessage -file - -center} 
+[separator] 
+[end] 
+[submenu] (Exit) 
+[exec] (shutdown-menu) {sudo gl-shutdown-menu} 
+[end] 
+[end] 
+ 
+```
+
+!! Aria2 download configuration 
+```
+nano /home/aria2.conf 
+```
+
+
+Add: 
+
+```
+dir=/home/user/Downloads 
+max-overall-upload-limit=100K 
+disk-cache=0 
+#file-allocation=trunc 
+file-allocation=falloc 
+seed-time=0 
+check-integrity=true 
+realtime-chunk-checksum=true 
+always-resume=true 
+auto-file-renaming=false 
+continue=true 
+remote-time=true 
+#rpc-user= 
+#rpc-passwd= 
+#daemon 
+#log=/home/user/Downloads/aria2c.log 
+#log-level=error 
+bt-exclude-tracker="*" 
+ 
+```
+
+!!! Go back to cleanup paragraph </pre>
 </div>
 <div created="20210419074931136" modified="20210419075237524" tags="manual" title="Install WSL2 in Windows 10">
 <pre>Run PowerShell as Administrator
