@@ -23067,7 +23067,7 @@ cp webmin.pem /etc/webmin/miniserv.pem
 ```
 </pre>
 </div>
-<div created="20210604055941956" modified="20210607092734651" tags="manual" title="Windows Server 2022 settings v1">
+<div created="20210604055941956" modified="20210607100903496" tags="manual" title="Windows Server 2022 settings v1">
 <pre>!! Enable audio service in `services.msc`
 
 In Add roles and features add wireless LAN for Bluetooth and WiFi.
@@ -23128,7 +23128,25 @@ Install as admin with `/Allusers` parameter
 
 Xodo
 
-Daily picture</pre>
+Daily picture
+
+!! Linux subsystem
+
+
+```
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
+
+Download Linux for Windows manually from here:
+https://docs.microsoft.com/en-us/windows/wsl/install-manual
+
+Install package
+
+
+```
+Add-AppxPackage -Path .\Ubuntu_2004.2020.424.0_x64.appx
+```
+</pre>
 </div>
 <div bag="default" created="20210415145655128" creator="sharicov" modified="20210416140312173" modifier="sharicov" revision="4" tags="manual" title="Write image to SSD" type="text/vnd.tiddlywiki">
 <pre>```
