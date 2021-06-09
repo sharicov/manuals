@@ -224,7 +224,7 @@ Error message and password prompt
 
 <li>Gparted ISO remaster</li>
 
-<li>Install WSL2 in Windows 10</li>
+<li>Install WSL2 in Windows 10 v1</li>
 
 <li>Launcher</li>
 
@@ -10257,7 +10257,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v8]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div created="20210609093149179" list="[[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v8]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" modified="20210609093149179" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -11734,7 +11734,7 @@ bt-exclude-tracker="*"
 
 !!! Go back to cleanup paragraph </pre>
 </div>
-<div created="20210419074931136" modified="20210419075237524" tags="manual" title="Install WSL2 in Windows 10">
+<div created="20210419074931136" modified="20210609093724166" tags="manual" title="Install WSL2 in Windows 10 v1">
 <pre>Run PowerShell as Administrator
 
 
@@ -11757,7 +11757,23 @@ Continue in PowerShell (version 2 for WSL2 in the last line):
 wsl --set-default-version 2
 wsl --list --verbose
 wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;
-```</pre>
+```
+
+Download and run
+
+https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+```
+wsl_update_x64.msi
+```
+
+
+In elevated powershell:
+
+```
+wsl --update
+```
+</pre>
 </div>
 <div created="20210419173608432" creator="user" modified="20210419180541750" modifier="user" tags="manual" title="Launcher" tmap.id="57616a9a-2ebb-4870-b878-ac7daba44c65">
 <pre>!Self-hosting Launcher
