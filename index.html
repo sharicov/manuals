@@ -11926,8 +11926,22 @@ sudo dphys-swapfile swapon
 ```
 </pre>
 </div>
-<div created="20210614103010327" modified="20210614103024390" tags="manual" title="Linux touch to click">
-<pre></pre>
+<div created="20210614103010327" modified="20210614103109379" tags="manual" title="Linux touch to click">
+<pre>
+```
+sudo nano  /etc/X11/xorg.conf.d/50-synaptics.conf  
+```
+
+
+Add:
+
+
+```
+Option "Tapping" "on"
+```
+
+
+</pre>
 </div>
 <div bag="default" created="20210417194706725" creator="sharicov" modified="20210417195506074" modifier="sharicov" revision="4" tags="manual" title="Log2RAM" type="text/vnd.tiddlywiki">
 <pre>!! Log2RAM to save SD card from unnecessary writes
