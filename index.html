@@ -12309,9 +12309,17 @@ sudo lxd init
 sudo lxd sql global 'select * from networks_config'
 ```
 
+```
+lxc info | grep 'firewall:'
+```
 
 
-`Set ipv6 to none`
+```
+sudo nft list ruleset
+```
+
+
+Source: https://discuss.linuxcontainers.org/t/containers-not-getting-ipv4/6668/35
 
 !! Additional commands
  restart lxd daemon:
