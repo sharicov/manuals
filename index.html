@@ -246,7 +246,7 @@ Error message and password prompt
 
 <li>LXC GUI manual</li>
 
-<li>Manjaro lxd lxc v2</li>
+<li>Manjaro lxd lxc v3</li>
 
 <li>Mini WinPE (64bit) no network 260MB</li>
 
@@ -10270,7 +10270,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v2]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v8]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v3]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v8]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10527,8 +10527,7 @@ vi aria2.conf
 Change prealloc to falloc </pre>
 </div>
 <div created="20210615154618148" modified="20210615154644869" tags="manual" title="Auto enable Bluetooth on boot">
-<pre>
-```
+<pre>```
 sudo nano /etc/bluetooth/main.conf
 ```
 
@@ -12271,7 +12270,7 @@ When the app starts open a browser to the following link to access the app: http
 
 Log In. The default account and password are: `admin `| `admin`</pre>
 </div>
-<div created="20210615154209661" modified="20210615161921953" tags="manual" title="Manjaro lxd lxc v2">
+<div created="20210615154209661" modified="20210615161921953" tags="manual" title="Manjaro lxd lxc v3">
 <pre>!! Only snap lxd version is working on Manjaro
 
 Install lxd
@@ -12281,8 +12280,16 @@ sudo pacman -S snapd
 sudo systemctl enable --now snapd.socket
 sudo ln -s /var/lib/snapd/snap /snap
 sudo snap install lxd
+```
+
+To get newest version of lxd
+
 
 ```
+snap refresh lxd --edge
+```
+
+
 
 Create new pool:
 lxd init
