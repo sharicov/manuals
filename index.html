@@ -246,7 +246,7 @@ Error message and password prompt
 
 <li>LXC GUI manual</li>
 
-<li>Manjaro lxd lxc v3</li>
+<li>Manjaro lxd lxc v4</li>
 
 <li>Mini WinPE (64bit) no network 260MB</li>
 
@@ -10256,7 +10256,7 @@ Error message and password prompt
 <pre>yes</pre>
 </div>
 <div created="20210417210700988" modified="20210604055832253" title="$:/state/sidebar">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -10270,7 +10270,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v3]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v8]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v4]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v8]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -12270,7 +12270,7 @@ When the app starts open a browser to the following link to access the app: http
 
 Log In. The default account and password are: `admin `| `admin`</pre>
 </div>
-<div created="20210615154209661" modified="20210615161921953" tags="manual" title="Manjaro lxd lxc v3">
+<div created="20210615154209661" modified="20210615161921953" tags="manual" title="Manjaro lxd lxc v4">
 <pre>!! Only snap lxd version is working on Manjaro
 
 Install lxd
@@ -12308,13 +12308,45 @@ sudo lxc network list
 
 sudo lxc network rm lxdbr0    
 
-sudo lxd init
+sudo lxd sql global 'select * from networks_config'       
 ```
+Example output
 
 
 ```
-sudo lxd sql global 'select * from networks_config'
++----+------------+---------+--------------+----------------+
+| id | network_id | node_id |     key      |     value      |
++----+------------+---------+--------------+----------------+
+| 5  | 2          | &lt;nil&gt;   | ipv4.address | 10.80.168.1/24 |
+| 6  | 2          | &lt;nil&gt;   | ipv6.address | none           |
+| 7  | 2          | &lt;nil&gt;   | ipv4.nat     | true           |
++----+------------+---------+--------------+----------------+
 ```
+
+
+Login to container
+
+
+```
+sudo lxc exec ynh bash
+```
+
+set static ip:
+
+
+```
+ifconfig eth0 10.80.168.15 netmask 255.255.255.0 up
+```
+
+Check network from inside the container:
+
+
+```
+ping 10.80.168.1
+```
+
+
+!! Check firewall and rules
 
 ```
 lxc info | grep 'firewall:'
