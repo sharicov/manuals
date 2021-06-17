@@ -248,6 +248,8 @@ Error message and password prompt
 
 <li>Manjaro lxd lxc v10</li>
 
+<li>Manjaro network hints</li>
+
 <li>Mini WinPE (64bit) no network 260MB</li>
 
 <li>Mount ext4 in windows wsl</li>
@@ -10272,7 +10274,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v8]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v8]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -12489,6 +12491,42 @@ lxd init
 Create new container(ynh):
 lxc launch images:debian/buster ynh
 </pre>
+</div>
+<div tags="manual" title="Manjaro network hints">
+<pre>!!Show IPs
+
+```
+ip -br a
+```
+
+!!Show open ports:
+
+```
+sudo lsof -i -P -n | grep LISTEN
+```
+!!Install telnet 
+ 
+```
+sudo pacman -S inetutils
+```
+!!Check open port:
+
+```
+telnet 127.0.0.1 80
+```
+
+!!Install tailscale
+
+
+```
+sudo pacman -S tailscale
+sudo systemctl enable --now tailscaled
+sudo tailscale up
+```
+
+
+Admin site:
+https://login.tailscale.com/admin/machines</pre>
 </div>
 <div created="20210510072801549" modified="20210510075028207" tags="manual" title="Mini WinPE (64bit) no network 260MB">
 <pre>Link:
