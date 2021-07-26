@@ -15250,6 +15250,43 @@ curl -sSL https://install.pi-hole.net | bash
 
 Torrentserver by Yurok:
 
+In aria2 docker:
+
+Install aria2ng docker
+
+Add port mapping 8090 -&gt;8090
+
+Run
+
+Enter aria2ng console in portainer as
+
+/bin/ash
+
+
+```
+wget https://github.com/YouROK/TorrServer/releases/download/MatriX.102/TorrServer-linux-arm64
+
+chmod +x TorrServer-linux-arm64
+
+vi start.sh
+```
+
+Add before the end
+
+
+```
+u-exec userid:$groupid /aria2/TorrServer-linux-arm64 &amp;
+```
+
+Fix portainer t open ports from the GUI:
+
+Endpoints/local/Public IP/ local IP of the docker server
+
+Restart the container.
+
+Open in browser IP:8090
+
+Not working, physical:
 
 ```
 wget https://github.com/YouROK/TorrServer/releases/download/MatriX.102/TorrServer-linux-arm64
