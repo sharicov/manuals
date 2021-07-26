@@ -286,6 +286,8 @@ Error message and password prompt
 
 <li>Scripts v2</li>
 
+<li>Scripts v3</li>
+
 <li>Show all installed packages in linux (yunohost)</li>
 
 <li>ssh autologin</li>
@@ -10293,13 +10295,15 @@ Error message and password prompt
 # [[PiKVM manual v7]]
 # [[Piwigo google photos replacement]]
 # [[R4S Yunohost installation from scratch]]
-# [[R4S Yunohost installation from scratch v10]]
+# [[R4S Yunohost installation from scratch v11]]
+# [[R4S Yunohost installation from scratch v9]]
 # [[Raspberry Pi4 wifi auto connect]]
 # [[redmi twrp v4]]
 # [[Rsync automatic on change inotifywait]]
 # [[SAMBA]]
 # [[Screen command]]
 # [[Script backup]]
+# [[Scripts v3]]
 # [[Show all installed packages in linux (yunohost)]]
 # [[ssh autologin]]
 # [[Test disk speed]]
@@ -15152,6 +15156,71 @@ Docker:
 ```
 curl -fsSL https://get.docker.com -o get-docker.sh
 ```
+
+Pi-hole:
+
+```
+curl -sSL https://install.pi-hole.net | bash
+```
+</pre>
+</div>
+<div tags="" title="Scripts v3">
+<pre>YNH installation (Debian buster only or lxc)
+
+```
+curl https://raw.githubusercontent.com/YunoHost/install_script/buster/install_yunohost | bash
+```
+
+
+Tailscale:
+
+```
+curl -fsSL https://pkgs.tailscale.com/stable/debian/buster.gpg | apt-key add -
+curl -fsSL https://pkgs.tailscale.com/stable/debian/buster.list | tee /etc/apt/sources.list.d/tailscale.list
+apt update
+apt upgrade
+apt install tailscale
+tailscale up
+
+or tailscale up –advertise-exit-node # to use as an exit node to internet from other pears of the private network
+
+Enable IP routing on R4S: echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf sudo sysctl -p /etc/sysctl.conf
+
+Check the page https://login.tailscale.com/admin/machines to view your VPN network.
+
+If IP routing required, enable it on the site, press on 3 dots menu (...) Review route settings Use as exit node -&gt; ON
+```
+
+Rclone:
+
+```
+curl https://rclone.org/install.sh | sudo bash 
+rclone configure
+```
+
+
+Docker:
+
+```
+curl -fsSL https://get.docker.com | bash
+
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce 
+
+```
+Update portainer
+Delete portainer and persistent volume
+
+```
+docker rm portainer
+docker volume rm  portainer_data
+
+```
+Reinstall portainer
+
+```
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
 
 Pi-hole:
 
