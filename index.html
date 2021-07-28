@@ -286,7 +286,7 @@ Error message and password prompt
 
 <li>Script backup</li>
 
-<li>Scripts v10</li>
+<li>Scripts v11</li>
 
 <li>Scripts v2</li>
 
@@ -10350,7 +10350,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v11]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Scripts v11]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v11]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -15150,7 +15150,7 @@ rclone copy -u --progress Yandex: mailru: --exclude '*.JPG' --exclude '*.jpg' --
 ```
 </pre>
 </div>
-<div tags="" title="Scripts v10">
+<div tags="" title="Scripts v11">
 <pre>YNH installation (Debian buster only or lxc)
 
 ```
@@ -15258,7 +15258,7 @@ Restart the container.
 Open in browser IP:8090
 
 
-USB Server by VirtualHere (USB sharing over IP):
+!!USB Server by VirtualHere (USB sharing over IP):
 
 Note: don't forget to open 7575 port if running on yunohost server or behind firewall
 
@@ -15336,7 +15336,6 @@ Location on config.ini
 
 Automatic install:
 
-
 ```
 nano /usr/local/etc/virtualhere/config.ini
 ```
@@ -15344,14 +15343,62 @@ nano /usr/local/etc/virtualhere/config.ini
 
 Manual install
 
-
 ```
 nano /root/config.ini
 ```
 
+!! USB over Network by fabulatech
+
+Download:
+
+```
+wget https://www.usb-over-network.com/usb-over-network-linux-packages/ftusbnet-6.0.21-arm64.tar.gz
+```
+
+Extract
+
+```
+tar -zxvf ftusbnet-6.0.21-arm64.tar.gz -C /opt
+```
+
+Copy config file to etc
+
+```
+cp /opt/ftusbnet/doc/ftusbnet.conf /etc
+```
+
+Open port:
+
+```
+yunohost firewall allow TCP 33000
+```
+
+Run
+
+```
+/opt/ftusbnet/sbin/ftusbnetd
+```
+
+Show available USB devices:
+
+```
+/opt/ftusbnet/bin/ftusbnetctl list
+```
+
+Enable USB device for sharing example:
+
+```
+/opt/ftusbnet/bin/ftusbnetctl share 0402
+```
+
+Eject USB in the client PC before killing the server and only then kill the server:
+
+```
+killall ftusbnetd
+```
 
 
-Not working, physical:
+!!!Not working, physical:
 
 ```
 wget https://github.com/YouROK/TorrServer/releases/download/MatriX.102/TorrServer-linux-arm64
