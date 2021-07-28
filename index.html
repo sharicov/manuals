@@ -288,7 +288,7 @@ Error message and password prompt
 
 <li>Scripts v2</li>
 
-<li>Scripts v7</li>
+<li>Scripts v8</li>
 
 <li>Show all installed packages in linux (yunohost)</li>
 
@@ -10346,7 +10346,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Scripts v7]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v11]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Scripts v8]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v11]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -15180,7 +15180,7 @@ curl -sSL https://install.pi-hole.net | bash
 ```
 </pre>
 </div>
-<div tags="" title="Scripts v7">
+<div tags="" title="Scripts v8">
 <pre>YNH installation (Debian buster only or lxc)
 
 ```
@@ -15287,6 +15287,44 @@ Restart the container.
 
 Open in browser IP:8090
 
+
+USB Server by VirtualHere (USB sharing over IP):
+
+Note: don't forget to open 7575 port if running on yunohost server or behind firewall
+
+
+```
+ yunohost firewall allow TCP 7575
+```
+Or
+
+
+```
+ufw allow 7575
+```
+
+Download USB server 
+Free version (not optimized
+
+
+```
+https://virtualhere.com/sites/default/files/usbserver/vhusbdarm64
+
+chmod +x vhusbdarm64
+
+./vhusbdarm64
+```
+
+
+arm64 (R4S optimized - license required):
+
+```
+wget https://virtualhere.com/sites/default/files/usbserver/vhusbdarm64a72a53
+
+chmod +x vhusbdarm64a72a53
+
+./vhusbdarm64a72a53
+```
 
 
 
