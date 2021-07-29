@@ -270,7 +270,7 @@ Error message and password prompt
 
 <li>R4S Yunohost installation from scratch</li>
 
-<li>R4S Yunohost installation from scratch v11</li>
+<li>R4S Yunohost installation from scratch v12</li>
 
 <li>R4S Yunohost installation from scratch v9</li>
 
@@ -280,7 +280,7 @@ Error message and password prompt
 
 <li>Rsync automatic on change inotifywait</li>
 
-<li>SAMBA v2</li>
+<li>SAMBA</li>
 
 <li>Screen command</li>
 
@@ -10350,7 +10350,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[SAMBA v2]] [[Scripts v12]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v11]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Scripts v12]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -13692,7 +13692,7 @@ lxc config device add ynh vartest disk source=/media/usb1/Movies path=/media
 
 </pre>
 </div>
-<div bag="default" created="20210415140628464" creator="sharicov" modified="20210604060903951" modifier="sharicov" revision="14" tags="ynh yunohost manual nanopi r4s" title="R4S Yunohost installation from scratch v11" type="text/vnd.tiddlywiki">
+<div bag="default" created="20210415140628464" creator="sharicov" modified="20210604060903951" modifier="sharicov" revision="14" tags="ynh yunohost manual nanopi r4s" title="R4S Yunohost installation from scratch v12" type="text/vnd.tiddlywiki">
 <pre>!!!Download Armbian image for R4S
 {{Download link}}
 
@@ -13766,7 +13766,7 @@ Create new password, user must be existent (default root):
 ```
 smbpasswd -a root
 mv /etc/samba/smb.conf{,.backup}
-nano /etc/sambe/smb.conf
+nano /etc/samba/smb.conf
 ```
 
 
@@ -14772,7 +14772,7 @@ chmod +x sync_yandex.sh
 
 </pre>
 </div>
-<div bag="default" created="20210417195404217" creator="sharicov" modified="20210417195430802" modifier="sharicov" revision="2" tags="manual" title="SAMBA v2" type="text/vnd.tiddlywiki">
+<div bag="default" created="20210417195404217" creator="sharicov" modified="20210417195430802" modifier="sharicov" revision="2" tags="manual" title="SAMBA" type="text/vnd.tiddlywiki">
 <pre>!!! SAMBA: 
 ```
 sudo apt-get install samba samba-common-bin –y 
@@ -14832,18 +14832,7 @@ Check connected clients:
 
 ```
 sudo smbstatus –shares 
-```
-
-
-!!Troubleshoot SAMBA
-
-```
-sudo systemctl unmask smbd
-sudo systemctl enable smbd
-sudo systemctl restart smbd
-smbclient -L 127.0.0.1
-```
-</pre>
+```</pre>
 </div>
 <div bag="default" created="20210417191240847" creator="sharicov" modified="20210418175549684" modifier="sharicov" revision="2" tags="manual" title="Screen command" type="text/vnd.tiddlywiki">
 <pre>!! Screen command with examples
