@@ -214,7 +214,7 @@ Error message and password prompt
 
 <li>dmesg</li>
 
-<li>Docker apps v3</li>
+<li>Docker apps v4</li>
 
 <li>Download link</li>
 
@@ -10350,7 +10350,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v12]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v3]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v12]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10837,7 +10837,7 @@ ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_
 <div tags="manual" title="dmesg">
 <pre>dmesg -hW</pre>
 </div>
-<div created="20210419122621050" modified="20210419140132011" tags="manual" title="Docker apps v3">
+<div created="20210419122621050" modified="20210419140132011" tags="manual" title="Docker apps v4">
 <pre>!! Nextcloud 21 with samba client for external storage
 
 Docker image:
@@ -10850,13 +10850,32 @@ martadinata666/nextcloud-smb
 
 To install collabora inside the docker run on the `HOST` computer:
 
+https://collabora-online-for-nextcloud.readthedocs.io/en/latest/install/
+
+
 ```
 docker run -t -d -p 9980:9980 -e "extra_params=--o:ssl.enable=false" collabora/code
 ```
 
-Nextcloud/Settings/Collabora online should be  updated automatically with:
+In Nextcloud/Settings/Collabora online set:
 
-`use your own server: http://192.168.3.70:9999/custom_apps/richdocumentscode_arm64/proxy.php?req=`
+```
+http://192.168.3.70:9980
+```
+
+To reset password:
+in docker enter console as  www-data 
+Run 
+
+```
+./occ user:resetpassword sharicov
+```
+
+Alternative (not working)
+
+Example: Nextcloud dock runing on 8888 Nextcloud/Settings/Collabora online should be  updated automatically with:
+
+`use your own server: http://192.168.3.70:8888/custom_apps/richdocumentscode_arm64/proxy.php?req=`
 
 !!! External storage (samba)
 Nextcloud +App
@@ -10919,7 +10938,12 @@ Can be changed in settings once logged in
 https://hub.docker.com/r/klutchell/tiddlywiki
 https://hub.docker.com/r/m0wer/tiddlywiki
 
-</pre>
+!!Nextcloud allow trusted_domains
+nano /var/www/html/config/config.php
+
+add 1 =&gt; ... IPADDRESS
+
+Or enter docker console as www-data with command: ./occ config:system:set trusted_domains 1 --value=IPADDRESS</pre>
 </div>
 <div bag="default" created="20210415141054752" creator="sharicov" modified="20210416140309601" modifier="sharicov" revision="3" tags="manual" title="Download link" type="text/vnd.tiddlywiki">
 <pre>Armbian image download link from here: 
