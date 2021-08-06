@@ -13518,8 +13518,9 @@ CODE Docker image
 Install Docker on a server.
 
 docker pull collabora/code
-docker run -t -d -p 9980:9980 -e "extra_params=-o:ssl.enable=false" collabora/code
-for testing puposes ssl is disabled, but we advise you to always have it on
+docker run -t -d -p 9980:9980 -e "extra_params=-o:ssl.enable=true" collabora/code
+keep ssl is enabled to avoid errors http over https
+
 
 You can find all of the information about the docker image, such as the env variables, etc... Docker CODE official documentation.
 
@@ -13528,7 +13529,7 @@ Go to Cells Console &gt; Application Parameters &gt; All Plugins and enable the 
 
 Change the plugin parameters to:
 
-Libre office ssl: true if you want secured communication between collabora and pydio or false
+Libre office ssl: ''true ''if you want secured communication between collabora and pydio or false (false causes errors)
 
 Libre office Host: &lt;host where CODE is running&gt;
 
@@ -13541,14 +13542,19 @@ Switch to a workspace and right-click to display a pop-up menu from which you ca
 
 Double-click on the new file to edit. You are now able to edit it directly in Pydio Cells using the Collabora online editor!
 
-To start pydio after reboot run:
+!! To start pydio after reboot run:
 
 
 ```
 ./cell start
 ```
 
-
+!! To add physical directory (/media/usb1)
+Cells console
+Storage
+Data Source
+Import Existing data
+choose folder
 
 Install guide: https://pydio.com/en/docs/v8/installation-guide
 https://computingforgeeks.com/install-and-configure-pydio-file-sharing-server-on-ubuntu-18-04-lts/
