@@ -268,7 +268,7 @@ Error message and password prompt
 
 <li>Piwigo google photos replacement</li>
 
-<li>pydio arm64 collabora v1</li>
+<li>pydio arm64 collabora v2</li>
 
 <li>R4S Yunohost installation from scratch</li>
 
@@ -10287,7 +10287,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[pydio arm64 collabora v1]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v13]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[pydio arm64 collabora v2]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v13]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -13477,7 +13477,7 @@ lxc config device rm ynh InstantUpload
 ```
 </pre>
 </div>
-<div tags="" title="pydio arm64 collabora v1">
+<div tags="" title="pydio arm64 collabora v2">
 <pre>First install mariadb
 apt install mariadb-server
 
@@ -13512,6 +13512,31 @@ In database select user pydio and database pydio (as created initially)
 Admin user: choose your username and password
 
 For collabora office server install in docker: collabora/code (port 9980)
+
+
+CODE Docker image
+Install Docker on a server.
+
+docker pull collabora/code
+docker run -t -d -p 9980:9980 -e "extra_params=-o:ssl.enable=false" collabora/code
+for testing puposes ssl is disabled, but we advise you to always have it on
+
+You can find all of the information about the docker image, such as the env variables, etc... Docker CODE official documentation.
+
+Configure Pydio Plugin to connect to CODE
+Go to Cells Console &gt; Application Parameters &gt; All Plugins and enable the Collabora Online plugin.
+
+Change the plugin parameters to:
+
+Libre office ssl: true if you want secured communication between collabora and pydio or false
+Libre office Host: &lt;host where CODE is running&gt;
+Libre office Port: &lt;CODE instance port&gt; usually it is running on 9980
+Remember to save.
+
+Test and start editing docs
+Switch to a workspace and right-click to display a pop-up menu from which you can create a new document.
+
+Double-click on the new file to edit. You are now able to edit it directly in Pydio Cells using the Collabora online editor!
 
 Install guide: https://pydio.com/en/docs/v8/installation-guide
 https://computingforgeeks.com/install-and-configure-pydio-file-sharing-server-on-ubuntu-18-04-lts/</pre>
