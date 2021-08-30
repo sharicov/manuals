@@ -240,6 +240,8 @@ Error message and password prompt
 
 <li>Linux processes and services</li>
 
+<li>Linux programs on android termux (nextcloud example)</li>
+
 <li>Linux Swap setup</li>
 
 <li>Linux touch to click v1</li>
@@ -10293,7 +10295,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v14]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Linux programs on android termux (nextcloud example)]] [[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v14]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -12031,6 +12033,56 @@ Restart php service to fix solve 502 error (get exact phpX.X-fpm use service –
 sudo systemctl restart php7.3-fpm 
 ```
 </pre>
+</div>
+<div tags="" title="Linux programs on android termux (nextcloud example)">
+<pre>install termux in google play
+get storage permissions
+termux-setup-storage 
+pkg install root-repo
+pkg upgrade
+pkg install openssh
+pkg install php php-fpm sqlite coreutils openssl-tool git 
+
+For rooted device install sudo:
+pkg install tsu
+
+to connect from other computer run in termux:
+To set password:
+passwd SETYOURPASSWORD
+Run ssh server (port 8022):
+sshd
+
+On guest computer run:
+ssh IPADRESS -p 8022
+
+Install buster
+
+pkg install proot-distro
+proot-distro list
+proot-distro install debian
+proot-distro login debian
+apt update &amp;&amp; apt upgrade
+apt install sudo
+ curl https://raw.githubusercontent.com/YunoHost/install_script/main/bullseye_do_not_install_it_in_prod | bash
+
+To reset storage:
+termux-setup-storage 
+non working - dropbear/nextcloud
+To run ssh server on 2222 port in foreground:
+dropbear -F -p 2222
+
+cd /storage/emulated/0/ &amp;&amp; git clone https://github.com/nextcloud/server.git nextcloud
+cd /storage/emulated/0/nextcloud/ &amp;&amp; git submodule update --init
+php -S 0.0.0.0:8080 -t /storage/emulated/0/nextcloud/
+
+In web browser locally:
+Go to http://0.0.0.0:8080
+Set an admin username and password in the
+(SQLite will be used as database)
+
+Source: https://github.com/jancborchardt/nextcloud-scripts/blob/master/nextcloud-on-android.md?utm_source=pocket_mylist
+
+https://www.reddit.com/r/termux/comments/mkzoyd/showcase_fully_functional_nextcloud_server_on/gtn670f/?utm_source=share&amp;utm_medium=web2x&amp;context=3</pre>
 </div>
 <div bag="default" created="20210417195046693" creator="sharicov" modified="20210417195455610" modifier="sharicov" revision="3" tags="manual" title="Linux Swap setup" type="text/vnd.tiddlywiki">
 <pre>Linux SWAP setup 
@@ -15473,27 +15525,9 @@ echo 'cp /aria2/config.db /aria2/data/' &gt;&gt; start.sh
 echo '' &gt;&gt; start.sh
 
 echo 'su-exec $userid:$groupid /aria2/TorrServer-linux-arm64 &amp;' &gt;&gt; start.sh
-
-./start.sh
 ```
 
-To restore config.db from external disk mapped as /aria2/data/
-
-
-```
-killall TorrServer-linux-arm64
-
-rm config.db
-
-cp /aria2/data/config.db config.db
-
-./start.sh
-```
-
-
-========
-Old manual way======
-
+Old manual way
 vi start.sh
 
 Add before the end
@@ -15502,8 +15536,6 @@ Add before the end
 cp /aria2/config.db /aria2/data/
 su-exec $userid:$groupid /aria2/TorrServer-linux-arm64 &amp;
 ```
-
-=======End=====
 
 Fix portainer t open ports from the GUI:
 
