@@ -15467,7 +15467,11 @@ wget https://github.com/YouROK/TorrServer/releases/download/MatriX.104/TorrServe
 
 chmod +x TorrServer-linux-arm64
 
+echo '' &gt;&gt; start.sh
 echo 'cp /aria2/config.db /aria2/data/' &gt;&gt; start.sh
+
+echo '' &gt;&gt; start.sh
+
 echo 'su-exec $userid:$groupid /aria2/TorrServer-linux-arm64 &amp;' &gt;&gt; start.sh
 ```
 
