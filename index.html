@@ -15473,9 +15473,27 @@ echo 'cp /aria2/config.db /aria2/data/' &gt;&gt; start.sh
 echo '' &gt;&gt; start.sh
 
 echo 'su-exec $userid:$groupid /aria2/TorrServer-linux-arm64 &amp;' &gt;&gt; start.sh
+
+./start.sh
 ```
 
-Old manual way
+To restore config.db from external disk mapped as /aria2/data/
+
+
+```
+killall TorrServer-linux-arm64
+
+rm config.db
+
+cp /aria2/data/config.db config.db
+
+./start.sh
+```
+
+
+========
+Old manual way======
+
 vi start.sh
 
 Add before the end
@@ -15484,6 +15502,8 @@ Add before the end
 cp /aria2/config.db /aria2/data/
 su-exec $userid:$groupid /aria2/TorrServer-linux-arm64 &amp;
 ```
+
+=======End=====
 
 Fix portainer t open ports from the GUI:
 
