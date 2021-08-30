@@ -218,6 +218,8 @@ Error message and password prompt
 
 <li>Download link</li>
 
+<li>Draft of 'Scripts v13'</li>
+
 <li>Enable root login over SSH:</li>
 
 <li>Experimental not working</li>
@@ -10293,7 +10295,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v13]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Draft of 'Scripts v13']] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -10942,6 +10944,301 @@ Or enter docker console as www-data with command: ./occ config:system:set truste
 https://www.armbian.com/nanopi-r4s/ 
 
 !!!! Note: only daily Hirsute build worked with both USB at the time of writing this manual</pre>
+</div>
+<div draft.of="Scripts v13" draft.title="Scripts v14" tags="" title="Draft of 'Scripts v13'">
+<pre>YNH installation (Debian buster only or lxc)
+
+```
+curl https://raw.githubusercontent.com/YunoHost/install_script/buster/install_yunohost | bash
+```
+
+
+Tailscale:
+
+```
+curl -fsSL https://pkgs.tailscale.com/stable/debian/buster.gpg | apt-key add -
+curl -fsSL https://pkgs.tailscale.com/stable/debian/buster.list | tee /etc/apt/sources.list.d/tailscale.list
+apt update
+apt upgrade
+apt install tailscale
+tailscale up
+
+or tailscale up –advertise-exit-node # to use as an exit node to internet from other pears of the private network
+
+Enable IP routing on R4S: echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf sudo sysctl -p /etc/sysctl.conf
+
+Check the page https://login.tailscale.com/admin/machines to view your VPN network.
+
+If IP routing required, enable it on the site, press on 3 dots menu (...) Review route settings Use as exit node -&gt; ON
+```
+
+Rclone:
+
+```
+curl https://rclone.org/install.sh | sudo bash 
+rclone configure
+```
+
+
+Docker:
+
+```
+curl -fsSL https://get.docker.com | bash
+
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce 
+
+```
+Update portainer
+Delete portainer and persistent volume
+
+```
+docker rm portainer
+docker volume rm  portainer_data
+
+```
+Reinstall portainer
+
+
+
+```
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+```
+
+Monitorix - system monitoring with web gui
+
+
+```
+apt install monitorix
+```
+
+
+Access:
+
+YOURIP:8080/monitorix
+
+Pi-hole:
+
+```
+curl -sSL https://install.pi-hole.net | bash
+```
+
+Torrentserver by Yurok:
+
+In aria2 docker:
+
+Install aria2ng docker
+
+Add port mapping 8090 -&gt;8090
+
+Run
+
+Enter hurlenko/aria2-ariang console in portainer as
+
+/bin/ash
+
+
+```
+wget https://github.com/YouROK/TorrServer/releases/download/MatriX.102/TorrServer-linux-arm64
+
+chmod +x TorrServer-linux-arm64
+
+vi start.sh
+```
+
+Add before the end
+
+
+```
+cp /aria2/config.db /aria2/data/
+su-exec $userid:$groupid /aria2/TorrServer-linux-arm64 &amp;
+```
+
+Fix portainer t open ports from the GUI:
+
+Endpoints/local/Public IP/ local IP of the docker server
+
+Restart the container.
+
+Open in browser IP:8090
+
+
+!!USB Server by VirtualHere (USB sharing over IP):
+
+Note: don't forget to open 7575 port if running on yunohost server or behind firewall
+
+
+```
+ yunohost firewall allow TCP 7575
+```
+Or
+
+
+```
+ufw allow 7575
+```
+
+Automatic install:
+
+Free
+
+
+```
+curl https://raw.githubusercontent.com/virtualhere/script/main/install_server | sudo sh
+```
+
+Paid - more than 1 device and processor optimized by architecture:
+
+
+```
+curl https://raw.githubusercontent.com/virtualhere/script/main/install_server | sudo sh
+```
+
+List of architectures:
+
+https://www.virtualhere.com/usb_server_software
+
+Uninstall:
+
+
+```
+curl https://raw.githubusercontent.com/virtualhere/script/main/uninstall_server | sudo sh
+```
+
+Stop virtualhere server (arm64 exampe):
+
+
+```
+ killall vhusbdarm64
+```
+
+Script site: https://github.com/virtualhere/script
+Manual installation:
+
+Download USB server 
+Free version (not optimized
+
+
+```
+https://virtualhere.com/sites/default/files/usbserver/vhusbdarm64
+
+chmod +x vhusbdarm64
+
+./vhusbdarm64
+```
+
+
+arm64 (R4S optimized - license required):
+
+```
+wget https://virtualhere.com/sites/default/files/usbserver/vhusbdarm64a72a53
+
+chmod +x vhusbdarm64a72a53
+
+./vhusbdarm64a72a53
+```
+
+Ignored devices are written in config.ini
+To remove:
+Stop server
+edit config ini removing ignored device line completely
+
+Location on config.ini
+
+Automatic install:
+
+```
+nano /usr/local/etc/virtualhere/config.ini
+```
+
+
+Manual install
+
+```
+nano /root/config.ini
+```
+
+!! USB over Network by fabulatech
+
+Download:
+
+```
+wget https://www.usb-over-network.com/usb-over-network-linux-packages/ftusbnet-6.0.21-arm64.tar.gz
+```
+
+Extract
+
+```
+tar -zxvf ftusbnet-6.0.21-arm64.tar.gz -C /opt
+```
+
+Copy config file to etc
+
+```
+cp /opt/ftusbnet/doc/ftusbnet.conf /etc
+```
+
+Open port:
+
+```
+yunohost firewall allow TCP 33000
+```
+
+Run
+
+```
+/opt/ftusbnet/sbin/ftusbnetd
+```
+
+Show available USB devices:
+
+```
+/opt/ftusbnet/bin/ftusbnetctl list
+```
+
+Enable USB device for sharing example:
+
+```
+/opt/ftusbnet/bin/ftusbnetctl share 0402
+```
+
+Eject USB in the client PC before killing the server and only then kill the server:
+
+```
+killall ftusbnetd
+```
+
+Uninstall ftusbnet:
+
+
+```
+rm -r /opt/ftusbnet
+rm /etc/ftusnet.conf
+```
+
+
+!!!Not working, physical:
+
+```
+wget https://github.com/YouROK/TorrServer/releases/download/MatriX.102/TorrServer-linux-arm64
+chmod +x TorrServer-linux-arm64
+```
+
+
+Autostart 
+
+
+```
+nano /etc/rc.local
+```
+
+add before ''exit 0''
+
+```
+/root/TorrServer-linux-arm64 &amp;
+```
+</pre>
 </div>
 <div tags="" title="Enable root login over SSH:">
 <pre>As root, edit the sshd_config file in /etc/ssh/sshd_config:
