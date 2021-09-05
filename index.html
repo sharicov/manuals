@@ -292,6 +292,8 @@ Error message and password prompt
 
 <li>redmi twrp v4</li>
 
+<li>Remote desktop win 11</li>
+
 <li>Rsync automatic on change inotifywait</li>
 
 <li>SAMBA v1</li>
@@ -10299,7 +10301,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="Links [[Clean temporary cache in windows]] [[Linux programs on android termux (nextcloud example)]] [[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v14]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Remote desktop win 11]] Links [[Clean temporary cache in windows]] [[Linux programs on android termux (nextcloud example)]] [[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v14]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v1]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -15005,6 +15007,23 @@ fastboot flash recovery twrp-3.1.X-XXX.img
 fastboot flashing unlock
 
 fastboot reboot</pre>
+</div>
+<div tags="" title="Remote desktop win 11">
+<pre>Settings &gt; RemoteDesktop &gt; On
+
+Remote desktop users &gt; Select existing users ''with password''
+
+gpedit.msc
+
+Computer Configuration &gt; Administrative Templates &gt; System &gt; Credentials Delegation
+
+Double click ''Restrict delegation of credentials to the remote servers''
+
+Select ''Disable''
+
+Note: only user with password allowed.
+
+</pre>
 </div>
 <div bag="default" created="20210417192328826" creator="sharicov" modified="20210417192853677" modifier="sharicov" revision="1" tags="manual" title="Rsync automatic on change inotifywait" type="text/vnd.tiddlywiki">
 <pre>!! Rsync yandex disk(recommended to use rclone instead, separate manual): 
