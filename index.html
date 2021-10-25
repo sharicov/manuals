@@ -15271,7 +15271,7 @@ smbclient -L 127.0.0.1
 
 
 ```
-strCommand = "cmd /c scrcpy.exe --max-size 1024 --always-on-top"
+strCommand = "cmd /c scrcpy.exe --max-size 1024 --always-on-top  --stay-awake"
 
 For Each Arg In WScript.Arguments
     strCommand = strCommand &amp; " """ &amp; replace(Arg, """", """""""""") &amp; """"
@@ -15295,9 +15295,19 @@ Always on top:
 --always-on-top
 ```
 
+Prevent sleep while connected:
 
+
+```
+ --stay-awake
+```
+
+Alternative awake:
 to prevent sleep when connected to USB:
 in developer options check on stay awake option
+
+Source:
+https://github.com/Genymobile/scrcpy#always-on-top
 </pre>
 </div>
 <div bag="default" created="20210417191240847" creator="sharicov" modified="20210418175549684" modifier="sharicov" revision="2" tags="manual" title="Screen command" type="text/vnd.tiddlywiki">
