@@ -15267,7 +15267,36 @@ smbclient -L 127.0.0.1
 </pre>
 </div>
 <div tags="" title="scrcpy android phone show in windows">
-<pre></pre>
+<pre>create file with.vbs extension with the flowing content:
+
+
+```
+strCommand = "cmd /c scrcpy.exe --max-size 1024 --always-on-top"
+
+For Each Arg In WScript.Arguments
+    strCommand = strCommand &amp; " """ &amp; replace(Arg, """", """""""""") &amp; """"
+Next
+
+CreateObject("Wscript.Shell").Run strCommand, 0, false
+
+```
+parameters description:
+
+Prevent crash on some phones like BISON
+
+```
+--max-size 1024
+```
+
+Always on top:
+
+
+```
+--always-on-top
+```
+
+
+</pre>
 </div>
 <div bag="default" created="20210417191240847" creator="sharicov" modified="20210418175549684" modifier="sharicov" revision="2" tags="manual" title="Screen command" type="text/vnd.tiddlywiki">
 <pre>!! Screen command with examples
