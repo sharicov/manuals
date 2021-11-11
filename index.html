@@ -292,6 +292,8 @@ Error message and password prompt
 
 <li>Piwigo google photos replacement</li>
 
+<li>Porteus_Kiosk_remastering</li>
+
 <li>pydio arm64 collabora v3</li>
 
 <li>R4S Yunohost installation from scratch</li>
@@ -10325,7 +10327,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[DIR tree HDD content]] [[Import delimited csv text to excel 365]] [[scrcpy android phone show in windows]] [[install apps without windows store]] [[android subsystem on windows]] [[Download Microsoft Store app locally]] [[Remote desktop without password (blank password)]] [[Bypass TPM windows 11 install]] [[gmail attachments to google drive (gdrive)]] [[tailscale fix windows]] [[Turn On or Off &quot;Always show all icons and notifications on the taskbar&quot; in Control Panel]] rsync [[USB disk mount (fstab)]] [[Remote desktop win 11]] Links [[Clean temporary cache in windows]] [[Linux programs on android termux (nextcloud example)]] [[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v15]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v2]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="Porteus_Kiosk_remastering [[DIR tree HDD content]] [[Import delimited csv text to excel 365]] [[scrcpy android phone show in windows]] [[install apps without windows store]] [[android subsystem on windows]] [[Download Microsoft Store app locally]] [[Remote desktop without password (blank password)]] [[Bypass TPM windows 11 install]] [[gmail attachments to google drive (gdrive)]] [[tailscale fix windows]] [[Turn On or Off &quot;Always show all icons and notifications on the taskbar&quot; in Control Panel]] rsync [[USB disk mount (fstab)]] [[Remote desktop win 11]] Links [[Clean temporary cache in windows]] [[Linux programs on android termux (nextcloud example)]] [[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v15]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v2]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -13789,6 +13791,83 @@ To delete `InstantUpload` device:
 lxc config device rm ynh InstantUpload
 ```
 </pre>
+</div>
+<div tags="" title="Porteus_Kiosk_remastering">
+<pre>Squahfs create xzm module 
+
+ 
+
+Enter source directory contains binaries extracted from deb: Debian -- Package Download Selection -- liblz4-1_1.9.3-2_amd64.deb 
+
+Copy necessary libraries into local usr/lib directory 
+
+ 
+
+Run: 
+
+mksquashfs . shellinabox.xzm -comp xz -b 256k -Xbcj x86 –noappend 
+
+ 
+
+Add to xzm directory of the iso. 
+
+ 
+
+Tailscale vpn standalone install 
+
+ 
+
+Boot from porteus kiosk iso (ventoy) 
+
+Go through setup wizard 
+
+Enable ssh, vnc, right-click, screen off, wifi, media show 
+
+Save as ISO 
+
+Re-insert USB to see it in target menu to save the ISO 
+
+ 
+
+Boot from configured iso (ventoy) 
+
+Connect to linux server running shellianbox and ssh back to the machine (find IP in router). 
+
+Enter usb with tailscale files (extracted from tar.gz with 7zip) and libbpf.so.0.3.0 extracted from libbpf0 deb package (/usr/lib/x86.../) and renamed it to libbpf.so 
+
+Enter /media/TAILSCALE_DIR/ 
+
+Copy libbpf.so to /usr/lib/ 
+
+Run: 
+
+tailscaled 
+
+Run (in other window) 
+
+tailscale up 
+
+Click on login link 
+
+Start using (ssh to the tailscale IP from outside) 
+
+ 
+
+Packages download from here: Debian -- Package Search Results -- search (serach package contents) 
+
+ 
+
+Shellinabox 
+
+No SSL run in background 
+
+Shellinaboxd –t -b 
+
+ 
+
+ 
+
+ </pre>
 </div>
 <div tags="" title="pydio arm64 collabora v3">
 <pre>First install mariadb
