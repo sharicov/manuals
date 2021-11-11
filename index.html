@@ -13806,7 +13806,7 @@ Create squashfs-root directory and usr inside of it.
 
 chmod 755 squashfs-root
 
-Copy necessary libraries into local usr/lib directory and binaries to usr/bin directory
+Copy necessary libraries into local usr/lib64 directory and binaries to usr/bin directory
 
  
 Run: 
@@ -13918,7 +13918,9 @@ dd if=Porteus-Kiosk.iso of=/dev/sdX
 
  
 
- 
+!Brightness:
+
+echo  0 &gt; /sys/class/backlight/acpi_video0/brightness
 
  </pre>
 </div>
