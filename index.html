@@ -13802,14 +13802,16 @@ NOTE2: In vmware run arp -a and search for 192.168.230.X to find the IP of the g
 
 Enter source directory contains binaries extracted from deb: Debian -- Package Download Selection -- liblz4-1_1.9.3-2_amd64.deb 
 
-Copy necessary libraries into local usr/lib directory 
+Create squashfs-root directory and usr inside of it.
+
+chmod 755 squashfs-root
+
+Copy necessary libraries into local usr/lib directory and binaries to usr/bin directory
 
  
-
 Run: 
 
-mksquashfs . shellinabox.xzm -comp xz -b 256k -Xbcj x86 –noappend 
-
+mksquashfs squashfs-root local-settings.xzm -comp xz -b 256K -Xbcj x86 -noappend
  
 
 Add to xzm directory of the iso. 
