@@ -13812,11 +13812,16 @@ Copy necessary libraries into local usr/lib directory and binaries to usr/bin di
 Run: 
 
 mksquashfs squashfs-root local-settings.xzm -comp xz -b 256K -Xbcj x86 -noappend
- 
+
+chmod 0700 local-settings.xzm 
+
+to see current permission in octal run:
+
+stat local-settings.xzm 
 
 Add to xzm directory of the iso. 
 
- 
+create iso using .sh script insode porteus kisk iso, or with poweriso
 
 !Tailscale vpn standalone install 
 
