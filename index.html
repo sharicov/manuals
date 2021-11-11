@@ -13922,7 +13922,9 @@ dd if=Porteus-Kiosk.iso of=/dev/sdX
 
 echo  0 &gt; /sys/class/backlight/acpi_video0/brightness
 
- </pre>
+ For intel GPU: 
+
+echo 2000 &gt; /sys/class/backlight/intel_backlight/brightness  </pre>
 </div>
 <div tags="" title="pydio arm64 collabora v3">
 <pre>First install mariadb
