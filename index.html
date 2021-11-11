@@ -13800,6 +13800,26 @@ NOTE4: module must reside in squashfs-root directory before compressing
 
 Manuals: https://porteus-kiosk.org/parameters.html#run_command
 
+!Prequisites:
+
+Boot from porteus kiosk iso (ventoy) 
+
+Go through setup wizard 
+
+Enable ssh, vnc, right-click, screen off, wifi, media show 
+
+Save as ISO 
+
+Re-insert USB to see it in target menu to save the ISO 
+
+ 
+
+Boot from configured iso (ventoy) 
+
+Connect to linux server running shellianbox and ssh back to the machine (find IP in router). 
+
+
+
 !Squahfs create xzm module 
 
  
@@ -13831,21 +13851,6 @@ create iso using .sh script insode porteus kisk iso, or with poweriso
 
  
 
-Boot from porteus kiosk iso (ventoy) 
-
-Go through setup wizard 
-
-Enable ssh, vnc, right-click, screen off, wifi, media show 
-
-Save as ISO 
-
-Re-insert USB to see it in target menu to save the ISO 
-
- 
-
-Boot from configured iso (ventoy) 
-
-Connect to linux server running shellianbox and ssh back to the machine (find IP in router). 
 
 Enter usb with tailscale files (extracted from tar.gz with 7zip) and libbpf.so.0.3.0 extracted from libbpf0 deb package (/usr/lib/x86.../) and renamed it to libbpf.so 
 
