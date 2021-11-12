@@ -13978,7 +13978,9 @@ iwlist wlan0 scanning |grep ESSID
 
 wpa_passphrase NetworkESSID P@SSWORD &gt; wpa_supplicant.conf
 
-wpa_supplicant -i wlan0 -c wpa_supplicant.conf
+wpa_supplicant -iwlan0 -c wpa_supplicant.conf
+
+Note: -i without space after it!!!
 
 </pre>
 </div>
