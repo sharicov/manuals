@@ -292,6 +292,8 @@ Error message and password prompt
 
 <li>Piwigo google photos replacement</li>
 
+<li>Porteus kiosk changelog v8</li>
+
 <li>Porteus kiosk chrome extensions v2</li>
 
 <li>porteus kiosk module mastering (tilda example)</li>
@@ -10331,7 +10333,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="[[Porteus kiosk chrome extensions v2]] [[porteus kiosk module mastering (tilda example)]] [[Porteus_Kiosk_remastering v8]] [[DIR tree HDD content]] [[Import delimited csv text to excel 365]] [[scrcpy android phone show in windows]] [[install apps without windows store]] [[android subsystem on windows]] [[Download Microsoft Store app locally]] [[Remote desktop without password (blank password)]] [[Bypass TPM windows 11 install]] [[gmail attachments to google drive (gdrive)]] [[tailscale fix windows]] [[Turn On or Off &quot;Always show all icons and notifications on the taskbar&quot; in Control Panel]] rsync [[USB disk mount (fstab)]] [[Remote desktop win 11]] Links [[Clean temporary cache in windows]] [[Linux programs on android termux (nextcloud example)]] [[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v15]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v2]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
+<div list="[[Porteus kiosk changelog v8]] [[Porteus kiosk chrome extensions v2]] [[porteus kiosk module mastering (tilda example)]] [[Porteus_Kiosk_remastering v8]] [[DIR tree HDD content]] [[Import delimited csv text to excel 365]] [[scrcpy android phone show in windows]] [[install apps without windows store]] [[android subsystem on windows]] [[Download Microsoft Store app locally]] [[Remote desktop without password (blank password)]] [[Bypass TPM windows 11 install]] [[gmail attachments to google drive (gdrive)]] [[tailscale fix windows]] [[Turn On or Off &quot;Always show all icons and notifications on the taskbar&quot; in Control Panel]] rsync [[USB disk mount (fstab)]] [[Remote desktop win 11]] Links [[Clean temporary cache in windows]] [[Linux programs on android termux (nextcloud example)]] [[owncloud commands]] [[Raspberry boot from USB and GUI raspbian lite]] [[Nextcloud too many requests troubleshooting]] [[pydio arm64 collabora v3]] [[SAMBA v1]] [[Windows shortcuts v1]] [[Useful Linux commands v1]] [[create ext4 partition]] [[yunohost raspberry disk system samba yandex screen rsync ssh v16]] [[Scripts v15]] [[Scripts v9]] [[Enable root login over SSH:]] [[R4S Yunohost installation from scratch v12]] [[Scripts v2]] dmesg [[Manjaro network hints]] [[yunohost buster lxc tailscale]] tinycore_2021_v1 [[Auto enable Bluetooth on boot]] [[Manjaro lxd lxc v10]] [[Linux touch to click v1]] [[Bluetooth Linux v2]] [[Gparted ISO remaster]] [[Windows Server 2022 settings v1]] [[PiKVM manual v7]] [[Parsec remote Linux acceleration fix]] [[FreshRSS add feed direct link]] [[Mini WinPE (64bit) no network 260MB]] [[Generate github token, setup TiddlyWiki on github]] [[PhotoPrism Google Photos replacement]] [[Piwigo google photos replacement]] [[R4S Yunohost installation from scratch v9]] [[Pigallery 2 google photo replacement best]] [[webmin web based monitoring and management]] [[redmi twrp v4]] [[LXC GUI manual]] $:/Import [[Log2RAM v3]] Launcher Aria2_AriaNG_GUI_Docker_with_mapping_manual_v3 [[Docker apps v4]] [[yunohost raspberry general v5]] [[R4S Yunohost installation from scratch]] [[Install WSL2 in Windows 10 v2]] [[Mount ext4 in windows wsl]] [[Disk health monitoring]] [[fsck check EXT4 disk v2]] $:/ControlPanel [[Screen command]] [[aria2 torrent native]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.24-prerelease">
@@ -13794,6 +13796,288 @@ To delete `InstantUpload` device:
 ```
 lxc config device rm ynh InstantUpload
 ```
+</pre>
+</div>
+<div tags="" title="Porteus kiosk changelog v8">
+<pre>!!shellinabox web terminal:
+
+usage:
+
+http://127.0.0.1:4200
+
+
+
+!!rclone - mount/manipulate cloud storages
+
+usage (mount requires fuse): 
+
+
+```
+rclone config
+
+rclone lsd yandex:/
+
+rclone mount yandex:/ /media/yandex
+```
+
+!!ventoy 1.0.61 - multiboot USB
+
+usage:
+
+
+```
+/usr/ventoy/VentoyWeb.sh
+```
+
+!!7zz - extracts all compressed formats
+
+usage:
+
+```
+7zz x archive.ext
+```
+
+!!dpkg - unpack deb files to create xzm modules
+
+usage:
+
+
+```
+dpkg -x package.deb folder
+```
+!! Tailscale VPN
+
+usage:
+
+
+```
+tailscaled &amp;
+
+tailscaled &amp;
+
+tailscale up&amp;
+```
+
+Login using proposed in terminal link:
+
+https://login.tailscale.com/...
+
+See all connected computers:
+
+https://login.tailscale.com/
+
+!!squashfs - creates xzm module
+
+usage:
+
+
+```
+mksquashfs squashfs-root module_name.xzm -comp xz -b 256K -Xbcj x86 -noappend
+
+```
+copy xzm module to xzm directory in the ISO
+
+
+To extract existing module:
+
+```
+unsquashfs module_name.xzm
+```
+
+!!Aria2c - download manager
+
+usage:
+
+works with aria2 chrome extension
+
+mcedit /root/aria2.conf
+
+Add:
+
+
+```
+dir=/media                                                                                                                                                                                    
+max-overall-upload-limit=100K                                                                                                                                                                 
+disk-cache=0                                                                                                                                                                                  
+#file-allocation=trunc                                                                                                                                                                        
+file-allocation=none                                                                                                                                                                        
+seed-time=0                                                                                                                                                                                   
+check-integrity=true                                                                                                                                                                          
+realtime-chunk-checksum=true                                                                                                                                                                  
+always-resume=true                                                                                                                                                                            
+auto-file-renaming=false                                                                                                                                                                      
+continue=true                                                                                                                                                                                 
+remote-time=true                                                                                                                                                                              
+#daemon                                                                                                                                                                                       
+log=/media/aria2c.log                                                                                                                                                                         
+log-level=error                                                                                                                                                                               
+bt-exclude-tracker="*"
+```
+
+
+Start aria2c (autorun: mcedit squashfs-root/etc/xdg/openbox/autostart)
+
+
+```
+aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all -D --conf-path=/root/aria2.conf 
+```
+
+!! Gparted - partition manager
+
+usage:
+
+
+```
+gparted
+```
+
+
+!Chrome extensions:
+
+setting file: 
+''/etc/opt/chrome/policies/managed/chrome.json
+''
+
+!!Chrome airng extension:
+
+```
+mcedit /etc/opt/chrome/policies/managed/chrome.json
+```
+
+add:
+
+
+```
+"ExtensionInstallWhitelist": [ "mpkodccbngfoacfalldjimigbofkhgjn", ...
+```
+
+install extension from here:
+
+https://chrome.google.com/webstore/detail/aria2-for-chrome/mpkodccbngfoacfalldjimigbofkhgjn/related?hl=en
+
+setup in airang extension settings window in browser
+
+
+!!Office editing chrome extension (google):
+add:
+
+
+```
+mcedit /etc/opt/chrome/policies/managed/chrome.json
+```
+
+Add:
+
+```
+"ExtensionInstallWhitelist": [ "gbkeegbaiigmenfmjfclcdgdpimamgkj", ...
+```
+
+
+Manual installation of the extension  here:
+
+https://chrome.google.com/webstore/detail/office-editing-for-docs-s/gbkeegbaiigmenfmjfclcdgdpimamgkj?hl=en&amp;utm_source=pocket_mylist
+
+!!Google input tools (multi language)
+add:
+
+
+```
+"ExtensionInstallWhitelist": [ "mclkkofklkfljcocdinagocijmpgbhab", ...
+```
+
+https://chrome.google.com/webstore/detail/google-input-tools/mclkkofklkfljcocdinagocijmpgbhab/related
+
+!!Auto install extensions on boot:
+
+
+```
+"ExtensionInstallForcelist": [ "mclkkofklkfljcocdinagocijmpgbhab", "mpkodccbngfoacfalldjimigbofkhgjn", "gbkeegbaiigmenfmjfclcdgdpimamgkj"], 
+```
+
+
+
+
+!!Chrome permissions and settings:
+
+
+```
+"URLWhitelist": [ "chrome://settings",
+"DownloadDirectory": "/media",
+"HomepageLocation": "https://google.com",                                                                                                                                                     
+"RestoreOnStartupURLs": [ "https://google.com", ], 
+
+```
+
+!Iso mastering
+
+usage:
+
+reinject USB drive
+
+mkdir /mnt/cdrom
+
+mkdir /tmp/kiosk_ISO
+
+mount -o loop XXX.iso /mnt/cdrom
+
+cp -a /mnt/cdrom/* /tmp/kiosk_ISO
+
+umount /mnt/cdrom
+
+Copy xzm modules into /tmp/kiosk_ISO/xzm directory
+
+cp XXXX.xzm /tmp/kiosk_ISO/xzm
+
+cd /tmp/kiosk_ISO
+
+bash make_iso.sh
+
+cp /tmp/PorteusKiosk.iso /media
+
+!Useful terminal commands:
+
+!!Brightness (intel GPU):
+
+
+
+```
+echo 2000 &gt; /sys/class/backlight/intel_backlight/brightness
+```
+
+!!Manual wifi connect
+
+Note: make sure to enable wifi in first wizard when creating the ISO
+
+
+```
+iwconfig
+
+iwlist wlan0 scanning |grep ESSID
+
+wpa_passphrase NetworkESSID P@SSWORD &gt; wpa_supplicant.conf
+
+wpa_supplicant -iwlan0 -c wpa_supplicant.conf
+```
+
+
+Note: -i without space after it!!!
+
+If not connected:
+
+
+```
+ifconfig wlan0 down
+
+ifconfig wlan0 up
+```
+
+!!Battery status in percentage:
+
+
+```
+cat /sys/class/power_supply/BAT0/capacity
+```
+
 </pre>
 </div>
 <div tags="" title="Porteus kiosk chrome extensions v2">
