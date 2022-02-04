@@ -14777,24 +14777,40 @@ https://pydio.com/en/docs/cells/v1/collabora-online</pre>
 </div>
 <div tags="" title="R4S apps used 14GB yunohost">
 <pre>freshrss
+
 netdata
+
 shellinabox
+
 h5ai
+
 opennote
+
 lufi
+
 IFM
+
 emby
+
 tailscale
+
 rclone
 
 docker
+
 linuxserver/freshrss:latest
+
 hurlenko/aria2-ariang:latest (including torrserver)
+
 martadinata666/nextcloud-smb:latest	
 portainer/portainer-ce
 
 ======================================
+
 Rclone: sync.sh
+
+
+```
 #!/bin/sh
 echo Backup HPE to Yandex
 rclone copy -u --progress HPE:/ Yandex:/Documents/HPE/
@@ -14802,7 +14818,7 @@ rclone copy -u --progress HPE:/ Yandex:/Documents/HPE/
 echo Yandex to Local backup
 rclone copy -u --progress Yandex: /media/usb1/Yandex.Disk.Backup/
 
-#echo Mail.ru to Local backup
+echo Mail.ru to Local backup
 rclone copy -u --progress mailru:/Tools /media/usb1/Yandex.Disk.Backup/Tools
 
 echo Backup Documents from Yandex to Mail.ru
@@ -14816,10 +14832,21 @@ rclone copy Yandex:/Camera\ Uploads mailru:/Photos/Camera\ Uploads
 
 echo Backup local InstantUpload to Mail.ru
 rclone copy /media/usb1/InstantUpload/ mailru:/Photos/InstantUpload
+```
+
 =====================================
 
+
+```
 sudo crontab -e 
-*/30 * * * * sh /root/sync.sh &gt;/dev/null 2&lt;&amp;1 </pre>
+```
+
+
+
+```
+*/30 * * * * sh /root/sync.sh &gt;/dev/null 2&lt;&amp;1 
+```
+</pre>
 </div>
 <div bag="default" created="20210415140628464" creator="sharicov" modified="20210415181354890" modifier="sharicov" revision="14" tags="ynh yunohost manual nanopi r4s" title="R4S Yunohost installation from scratch" type="text/vnd.tiddlywiki">
 <pre>!!!Download Armbian image for R4S
