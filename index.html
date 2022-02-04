@@ -10794,7 +10794,15 @@ lsblk -f
 Check disk for errors (''disk should be unmounted first''):
 
 ```
-e2fsck -fvy /dev/sda1
+e2fsck -fvy /dev/sdX1
+```
+
+Run convert command in screen session(so it wont stop if terminal is closed):
+
+
+```
+screen
+btrfs-convert /dev/sdX1
 ```
 
 
