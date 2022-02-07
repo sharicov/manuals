@@ -13547,7 +13547,17 @@ opkg install ksmbd-utils
 ksmbd.adduser -a user
 ```
 
-Create password and add in services/network shares</pre>
+Create password 
+
+add /dev/sda1 in services/network shares
+
+change permissions on USB disk recursively:
+
+
+```
+chmod -R 0777 /mnt/sda1/ 
+```
+</pre>
 </div>
 <div tags="" title="openwrt resize partition on the fly v3">
 <pre>!!Automatic way (klever1988 github):
