@@ -13536,7 +13536,7 @@ To remove delete an IP from the table, use:
 DELETE FROM oc_bruteforce_attempts WHERE IP="xxx.xxx.xxx.xxx";</pre>
 </div>
 <div tags="" title="Openwrt r4s klever1988 samba">
-<pre>Install samba tools:
+<pre>Install samba tools (klever uses ksmbd):
 
 
 ```
@@ -13547,7 +13547,7 @@ opkg install ksmbd-utils
 ksmbd.adduser -a user
 ```
 
-Create password and add in services/samba</pre>
+Create password and add in services/network shares</pre>
 </div>
 <div tags="" title="openwrt resize partition on the fly v3">
 <pre>!!Automatic way (klever1988 github):
