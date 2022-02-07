@@ -13534,8 +13534,19 @@ To remove delete an IP from the table, use:
 DELETE FROM oc_bruteforce_attempts WHERE IP="xxx.xxx.xxx.xxx";</pre>
 </div>
 <div tags="" title="openwrt resize partition on the fly">
-<pre>opkg update &amp;&amp; opkg install cfdisk
+<pre>Install cfdisk
+
+
+```
+opkg update &amp;&amp; opkg install cfdisk
+```
+
+
+
+```
 cfdisk /dev/mmcblk1
+```
+
 
 Choose partition 2 (600MB) 
 
