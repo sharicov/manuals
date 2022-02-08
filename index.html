@@ -26957,8 +26957,8 @@ apt  autoremove -y --purge docker-ce docker-ce-cli docker-compose  python3-docke
 <pre>```
 docker stop portainer
 docker rm portainer
-docker pull portainer/portainer-ce:2.11.1
-docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 --name=portainer --restart=always    -v /var/run/docker.sock:/var/run/docker.sock   -v portainer_data:/data portainer/portainer-ce:2.11.1
+docker pull portainer/portainer-ce:latest
+docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 --name=portainer --restart=always    -v /var/run/docker.sock:/var/run/docker.sock   -v portainer_data:/data portainer/portainer-ce:latest
 ```
 
 Source: https://docs.portainer.io/v/ce-2.11/start/upgrade/docker
