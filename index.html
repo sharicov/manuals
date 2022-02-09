@@ -13660,6 +13660,15 @@ cfdisk /dev/mmcblk0
 ```
 Reize / write  (type yes when prompted) / quit
 
+
+```
+fsck.ext4 /dev/mmcblk0p2 #Fix part, answer yes to remove GDT blocks remnants
+```
+
+```
+tune2fs -O^resize_inode /dev/mmcblk0p2 #Remove reserved GDT blocks
+```
+
 ```
 resize2fs /dev/mmcblk0p2
 ```
