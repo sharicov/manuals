@@ -15291,10 +15291,7 @@ echo Backup HPE to Yandex
 rclone copy -u --progress HPE:/ Yandex:/Documents/HPE/
 
 echo Yandex to Local backup
-rclone copy -u --progress Yandex: /media/usb1/Yandex.Disk.Backup/
-
-echo Mail.ru to Local backup
-rclone copy -u --progress mailru:/Tools /media/usb1/Yandex.Disk.Backup/Tools
+rclone copy -u --progress Yandex: /media/usb/Yandex.Disk.Backup/
 
 echo Backup Documents from Yandex to Mail.ru
 rclone copy -u --progress Yandex:/Documents mailru:/Documents
@@ -15302,11 +15299,14 @@ rclone copy -u --progress Yandex:/Documents mailru:/Documents
 echo Backup Tools from Yandex to Mail.ru
 rclone copy -u --progress Yandex:/Tools mailru:/Tools
 
+echo Mail.ru Tools to Local backup
+rclone copy -u --progress mailru:/Tools /media/usb/Yandex.Disk.Backup/Tools
+
 echo Backup Yandex photos to Mail.ru
-rclone copy Yandex:/Camera\ Uploads mailru:/Photos/Camera\ Uploads --max-size 2GB
+rclone copy Yandex:/Camera\ Uploads mailru:/Photos/Camera\ Uploads
 
 echo Backup local InstantUpload to Mail.ru
-rclone copy /media/usb1/InstantUpload/ mailru:/Photos/InstantUpload--max-size 2GB
+rclone copy /media/usb/InstantUpload/ mailru:/Photos/InstantUpload --max-size 2G
 ```
 
 =====================================
