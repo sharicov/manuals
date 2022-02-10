@@ -13706,7 +13706,33 @@ https://openwrt.org/docs/guide-user/installation/installation_methods/sd_card</p
 <pre>List of browsers: reddit.com/r/selfhosted/comments/ayy3mc/web_based_file_browsermanager/
 
 
-IFM is partially working.
+h5ai not working.
+
+IFM is partially working(starting).
+
+IFM dependencies:
+
+
+```
+opkg install php8-mod-fileinfo
+
+```
+
+Optional IFM dependencies:
+
+```
+bz2
+curl (for remote upload)
+fileinfo
+json
+ldap (only if LDAP based authentication is used)
+mbstring
+openssl (for remote uploads from https sources)
+phar
+posix
+zip
+zlib
+```
 
 
 ```
