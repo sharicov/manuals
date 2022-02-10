@@ -13708,6 +13708,50 @@ https://openwrt.org/docs/guide-user/installation/installation_methods/sd_card</p
 
 h5ai not working.
 
+droppy (working, 2 years old) https://github.com/silverwind/droppy
+
+
+```
+opkg install node-npm
+```
+vi droppy.conf
+
+Add:
+
+
+```
+{
+  "listeners" : [
+    {
+      "host": ["0.0.0.0", "::"],
+      "port": 8989,
+      "protocol": "http"
+    }
+  ],
+  "public": false,
+  "timestamps": true,
+  "linkLength": 5,
+  "linkExtensions": false,
+  "logLevel": 2,
+  "maxFileSize": 0,
+  "updateInterval": 1000,
+  "pollingInterval": 0,
+  "keepAlive": 20000,
+  "allowFrame": false,
+  "readOnly": false,
+  "ignorePatterns": [],
+  "watch": true,
+  "headers": {}
+}
+```
+
+
+```
+npm install -g droppy
+droppy start -c droppy.conf -f /mnt/usb --daemon
+```
+
+
 IFM is working https://github.com/misterunknown/ifm
 
 IFM dependencies:
