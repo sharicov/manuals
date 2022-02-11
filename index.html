@@ -13796,6 +13796,24 @@ docker pull awesometic/h5ai
 
 Set /h5ai volume bind to /media/usb
 
+To set user and password run in console:
+
+
+```
+docker run -it --name=h5ai \
+-p 80:80 \
+-v /shared/dir:/h5ai \
+-v /config/dir:/config \
+-e PUID=$UID \
+-e PGID=$GID \
+-e TZ=Asia/Jerusalem \
+-e HTPASSWD=true \
+-e HTPASSWD_USER=sharicov \
+awesometic/h5ai
+
+```
+
+
 Can edit word documents in browsers if google "office editing for docs" extension installed (https://chrome.google.com/webstore/detail/office-editing-for-docs-s/gbkeegbaiigmenfmjfclcdgdpimamgkj?hl=en)
 
 droppy (working natively, 2 years old) https://github.com/silverwind/droppy
