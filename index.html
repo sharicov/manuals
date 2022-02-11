@@ -13802,8 +13802,8 @@ To set user and password run in console:
 ```
 docker run -it --name=h5ai \
 -p 80:80 \
--v /shared/dir:/h5ai \
--v /config/dir:/config \
+-v /media/usb:/h5ai \
+-v config:/config \
 -e PUID=$UID \
 -e PGID=$GID \
 -e TZ=Asia/Jerusalem \
