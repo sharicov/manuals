@@ -20612,7 +20612,8 @@ Run:
 
 
 ```
-pkg install cronie rysnc
+pkg install cronie
+pkg install rsync
 ```
 
 
@@ -20642,7 +20643,7 @@ Add sync task (each hour in the example):
 
 
 ```
-crontab -l
+crontab -e
 ```
 
 
@@ -20650,7 +20651,7 @@ Add:
 
 
 ```
-0 * * * * rsync -avz /storage/emulated/0/DCIM/ username@example.com:~/incoming/
+0 * * * * rsync -avz /storage/dcim/DSLRCamera/ username@example.com:~/incoming/
 ```
 </pre>
 </div>
