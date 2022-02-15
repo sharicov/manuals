@@ -13971,13 +13971,20 @@ Enter http://192.168.2.1:8888
 PHP manual: https://openwrt.org/docs/guide-user/services/webserver/php</pre>
 </div>
 <div tags="" title="OpenWRT ImmortalWRT expose docker to internent WAN">
-<pre>GUI / Docker / Settings / DockerMan / Allowed access interfaces
+<pre>Luci GUI / Docker / Settings / DockerMan / Allowed access interfaces
 
 In addition to br-lan add:
 
 
 ```
 eth1
+```
+
+Dockerman luci package name: 
+
+
+```
+luci-app-dockerman
 ```
 </pre>
 </div>
