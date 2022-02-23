@@ -12939,7 +12939,7 @@ iperf3 -s
 
 Output:
 
-opnsense R4S:
+opnsense R4S server; ROG wireless client:
 
 ```
 [ ID] Interval           Transfer     Bitrate
@@ -12948,14 +12948,25 @@ opnsense R4S:
 [SUM]   0.00-20.02  sec   438 MBytes   184 Mbits/sec                  receiver
 ```
 
-ImmortalWRT R4S:
-
+ImmortalWRT R4S server; ROG wireless client:
 
 ```
 [ ID] Interval           Transfer     Bitrate
 [  5]   0.00-20.04  sec   779 MBytes   326 Mbits/sec                  receiver
 [  8]   0.00-20.04  sec   719 MBytes   301 Mbits/sec                  receiver
 [SUM]   0.00-20.04  sec  1.46 GBytes   627 Mbits/sec                  receiver
+```
+ImmortalWRT R4S server; x96 wired client:
+
+
+```
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-20.00  sec  1.10 GBytes   472 Mbits/sec    0             sender
+[  5]   0.00-20.00  sec  1.09 GBytes   470 Mbits/sec                  receiver
+[  7]   0.00-20.00  sec  1.06 GBytes   456 Mbits/sec    0             sender
+[  7]   0.00-20.00  sec  1.06 GBytes   455 Mbits/sec                  receiver
+[SUM]   0.00-20.00  sec  2.16 GBytes   928 Mbits/sec    0             sender
+[SUM]   0.00-20.00  sec  2.15 GBytes   925 Mbits/sec                  receiver
 ```
 </pre>
 </div>
