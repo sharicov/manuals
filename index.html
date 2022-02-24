@@ -14247,6 +14247,20 @@ Change config if required (optional)
 nano /etc/samba/smb.conf
 /etc/init.d/samba restart
 ```
+
+Set permissions on working directory:
+
+```
+chmod -R 0777 /mnt/sda1/ 
+```
+
+Map drive in windows:
+
+
+```
+net use r: \\192.168.2.1\sda1
+```
+
 </pre>
 </div>
 <div tags="" title="Openwrt r4s klever1988 samba">
