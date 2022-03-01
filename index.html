@@ -21221,7 +21221,9 @@ Tip:
 Can be combined with tailscale for secure access to the ssh server</pre>
 </div>
 <div tags="" title="Syncthing v3">
-<pre>Windows download link: https://syncthing.net/downloads/
+<pre>!!Installation
+
+Windows download link: https://syncthing.net/downloads/
 
 Headless linux:
 
@@ -21262,17 +21264,32 @@ sudo systemctl restart syncthing@username.service
 
 access over port 8384
 
-Change user/password in GUI/Actions/Settings/GUI
+!!Change user/password 
+in GUI/Actions/Settings/GUI
 
+
+!!Change destination folder on one of the computers
 
 After syncing folder for the first time destination folder location can be changed in the config file 
 
 
 ```
  nano .config/syncthing/config.xml
+```
 
+create marker in new destination folder (ex. /media/usb/Backup/):
+
+
+```
+touch /media/usb/Backup/.stfolder
+```
+
+Restart syncthing service
+
+```
 sudo systemctl restart syncthing@root.service
 ```
+
 
 
 
