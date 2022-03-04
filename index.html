@@ -12992,8 +12992,21 @@ sudo ./AdGuardHome -s install
 
 Source: https://www.reddit.com/r/Adguard/comments/lkkb2z/how_to_update_adguard_on_raspberry_pi/
 
-!!Update 
+!!Update existing installation 
 
+Kill service
+
+```
+kill -15 $(pgrep -f AdGuardHome)
+```
+
+Remove service
+
+```
+rm /etc/init.d/AdGuardHome
+```
+
+Install update
 
 ```
  curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -c release
