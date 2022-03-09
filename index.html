@@ -18860,7 +18860,7 @@ TorrServer MatriX.109
 <div tags="" title="Set MTU in windows (tailscale)">
 <pre>Run CMD as administrator
 
-To show current MTUs:
+!!To show current MTUs:
 
 In CMD run
 
@@ -18869,7 +18869,7 @@ In CMD run
 netsh interface ipv4 show subinterfaces
 ```
 
-To set MTU:
+!!To set MTU:
 
 netsh interface ipv4 set subinterface “Tailscale” mtu=1500 store=persistent
 
@@ -18878,7 +18878,11 @@ Default tailscale MTU is 1280
 
 To check correct MTU:
 
+
+```
 ping google.com -f -l 1472
+```
+
 
 try increasing the number, if packets are still passing than greatest number that works +28 is the MTU, otherwise it's 1500=1472+28
 
