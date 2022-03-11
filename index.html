@@ -18305,14 +18305,23 @@ apt upgrade
 apt install tailscale
 tailscale up
 
-or tailscale up –advertise-exit-node # to use as an exit node to internet from other pears of the private network
+
+```
+Or:
+
+```
+
+
+tailscale up --accept-dns=false --advertise-routes=10.0.0.0/24 --advertise-exit-node
+
+ # to use as an exit node to internet from other pears of the private network
 
 Enable IP routing on R4S: echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf sudo sysctl -p /etc/sysctl.conf
-
+```
 Check the page https://login.tailscale.com/admin/machines to view your VPN network.
 
 If IP routing required, enable it on the site, press on 3 dots menu (...) Review route settings Use as exit node -&gt; ON
-```
+
 
 Rclone:
 
