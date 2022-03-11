@@ -10836,8 +10836,7 @@ ps -x| grep aria
 </pre>
 </div>
 <div tags="" title="Ariang native (no docker aria2c) v2">
-<pre>
-```
+<pre>```
 apt install aria2
 ```
 
@@ -10865,11 +10864,13 @@ disk-cache=200M
 file-allocation=falloc                                                                                                 
 seed-time=0                                                                                                           
 check-integrity=true                                                                                                   
-realtime-chunk-checksum=true                                                                                           always-resume=true                                                                                                     
+realtime-chunk-checksum=true
+always-resume=true                                                                                                     
 auto-file-renaming=false                                                                                               
 continue=true                                                                                                          
 remote-time=true                                                                                                       
-#daemon                                                                                                                #log=/media/aria2c.log                                                                                                 
+#daemon
+#log=/media/aria2c.log                                                                                                 
 #log-level=error                                                                                                       
 bt-exclude-tracker="*"
 ```
