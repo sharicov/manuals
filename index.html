@@ -28439,6 +28439,21 @@ Optional for anythhing connected to usb mounting first partition:
  /dev/sda1 /media/usbdown btrfs defaults,noatime 0 0
 ```
 
+To test fstab settings are working:
+
+
+```
+sudo umount /dev/sda1
+```
+
+
+
+```
+ls /media/usbdown
+```
+
+Output should be empty
+
 
 To reload fstab:
 
