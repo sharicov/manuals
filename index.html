@@ -14176,6 +14176,22 @@ Run miniflux:
 /usr/bin/miniflux -c /etc/miniflux.conf
 ```
 
+Or add to rc.local for automatic boot:
+
+
+```
+nano /etc/rc.local
+```
+
+
+Add:
+
+
+```
+/usr/bin/miniflux -c /etc/miniflux.conf &amp;
+```
+
+
 Full manual:https://www.skysilk.com/blog/2020/rss-reader-miniflux-ubuntu/
 
 
