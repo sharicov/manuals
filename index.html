@@ -14117,7 +14117,68 @@ Install:
 apt install postgresql postgresql-contrib
 ```
 
-Service status:
+create user postgres and set password
+
+```
+sudo passwd postgres
+```
+
+Switch to postgers user 
+
+
+```
+su postgres
+
+create database miniflux;
+
+create user miniflux with encrypted password 'miniflux';
+grant all privileges on database miniflux to miniflux;
+alter user miniflux with superuser;
+\q
+```
+
+Configuration:
+
+
+```
+nano /etc/miniflux.conf
+```
+
+Add:
+
+```
+LISTEN_ADDR=your.ip.goes.here:port
+DATABASE_URL=user=miniflux password=miniflux dbname=miniflux sslmode=disable
+```
+
+Run the SQL migrations:
+
+```
+miniflux -c /etc/miniflux.conf -migrate
+```
+
+Last but not least, create an admin user:
+
+
+```
+miniflux -c /etc/miniflux.conf -create-admin
+```
+
+Run miniflux:
+
+
+```
+/usr/bin/miniflux -c /etc/miniflux.conf
+```
+
+Full manual:https://www.skysilk.com/blog/2020/rss-reader-miniflux-ubuntu/
+
+
+
+
+!!Bonus: 
+
+Postgres service status:
 
 ```
 sudo systemctl status PostgreSQL
@@ -14134,11 +14195,35 @@ Service start:
 ```
 sudo systemctl start PostgreSQL
 ```
+Enter postgres console:
+
+
+```
+psql
+```
+
+
+```
+# Create a database user for Miniflux
+$ createuser -P miniflux
+Enter password for new role: ******
+Enter it again: ******
+
+# Create a database for miniflux that belongs to our user
+$ createdb -O miniflux miniflux
+
+# Create the extension hstore as superuser
+$ psql miniflux -c 'create extension hstore'
+CREATE EXTENSION
+```
+
 
 Postgres manual: https://linuxhint.com/install-postgresql-debian/
 
 
-!!Manual:
+
+
+!!Manual install:
 
 
 ```
@@ -14153,7 +14238,7 @@ dpkg -i miniflux_2.0.36_arm64.deb
 
 /usr/bin/miniflux
 
-source: https://miniflux.app/docs/installation.html</pre>
+Source: https://miniflux.app/docs/installation.html</pre>
 </div>
 <div created="20210419071254047" modified="20210422073344138" tags="manual" title="Mount ext4 in windows wsl">
 <pre>Install WSL
