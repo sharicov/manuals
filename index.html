@@ -13921,14 +13921,24 @@ Packet Loss:     0.0%
 </pre>
 </div>
 <div tags="" title="Lancache DNS and proxy cache for games v1">
-<pre>Installation (openwrt):
+<pre>Installation (docker):
 
-```
-opkg update
-```
-```
-opkg install git git-http
-```
+In portaines/stacks add:
+
+docker run \
+  --restart unless-stopped \
+  --name lancache \
+  -v /cache/data:/data/cache \
+  -v /cache/logs:/data/logs \
+  -p 80:80 \
+  -p 443:443 \
+  lancachenet/monolithic:latest
+
+!!Source and more parameters: 
+https://lancache.net/docs/containers/monolithic/
+
+
+!!Alternative (physical machine etc.):
 ```
 git clone https://github.com/lancachenet/docker-compose lancache
 ```
