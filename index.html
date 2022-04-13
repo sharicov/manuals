@@ -13925,6 +13925,13 @@ Packet Loss:     0.0%
 
 In portaines/stacks add:
 
+
+```
+docker name
+```
+
+
+```
 docker run \
   --restart unless-stopped \
   --name lancache \
@@ -13933,6 +13940,8 @@ docker run \
   -p 8080:80 \
   -p 443:443 \
   lancachenet/monolithic:latest
+```
+
 
 !!Source and more parameters: 
 https://lancache.net/docs/containers/monolithic/
