@@ -30144,11 +30144,17 @@ cp webmin.pem /etc/webmin/miniserv.pem
 <pre>docker lscr.io/linuxserver/webtop
 port 3000
 Default distro: alpine with xfce
+
+For ubuntu with kde ubuntu-kde tag should be used as following:
+
+docker lscr.io/linuxserver/webtop:ubuntu-kde
+
+
 Docker.io: https://hub.docker.com/r/linuxserver/webtop/tags
 
 Github: https://github.com/linuxserver/docker-webtop
 
-
+For default alpine-xfce add to portainer stack:
 
 ```
 docker run -d \
