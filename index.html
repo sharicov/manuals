@@ -30141,13 +30141,25 @@ cp webmin.pem /etc/webmin/miniserv.pem
 </pre>
 </div>
 <div tags="" title="webtop web gui linuxes in docker guacamole based v4">
-<pre>docker lscr.io/linuxserver/webtop
-port 3000
+<pre>docker 
+
+```
+lscr.io/linuxserver/webtop
+```
+
+port ''3000''
+
 Default distro: alpine with xfce
 
+usr/pwd ''abc/abc
+''
 For ubuntu with kde ubuntu-kde tag should be used as following:
 
+
+```
 docker lscr.io/linuxserver/webtop:ubuntu-kde
+```
+
 
 
 Docker.io: https://hub.docker.com/r/linuxserver/webtop/tags
@@ -30174,7 +30186,12 @@ docker run -d \
   lscr.io/linuxserver/webtop
 ```
 
-usr/pwd abc/abc
+For correct ''PUID'' on the host machine run (ex. root user):
+
+
+```
+id root
+```
 
 
 add program:
