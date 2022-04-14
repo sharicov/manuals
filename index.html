@@ -12835,7 +12835,17 @@ add necesarry ports in ''Ports allowed to be accessed'' from drop-down menu
 
 ''luci/admin/network/firewall''
 
-In WAN set everything to ''accept''</pre>
+In WAN set everything to ''accept''
+
+!!To connect port 9000 from WAN add firewall rule:
+
+'luci/admin/network/firewall/rules''
+
+Name: portainer wan
+Protocol: TCP
+Port: 9000
+
+''Save and Apply''</pre>
 </div>
 <div tags="" title="FusionWRT v9">
 <pre>Note:
