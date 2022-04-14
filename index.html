@@ -12823,7 +12823,19 @@ Enable on start
 
 ''luci/admin/docker/overview''
 
-Restart docker</pre>
+Restart docker
+
+!!Open docker ports outside:
+
+luci/admin/docker/config
+
+add necesarry ports in ''Ports allowed to be accessed'' from drop-down menu
+
+!!Allow access from outside (WAN):
+
+''luci/admin/network/firewall''
+
+In WAN set everything to ''accept''</pre>
 </div>
 <div tags="" title="FusionWRT v9">
 <pre>Note:
