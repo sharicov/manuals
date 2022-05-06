@@ -14026,8 +14026,6 @@ java -jar JDownloader.jar -norestart
 
 Repeat step 3.1 (java -jar JDownloader.jar -norestart) until JDownloader asks you to enter your MyJDownloader logins on console
 
-You can now remote control your JDownloader instance via MyJDownloader
-https://my.jdownloader.org/
 
 Start JDownloader with 
 
@@ -14035,15 +14033,37 @@ Start JDownloader with
 java -jar JDownloader.jar &amp; #(without the -norestart parameter!)
 ```
 
+!!Auto start on boot:
 
-Checkout the other articles in this headless category - especially these useful headless hints.
-Much fun with JDownloader and MyJDownloader :)
+
+```
+nano /etc/rc.local
+```
+
+
+Add:
+
+
+```
+java -jar JDownloader.jar &amp;
+```
+
+before exit 0
+
+
+You can now remote control your JDownloader instance via MyJDownloader
+https://my.jdownloader.org/
 
 In web remote/settings choose:
 
 1. default download directory (ex. ''/media/usb/Downloads'')
 
 2. Autoreconnect
+
+Checkout the other articles in this headless category - especially these useful headless hints.
+Much fun with JDownloader and MyJDownloader :)
+
+
 
 source: https://support.jdownloader.org/Knowledgebase/Article/View/install-jdownloader-on-nas-and-embedded-devices</pre>
 </div>
