@@ -13037,11 +13037,38 @@ This comment explains why inotify shouldn't prevent an unmount, but this note de
 Source: https://unix.stackexchange.com/questions/3109/how-do-i-find-out-which-processes-are-preventing-unmounting-of-a-device</pre>
 </div>
 <div tags="" title="Fusion openwrt torrentserver v1">
-<pre>
+<pre>Download latest build for linux arm64
+
+
 ```
 wget https://github.com/YouROK/TorrServer/releases/download/MatriX.117/TorrServer-linux-arm64
+```
+
+Optional: copy existing config.db from another computer
+
+
+```
 scp root@192.168.3.96:/media/usb/config.db .
+```
+
+Start script manually:
+
+
+```
 chmod +x TorrServer-linux-arm64
+```
+
+/root/TorrServer-linux-arm64 -d . &amp;
+
+
+Auto start on boot:
+
+vi /etc/rc.local
+
+Add ''before'' exit 0
+
+
+```
 /root/TorrServer-linux-arm64 -d . &amp;
 ```
 </pre>
