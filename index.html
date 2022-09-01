@@ -16864,7 +16864,38 @@ Use home IPs (not Tailscale) ex. 192.168.3.233</pre>
 <pre>Luci GUI/Network/Firewall/Zones/WAN/Incoming traffic - ''ACCEPT''</pre>
 </div>
 <div tags="" title="OpenWRT (original ext4) resize partition on the fly v3">
-<pre>Image source: https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-ext4-sysupgrade.img.gz
+<pre>!!Working:
+
+
+```
+fdisk -l
+```
+
+output:
+
+
+```
+Device         Boot  Start     End Sectors Size Id Type
+/dev/mmcblk0p1 *     65536  167935  102400  50M 83 Linux
+/dev/mmcblk0p2      196608 2301951 2105344   1G 83 Linux
+```
+
+Run:
+
+```
+ cfdisk /dev/mmcblk0
+```
+
+Select &gt;&gt;  /dev/mmcblk0''p2 '' / resize / write / type ''yes'' / quite
+
+In LUCI web GUI: System/Mount point/Add/ UUID: mmcblk0''p2 ''/Mount Point/Overlay/Save and Apply
+
+
+
+Image source: https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-ext4-sysupgrade.img.gz
+
+
+!!Old
 
 ```
 opkg update
