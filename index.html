@@ -13576,6 +13576,16 @@ lsof +f -- /media/usb0
 fuser -m /media/usb0
 ```
 
+Example script for BTRFS error notification:
+
+
+```
+#!/bin/bash
+if mountpoint -q /mnt/cache; then
+btrfs dev stats -c /mnt/cache
+if [[ $? -ne 0 ]]; then /usr/local/emhttp/webGui/scripts/notify -i warning -s "ERRORS on cache pool"; fi
+fi
+```
 
 
 !! Open files
