@@ -17024,7 +17024,28 @@ in Luci GUI: ''System / Mount points / Mount points sections / Add (ex. /mnt/sda
 
 To share in SAMBA:
 
-in Luci GUI: S''ystem / NAS / Network shares / Shared Directories section / Add / Provide name and path (ex. /mnt/sda1)''</pre>
+in Luci GUI: S''ystem / NAS / Network shares / Shared Directories section / Add / Provide name and path (ex. /mnt/sda1)''
+
+!!Enter luci GUI/NAS/Network resources
+
+Template tab
+
+mask:
+
+
+```
+	#invalid users = root
+```
+
+Save and apply changes
+
+In ssh set samba password for user root:
+
+
+```
+smbpasswd -a root
+```
+</pre>
 </div>
 <div tags="" title="OpenWRT custom image generator R4S">
 <pre>https://firmware-selector.openwrt.org/?version=22.03.0&amp;target=rockchip%2Farmv8&amp;id=friendlyarm_nanopi-r4s
