@@ -10565,7 +10565,7 @@ start outlook</pre>
 <pre>yes</pre>
 </div>
 <div created="20210417210700988" modified="20210604055832253" title="$:/state/sidebar">
-<pre>no</pre>
+<pre>yes</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -17449,20 +17449,21 @@ sudo apt install -y build-essential libncurses5-dev libncursesw5-dev zlib1g-dev 
 
 ```
 
-For stable version builder:
+For ''stable ''version builder:
 
 
 ```
 wget https://downloads.openwrt.org/releases/22.03.0/targets/x86/64/openwrt-imagebuilder-22.03.0-x86-64.Linux-x86_64.tar.xz
 ```
 
+!!OR
 
-
-For snapshot version builder:
+For ''snapshot ''version builder:
 
 ```
 wget https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-imagebuilder-x86-64.Linux-x86_64.tar.xz
 ```
+
 
 Extract image and enter the working directory:
 
@@ -17477,7 +17478,18 @@ make info #shows available profiles
 Resize openwrt partition size to fit all the packages:
 
 ```
+sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=.*/CONFIG_TARGET_ROOTFS_PARTSIZE=304/' .config
+```
 
+!!!Optional: change boot partition size:
+
+```
+sed -i 's/CONFIG_TARGET_KERNEL_PARTSIZE=.*/CONFIG_TARGET_KERNEL_PARTSIZE=18/' .config
+```
+
+For manual manipulation with build config:
+
+```
 nano .config
 ```
 
@@ -17485,16 +17497,8 @@ Change
 
 CONFIG_TARGET_ROOTFS_PARTSIZE=104 to larger size (ex. 304)
 
-Or automatically:
 
-
-```
-sed -i 's/CONFIG_TARGET_KERNEL_PARTSIZE=.*/CONFIG_TARGET_KERNEL_PARTSIZE=18/' .config
-
-sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=.*/CONFIG_TARGET_ROOTFS_PARTSIZE=304/' .config
-
-```
-
+!!!Optional: Add custom package
 
 To add custom package, put it in the packages subdirectory:
 
