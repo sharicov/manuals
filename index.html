@@ -17271,11 +17271,13 @@ Add packages such as
 
 
 ```
-iperf3 kmod-usb-net-rtl8152 luci-app-samba4 samba4-server ntfs-3g block-mount luci-app-ttyd luci-app-dockerman kmod-usb-storage usbutils luci-app-aria2 aria2 kmod-iwlwifi 
+luci iperf3 kmod-usb-net-rtl8152 luci-app-samba4 samba4-server ntfs-3g block-mount luci-app-ttyd luci-app-dockerman kmod-usb-storage usbutils luci-app-aria2 aria2 fdisk lsblk htop kmod-iwlwifi
+```
 
-fdisk lsblk btrfs-progs pciutils cfdisk tune2fs resize2fs gdisk
+Optional if image size allows (format BTRFS, partition tools, resize partition):
 
-htop luci luci-ssl
+```
+btrfs-progs cfdisk gdisk pciutils tune2fs resize2fs 
 
 ```
 
