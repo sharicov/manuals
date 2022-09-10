@@ -17468,7 +17468,7 @@ For ''stable ''version builder:
 wget https://downloads.openwrt.org/releases/22.03.0/targets/x86/64/openwrt-imagebuilder-22.03.0-x86-64.Linux-x86_64.tar.xz
 ```
 
-!!OR
+!!!OR
 
 For ''snapshot ''version builder(2.5Gbe not working, syncing only on 1Gbps):
 
@@ -17477,7 +17477,7 @@ wget https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-imagebuilder
 ```
 
 
-Extract image and enter the working directory:
+!!Extract image and enter the working directory:
 
 ```
 tar -J -x -f openwrt-imagebuilder-*.tar.xz 
@@ -17487,7 +17487,7 @@ cd openwrt-imagebuilder-*/
 make info #shows available profiles
 ```
 
-Resize openwrt partition size to fit all the packages:
+!!Resize openwrt partition size to fit all the packages:
 
 ```
 sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=.*/CONFIG_TARGET_ROOTFS_PARTSIZE=304/' .config
@@ -17510,7 +17510,7 @@ Change
 CONFIG_TARGET_ROOTFS_PARTSIZE=104 to larger size (ex. 304)
 
 
-!!!Optional: Add custom package
+!!!Optional: Add custom package - not working
 
 To add custom package, put it in the packages subdirectory:
 
@@ -17519,10 +17519,10 @@ wget https://github.com/lisaac/luci-app-diskman/releases/download/v0.2.11/luci-a
 ```
 
 
-Run the build process:
+!!Run the build process:
 
 ```
-make image PROFILE="generic" PACKAGES="base-files busybox ca-bundle dnsmasq dropbear e2fsprogs firewall4 fstools kmod-amazon-ena kmod-amd-xgbe kmod-bnx2 kmod-button-hotplug kmod-e1000 kmod-e1000e kmod-forcedeth kmod-fs-vfat kmod-igb kmod-igc kmod-ixgbe kmod-nft-offload kmod-r8169 kmod-tg3 libc libgcc libustream-wolfssl logd mkf2fs mtd netifd nftables odhcp6c odhcpd-ipv6only opkg partx-utils ppp ppp-mod-pppoe procd procd-seccomp procd-ujail uci uclient-fetch urandom-seed urngd luci iperf3 kmod-usb-net-rtl8152 luci-app-samba4 samba4-server ntfs-3g block-mount luci-app-ttyd luci-app-dockerman kmod-usb-storage kmod-usb-storage-uas usbutils luci-app-aria2 aria2 fdisk lsblk htop kmod-iwlwifi iwlwifi-firmware-ax200 btrfs-progs cfdisk gdisk pciutils tune2fs resize2fs wpa-supplicant netdata iwlwifi-firmware-iwl7260 dockerd docker docker-compose kmod-veth uxc procd-ujail procd-ujail-console" 
+make image PROFILE="generic" PACKAGES="base-files busybox ca-bundle dnsmasq dropbear e2fsprogs firewall4 fstools kmod-amazon-ena kmod-amd-xgbe kmod-bnx2 kmod-button-hotplug kmod-e1000 kmod-e1000e kmod-forcedeth kmod-fs-vfat kmod-igb kmod-igc kmod-ixgbe kmod-nft-offload kmod-r8169 kmod-tg3 libc libgcc libustream-wolfssl logd mkf2fs mtd netifd nftables odhcp6c odhcpd-ipv6only opkg partx-utils ppp ppp-mod-pppoe procd procd-seccomp procd-ujail uci uclient-fetch urandom-seed urngd luci iperf3 kmod-usb-net-rtl8152 luci-app-samba4 samba4-server ntfs-3g block-mount luci-app-ttyd luci-app-dockerman kmod-usb-storage kmod-usb-storage-uas usbutils luci-app-aria2 aria2 fdisk lsblk htop kmod-iwlwifi iwlwifi-firmware-ax200 btrfs-progs cfdisk gdisk pciutils tune2fs resize2fs wpa-supplicant netdata iwlwifi-firmware-iwl7260 dockerd docker docker-compose kmod-veth uxc procd-ujail" 
 ```
 
 Find all created images:
@@ -17544,7 +17544,11 @@ Or Snapshot:
 ```
 scp bin/targets/x86/64/openwrt-x86-64-generic-ext4-combined-efi.img.gz user@HomeMachineIP:/Directory
 ```
-</pre>
+
+
+Notes:
+
+procd-ujail-console packet not installing (docker related)</pre>
 </div>
 <div tags="" title="opkg upgrade all packages openwrt v2">
 <pre>```
