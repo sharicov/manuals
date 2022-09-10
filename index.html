@@ -17461,7 +17461,7 @@ Source2: https://forum.openwrt.org/t/image-builder-filesize-out-of-space/110797/
 Source3 (docker): https://openwrt.org/docs/guide-user/virtualization/docker_host
 
 ```
-sudo apt install -y build-essential libncurses5-dev libncursesw5-dev zlib1g-dev gawk git gettext libssl-dev xsltproc rsync wget unzip python ncdu
+sudo apt install -y build-essential libncurses5-dev libncursesw5-dev zlib1g-dev gawk git gettext libssl-dev xsltproc rsync wget unzip python ncdu atop
 
 ```
 
@@ -17491,10 +17491,10 @@ cd openwrt-imagebuilder-*/
 make info #shows available profiles
 ```
 
-!!Resize openwrt partition size to fit all the packages:
+!!Resize openwrt partition size to fit all the packages (304MB without docker, 504 with docker):
 
 ```
-sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=.*/CONFIG_TARGET_ROOTFS_PARTSIZE=304/' .config
+sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=.*/CONFIG_TARGET_ROOTFS_PARTSIZE=504/' .config
 ```
 
 !!!Optional: change boot partition size:
