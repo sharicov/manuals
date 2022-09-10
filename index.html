@@ -17293,7 +17293,7 @@ Add packages such as
 
 
 ```
-luci iperf3 kmod-usb-net-rtl8152 luci-app-samba4 samba4-server ntfs-3g block-mount luci-app-ttyd luci-app-dockerman docker-ce kmod-usb-storage kmod-usb-storage-uas usbutils luci-app-aria2 aria2 fdisk lsblk htop kmod-iwlwifi iwlwifi-firmware-ax200 wpa-supplicant iwlwifi-firmware-iwl7260  dockerd docker docker-compose kmod-veth uxc procd-ujail procd-ujail-console
+luci iperf3 kmod-usb-net-rtl8152 luci-app-samba4 samba4-server ntfs-3g block-mount luci-app-ttyd luci-app-dockerman docker-ce kmod-usb-storage kmod-usb-storage-uas usbutils luci-app-aria2 aria2 fdisk lsblk htop kmod-iwlwifi iwlwifi-firmware-ax200 wpa-supplicant iwlwifi-firmware-iwl7260  dockerd docker docker-compose kmod-veth uxc procd-ujail 
 ```
 
 Optional if image size allows (format BTRFS, partition tools, resize partition):
@@ -17306,7 +17306,11 @@ btrfs-progs cfdisk gdisk pciutils tune2fs resize2fs netdata
 
 kmod-usb-net-rtl8152 #for usb 2.5gbe rtl8156
 
-kmod-iwlwifi iwlwifi-firmware-ax200 #for intel wifi - not working with ax200
+kmod-iwlwifi iwlwifi-firmware-ax200 iwlwifi-firmware-iwl7260 #for intel wifi chips
+
+
+
+procd-ujail-console docker related, not installing
 
 Click on: ''Request build''
 
