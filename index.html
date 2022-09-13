@@ -17009,6 +17009,13 @@ Reboot:
 reboot
 ```
 
+Check partition for errors after reboot:
+
+
+```
+tune2fs -O^resize_inode /dev/mmcblk0p2 #Remove reserved GDT blocks
+```
+
 
 In LUCI web GUI: System/Mount point/Add/ UUID: mmcblk0''p2 ''/Mount Point/Overlay/Save and Apply
 
