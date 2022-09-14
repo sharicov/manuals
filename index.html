@@ -21232,11 +21232,19 @@ https://forums.unraid.net/topic/97165-smb-performance-tuning/?utm_source=pocket_
 https://onformix.blogspot.com/2015/07/swap-and-cache-tune.html?m=1&amp;utm_source=pocket_mylist
 
 
-use atop to find bottlenecks
+use ''atop ''to find bottlenecks
 
+
+```
 watch -n1 "cat /proc/interrupts"
+```
 
+
+
+```
 watch -n1 "cat /proc/meminfo"
+```
+
 
 Set 50% of RAM as write cache (default 20):
 
