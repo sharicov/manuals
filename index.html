@@ -21229,7 +21229,26 @@ https://kelerus-livejournal-com.turbopages.org/kelerus.livejournal.com/s/10298.h
 
 https://forums.unraid.net/topic/97165-smb-performance-tuning/?utm_source=pocket_mylist
 
-https://onformix.blogspot.com/2015/07/swap-and-cache-tune.html?m=1&amp;utm_source=pocket_mylist</pre>
+https://onformix.blogspot.com/2015/07/swap-and-cache-tune.html?m=1&amp;utm_source=pocket_mylist
+
+
+use atop to find bottlenecks
+
+watch -n1 "cat /proc/interrupts"
+
+watch -n1 "cat /proc/meminfo"
+
+Set 50% of RAM as write cache (default 20):
+
+
+```
+sysctl vm.dirty_ratio
+
+sysctl -w vm.dirty_ratio=50
+
+sysctl -p
+```
+</pre>
 </div>
 <div bag="default" created="20210417195404217" creator="sharicov" modified="20210417195430802" modifier="sharicov" revision="2" tags="manual" title="SAMBA v5" type="text/vnd.tiddlywiki">
 <pre>!!! SAMBA: 
