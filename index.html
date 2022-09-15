@@ -17661,7 +17661,28 @@ mkdir -p /media/usb
 
 mount -t btrfs  -o autodefrag,noatime,nodatacow,space_cache /dev/sdb1 /media/usb/
 
-Enter Luci/</pre>
+Enter Luci/Network Shares/Edit Template tab
+
+mask invalid users=root with ''#'' to be:
+
+
+```
+ #invalid users = root
+```
+
+Luci switch tab to General Settings/Shared directories
+
+Add:
+
+Name: USB
+
+Path: /media/usb
+
+Allowed users: root
+
+Uncheck: Allow guests
+
+Press: ''Save and Apply''</pre>
 </div>
 <div tags="" title="Openwrt r4s klever1988 samba">
 <pre>Install samba tools (klever uses ksmbd):
