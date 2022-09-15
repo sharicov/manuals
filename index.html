@@ -17735,7 +17735,9 @@ cd openwrt-imagebuilder-*/
 make info #shows available profiles
 ```
 
-!!Resize openwrt partition size to fit all the packages (304MB without docker, 504 with docker):
+!!Resize openwrt partition size to fit all the packages  (304MB without docker, 504 with docker):
+
+Note: UP TO RAM SIZE OF BUILDING MACHINE!!!
 
 ```
 sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=.*/CONFIG_TARGET_ROOTFS_PARTSIZE=504/' .config
