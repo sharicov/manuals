@@ -13618,7 +13618,15 @@ https://www.thegeekdiary.com/how-to-tune-btrfs-filesystem-for-better-performance
 
 
 ```
+/etc/init.d/samba4 stop
+
+/etc/init.d/samba4 status
+
+umount /dev/sda1
+
 mount -t btrfs -o autodefrag,noatime,nodatacow,space_cache /dev/sda1 /media/usb/
+
+/etc/init.d/samba4 start
 ```
 
 
