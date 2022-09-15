@@ -13616,6 +13616,12 @@ With host network ports can't be remapped, not working</pre>
 
 https://www.thegeekdiary.com/how-to-tune-btrfs-filesystem-for-better-performance/
 
+
+```
+mount -t btrfs -o autodefrag,noatime,nodatacow,space_cache /dev/sda1 /media/usb/
+```
+
+
 !!Check errors on BTRFS mount:
 
 
