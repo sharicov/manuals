@@ -21145,6 +21145,43 @@ Run dockerd service:
 ```
 dockerd
 ```
+
+!!Troubleshooting
+
+Stop the dockerd service:
+
+/etc/init.d/dockerd stop
+
+Start dockerd
+
+
+```
+dockerd
+```
+
+
+In another ssh terminal window look for running containers:
+
+
+```
+docker ps
+```
+
+Install portainer:
+
+```
+docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 --name=portainer --restart=always    -v /var/run/docker.sock:/var/run/docker.sock   -v portainer_data:/data portainer/portainer-ce:latest
+```
+
+
+Restart portainer container
+
+
+```
+docker restart portainer
+
+docker ps
+```
 </pre>
 </div>
 <div tags="" title="resize microSD openwrt v2">
