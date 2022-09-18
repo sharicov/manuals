@@ -21569,7 +21569,15 @@ rsync --remove-source-files -zvh
 source: https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/</pre>
 </div>
 <div tags="" title="Samba tuning RAM and cache v2">
-<pre>sources:
+<pre>!!Working parameters:
+
+
+```
+mount -t btrfs -o autodefrag,noatime,nodatacow,space_cache /dev/sda1 /media/usb/
+```
+
+!!Experimental (not resultative):
+sources:
 
 https://kelerus-livejournal-com.turbopages.org/kelerus.livejournal.com/s/10298.html?utm_source=pocket_mylist
 
