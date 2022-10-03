@@ -14680,7 +14680,11 @@ UNRAID should be started in a default way (not GUI option on boot).
 
 Virtio-win iso drivers download: https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md
 
-Create new win11 vm with q35 chipset, usb3-qemu and video/sound passthrough.
+Create new win11 vm with 440fx chipset (unless have troubles with GPU passthrough), usb3-qemu and video/sound passthrough.
+
+!!To check: Advanced options/CPU/Host Passthrough (performance increase)
+
+More VM create description here: https://wiki.unraid.net/Manual/VM_Management
 
 Windows 11 installation tutorial (add driver from virtio/amd64/w11 to see the disk): https://linuxserver.tips/en/create-windows-11-vm-on-unraid/
 
