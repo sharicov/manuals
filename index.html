@@ -14739,11 +14739,11 @@ If VM tab disappears enable VMs in Settings/VM Manager/Enable VMs/YES
 
 find VM xml on unraid host:
 
-find / -name *.xml
+find /etc/libvirt/qemu/ -name *.xml
 
-Edit the file:
+Edit the file (example Win11.xml):
 
-nano /...
+nano /etc/libvirt/qemu/Win11.xml
 
 Add multifunction on just under rom line(Assuming GPU rom provided when creating the VM):
 
