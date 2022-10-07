@@ -33452,7 +33452,39 @@ On source linux/windows machine with ventoy.img (ex pikvm IP 192.168.3.3 default
 ```
 scp w:\temp\ventoy.img root@192.168.3.3:/var/lib/kvmd/msd/
 ```
-Mount ventoy.img as normal flash and select the PiKVM boot device, it should popup with the VenToy logo with the window.iso as a selection</pre>
+Mount ventoy.img as normal flash and select the PiKVM boot device, it should popup with the VenToy logo with the window.iso as a selection.
+
+!!To create image of existing USB drive on pikvm:
+
+Plug USB to pikvm port.
+
+Find out on which drive pikvm recognized it (ex. sda)
+
+```
+dmsg
+```
+mount msd folder as read/write
+
+```
+kvmd-helper-otgmsd-remount rw
+```
+
+Create image of USB data PARTITION to an image file (ex. ventoy.img)
+
+
+```
+dd if=/dev/sda1 of=/var/lib/kvmd/msd/images/ventoy.img bs=8M status=progress
+
+chown kvmd:kvmd /var/lib/kvmd/msd/images/ventoy.img
+
+touch /var/lib/kvmd/msd/meta/ventoy.img.complete
+```
+Remount msd folder as read only:
+
+```
+kvmd-helper-otgmsd-remount ro
+```
+</pre>
 </div>
 <div tags="" title="vsftpd FTP server v4">
 <pre>!!Installation:
