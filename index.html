@@ -33407,11 +33407,28 @@ ventoy.img2      38846464 38911999    65536   32M ef EFI (FAT-12/16/32)
 ```
 
 
-Copy iso files inside ventoy partition:
+Copy iso files inside ventoy partition(doesn't work copy directly to pikvm connected as flash drive:
 
 ```
 mkdir ventoy
 mount /dev/loop0p1 ventoy
+```
+
+!!Copy ventoy.img to pikvm:
+
+On pikvm:
+
+
+```
+cd /var/lib/kvmd/msd
+mount -o remount,rw .
+```
+
+On source linux/windows machine with ventoy.img (ex pikvm IP 192.168.3.3 default password root):
+
+
+```
+scp w:\temp\ventoy.img root@192.168.3.3:/var/lib/kvmd/msd/
 ```
 </pre>
 </div>
