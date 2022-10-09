@@ -14782,7 +14782,19 @@ It's important to update the VM GPU Drivers after you have updated the Host GPUs
 
 Reboot the host after updating GPU Drivers.
 Open Powershell as administrator and change directory (CD) to the path that CopyFilestoVM.ps1 and Update-VMGPUPartitonDriver.ps1 are located.
-Run Update-VMGPUPartitonDriver.ps1 -VMName "Name of your VM" -GPUName "Name of your GPU" (Windows 10 GPU name must be "AUTO")</pre>
+Run Update-VMGPUPartitonDriver.ps1 -VMName "Name of your VM" -GPUName "Name of your GPU" (Windows 10 GPU name must be "AUTO")
+
+!!Notes:
+After you have signed into Parsec on the VM, always use Parsec to connect to the VM. Keep the Microsft Hyper-V Video adapter disabled. Using RDP and Hyper-V Enhanced Session mode will result in broken behaviour and black screens in Parsec. RDP and the Hyper-V video adapter only offer a maximum of 30FPS. Using Parsec will allow you to use up to 4k60 FPS.
+If you get "ERROR : Cannot bind argument to parameter 'Path' because it is null." this probably means you used Media Creation Tool to download the ISO. You unfortunately cannot use that, if you don't see a direct ISO download link at the Microsoft page, follow this guide.
+Your GPU on the host will have a Microsoft driver in device manager, rather than an nvidia/intel/amd driver. As long as it doesn't have a yellow triangle over top of the device in device manager, it's working correctly.
+A powered on display / HDMI dummy dongle must be plugged into the GPU to allow Parsec to capture the screen. You only need one of these per host machine regardless of number of VM's.
+If your computer is super fast it may get to the login screen before the audio driver (VB Cable) and Parsec display driver are installed, but fear not! They should soon install.
+The screen may go black for times up to 10 seconds in situations when UAC prompts appear, applications go in and out of fullscreen and when you switch between video codecs in Parsec - not really sure why this happens, it's unique to GPU-P machines and seems to recover faster at 1280x720.
+Vulkan renderer is unavailable and GL games may or may not work. This may help with some OpenGL apps.
+If you do not have administrator permissions on the machine it means you set the username and vmname to the same thing, these needs to be different.
+AMD Polaris GPUS like the RX 580 do not support hardware video encoding via GPU Paravirtualization at this time.
+To download Windows ISOs with Rufus, it must have "Check for updates" enabled.</pre>
 </div>
 <div tags="" title="Gpu Passthrough on system with one gpu : r/unRAID v8">
 <pre>!For AMD GPU DISABLE ''RESIZABLE BAR ''IN BIOS!!!
