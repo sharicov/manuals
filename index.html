@@ -14775,7 +14775,14 @@ Right click on it and press connect.
 
 Download and run parsec on host computer from here:
 
-https://parsec.app/downloads</pre>
+https://parsec.app/downloads
+
+!!Upgrading GPU Drivers when you update the host GPU Drivers
+It's important to update the VM GPU Drivers after you have updated the Host GPUs drivers. You can do this by...
+
+Reboot the host after updating GPU Drivers.
+Open Powershell as administrator and change directory (CD) to the path that CopyFilestoVM.ps1 and Update-VMGPUPartitonDriver.ps1 are located.
+Run Update-VMGPUPartitonDriver.ps1 -VMName "Name of your VM" -GPUName "Name of your GPU" (Windows 10 GPU name must be "AUTO")</pre>
 </div>
 <div tags="" title="Gpu Passthrough on system with one gpu : r/unRAID v8">
 <pre>!For AMD GPU DISABLE ''RESIZABLE BAR ''IN BIOS!!!
