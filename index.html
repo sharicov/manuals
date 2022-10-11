@@ -33885,7 +33885,36 @@ apt  autoremove -y --purge docker-ce docker-ce-cli docker-compose  python3-docke
 </pre>
 </div>
 <div tags="" title="UNRAID benchmark Physical vs Virtual">
-<pre>https://xtremeownage.com/2021/03/16/2021-server-and-gaming-pc-build/#benchmarks</pre>
+<pre>https://xtremeownage.com/2021/03/16/2021-server-and-gaming-pc-build/#benchmarks
+
+!!Summary
+~4% impact to single-threaded CPU performance.
+
+~10% impact to multi-threaded CPU performance for their 4/8 core thread.
+
+~50% impact to the 64 core test, which is expected, since VM is only allocated half of the cores.
+
+The GPU benchmark actually did quite a bit better when virtualized.
+
+HDD results are in line with the above HDD benchmarks.
+
+Their RAM benchmark also performed better while virtualized.
+
+
+!!Use Threadripper instead of Ryzen
+While, I still technically can return everything and do so- If I were to repeat this build, I would use a thread ripper instead of a Ryzen. I estimate it would cost around 400-500$ more to do so, HOWEVER, I would gain a few KEY features for this build.
+
+Quad channel DDR-4. This helps performance.
+PCI-E Lanes.
+Seriously- 20 PCIe lanes is not enough. Ideally- your GPU gets dedicated 16 lanes. But- 8 lanes still is not likely to affect performance.
+
+Each PCIe NVMe uses 4 lanes. Remember the ASUS Hyper M.2 used in this build? Well- due to PCIe restrictions, I can only put a single SSD in it. I had to order another adaptor to squeeze my last NVMe into the bottom slot, which gets lanes from the chipset, instead of the CPU.
+
+Want to add another GPU, for a second player to also use? Good luck, lanes are very limited on Ryzen.
+
+However, if say, you spent the same amount on a Threadripper 1920x, you get a CPU with 12 cores, and 24 threads (up from 8/16), which gives you 64 pci-e lanes, instead of 20. Granted- this processor will perform overall- quite a bit worse, and it only supports PCI 3.0, instead of 4.0. But- the additional PCIe lanes will offer much greater room for expansion. I do expect this is why linus chose to use a server CPU/motherboard for this video.
+
+The downside to using a thread ripper- it would cost quite a bit more. The motherboard is quite a bit more expensive, as is the CPU. In this case, it would have likely been a better decision due to my expansion constraints I have reached.</pre>
 </div>
 <div bag="default" created="20210416140458850" modified="20210416140458850" revision="1" title="Untitled" type="text/vnd.tiddlywiki">
 <pre>New Tiddler</pre>
