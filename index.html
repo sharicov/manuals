@@ -22391,6 +22391,13 @@ This is the one about max time before flush, so 30 secs.
 
 Source: https://forums.unraid.net/topic/84100-unraid-not-using-ram-cache/
 
+!!To set dirty rate
+
+
+```
+sysctl vm.dirty_ratio=20
+```
+
 
 You could install the ''Tips and Tweaks Plugin'' and raise the ''vm.dirty_ratio to 50% ''to use 50% of your free RAM as your writing cache (linux default is 20%):
 
