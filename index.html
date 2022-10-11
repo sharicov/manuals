@@ -26680,7 +26680,60 @@ zlib1g/stable,now 1:1.2.11.dfsg-1 armhf [installed]
 </pre>
 </div>
 <div tags="" title="SMB performance tuning">
-<pre>https://forums.unraid.net/topic/97165-smb-performance-tuning/</pre>
+<pre>https://forums.unraid.net/topic/97165-smb-performance-tuning/
+
+!!Write Cache for Uploads
+
+Linux uses by default 20% of your free RAM to cache writes, before they are written to the disk. You can use the Tips and Tweaks Plugin to change this value or add this to your Go file (with the Config Editor Plugin)
+
+
+```
+sysctl vm.dirty_ratio=20
+```
+
+ 
+
+But before changing this value, you need to be sure to understand the consequences:
+
+Never use your NAS without an UPS if you use write caching as this could cause huge data loss!
+The bigger the write cache, the smaller the read cache (so using 100% of your RAM as write cache is not a good idea!)
+If you upload files to your server, they are 30 seconds later written to your disk (vm.dirty_expire_centisecs)
+Without SSD Cache: If your upload size is generally higher than your write cache size, it starts to cleanup the cache and in parallel write the transfer to your HDD(s) which could result in slow SMB transfers. Either you raise your cache size, so its never filled up, or you consider totally disabling the write cache.
+With SSD Cache: SSDs love parallel transfers (read #6 of this Guide), so a huge writing cache or even full cache is not a problem.
+ 
+
+But which dirty_ratio value should you set? This is something you need to determine by yourself as its completely individual:
+
+At first you need to think about the highest RAM usage that is possible. Like active VMs, Ramdisks, Docker containers, etc. By that you get the smallest amount of free RAM of your server:
+
+Total RAM size - Reserved RAM through VMs - Used RAM through Docker Containers - Ramdisks = Free RAM
+ 
+
+Now the harder part: Determine how much RAM is needed for your read cache. Do not forget that VMs, Docker Containers, Processes etc load files from disks and they are all cached as well. I thought about this and came to this command that counts hot files:
+
+find /mnt/cache -type f -amin -86400 ! -size +1G -exec du -bc {} + | grep total$ | cut -f1 | awk '{ total += $1 }; END { print total }' | numfmt --to=iec-i --suffix=B
+It counts the size of all files on your SSD cache that are accessed in the last 24 hours (86400 seconds)
+The maximum file size is 1GiB to exclude VM images, docker containers, etc
+This works only if you hopefully use your cache for your hot shares like appdata, system, etc
+Of course you could repeat this command on several days to check how it fluctuates.
+This command must be executed after the mover has finished its work
+This command isn't perfect as it does not count hot files inside a VM image
+ 
+
+Now we can calculate:
+
+100 / Total RAM x (Free RAM - Command Result) = vm.dirty_ratio
+ 
+
+If your calculated "vm.dirty_ratio" is
+
+lower than 5% (or even negative), you should lower it to 5 and buy more RAM.
+between 5% and 20%, set it accordingly, but you should consider buying more RAM.
+between 20% and 90%, set it accordingly
+If your calculated "vm.dirty_ratio" is higher than 90%, you are probably not using your SSD cache for hot shares (as you should) or your RAM is huge as hell (congratulation ^^). I suggest not to set a value higher than 90.
+ 
+
+Of course you need to recalcuate this value if you add more VMs or Docker Containers.</pre>
 </div>
 <div tags="" title="SSH android phone (ssh server) v1">
 <pre>!!Install terminux on phone
