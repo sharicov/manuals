@@ -10699,7 +10699,7 @@ DATABASE_URL=user=miniflux password=miniflux dbname=miniflux sslmode=disable
 <pre>yes</pre>
 </div>
 <div created="20210417210700988" modified="20210604055832253" title="$:/state/sidebar">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -15913,7 +15913,120 @@ vi /etc/hostname
 </pre>
 </div>
 <div tags="" title="How to Check/Show/Set/Change/Modify current disk caching values (vm.dirty_ratio, vm.dirty_background_ratio etc.) on Linux/Debian/Ubuntu/Kali Linux/Fedora/RedHat/Rocky Linux etc. &gt; Blog-D without Nonsense">
-<pre>https://dannyda.com/2022/05/14/how-to-check-show-set-change-modify-current-disk-caching-values-vm-dirty_ratio-vm-dirty_background_ratio-etc-on-linux-debian-ubuntu-kali-linux-fedora-redhat-rocky-linux-etc/</pre>
+<pre>https://dannyda.com/2022/05/14/how-to-check-show-set-change-modify-current-disk-caching-values-vm-dirty_ratio-vm-dirty_background_ratio-etc-on-linux-debian-ubuntu-kali-linux-fedora-redhat-rocky-linux-etc/
+
+!!The Issue
+We want to check the current value of vm.dirty_ratio, vm.dirty_background_ratio etc.
+We want to modify/change the value of vm.dirty_ratio, vm.dirty_background_ratio etc.
+
+!!The Answer
+!!!1 Show/Check current values
+
+```
+cat /proc/sys/vm/dirty_ratio
+cat /proc/sys/vm/dirty_background_ratio
+OR
+sysctl -a | grep dirty
+# Other values
+cat /proc/sys/vm/dirty_background_bytes
+cat /proc/sys/vm/dirty_bytes
+cat /proc/sys/vm/dirty_writeback_centisecs
+cat /proc/sys/vm/dirty_expire_centisecs
+cat /proc/sys/vm/dirtytime_expire_seconds
+cat /proc/sys/vm/drop_caches
+```
+
+To check page cache status we can use the following commands
+
+
+```
+cat /proc/vmstat | egrep "dirty|writeback"
+```
+
+Example Output
+
+
+```
+nr_dirty 304
+nr_writeback 0
+nr_writeback_temp 0
+nr_dirty_threshold 31543
+nr_dirty_background_threshold 15752
+```
+
+!!!2 Change/Set/Modify values
+Temporary changes/tuning/modification (Won’t keep the changes after system reboot)
+Once we reboot the system, the changes will be reverted to system default values
+
+
+```
+# Using sysctl
+sudo sysctl -w vm.dirty_ratio=30
+# Using echo
+sudo sh -c "echo '30' &gt; /proc/sys/vm/dirty_ratio"
+```
+
+Permanent changes/tuning/modification (Changes are kept between reboots)
+Values will be kept unless we manually change them again
+
+
+```
+# Open and edit the sysctl.conf file using nano command
+sudo nano /etc/sysctl.conf
+```
+
+Add the necessary parameters and desired values at the bottom of the file e.g.
+
+```
+vm.dirty_ratio=30
+```
+
+Ctrl + X, Y, Enter key to Save and Exit the nano text editor
+
+Apply the changes using the following command
+
+
+```
+sudo sysctl -p
+```
+
+!!Parameter descriptions
+''vm.dirty_background_ratio''
+
+Percentage of total available memory that contains free pages and reclaimable pages, the number of pages at which the background kernel flusher threads will start writing out dirty data.
+The total available memory is not equal to total system memory.
+
+''vm.dirty_ratio''
+
+Percentage of total available memory that contains free pages and reclaimable pages, the number of pages at which a process which is generating disk writes will itself start writing out dirty data.
+The total available memory is not equal to total system memory.
+
+Note: When the systems hit this mark, all new I/O will be blocked until dirty pages are written to the disk, usually can cause long I/O pauses.
+
+''vm.dirty_background_bytes
+''
+The amount of dirty memory at which the background kernel flusher threads will start writeback.
+
+Note: dirty_background_bytes is the counterpart of dirty_background_ratio. Only one of them may be specified at a time. When one sysctl is written it is immediately taken into account to evaluate the dirty memory limits and the other appears as 0 when read.
+
+''vm.dirty_bytes''
+
+The amount of dirty memory at which a process generating disk writes will itself start writeback. Note: dirty_bytes is the counterpart of dirty_ratio. Only one of them may be specified at a time. When one sysctl is written it is immediately taken into account to evaluate the dirty memory limits and the other appears as 0 when read.
+Note: the minimum value allowed for dirty_bytes is two pages (in bytes); any value lower than this limit will be ignored and the old configuration will be retained.
+
+''vm.dirty_expire_centisecs''
+
+Define when dirty data is old enough to be eligible for writeout by the kernel flusher threads. It is expressed in 100’ths of a second. Data which has been dirty in-memory for longer than this interval will be written out next time a flusher thread wakes up.
+
+''vm.dirty_writeback_centisecs''
+
+The kernel flusher threads will periodically wake up and write old data out to disk. This tunable expresses the interval between those wakeups, in 100’ths of a second.
+Setting this to zero disables periodic writeback altogether.
+
+References
+[1] “Kernel”, Kernel.org, 2008. [Online]. Available: https://www.kernel.org/doc/Documentation/sysctl/vm.txt
+
+SYSCTL(8) man page</pre>
 </div>
 <div tags="" title="ImmortalWRT nanopi R4S v1">
 <pre>Source: https://github.com/klever1988/nanopi-openwrt
