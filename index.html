@@ -15499,7 +15499,9 @@ To download Windows ISOs with Rufus, it must have "Check for updates" enabled.</
 <div tags="" title="Gpu Passthrough on system with one gpu : r/unRAID v8">
 <pre>!For AMD GPU DISABLE ''RESIZABLE BAR ''IN BIOS!!!
 
-!!DON'T CHECK ALL CORESE AND THREADS TO THE VM (CAUSES ENDLESS BOOTLOOP)
+!!Install graphic drivers on a first boot after installation from custom iso ''before'' network installation
+
+stop vm/ edit / change windows installation iso with graphic driver iso
 
 Topic: https://www.reddit.com/r/VFIO/comments/kdx5pl/working_amd_drivers_for_gpu_passthrough_newer/
 
