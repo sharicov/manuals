@@ -15501,11 +15501,11 @@ To download Windows ISOs with Rufus, it must have "Check for updates" enabled.</
 <div tags="" title="Gpu Passthrough on system with one gpu : r/unRAID v9">
 <pre>!For AMD GPU DISABLE ''RESIZABLE BAR ''IN BIOS!!!
 
-!!DON'T CHECK ALL CORESE AND THREADS TO THE VM (May CAUSE ENDLESS BOOTLOOP)
+!!DON'T CHECK ALL CORESE AND THREADS TO THE VM (CAUSES ENDLESS BOOTLOOP) - normally works with all cores as well
 
-!!Windows Insider build 25201 currently doesn't work (cannot install AMD 22.10.1 drivers)
+!! Install GPU drivers from custom ISO before network drivers
 
-!! To avoid GPU related freezes use custom ISO with drivers before installing kvm drivers
+!!Disable sleep
 
 Topic: https://www.reddit.com/r/VFIO/comments/kdx5pl/working_amd_drivers_for_gpu_passthrough_newer/
 
