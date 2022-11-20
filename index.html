@@ -18790,8 +18790,38 @@ Right click network disk / Always available Offline
 
 More settings here: Control Panel\All Control Panel Items\Sync Center\
 
-Up to'' 25% ''of local drive (can be configured in Disk Usage tab of Offline Files menu) 
+Up to'' 25% ''of local ''C'' drive (can be configured in Disk Usage tab of Offline Files menu) 
 More info: https://learn.microsoft.com/en-us/previous-versions/technet-magazine/cc137753(v=msdn.10)?redirectedfrom=MSDN
+
+To change cache folder location:
+
+
+&lt;&lt;&lt;
+Create a new folder for your offline file cache, such as D:\Offline.
+
+From an elevated command prompt type the following: Takeown /r /f C:\Windows\CSC
+
+Open the Sync Center and go to Manage Offline Files.
+
+Click Disable Offline Files and restart the machine.
+
+From an elevated command prompt issue the following commands:
+rd /s C:\Windows\CSC
+mklink /J C:\Windows\CSC "D:\Offline" (make sure to use the quotes if you have space(s) in the name).
+
+Reopen the Manage Offline Files window and Enable Offline Files.
+
+Restart the machine.
+(https://superuser.com/questions/19847/how-to-move-offline-files-cache-in-windows-7)
+
+If the above doesn't work, you can also take a look at the following article and see if it could help at your side:
+https://www.msblog.org/2006/12/29/moving-the-offline-files-cache-in-windows-vista/
+&lt;&lt;&lt;
+
+
+
+
+
 
 !!!Manual configuration in command prompt: https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc755136(v=ws.11)?redirectedfrom=MSDN
 
