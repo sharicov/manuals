@@ -18806,8 +18806,16 @@ Open the Sync Center and go to Manage Offline Files.
 Click Disable Offline Files and restart the machine.
 
 From an elevated command prompt issue the following commands:
+
+```
 rd /s C:\Windows\CSC
+```
+
+
+```
 mklink /J C:\Windows\CSC "D:\Offline" (make sure to use the quotes if you have space(s) in the name).
+```
+
 
 Reopen the Manage Offline Files window and Enable Offline Files.
 
