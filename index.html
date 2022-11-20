@@ -18781,22 +18781,35 @@ In the Speakers/Headphones Properties window, select the ''Enhancements tab.
 heck the box next to'' Loudness Equalization''.</pre>
 </div>
 <div tags="" title="Offline files windows local SSD cache for NAS">
-<pre>Sources: 
-
-https://superuser.com/questions/235257/local-cache-for-nas-or-network-folder/304765#304765
-
-https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb457104(v=technet.10)?redirectedfrom=MSDN
-
-Manual configuration in command prompt: https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc755136(v=ws.11)?redirectedfrom=MSDN
-
-Up to'' 25% ''of local drive (can be configured in Disk Usage tab of Offline Files menu) 
-More info: https://learn.microsoft.com/en-us/previous-versions/technet-magazine/cc137753(v=msdn.10)?redirectedfrom=MSDN
+<pre>
+!!To enable Offline Files
 
 Press windows start/Offline files/enable
 
 Right click network disk / Always available Offline
 
-More settings here: Control Panel\All Control Panel Items\Sync Center\</pre>
+More settings here: Control Panel\All Control Panel Items\Sync Center\
+
+Up to'' 25% ''of local drive (can be configured in Disk Usage tab of Offline Files menu) 
+More info: https://learn.microsoft.com/en-us/previous-versions/technet-magazine/cc137753(v=msdn.10)?redirectedfrom=MSDN
+
+!!!Manual configuration in command prompt: https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc755136(v=ws.11)?redirectedfrom=MSDN
+
+
+```
+net share &lt;sharename&gt; /cache:manual
+net share &lt;sharename&gt; /cache:BranchCache
+net share &lt;sharename&gt; /cache:documents
+net share &lt;sharename&gt; /cache:programs
+net share &lt;sharename&gt; /cache:none
+```
+
+Sources: 
+
+https://superuser.com/questions/235257/local-cache-for-nas-or-network-folder/304765#304765
+
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb457104(v=technet.10)?redirectedfrom=MSDN
+</pre>
 </div>
 <div tags="" title="OMV OpenMediaVault - Fix samba error on execution of exe v2">
 <pre>Add:
