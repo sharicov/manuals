@@ -34801,15 +34801,18 @@ wget https://pkgs.tailscale.com/stable/tailscale_1.32.3_amd64.tgz
 
 tar xvf tailscale_*.tgz
 
-cd tailscale &lt;complete with tab&gt;
+mv tailscale&lt;complete with tab&gt; tailscale
 
-./tailscaled --state=tailscaled.state &amp;
+/root/tailscale/tailscaled --state=tailscaled.state &amp;
 
-./tailscale up
+/root/tailscale/tailscale up
 
-./tailscale ip -4
+/root/tailscale ip -4
 ```
-</pre>
+
+to automatic startup add to /boot/go
+
+/root/tailscale/tailscaled --state=tailscaled.state &amp;</pre>
 </div>
 <div tags="" title="Unraid terminal commands install packages v7">
 <pre>source: https://www.youtube.com/watch?v=ODWmMEqR30E
