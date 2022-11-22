@@ -34793,7 +34793,21 @@ Script location:
 
 use tailscale.../tailscale instead of tailscale
 
-Name will depend on extracted folder</pre>
+Name will depend on extracted folder
+
+
+```
+wget https://pkgs.tailscale.com/stable/tailscale_1.32.3_amd64.tgz
+
+tar xvf tailscale_*.tgz
+
+tailscaled --state=tailscaled.state
+
+tailscale up
+
+tailscale ip -4
+```
+</pre>
 </div>
 <div tags="" title="Unraid terminal commands install packages v6">
 <pre>source: https://www.youtube.com/watch?v=ODWmMEqR30E
