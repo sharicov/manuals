@@ -34810,9 +34810,13 @@ mv tailscale&lt;complete with tab&gt; tailscale
 /root/tailscale ip -4
 ```
 
-to automatic startup add to /boot/go
+to automatic startup add to'' /etc/rc.d/rc.local'' OR ''/boot/go''
 
-/root/tailscale/tailscaled --state=tailscaled.state &amp;</pre>
+
+```
+/root/tailscale/tailscaled --state=tailscaled.state &amp;
+```
+</pre>
 </div>
 <div tags="" title="Unraid terminal commands install packages v7">
 <pre>source: https://www.youtube.com/watch?v=ODWmMEqR30E
