@@ -13542,6 +13542,8 @@ Or enter docker console as www-data with command: ./occ config:system:set truste
 
 /etc/init.d/dockerd status
 
+killall dockerd
+
 mkdir /mnt/Downloads/docker
 
 mv /var/lib/docker/ /mnt/Downloads/
@@ -13562,6 +13564,8 @@ Run docker service:
 
 ```
 /etc/init.d/dockerd start
+
+dockerd &amp;
 ```
 
 
