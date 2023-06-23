@@ -37076,7 +37076,146 @@ apt full-upgrade
 
 Add RTL8152 USB drivers from ich777 repository
 
-https://raw.githubusercontent.com/ich777/unraid-r8152-driver/master/unraid-r8152.plg</pre>
+https://raw.githubusercontent.com/ich777/unraid-r8152-driver/master/unraid-r8152.plg
+
+!!Text version
+
+
+```
+&lt;?xml version='1.0' standalone='yes'?&gt;
+&lt;!DOCTYPE PLUGIN [
+  &lt;!ENTITY name      "r8152-driver"&gt;
+  &lt;!ENTITY author    "ich777"&gt;
+  &lt;!ENTITY version   "2023.02.08"&gt;
+  &lt;!ENTITY gitURL    "https://raw.githubusercontent.com/&amp;author;/unraid-&amp;name;/master"&gt;
+  &lt;!ENTITY pluginURL "&amp;gitURL;/unraid-r8152.plg"&gt;
+  &lt;!ENTITY plugin    "/boot/config/plugins/&amp;name;"&gt;
+  &lt;!ENTITY emhttp    "/usr/local/emhttp/plugins/&amp;name;"&gt;
+  &lt;!ENTITY packages  "/boot/config/plugins/&amp;name;/packages"&gt;
+]&gt;
+
+&lt;PLUGIN  name="&amp;name;" author="&amp;author;" version="&amp;version;" pluginURL="&amp;pluginURL;" min="6.11.5" support="https://forums.unraid.net/topic/92865-support-ich777-amd-vendor-reset-coraltpu-hpsahba/"&gt;
+
+&lt;CHANGES&gt;
+
+###2023.02.08
+- Added note how to enable 2.5Gbit/s speeds
+
+###2023.02.07
+- Initial release
+
+&lt;/CHANGES&gt;
+
+&lt;FILE Name="&amp;emhttp;/README.md"&gt;
+&lt;INLINE&gt;
+**RTL8152/3/4/6 USB Drivers**
+  
+This package contains the Realtek OOT Drivers and installs them, a reboot is required after installing the plugin (upgrading to a newer Unraid version maybe needs a second reboot too).
+ATTENTION: To utilize 2.5Gbit/s speeds you have to add this line at the bottom to your 'go' file: 'ethtool -s eth0 autoneg on advertise 0x80000000002f' (without quotes and modify eth0 to the corresponding adapter in your system)!  
+  
+The following Chipsets are supported by this driver: RTL8152B, RTL8153/RTL8153B, RTL8154/RTL8154B, RTL8156/RTL8156B(S)(G)  
+
+Source: https://github.com/wget/realtek-r8152-linux
+&lt;/INLINE&gt;
+&lt;/FILE&gt;
+
+&lt;FILE Run="/bin/bash"&gt;
+&lt;INLINE&gt;
+
+download() {
+# Download r8152 package
+if wget -q -nc --show-progress --progress=bar:force:noscroll -O "&amp;packages;/${KERNEL_V%%-*}/${LAT_PACKAGE}" "${DL_URL}/${LAT_PACKAGE}" ; then
+  wget -q -nc --show-progress --progress=bar:force:noscroll -O "&amp;packages;/${KERNEL_V%%-*}/${LAT_PACKAGE}.md5" "${DL_URL}/${LAT_PACKAGE}.md5"
+  if [ "$(md5sum &amp;packages;/${KERNEL_V%%-*}/${LAT_PACKAGE} | awk '{print $1}')" != "$(cat &amp;packages;/${KERNEL_V%%-*}/${LAT_PACKAGE}.md5 | awk '{print $1}')" ]; then
+    echo
+    echo "---CHECKSUM ERROR!---"
+    rm -rf &amp;plugin; &amp;emhttp;
+    exit 1
+  fi
+  echo
+  echo "-------------------Sucessfully downloaded RTL8152 package-------------------"
+else
+  echo
+  echo "-----------------------Can't download RTL8152 package-----------------------"
+  rm -rf &amp;plugin; &amp;emhttp;
+  exit 1
+fi
+}
+
+check() {
+if ! ls -1 &amp;packages;/${KERNEL_V%%-*}/ | grep -q "${PACKAGE}" ; then
+  LAT_PACKAGE="$(wget -qO- https://api.github.com/repos/ich777/unraid-r8152-driver/releases/tags/${KERNEL_V} | jq -r '.assets[].name' | grep "${PACKAGE}" | grep -E -v '\.md5$' | sort -V | tail -1)"
+  echo
+  echo "-----------------------Downloading RTL8152 package!-------------------------"
+  echo "--------This could take some time, please don't close this window!----------"
+  download
+else
+  echo
+  echo "-----------------------RTL8152 package found locally------------------------"
+fi
+}
+
+# Define Variables
+KERNEL_V="$(uname -r)"
+PACKAGE="r8152"
+DL_URL="https://github.com/ich777/unraid-r8152-driver/releases/download/$KERNEL_V"
+
+if [ ! -d "&amp;packages;/${KERNEL_V%%-*}" ]; then
+  mkdir -p "&amp;packages;/${KERNEL_V%%-*}"
+fi
+
+# Check for old packages
+rm -rf $(ls -d &amp;packages;/* | grep -v "${KERNEL_V%%-*}")
+
+# Check if RTL8152 package is already downloaded and installed
+check
+
+if [ ! -f "&amp;plugin;/&amp;name;.png" ]; then
+  wget -q -nc --show-progress --progress=bar:force:noscroll -O "&amp;plugin;/&amp;name;.png" "https://raw.githubusercontent.com/ich777/docker-templates/master/ich777/images/realtek.png"
+fi
+
+#Install icon
+if [ ! -f "&amp;emhttp;/images/&amp;name;.png" ]; then
+  if [ ! -d "&amp;emhttp;/images" ]; then
+    mkdir -p &amp;emhttp;/images
+  fi
+  cp &amp;plugin;/&amp;name;.png &amp;emhttp;/images/
+fi
+
+if [[ $(modinfo r8152 | grep -w "version:" | cut -d 'v' -f3) == 2* ]]; then
+  echo
+  echo "-----------Nothing to do, OOT RTL8152 package already installed-------------"
+  echo
+else
+  echo
+  echo "-----------Please reboot your server to activate the OOT driver!------------"
+  echo
+fi
+
+
+&lt;/INLINE&gt;
+&lt;/FILE&gt;
+
+&lt;FILE Run="/bin/bash" Method="remove"&gt;
+&lt;INLINE&gt;
+
+echo "--------------------------"
+echo "---Uninstalling RTL8152---"
+echo "--------------------------"
+# Remove plugin related files
+rm -rf &amp;emhttp;
+rm -rf &amp;plugin;
+echo
+echo "-----------------------------------------------------"
+echo "---RTL8152 uninstalled, please reboot your server!---"
+echo "-----------------------------------------------------"
+echo
+
+&lt;/INLINE&gt;
+&lt;/FILE&gt;
+&lt;/PLUGIN&gt;
+```
+</pre>
 </div>
 <div bag="default" created="20210417195249457" creator="sharicov" modified="20210417195440700" modifier="sharicov" revision="2" tags="manual" title="USB disk mount (fstab) v5" type="text/vnd.tiddlywiki">
 <pre>!!! Make share directory: 
