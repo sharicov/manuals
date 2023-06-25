@@ -36734,6 +36734,22 @@ To:
 
 ''For windows'' you need to install additional parts on the guest. (Device manager/install mass storage driver from virtio-win ISO)
 
+Installing the virtiofs service
+Run as administrator the Command Prompt and execute the following command in order to register virtiofs as a service which starts automatically when Windows loads.
+
+
+```
+C:\&gt; sc create VirtioFsSvc binpath="(your binary location)\virtiofs.exe" start=auto depend="WinFsp.Launcher/VirtioFsDrv" DisplayName="Virtio FS Service"
+```
+
+A manual service start is done with the following command:
+
+```
+C:\&gt; sc start VirtioFsSvc
+```
+
+virtiofs will use the first available drive letter starting with Z: and downward. Use the "-m" command line parameter to explicitly select a drive letter.
+
 Link: https://virtio-fs.gitlab.io/howto-windows.html
 
  
