@@ -36695,7 +36695,17 @@ Requires ''unassigned devices ''plugin
 User shares only hides system shares (isos, domains etc.)</pre>
 </div>
 <div tags="" title="unraid shared folder for VM">
-<pre>Go to VM/Edit/show as XML
+<pre>Source: https://forums.unraid.net/topic/129247-unraid-os-version-6111-available/
+
+Go to VM/Edit/
+
+Unraid Share Mode:    Virtiofs Mode
+ Unraid Share:              Manual
+Unraid Source Path:	/mnt/user/isos/
+Unraid Mount Tag:	    Isos
+
+
+Switch to XML view (top right corner)
 
 Change:
 
@@ -36714,6 +36724,12 @@ To:
 &lt;access mode='shared'/&gt; &lt;/memoryBacking&gt;  
 
 ```
+
+For windows you need to install additional parts on  the guest. https://virtio-fs.gitlab.io/howto-windows.html
+
+ 
+
+For a linux guest you just mount the share   sudo mount -t virtiofs unraidshare /mnt/unraiddata/
 </pre>
 </div>
 <div tags="" title="Unraid switch VMs script">
