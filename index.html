@@ -342,6 +342,8 @@ Error message and password prompt
 
 <li>download site from webarchive v2</li>
 
+<li>Draft of 'lxc install on openwrt friendlyelec v3'</li>
+
 <li>dual monitor linux</li>
 
 <li>Dual monitor Linux v2</li>
@@ -14780,6 +14782,63 @@ waybackpack http://cooler.irk.ru/ --list
 ```
 </pre>
 </div>
+<div title="Draft of 'lxc install on openwrt friendlyelec v3'">
+<pre>Source: https://openwrt.org/lxc_openwrt_host
+
+!!Install packages
+
+opkg update
+
+
+```
+opkg install lxc-start lxc-stop lxc-create lxc-attach lxc-destroy lxc-config lxc-ls getopt lxc-checkconfig gnupg2-utils gnupg2-dirmngr lxc-execute
+```
+
+
+!!Create debian bullseye image
+
+
+```
+lxc-create --name ynh --template download -- --dist debian --release bullseye --arch arm64
+```
+
+!!Show container status
+
+
+```
+lxc-ls -f
+```
+
+!!Start/Stop container
+
+
+```
+lxc-start -n ynh
+```
+
+Access container's bash terminal (container must be stopped)
+lxc-execute ynh bash
+
+!!Network config
+
+
+```
+vim /srv/lxc/ynh/config
+```
+
+
+Add
+
+
+```
+lxc.net.0.type = veth
+lxc.net.0.link = br-lan
+lxc.net.0.flags = up
+lxc.net.0.hwaddr = 00:FF:DD:BB:CC:01
+```
+
+</pre>
+</div>
 <div tags="" title="dual monitor linux">
 <pre>```
 xrandr --help
@@ -18632,6 +18691,11 @@ lxc-start -n ynh
 ```
 
 Access container's bash terminal (container must be stopped)
+
+
+```
+lxc-execute ynh bash
+```
 
 
 !!Network config
