@@ -10865,7 +10865,7 @@ DATABASE_URL=user=miniflux password=miniflux dbname=miniflux sslmode=disable
 <pre>Manuals in github</pre>
 </div>
 <div title="$:/state/search-list/selected-item--874113614">
-<pre>Links v6-primaryList</pre>
+<pre>DHCP server and NAT Linux and r5s benchmark-secondaryList</pre>
 </div>
 <div created="20210418175850925" modified="20210418175850925" title="$:/state/showeditpreview">
 <pre>yes</pre>
@@ -18723,6 +18723,20 @@ lxc.net.0.hwaddr = 00:FF:DD:BB:CC:01
 lxc-execute ynh bash
 
 ip a
+```
+
+!!Troubleshoot
+
+
+```
+lxc-checkconfig | grep missing
+
+cat /proc/net/arp
+
+brctl show
+
+ifconfig -a
+
 ```
 </pre>
 </div>
