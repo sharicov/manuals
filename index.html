@@ -15890,14 +15890,14 @@ After you changed it for "Automatic" and pressed start check if it helps.
 pavucontrol</pre>
 </div>
 <div tags="" title="Forward port traffic to another PC in Linux">
-<pre>!!Example port 8080 to 192.168.3.5
+<pre>!!Example ports 8080 (QBitTorrent) and 3389 (RDP) to 192.168.3.5
 
 
 
 ```
 echo 1 &gt;/proc/sys/net/ipv4/ip_forward
 
-iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 
+iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 192.168.3.5
 
  iptables -t nat -A POSTROUTING -j MASQUERADE 
 ```
