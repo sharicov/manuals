@@ -15905,6 +15905,8 @@ echo 1 &gt;/proc/sys/net/ipv4/ip_forward
 
 iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 192.168.3.5
 
+iptables -t nat -A PREROUTING -p tcp --dport 3389 -j DNAT --to-destination 192.168.3.5
+
  iptables -t nat -A POSTROUTING -j MASQUERADE 
 ```
 
