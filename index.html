@@ -39923,7 +39923,17 @@ More examples: https://techcommunity.microsoft.com/t5/itops-talk-blog/customize-
 https://www.itechtics.com/customize-windows-sandbox/</pre>
 </div>
 <div tags="" title="windows server 2022 ati drivers">
-<pre>!!Get windows build version in cmd
+<pre>!Working
+
+Download radeon pro drivers
+
+Extract with 7-zip
+
+From device manager/display adapter/Microsoft basic/updated driver/let me choose from list/have a disk/browse to extracted folder .inf/choose AMD Radeon pro W6800 (equivalent of 6900 xt)
+
+!Alternative - not working 
+
+!!Get windows build version in cmd
 
 ```
 systeminfo | findstr /B /C:"OS Name" /B /C:"OS Version
