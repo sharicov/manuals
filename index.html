@@ -17685,7 +17685,8 @@ Click Apply, OK, then restart your computer.
 After following the instructions above, Windows Defender will be permanently disabled, but you will still see the icon in the system tray on the taskbar — this is perfectly normal.</pre>
 </div>
 <div tags="" title="Hyper-v windows 11 guest settings">
-<pre>
+<pre>!!Initial setup
+
 ```
 1.Right Click the virtual machine
 2.Click Settings
@@ -17694,7 +17695,11 @@ After following the instructions above, Windows Defender will be permanently dis
 5.Click Processor
 6.Change ‘Number of virtual processors’ to a minimum of ‘2’
 ```
-Source: https://learn.microsoft.com/en-us/answers/questions/593350/hyper-v-showed-this-pc-cant-run-windows-11</pre>
+Source: https://learn.microsoft.com/en-us/answers/questions/593350/hyper-v-showed-this-pc-cant-run-windows-11
+
+!!Enable enhanced session (for audio, resolution etc.)
+
+On the menu of the Hyper-V's Virtual Machine Connection window select View and deselect Enhanced Mode Session. This will bring the password sign-in box back. Log in as usual.'' On Windows Settings \ Accounts \ Sign-in option, turn off Require Hello sign-in for Microsoft accounts.''</pre>
 </div>
 <div tags="" title="ImmortalWRT nanopi R4S v1">
 <pre>Source: https://github.com/klever1988/nanopi-openwrt
