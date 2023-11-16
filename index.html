@@ -26739,7 +26739,20 @@ Security/Enable Secure Boot
 
 
 
-Source: https://www.bdrsuite.com/blog/how-to-convert-vhd-to-vhdx-using-hyper-v-manager-and-powershell/</pre>
+Source: https://www.bdrsuite.com/blog/how-to-convert-vhd-to-vhdx-using-hyper-v-manager-and-powershell/
+
+
+To make vhdx bootable start vm with bootable iso like ''Strelec'' with correct OS (Strelec 11 for windows11.vhd or 10 for windows10.vhd)
+
+Make sure G is the boot drive (one labeled ''ESP'')
+
+in cmd run
+
+
+```
+bcdboot C:\Windows /s G: /f UEFI
+```
+</pre>
 </div>
 <div tags="" title="Samba tuning RAM and cache v2">
 <pre>!!Working parameters:
