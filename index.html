@@ -11839,7 +11839,7 @@ assign letter=a
 robocopy a:\efi d:\efi.bak /mir /r:1 /w:1
 ```
 
-!!Optional set EFI partition’s identifier in ''diskpart'':
+!!Optional set EFI partition’s identifier in ''diskpart'' mandatory for WinNTSetup to recognize partition as bootable:
 
 ```
 set id=c12a7328-f81f-11d2-ba4b-00a0c93ec93b
