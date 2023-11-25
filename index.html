@@ -39950,7 +39950,20 @@ Use wake on LAN app
 Windows: https://www.nirsoft.net/utils/wake_on_lan.html)
 Linux: apt install wakeonlan
 
-wakeonlan MACAddress</pre>
+wakeonlan MACAddress
+
+!!Sleep windows from command prompt
+
+
+```
+%windir%\System32\rundll32.exe powrprof.dll,SetSuspendState 0,1,0
+
+```
+
+Sources: 
+https://superuser.com/questions/463646/is-there-a-command-line-tool-to-put-windows-8-to-sleep/463652#463652
+
+https://superuser.com/questions/42124/how-can-i-put-the-computer-to-sleep-from-command-prompt-run-menu</pre>
 </div>
 <div tags="" title="Wakelock disable/ignore Android">
 <pre>Source: https://www.xda-developers.com/stop-wakelocks-android-without-root/
