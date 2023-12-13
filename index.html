@@ -15599,26 +15599,40 @@ arandr
 <div tags="" title="dufs - web based file access (filestash alternative) v3">
 <pre>Supports drag&amp;drop, download as zip, picture preview:
 
-!!Installation in docker
+!!Run once in docker
 
-To  expose home directory (`pwd`):
+To expose home directory (`pwd`):
 
 ```
 docker run -v `pwd`:/data -p 5000:5000 --rm -it sigoden/dufs /data -A
 ```
 
-To expose specific directory (ex. /media/usb):
+To expose specific directory and set password (ex. /media/usb):
 
 
 ```
 docker run -v /media/usb:/data -p 5000:5000 --rm -it sigoden/dufs /data -A -a UsEr:PaSSWord@/:rw
 ```
 
-
-
 Port: 5000
 
-site: https://github.com/sigoden/dufs</pre>
+!!Install in docker permanently
+
+Name: dufs
+
+Image: sigoden/dufs:latest
+
+Port: 5000 5000
+
+Command/override: -A -a UsEr:PaSSWord@/:rw
+
+Working dir: /data
+
+Volumes/bind: /data /media/usb
+
+Restart policy: unless stopped
+
+Site and parameters: https://github.com/sigoden/dufs</pre>
 </div>
 <div tags="" title="emulatorjs web based rom emulation v2">
 <pre>!!Installation
