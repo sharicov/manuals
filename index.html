@@ -24458,14 +24458,28 @@ In the router set ''only DNS'' to be pi-hole DNS IP
 
 Make sure DNS port ''53'' is not occupied by alternative solution (ex. AdGuard Home)
 
-Change web admin port:
+Change web admin port to required:
+
+```
+server.port                 = 80
+```
+Restart lighttpd
+
+systemctl status lighttpd.service
+
+systemctl restart lighttpd.service
+
+
+Access web admin console:
+
+http://YourServerIP:YourPort/admin
 
 
 ```
 nano /etc/lighttpd/lighttpd.conf
 ```
 
-
+Change 
 
 !!Uninstall
 
