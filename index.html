@@ -24456,7 +24456,16 @@ Server running pi-hole should have ''Static IP''
 
 In the router set ''only DNS'' to be pi-hole DNS IP
 
-Make sure DNS port ''153'' is not occupied by alternative solution (ex. AdGuard Home)
+Make sure DNS port ''53'' is not occupied by alternative solution (ex. AdGuard Home)
+
+Change web admin port:
+
+
+```
+nano /etc/lighttpd/lighttpd.conf
+```
+
+
 
 !!Uninstall
 
