@@ -18731,7 +18731,7 @@ Second import option: https://immich.app/docs/features/command-line-interface/
 
 !!Immich backup
 
-Database backup:
+Database backup (albums, faces etc):
 
 
 ```
@@ -18744,6 +18744,15 @@ Folders to store:
 UPLOAD_LOCATION/library
 UPLOAD_LOCATION/upload
 UPLOAD_LOCATION/profile
+```
+
+!!Actual pictures backup to cloud.mail.ru example:
+
+
+```
+screen -S Photos -d -m bash -c "rclone copy -u --progress /media/2TB/InstantUpload/ mailru:/Photos/InstantUpload --max-size 2G"
+
+screen -r
 ```
 
 
