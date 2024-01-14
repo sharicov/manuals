@@ -32440,7 +32440,7 @@ echo Backup Yandex photos to Mail.ru
 rclone copy Yandex:/Camera\ Uploads mailru:/Photos/Camera\ Uploads
 
 echo Backup local InstantUpload to Mail.ru
-rclone copy /media/2TB/InstantUpload/ mailru:/Photos/InstantUpload --max-size 2G
+##done in chronetab -e at 4am daily### rclone copy /media/2TB/InstantUpload/ mailru:/Photos/InstantUpload --max-size 2G
 
 echo Backup Tools to Local Backup
 rclone copy -u --progress mailru:/Tools /media/2TB/Tools
