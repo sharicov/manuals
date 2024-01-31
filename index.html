@@ -28467,7 +28467,7 @@ UDP (21116)
 Server download;
 https://github.com/rustdesk/rustdesk-server/releases
 
-Download ''hbbs ''version (hbbr is for relay)
+Download ''both  ''''hbbs '' and ''hbbr '' versions
 
 Client download:
 https://github.com/rustdesk/rustdesk/releases/tag/1.2.3
@@ -28482,16 +28482,17 @@ mkdir rustdesk; cd rustdesk
 
 wget https://github.com/rustdesk/rustdesk-server/releases/download/1.1.10-3/rustdesk-server-hbbs_1.1.10-3_arm64.deb
 
+wget rustdesk-server-hbbr_1.1.10-3_arm64.deb
+
 dpkg -i rust*.deb
 
-hbbs
 ```
 
 On a ''router '' side
 
 
 ```
-Enable NAT forward for port 21116 if needed
+Enable NAT forward for ports 21115-21119 (TCP) and  21116 (UDP) if needed
 
 ```
 
@@ -28505,8 +28506,29 @@ Click on 3 dots near ID/Network/Fill in ID server:21116/Apply
 
 ```
 
+!!Set encryption keys
+
+Get key on the server from running folder
+
+
+```
+cat ./id_ed25519.pub
+```
+
+
+
+Put it in all clients' setting
+
 !!Manual: 
 https://rustdesk.com/docs/en/self-host/rustdesk-server-oss/install/#set-up-your-own-server-instance-manually
+
+!!Manual start server service
+
+
+```
+hbbs
+```
+
 
 !!Troubleshooting
 
