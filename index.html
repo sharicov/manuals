@@ -14590,7 +14590,7 @@ Backup 15.2.24
 
 30 * * * * rclone copy mailru:/Tools /media/2TB/Tools
 
-0 5 * * * rsync -avh --info=progress2 /media/2TB/InstantUpload/* /media/n5105/16TB/InstantUpload
+0 5 * * * rsync -avh /media/2TB/InstantUpload/* /media/n5105/16TB/InstantUpload
 
 0 4 * * * rclone copy /media/2TB/InstantUpload/ mailru:/Photos/InstantUpload --max-size 2G
 
