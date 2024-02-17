@@ -1096,13 +1096,24 @@ start outlook</pre>
 <div tags="" title="/etc/rc.local x96 backup">
 <pre>```
 bash /etc/custom_service/start_service.sh &amp;
-/root/TorrServer-linux-arm64 -d /media/usb &amp;
 aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all -D --conf-path=/root/aria2.conf &amp;
 python3 -m http.server 7777 -d /root &amp;
 /usr/bin/miniflux -c /etc/miniflux.conf &amp;
-/root/filestash/filestash &amp;
+#ran in docker# /root/filestash/filestash &amp;
 java -jar /root/JDownloader.jar &amp;
 netdata &amp;
+/root/TorrServer-linux-arm64 -d /media/usb &amp;
+
+echo 1 &gt;/proc/sys/net/ipv4/ip_forward
+
+iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 192.168.3.5 #torrent server on n5105
+iptables -t nat -A PREROUTING -p tcp --dport 3389 -j DNAT --to-destination 192.168.3.5 #RDP on n5105
+iptables -t nat -A POSTROUTING -j MASQUERADE 
+
+#nvm install 16.0.0 &amp;
+#yarn global add wetty &amp;
+#wetty &amp;
+armbian-openvfd 99 &amp;
 exit 0
 ```
 
