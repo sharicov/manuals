@@ -19066,9 +19066,31 @@ enter your custom domain in the domain filed
 
 Ex. sharicov.duckdns.org
 
-enter ''IP ''and ''port ''(depending if you want to access the host internally or externally, can also be 127.0.0.1)
+enter ''local IP ''and ''port ''(depending if you want to access the host internally, or externally, can also be 127.0.0.1) - ''working with local only 192.168...''
 
-SSL tab/choose last one with custom domain (ex. sharicov.duckdns.org) / enable ''force SSL ''and ''http/2 support''</pre>
+SSL tab/choose last one with custom domain (ex. sharicov.duckdns.org) / enable ''force SSL ''and ''http/2 support''
+
+http is ok, will translate to https automatically.
+
+Example add host:
+
+
+```
+jellyfin.sharicov.duckdns.org
+
+http
+
+local ip (192.168...)
+
+port 8096
+
+SSL tab/ force ssl/enable http/2 support 
+```
+
+save
+
+click on jellyfin.sharicov.duckdns.org
+</pre>
 </div>
 <div tags="" title="Hyper-v windows 11 guest settings v3">
 <pre>!!Initial setup
