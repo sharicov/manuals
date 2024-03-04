@@ -36753,6 +36753,22 @@ to look like this (remove arrows before  &lt;!-- and after   --&gt;):
 
 ```
 
+''Save ''and ''restart ''in the GUI
+
+!!Turn on vulnerability-detector:
+
+wazuh GUI/Management/Configuration/Edit Configuration
+
+Search for vulnerability-detector ''inside the configuration frame''
+
+```
+ &lt;vulnerability-detector&gt;
+    &lt;enabled&gt;yes&lt;/enabled&gt;
+    &lt;interval&gt;5m&lt;/interval&gt;
+    &lt;min_full_scan_interval&gt;6h&lt;/min_full_scan_interval&gt;
+    &lt;run_on_start&gt;yes&lt;/run_on_start&gt;
+```
+
 ''Save ''and ''restart ''in the GUI</pre>
 </div>
 <div tags="" title="Web browser benchmarks">
