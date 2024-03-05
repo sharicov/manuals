@@ -16460,18 +16460,42 @@ Save/Restart Wazuh from GUI
 !!Usage for file scanning 
 https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/virus-total-integration.html
 
-On client side (ex. linux) edit the agent configuration file
+On client side edit the agent configuration file
+
+
+On windows client run as ''administrator''
+
+
+```
+notepad "C:\Program Files (x86)\ossec-agent\ossec.conf"
+```
+
+Or in linux client
 
 
 ```
 sudo nano /var/ossec/etc/ossec.conf
+
 ```
-
+Search for syscheck
 Add folder to scan in ''syscheck'' section
-
 
 ```
   &lt;directories check_all="yes" realtime="yes"&gt;/media/user/software&lt;/directories&gt;
+```
+
+Run as ''administrator ''in PowerShell
+
+
+```
+restart-service -name wazuh
+
+```
+
+Or in linux
+
+```
+sudo systemctl restart wazuh-agent
 ```
 </pre>
 </div>
