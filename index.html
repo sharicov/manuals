@@ -11683,7 +11683,7 @@ sudo systemctl restart ssh
 ```
 
 
-Alternative script with allowed static IP:
+!Alternative script with allowed static IP:
 
 
 ```
@@ -11693,12 +11693,21 @@ Alternative script with allowed static IP:
 # UPPERCASE space-separated country codes to ACCEPT
 ALLOW_COUNTRIES="CH"
 LOGDENY_FACILITY="authpriv.notice"
+ALLOW_IPS="46.101.15.103"
 
 if [ $# -ne 1 ]; then
   echo "Usage:  `basename $0` " 1&gt;&amp;2
   exit 0 # return true in case of config issue
 fi
 
+# Fixed static IP
+if [[ $ALLOW_IPS =~ $1 ]]; then
+  RESPONSE="ALLOW"
+  logger -p $LOGDENY_FACILITY "$RESPONSE sshd connection from $1 (Manual whitelist)"
+  exit 0
+fi
+
+# Geoiplookup
 if [[ "`echo $1 | grep ':'`" != "" ]] ; then
   COUNTRY=`/usr/bin/geoiplookup6 "$1" | awk -F ": " '{ print $2 }' | awk -F "," '{ print $1 }' | head -n 1`
 else
