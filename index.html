@@ -37498,7 +37498,41 @@ Source: https://groups.google.com/g/wazuh/c/5VIx1zy4a3s
 </pre>
 </div>
 <div tags="" title="wazuh troubleshooting file monitoring">
-<pre>Source: https://www.reddit.com/r/Wazuh/comments/114dxk5/fim_just_dont_work/
+<pre>Source:
+https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/advanced-settings.html
+
+```
+apt-get install auditd
+apt-get install audispd-plugins
+systemctl restart auditd
+```
+
+Edit the Wazuh agent /var/ossec/etc/ossec.conf configuration file and add the configuration below:
+
+
+```
+&lt;syscheck&gt;
+   &lt;directories check_all="yes" whodata="yes"&gt;/etc&lt;/directories&gt;
+&lt;/syscheck&gt;
+```
+
+
+```
+systemctl restart wazuh-agent
+auditctl -l | grep wazuh_fim
+
+```
+
+Output if working
+
+
+```
+auditctl -w /etc -p wa -k wazuh_fim
+```
+
+
+
+Source: https://www.reddit.com/r/Wazuh/comments/114dxk5/fim_just_dont_work/
 
 When we enable ''report_changes="yes"'', the agent saves a snapshot of every file in its folder. For instance, this file:
 
