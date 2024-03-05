@@ -16424,8 +16424,7 @@ Restart the SSH server:
 service sshd restart</pre>
 </div>
 <div tags="" title="Enable wazuh modules">
-<pre>
-!!Integration documentation: 
+<pre>!!Integration documentation: 
 https://documentation.wazuh.com/current/user-manual/manager/manual-integration.html
 
 In GUI press on Wazuh button on the top left /Settings/Modules
@@ -16459,7 +16458,22 @@ add following section replacing ''API_KEY'' with actual key you got from Virusto
 Save/Restart Wazuh from GUI
 
 !!Usage for file scanning 
-https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/virus-total-integration.html</pre>
+https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/virus-total-integration.html
+
+On client side (ex. linux) edit the agent configuration file
+
+
+```
+sudo nano /var/ossec/etc/ossec.conf
+```
+
+Add folder to scan in ''syscheck'' section
+
+
+```
+  &lt;directories check_all="yes" realtime="yes"&gt;/media/user/software&lt;/directories&gt;
+```
+</pre>
 </div>
 <div tags="" title="ExactFile CRC disk file creator comparison">
 <pre>ExactFile  download: https://www.exactfile.com/downloads/</pre>
