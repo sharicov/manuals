@@ -37128,7 +37128,19 @@ cmd appops set com.snapchat.android WAKE_LOCK ignore
 </pre>
 </div>
 <div tags="" title="wazuh linux file monitor v2">
-<pre>
+<pre>Install auditd
+
+
+```
+apt-get install auditd
+
+apt-get install audispd-plugins
+
+systemctl restart auditd
+```
+
+Edit wazuh client configuration
+
 ```
 sudo nano /var/ossec/etc/ossec.conf
 ```
