@@ -20217,7 +20217,7 @@ mkdir kasm
 cd kasm
 ```
 
-Example of port 8443 (''default port 443'')
+Example of port 8443 (''default port 443'') -  443 must be replaced with 8443 at ''3 places ''in the file
 
 ```
 nano docker-compose.yml
@@ -20233,7 +20233,7 @@ services:
     container_name: kasm
     privileged: true
     environment:
-      - KASM_PORT=443
+      - KASM_PORT=8443
       - DOCKER_HUB_USERNAME=USER #optional
       - DOCKER_HUB_PASSWORD=PASS #optional
       - DOCKER_MTU=1500 #optional
@@ -20244,7 +20244,7 @@ services:
       - /run/udev/data:/run/udev/data #optional
     ports:
       - 3000:3000
-      - 8443:443
+      - 8443:8443
     restart: unless-stopped
 ```
 
