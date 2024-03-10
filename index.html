@@ -25601,7 +25601,18 @@ Another manual, not checked: https://github.com/Pavo-IM/Hackinabox
 </pre>
 </div>
 <div tags="" title="OSX in docker">
-<pre>https://github.com/sickcodes/Docker-OSX</pre>
+<pre>https://github.com/sickcodes/Docker-OSX
+
+
+```
+docker run \
+    --device /dev/kvm \
+    -e AUDIO_DRIVER=pa,server=unix:/tmp/pulseaudio.socket \
+    -v "/run/user/$(id -u)/pulse/native:/tmp/pulseaudio.socket" \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    sickcodes/docker-osx
+```
+</pre>
 </div>
 <div tags="" title="owncloud commands">
 <pre>in portainer enter console as www-data
