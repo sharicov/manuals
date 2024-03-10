@@ -38306,6 +38306,19 @@ docker run -e VERSION=win10 -it --rm --name windows -p 8006:8006 --device=/dev/k
 d NET_ADMIN --stop-timeout 120 dockurr/windows
 ```
 
+!!Custom iso boot example:
+
+create /''home/sharicov/windows-docker/iso'' folder and add iso there named ''custom.iso''
+
+Boot from it
+
+```
+docker run -v /home/sharicov/windows-docker/iso:/storage -it --rm --name windows -p 8006:8006 --device=/dev/kvm --cap-add NET_ADMIN --stop-timeout 120 dockurr/windows
+```
+
+
+
+!!Other useful info from source:
 
 ```
 environment: VERSION: "win11"
