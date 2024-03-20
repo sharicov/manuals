@@ -17254,6 +17254,8 @@ Host: /media
 
 ''OnlyOffice'' server port ''8008''
 
+Set Onlyoffice in /admin as http://yourOfficeIP:8008
+
 Set ''administrator password'',''protocol'' (ex. SAMBA)  and check in ''upload button'' to be shown.
 
 ```
@@ -17274,6 +17276,10 @@ Set ''autosave ''in OnlyOffice setting.
 
 !!Troubleshooting
 
+For errors look into log view in http://:IP:8334/admin/logs
+
+Most likely you cannot access because host in admin setting should be the same IP/name as one you are accessing filestash from.
+
 If getting ''Not Allowed ''error,in filestash container set 
 
 Env
@@ -17290,10 +17296,8 @@ Source: https://github.com/mickael-kerjean/filestash/issues/127
 Check version
 http://ip:8334/about
 
-Troubleshooting
-For errors look into log view in http://:IP:8334/admin/logs
 
-Most likely you cannot access because host in admin setting should be the same IP/name as one you are accessing filestash from.</pre>
+</pre>
 </div>
 <div tags="" title="fisx samba in immortalWrt OpenWrt v2">
 <pre>Enter luci GUI/NAS/Network resources
