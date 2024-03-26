@@ -18139,6 +18139,26 @@ glances -C $(locate glances.conf) -w
 ```
  pip install --upgrade glances
 ```
+
+
+!!Troubleshooting
+If getting externally-managed-environment error,
+
+run
+
+
+```
+pip install pip==23.1.2 --break-system-packages
+```
+
+and then install glances again
+
+to upgrade python run:
+
+
+```
+python3 -m pip install --upgrade pip
+```
 </pre>
 </div>
 <div tags="" title="gmail attachments to google drive (gdrive)">
