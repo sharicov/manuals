@@ -14010,8 +14010,8 @@ LogRotate yes
 
 ```
 cp freshclam.conf /etc/clamav/freshclam.conf
-cp clamd.conf clamd.conf
-cp 
+cp clamd.conf /etc/clamav/clamd.conf
+cp clamav-milter.conf /etc/clamav/clamav-milter.con
 ```
 
 
@@ -14031,6 +14031,13 @@ service clamav-freshclam start
 
 ```
 service clamav-freshclam status
+```
+
+!!Check configuration
+
+
+```
+clamconf
 ```
 
 
