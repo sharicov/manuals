@@ -30678,6 +30678,36 @@ Device: br-lan
 
 For ''ax210 ''wifi card
 
+install intel ax210 drivers
+
+
+```
+opkg install iwlwifi-firmware-ax210
+```
+
+&lt;&lt;&lt;
+
+Manual way -not recommended
+
+Download intel drivers from here: https://www.intel.com/content/www/us/en/support/articles/000005511/wireless.html
+
+
+```
+wget https://wireless.wiki.kernel.org/_media/en/users/drivers/iwlwifi-ty-59.601f3a66.0.tgz
+```
+
+Extract and copy to firmware directory
+
+
+```
+tar -xvzf iwlwifi-ty-59.601f3a66.0.tgz
+
+cp -r iwlwifi-ty-59.601f3a66.0 /lib/firmware/
+```
+
+&lt;&lt;&lt;
+
+
 In'' GUI/Software/update list
 ''
 Install 
@@ -30686,6 +30716,7 @@ Install
 ```
 pciutils
 iwlwifi 
+nano
 ```
 
 Run 
@@ -30696,14 +30727,93 @@ lspci
 ```
 
 
-Output will include ''AX210 ''card
+Example output will include ''AX210 ''card
 
-go to the /sys/bus/pci/devices, and you will see the device id. You should find the "03:00.0"
-enter the dictionary and use pwd command to get the absolute path.
-edit the ''/etc/config/wireless''
-config wifi-device 'radio0'
 
 ```
+00:1c.0 Network controller: Intel Corporation Wi-Fi 6 AX210/AX211/AX411 160MHz (rev 1a)
+```
+
+Note the ''00:1c.0'' at the beginning of the line
+
+''Reboot''
+
+After reboot ''iwinfo ''will show the interface
+
+Example:
+
+wlan0     ESSID: unknown
+          Access Point: XXXXXXX
+          Mode: Client  Channel: unknown (unknown)  HT Mode: NOHT
+          Center Channel 1: unknown 2: unknown
+          Tx-Power: 0 dBm  Link Quality: unknown/70
+          Signal: unknown  Noise: unknown
+          Bit Rate: unknown
+          Encryption: unknown
+          Type: nl80211  HW Mode(s): 802.11ac/ax/b/g/n
+          Hardware: XXXXX
+[Generic MAC80211]
+          TX power offset: unknown
+          Frequency offset: unknown
+          Supports VAPs: no  PHY name: phy0
+
+Configuration file will be created automatically.
+
+To check
+
+Login into openwrt
+
+
+```
+cat /etc/config/wireless
+
+```
+
+
+```
+config wifi-iface 'default_radio0'
+        option device 'radio0'
+        option network 'lan'
+        option mode 'ap'
+        option ssid 'OpenWrt'
+        option encryption 'none'
+
+config wifi-device 'radio0'
+        option type 'mac80211'
+        option path 'pci0000:00/0000:00:1c.0'
+        option channel '36'
+        option band '5g'
+        option htmode 'HE80'
+        option disabled '1'
+```
+
+Create interface in ''GUI/Network/Interfaces/Add new interface''
+
+
+&lt;&lt;&lt;
+Manual - not working
+
+go to the ''/sys/bus/pci/devices'', and you will see the device id. You should find the "0000:00:1c.0"
+enter the directory and use pwd command to get the absolute path.
+
+Example:
+
+
+```
+/sys/bus/pci/devices/0000:00:1c.0
+```
+
+
+edit the ''/etc/config/wireless''
+
+```
+nano /etc/config/wireless
+```
+
+
+
+```
+config wifi-device 'radio0'
         option type 'mac80211'
         option country 'US'
         option cell_density '0'
@@ -30719,6 +30829,8 @@ config wifi-device 'radio1'
 ```
 
 reboot ! And you will find the driver works well.
+&lt;&lt;&lt;
+
 
 Source: https://forum.openwrt.org/t/set-up-ax210-step-by-step/134415
 
