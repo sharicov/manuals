@@ -28871,7 +28871,25 @@ kvmd-otgmsd -i 0 --unlock --eject
 
 ''Note'': Drive letter needs to be assigned in windows disk manager in order to operate
 
-Source: https://docs.pikvm.org/msd/#multiple-drives</pre>
+Source: https://docs.pikvm.org/msd/#multiple-drives
+
+!!Mount image on start
+
+
+
+```
+kvmd:
+    msd:
+        initial:
+            image: os-image.iso
+            cdrom: true
+```
+
+''Note'': image name ''without path''
+
+Source:
+
+https://github.com/pikvm/pikvm/issues/208</pre>
 </div>
 <div tags="" title="pikvm networking ethernet gadget v3">
 <pre>Source: https://docs.pikvm.org/usb_ethernet/#basic-configuration
