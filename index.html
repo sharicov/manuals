@@ -21838,7 +21838,9 @@ services:
 Then edit docker/volumes/change "data/movies" to you desired directory (ex. /media/usb/Downloads)</pre>
 </div>
 <div tags="" title="Jellyfin on Proxmox with GPU acceleration transcoding v2">
-<pre>!!Installation
+<pre>Default port ''8096''
+
+!!Installation
 Use jellyfin script from Proxmox Helper Useful scripts to install: https://tteck.github.io/Proxmox/
 
 Run from web CLI
@@ -21859,6 +21861,54 @@ Login Jellyfin/set user and password
 Enable GPU (ex. Intel GPU)
 
 GUI/Settings/Dashboard/Playback/Hardware Acceleration/Intel QuickSync (QSV)
+
+''Note:'' Only Low power encoding is supported on Jasper Lake GPU (n5105) 
+https://jellyfin.org/docs/general/administration/hardware-acceleration/intel/#low-power-encoding
+
+To enable Low Power Encoding
+
+In ''HOST ''terminal
+
+```
+apt update &amp;&amp; apt install -y pve-firmware
+
+ sh -c "echo 'options i915 enable_guc=2' &gt;&gt; /etc/modprobe.d/i915.conf"
+
+update-initramfs -u &amp;&amp; update-grub
+```
+
+Reboot ''proxmox host''
+
+Check for no fails and errors
+
+
+```
+dmesg | grep i915
+
+cat /sys/kernel/debug/dri/0/gt0/uc/guc_info
+
+cat /sys/kernel/debug/dri/0/gt0/uc/huc_info
+```
+
+Correct output for last two commands
+
+
+```
+Status RUNNING
+
+```
+Enter Kellyfin web gui
+
+Ip can be found in proxmox console
+
+
+```
+ip a
+```
+
+http://JellyfinIP:8096
+
+Now you can safely enable the Intel Low-Power encoder in the Jellyfin dashboard.
 
 Documentation: https://jellyfin.org/docs/general/administration/hardware-acceleration/intel/#lxc-on-proxmox</pre>
 </div>
