@@ -31043,37 +31043,73 @@ lvdisplay
 Additional info on LVM manipulations: https://pve.proxmox.com/wiki/Logical_Volume_Manager_(LVM)</pre>
 </div>
 <div tags="" title="Proxmox GPU passthrough short version working v6">
-<pre>nano /etc/default/grub
+<pre>
+```
+nano /etc/default/grub
+```
+
 
 For Intel CPUs:
 
+
+```
 GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on" 
+```
+
 
 For AMD CPUs:
 
+
+```
 GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on" 
+```
 
+
+
+```
 update-grub
+```
 
+
+
+```
 nano /etc/modules 
+```
+
 
 Add
 
+
+```
 vfio vfio_iommu_type1 vfio_pci vfio_virqfd 
+```
+
 
 Blacklist
 
 For NVIDIA
 
+
+```
 echo "blacklist nvidia" &gt;&gt; /etc/modprobe.d/blacklist.conf
+```
+
 
 For AMD
 
+
+```
 echo "blacklist radeon" &gt;&gt; /etc/modprobe.d/blacklist.conf 
+```
 
+
+
+```
 update-initramfs -u 
+```
 
-reboot
+
+''reboot'' host
 
 Notes:
 
