@@ -40917,6 +40917,42 @@ If nobody reports any problems with the above, I'll add it to the Wiki :)</pre>
 <div tags="" title="Unraid fix Realtek USB 2.5Gbpe r8152 r8156 v2">
 <pre>https://forums.unraid.net/topic/141349-plugin-realtek-r8125-r8168-and-r81526-drivers/
 
+The repo is: https://github.com/jinlife/unraid-r8125-r8152-driver
+
+
+&lt;&lt;&lt;
+Precaution:
+
+Please be carefull about these drivers. You may lose the network if the driver is wrong.
+If you have no idea what type of chip your network card is, please do NOT install this plugin. There are supported chips listed in the description of the plugin.
+If you have no issues with Unraid built-in drivers, please ignore the nofitication from Fix Common Problems and keep using built-in drivers.
+ 
+
+Instructions:
+
+ Navigate to Tools -&gt; System  in the Unraid.
+ If you see: Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller
+Then you will probably benefit from the "RTL8125" plugin
+Same step goes to R8156 and R8168\R8111 plugins.
+ 
+
+Scenario:
+
+It is the driver for PCI 2.5G Realtek RTL8125 chip, PCI 1G Realtek RTL8168\8111 and for USB 2.5G Realtek RTL8152\6 chip network card.
+If you have one of those network card and it is not working properly and is not full speed, you can try this plugin.
+If you think the driver isn't good with your hardware, uninstallation can clean it completely.
+ 
+
+Note:
+
+Please only install the plugin for RTL8125, R8168\R8111 and RTL8152\6 chips.
+
+Especially, if you have both RTL8168\8111 and RTL8125 network card, please install RTL8168\8111 and RTL8125 plugin together.
+&lt;&lt;&lt;
+
+
+!!Old way manual
+
 Site: https://forums.unraid.net/topic/123638-unraid-6115-%E6%9C%80%E6%96%B0%E7%9A%84r8125%E5%92%8Cr8152%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8%E8%A1%A5%E4%B8%81/
 
 Drivers: https://drive.google.com/drive/folders/1wA9UNejVllZfBTjDQ-pquJ-Bx4Tlqluk
