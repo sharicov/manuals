@@ -12456,36 +12456,40 @@ python3 -m http.server 7777 -d /root &amp;
 https://github.com/jiangcuo/Proxmox-Port/wiki/Windows-11-arm64
 
 
-```
+
 Windows 11 arm64
 Here's a recommended virtual machine configuration
 
-agent: 1
+
+```
+nano  /etc/pve/nodes/PiProxmox/qemu-server/101.conf
+```
+
+
+
+```
 bios: ovmf
-boot: order=scsi0;scsi1
+boot: order=scsi0
 cores: 4
-cpu: max
-efidisk0: ssd:117/vm-117-disk-0.qcow2,efitype=4m,pre-enrolled-keys=1,size=64M
+cpu: host
 memory: 4096
-meta: creation-qemu=7.0.0,ctime=1662825802
-name: Windows11
-net0: virtio=D6:BA:58:C8:B6:60,bridge=e1000,firewall=1
-numa: 0
+meta: creation-qemu=8.1.5,ctime=1714465615
+name: Win11
 ostype: l26
-sata0: Nas:iso/virtio-win-0.1.217.iso,media=cdrom,size=519172K
-scsi0: ssd:117/vm-117-disk-1.qcow2,size=32G
-scsi1: Nas:iso/tiny11a64r1.iso,media=cdrom,size=4375488K
+scsi0: local:iso/26100.1.240331-1435.GE_RELEASE_CLIENTPRO_OEMRET_A64FRE_EN-US.ISO,media=cdrom,size=4422724K
 scsihw: virtio-scsi-pci
-smbios1: uuid=b0935fcd-6aa8-4f0f-a023-72661c340d18
-sockets: 1
-tpmstate0: ssd:117/vm-117-disk-2.raw,size=4M,version=v2.0
+smbios1: uuid=5bde8a0f-12b1-42f3-9035-50df8f97a058
+unused0: local:101/vm-101-disk-2.raw
 vga: ramfb
-Note ! We must set ostype=l26 and vga=ramfb
+
+```
+
+''Note ''! We must set ostype=l26 and vga=ramfb
 
 Add 1 scsi-cdrom to boot from win11 iso.
 Add 1 sata-cdrom to add virtio-win-drivers,It will help us install scsi driver(iso/vioscsi/win11/ARM64) before install win to disk
 To bypass check. Use Shift + F10 to call a cmd window, and start regedit. Create an item named LabConfig under HKLM\SYSTEM\Setup. Add two DWORD values named BypassTPMCheck and BypassSecureBootCheck, and set them to 1. // TPM-device on pve will get error on win11-arm
-```
+
 </pre>
 </div>
 <div tags="" title="armbian backup v1">
