@@ -29421,7 +29421,10 @@ ln -s /media/usb1/Yandex.Disk.Backup/Camera\ Uploads /media/usb1/InstantUpload/C
 </pre>
 </div>
 <div tags="" title="pihole docker v2">
-<pre>Ports: 
+<pre>!!Installation
+
+
+Ports: 
 
 
 ```
@@ -29449,11 +29452,32 @@ Manual:
 
 https://hub.docker.com/r/pihole/pihole
 
+!!Configuration
+
+''Note'': do not forward 53 port in router otherwise it will resolve names for the whole world!
+
+ In ''settings/DNS/Interface settings/ Permit all origins'' (direct access: /admin/settings.php?tab=dns)
+
+!!Change pihole password
+
+```
+pihole -a -p
+```
+
+Set new password
+
+!!Update
+
+```
+pihole -up
+```
+
 
 !!Troubleshooting
 
 Error 500 on docker start with port 53
 
+Check who uses port 53
 
 ```
 lsof -i :53
@@ -29467,31 +29491,10 @@ dnsmasq 1534 libvirt-dnsmasq    5u  IPv4  14196      0t0  UDP 192.168.122.1:doma
 dnsmasq 1534 libvirt-dnsmasq    6u  IPv4  14197      0t0  TCP 192.168.122.1:domain (LISTEN)
 ```
 
+Kill this service
 
 ```
-find / -name dnsmasq.conf
-```
-
-
-```
-cat /etc/dnsmasq.d/libvirt-daemon
-```
-
-Output
-
-
-```
-bind-interfaces
-except-interface=virbr0
-```
-
-
-```
-  systemctl disable systemd-resolved.service
-
-  systemctl stop systemd-resolved
-
-  systemctl status systemd-resolved
+killlall libvirt-dnsmasq
 ```
 
 
