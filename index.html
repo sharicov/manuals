@@ -29447,7 +29447,48 @@ Manual:
 
 https://hub.docker.com/r/pihole/pihole
 
-</pre>
+
+!!Troubleshooting
+
+Error 500 on docker start with port 53
+
+
+```
+lsof -i :53
+```
+
+Output:
+
+
+```
+dnsmasq 1534 libvirt-dnsmasq    5u  IPv4  14196      0t0  UDP 192.168.122.1:domain
+dnsmasq 1534 libvirt-dnsmasq    6u  IPv4  14197      0t0  TCP 192.168.122.1:domain (LISTEN)
+```
+
+
+```
+find / -name dnsmasq.conf
+```
+
+
+```
+cat /etc/dnsmasq.d/libvirt-daemon
+```
+
+Output
+
+
+```
+bind-interfaces
+except-interface=virbr0
+```
+
+
+Source: 
+
+https://discourse.pi-hole.net/t/docker-unable-to-bind-to-port-53/45082/8
+
+https://serverfault.com/questions/351962/disable-dhcp-service-in-dnsmasq</pre>
 </div>
 <div tags="" title="PiKVM enable VNC v3">
 <pre>Source: https://docs.pikvm.org/vnc/
