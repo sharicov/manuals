@@ -33877,9 +33877,9 @@ Connect proxmox web GUI
 
 ''Note:'' to download template: Through the GUI you can click on your storage -&gt; CT Templates -&gt; Templates -&gt; select a template -&gt; Download.
 
-''Disk/Storage HDD_Pool/16GB''
+''Disk/local-lvm/16GB''
 
-Note: recommended to create container on the ZFS pool (ex. HDD_Pool)
+Note: recommended to create container in regular pool and not zfs pool that will be used for samba data storage. If zfs pool is removed and container resides on it, the container will become unusable
 
 ''CPU/4 cores''
 
