@@ -36616,7 +36616,7 @@ PC link2  (Static) 192.168.137.251
 ```
 echo 1 &gt;&gt; /proc/sys/net/ipv4/ip_forward
 
-ptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 iptables -A FORWARD -i eth0 -o bond1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 
@@ -36648,6 +36648,25 @@ Create new script
 UNRAID GUI/Settings/user scripts/Add new script/give a name ex. routing passthrough
 
 paste script
+
+
+```
+ nano /boot/config/plugins/user.scripts/scripts/routing_passthrough/script 
+```
+
+Add
+
+
+```
+echo 1 &gt;&gt; /proc/sys/net/ipv4/ip_forward
+
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+iptables -A FORWARD -i eth0 -o bond1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+iptables -A FORWARD -i bond1 -o eth0 -j ACCEPT
+```
+
 
 !!To delete user script
 
