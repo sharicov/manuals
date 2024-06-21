@@ -18535,7 +18535,7 @@ services:
     restart: always
     security_opt:
       - seccomp:unconfined
- environment:
+    environment:
     - JWT_ENABLED=false
     - ALLOW_PRIVATE_IP_ADDRESS=true
     ports:
@@ -18546,6 +18546,10 @@ volumes:
 ```
 
 Save changes
+
+WebUI ex. 192.168.1.5
+
+WebUI: http:\\192.168.1.5:8334
 
 Start stack
 
