@@ -18535,6 +18535,11 @@ services:
     restart: always
     security_opt:
       - seccomp:unconfined
+ environment:
+    - JWT_ENABLED=false
+    -ALLOW_PRIVATE_IP_ADDRESS=true
+    ports:
+    - "8008:80"
 
 volumes:
     filestash: {}
