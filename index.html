@@ -18508,7 +18508,7 @@ Install unraid compose plugin
 
 Press on gear on the left on filestash/edit stack
 
-Compose: (from: https://downloads.filestash.app/latest/docker-compose.yml)
+Compose: (from: https://downloads.filestash.app/latest/docker-compose.yml with filestash_odds modifications mentioned below)
 
 
 ```
@@ -18537,7 +18537,7 @@ services:
       - seccomp:unconfined
  environment:
     - JWT_ENABLED=false
-    -ALLOW_PRIVATE_IP_ADDRESS=true
+    - ALLOW_PRIVATE_IP_ADDRESS=true
     ports:
     - "8008:80"
 
