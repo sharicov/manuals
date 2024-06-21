@@ -18495,7 +18495,12 @@ new sources.lists is in the running directory and you have to replace sources ma
 Source https://www.unixmen.com/find-fastest-mirror-debian-derivatives/</pre>
 </div>
 <div tags="" title="Filestash in Unraid">
-<pre>Install unraid compose plugin
+<pre>
+Filestash Port ''8334''
+
+OnlyOffice server port ''8008''
+
+Install unraid compose plugin
 
 ''Unraid GUI/Apps/Docker Compose Manager''
 
@@ -18537,7 +18542,32 @@ volumes:
 
 Save changes
 
-</pre>
+Edit filestash_oods
+
+Add
+
+Port 8008 80
+
+Env
+
+```
+
+JWT_ENABLED false
+
+ALLOW_PRIVATE_IP_ADDRESS true
+```
+
+Set administrator password,protocol (ex. SAMBA) and check in upload button to be shown.
+
+
+```
+http://YourIP:8334/admin
+```
+
+
+!!Bonus
+
+Set ''autosave ''in OnlyOffice setting.</pre>
 </div>
 <div tags="" title="filestash native (arm64) (like nextcloud web files over ssh) v7">
 <pre>Documentation: https://www.filestash.app/docs/install-and-upgrade/
