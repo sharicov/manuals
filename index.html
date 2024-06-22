@@ -43179,7 +43179,9 @@ echo "blacklist r8169" &gt; /boot/config/modprobe.d/r8169.conf
 </pre>
 </div>
 <div tags="" title="Unraid fix unraid retry unmounting user shares">
-<pre>lsof /var/lib/docker
+<pre>
+```
+lsof /var/lib/docker
 
 killall -Iv docker
 
@@ -43188,6 +43190,8 @@ killall -Iv containerd
 umount -l /dev/loop2
 
 unmount /var/lib/docker
+
+```
 </pre>
 </div>
 <div tags="" title="Unraid install custom docker containers from dockerHub">
