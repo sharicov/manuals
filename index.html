@@ -18009,7 +18009,19 @@ In Wuzah GUI select agent / More,../VirusTotal
 <pre>ExactFile  download: https://www.exactfile.com/downloads/</pre>
 </div>
 <div tags="" title="exchanging ssh keys between Unraid and x96">
-<pre>ssh to x96
+<pre>!!Accesss from X96 to Unraid with no password
+
+Legend:
+
+
+&lt;&lt;&lt;
+x96 192.168.1.96
+
+unriaid 192.168.1.5
+&lt;&lt;&lt;
+
+
+!!ssh to x96
 
 
 ```
@@ -18022,7 +18034,30 @@ ex. /home/sharicov/.ssh/id_rsa
 
 Enter twice for no passphrase
 
-scp</pre>
+Copy ''public ''key over to Unraid
+
+
+```
+scp /home/sharicov/.ssh/id_rsa.pub root@192.168.1.5//boot/config/ssh
+```
+
+!ssh unriad
+
+and install the key
+
+```
+ssh-copy-id -f -i /home/sharicov/.ssh/id_rsa.pub root@192.168.1.5
+```
+
+Now you can connect from X96 to Unraid with no password using following command
+
+
+```
+ssh root@192.168.1.5
+```
+
+
+</pre>
 </div>
 <div tags="" title="execute command in running container v2">
 <pre>!!Example 
