@@ -43562,7 +43562,16 @@ If your root file system is ZFS you must update your initramfs every time this v
 ```
 # update-initramfs -u
 ```
-</pre>
+
+!!Not tested
+
+
+```
+ echo 3 &gt; /proc/sys/vm/drop_caches 
+```
+
+
+to clear the read-cache and make the RAM available again as ZFS’s ARC (disk cache) is growing in size and Proxmox ARC is not releasing this process automatically.</pre>
 </div>
 <div tags="" title="unraid shared folder for VM v5">
 <pre>!On unraid server
