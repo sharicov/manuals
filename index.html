@@ -36922,12 +36922,20 @@ Create new script
 
 UNRAID GUI/Settings/user scripts/Add new script/give a name ex. routing passthrough
 
-paste script
+Click on gear on the left of script name and then click on edit script
 
+
+!!! or Manually, not recommended
+
+&lt;&lt;&lt;
+
+paste script
 
 ```
  nano /boot/config/plugins/user.scripts/scripts/routing_passthrough/script 
 ```
+&lt;&lt;&lt;
+
 
 Add
 
@@ -36942,8 +36950,9 @@ iptables -A FORWARD -i eth0 -o bond1 -m state --state RELATED,ESTABLISHED -j ACC
 iptables -A FORWARD -i bond1 -o eth0 -j ACCEPT
 ```
 
+Press ''Save changes'' button on the ''top''.
 
-!!To delete user script
+!!To delete user script manually, not recommended
 
 
 ```
