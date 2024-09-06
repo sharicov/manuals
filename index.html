@@ -11646,7 +11646,7 @@ wettyoss/wetty                               latest             88a037bc5b60   1
 <pre>yes</pre>
 </div>
 <div created="20210417210700988" modified="20210604055832253" title="$:/state/sidebar">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -49445,21 +49445,21 @@ aria.conf
 
 
 ```
-dir=/media/usb/Downloads                                                                                                
-max-overall-upload-limit=100K                                                                                           
-disk-cache=200M                                                                                                         
-#file-allocation=trunc                                                                                                  
-file-allocation=falloc                                                                                                  
-seed-time=0                                                                                                             
-check-integrity=true                                                                                                    
-realtime-chunk-checksum=true                                                                                            
-always-resume=true                                                                                                      
-auto-file-renaming=false                                                                                                
-continue=true                                                                                                           
-remote-time=true                                                                                                        
-#daemon                                                                                                                 
-#log=/media/aria2c.log                                                                                                  
-#log-level=error                                                                                                        
+dir=/media/usb/Downloads
+max-overall-upload-limit=100K
+disk-cache=200M
+#file-allocation=trunc
+file-allocation=falloc
+seed-time=0
+check-integrity=true
+realtime-chunk-checksum=true
+always-resume=true
+auto-file-renaming=false
+continue=true
+remote-time=true
+#daemon
+#log=/media/aria2c.log
+#log-level=error
 bt-exclude-tracker="*"
 ```
 
@@ -49474,11 +49474,23 @@ LISTEN_ADDR=IP_of_the_machine:80
 DATABASE_URL=user=miniflux password=miniflux_password dbname=miniflux sslmode=disable
 ```
 
-/etc/fstab
+/etc/fstab (with mergefs)
 
 
 ```
-/dev/sda1 /media/usb btrfs defaults,noatime 0 0
+UUID=ff796518-a44f-4d31-a5c4-02dc05797423  /        ext4     defaults,noatime,errors=remount-ro     0 1
+LABEL=BOOT_EMMC      /boot    vfat                    defaults                  0 2
+tmpfs                /tmp     tmpfs                   defaults,rw,nosuid,nodev,noexec,relatime           0 0
+#/dev/sda1 /media/usb btrfs defaults,noatime 0 0
+#/dev/sda1 /media/usb btrfs autodefrag,noatime,nodatacow,space_cache=v2 0 0
+#/dev/sda1 /media/usb ext4 defaults,noatime 0 1
+PARTUUID="33ee58df-f993-446a-96bd-2fcd2f7830db" /media/usb ext4 defaults,noatime 0 1
+#/media/usb/swap   none    swap    sw    0   0
+PARTUUID="577520f8-e4c9-4c15-9a9e-0727d576ac01" /media/2TB ext4 defaults,noatime 0 1
+#PARTUUID="7f63b221-52e5-4f25-951f-743111666fdf" /media/4TB btrfs defaults,noatime 0 0
+/media/2TB:/media/usb /media/x96 mergerfs cache.files=partial,dropcacheonclose=true,category.create=mfs 0 0
+#//192.168.1.5/n5105 /media/n5105/ cifs username=sharicov,password=mis.tic.pwd,iocharset=utf8,file_mode=0777,dir_mode=0777,iocharset=utf8
+#//192.168.1.69/qbittorrent /media/qbittorrent cifs username=root,password=mis.tic.pwd,iocharset=utf8,file_mode=0777,dir_mode=0777
 ```
 
 /root/sync.sh
