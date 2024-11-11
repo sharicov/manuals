@@ -28860,7 +28860,33 @@ source ~/.zshrc
 </pre>
 </div>
 <div tags="" title="Ollama windows server make accessible v1">
-<pre>https://github.com/ollama/ollama/blob/main/docs/faq.md</pre>
+<pre>https://github.com/ollama/ollama/blob/main/docs/faq.md
+
+On windows
+
+Windows Settings/environmental/ add OLLAMA_HOST entry with 0.0.0.0 value and restart windows
+
+to check port available
+
+on windows in edge enter local ip:11434
+
+on wsl 
+
+
+```
+nmap 172.21.128.1 -p 11434
+```
+
+Tip: make sure there is not wls ollama, or docker ollama are running on the same pc
+
+add ollama entry 
+
+
+```
+172.21.128.1:11434
+```
+
+Enable assistant in configuration and name it properly to differentiate from other ollama instances</pre>
 </div>
 <div tags="" title="OMV OpenMediaVault - Fix samba error on execution of exe v2">
 <pre>Add:
