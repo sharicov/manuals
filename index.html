@@ -22069,9 +22069,44 @@ For ''ARM64'' oznu/guacamole:armhf
 
 4 years old 200M downloads standard in unraid
 
-For ''AMD64'' jasonbean/guacamole
+For ''AMD64''
 
-Dockerfile for Guacamole 0.9.13 with embedded MariaDB (MySQL) and LDAP authentication</pre>
+https://github.com/flcontainers/guacamole
+
+
+```
+nano docker-compose.yml
+```
+
+Add
+
+
+```
+version: "3"
+services:
+  guacamole:
+    image: flcontainers/guacamole
+    container_name: guacamole
+    environment:
+      TZ: 'UTC'
+      EXTENSIONS: 'auth-totp,auth-ldap'
+    volumes:
+      - postgres:/config
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 8080:8080
+volumes:
+  postgres:
+    driver: local
+```
+
+
+```
+docker compose pull
+
+docker-compose up -d
+```
+</pre>
 </div>
 <div tags="" title="h5ai docker installation r4s arm v2">
 <pre>In portainer create new container.
