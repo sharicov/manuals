@@ -13543,7 +13543,16 @@ Run on second monitor HDMI-2
 ```
 DISPLAY=:0 xterm -fg green -bg black -geometry 80x24+3840+0 &amp;
 ```
-Switch between windows with Alt+Tab</pre>
+Switch between windows with Alt+Tab
+
+
+To run chromium on second monitor
+
+
+```
+flatpak run org.chromium.Chromium --no-sandbox --window-position=3840,0 &amp;
+```
+</pre>
 </div>
 <div tags="" title="bcache guide (ssd caching in linux) v1">
 <pre>Source: https://www.kernel.org/doc/Documentation/bcache.txt
