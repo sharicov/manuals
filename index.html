@@ -13450,6 +13450,7 @@ https://www.reddit.com/r/batocera/comments/17wwumb/adding_packages_to_batocera/
 
 https://medium.com/@ayaka_45434/installing-packages-on-linux-without-sudo-privilege-using-junest-5fe7523c9d86
 
+Go through the'' step 1'' only
 
 ```
 wget https://github.com/fsquillace/junest/archive/refs/heads/master.zip
@@ -13460,7 +13461,13 @@ mv junest-master ~/.local/share/junest
 export PATH=~/.local/share/junest/bin:$PATH
 junest setup
 ```
-</pre>
+!!!Ignore junest error if appears
+
+Then install packages.
+
+Example:
+
+ pacman -S glances</pre>
 </div>
 <div tags="" title="Batocera Installation guide Emulator v6">
 <pre>!!Batocera download site
