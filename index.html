@@ -11800,7 +11800,7 @@ wettyoss/wetty                               latest             88a037bc5b60   1
 <pre>yes</pre>
 </div>
 <div created="20210417210700988" modified="20210604055832253" title="$:/state/sidebar">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -20991,13 +20991,11 @@ sudo nmcli connection add type bond ifname bond0 con-name bond0 mode broadcast i
 
 
 ```
-sudo nmcli connection add type bond-slave
-ifname enp14s0f3u3 con-name bond-slave-enp14s0f3u3 master bond0
+sudo nmcli connection add type bond-slave ifname enp14s0f3u3 con-name bond-slave-enp14s0f3u3 master bond0
 
 sudo nmcli connection add type bond-slave ifname enp2s0f0u1 con-name bond-slave-enp2s0f0u1 master bond0
 
-sudo nmcli connection add type bond-slave
-ifname enp2s0f0u2 con-name bond-slave-enp2s0f0u2 master bond0
+sudo nmcli connection add type bond-slave ifname enp2s0f0u2 con-name bond-slave-enp2s0f0u2 master bond0
 ```
 
 
