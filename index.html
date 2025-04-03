@@ -20992,9 +20992,7 @@ sudo nmcli connection add type bond ifname bond0 con-name bond0 mode broadcast i
 
 ```
 sudo nmcli connection add type bond-slave
-ifname enp14s0f3u3
-con-name bond-slave-enp14s0f3u3
-master bond0
+ifname enp14s0f3u3 con-name bond-slave-enp14s0f3u3 master bond0
 
 sudo nmcli connection add type bond-slave ifname enp2s0f0u1 con-name bond-slave-enp2s0f0u1 master bond0
 
