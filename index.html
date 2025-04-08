@@ -27822,6 +27822,13 @@ Run test:
  fio --name=write_test --ioengine=libaio --rw=write --bs=1M --numjobs=6 --size=10G --directory=/media/test --runtime=60 --time_based --group_reporting --iodepth=16
 ```
 
+running tcpdump on unraid in temp docker
+
+
+```
+docker run --rm -it --network=host nicolaka/netshoot tcpdump -i eth2 icmp
+```
+
 </pre>
 </div>
 <div created="20210614103010327" modified="20210614103431863" tags="manual" title="Linux touch to click v1">
