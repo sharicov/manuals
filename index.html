@@ -21176,43 +21176,22 @@ select bond0/IPv4/routes/''Use only for resources on this connection''/OK</pre>
 </div>
 <div tags="" title="fixing ping not going from nobara to unraid on port 1 and 3">
 <pre>
-```
- ip route get 10.0.1.2
-ip route get 10.0.3.4
-10.0.1.2 dev enp2s0f0u2 src 10.0.2.10 uid 1000 
-    cache 
-10.0.3.4 dev enp2s0f0u2 src 10.0.2.10 uid 1000 
-    cache 
+Summary of What Worked
+Identified incorrect routing via ip route get.
 
-░▒▓       ▓▒░ ◦•·················································································································•◦ ░▒▓   4ms ▓▒░
-··• sudo firewall-cmd --list-all
-FirewallD is not running
+Added explicit routes to direct traffic through the correct Nobara interfaces:
 
-░▒▓       ▓▒░ ◦•················································································································•◦ ░▒▓ ⚡261ms ▓▒░
-··• sudo ip route add 10.0.1.2 dev enp2s0f0u1
+sudo ip route add 10.0.1.2 dev enp2s0f0u1
+
 sudo ip route add 10.0.3.4 dev enp14s0f3u3
 
-░▒▓       ▓▒░ ◦•················································································································•◦ ░▒▓   41ms ▓▒░
-··• sudo ip route flush cache
+Flushed the routing cache with sudo ip route flush cache to clear old cached entries.
 
-░▒▓       ▓▒░ ◦•················································································································•◦ ░▒▓   47ms ▓▒░
-··• ip route get 10.0.1.2
-ip route get 10.0.3.4
-10.0.1.2 dev enp2s0f0u1 src 10.0.1.10 uid 1000 
-    cache 
-10.0.3.4 dev enp14s0f3u3 src 10.0.3.10 uid 1000 
-    cache 
+Verified that routing and connectivity were restored:
 
-░▒▓       ▓▒░ ◦•·················································································································•◦ ░▒▓   4ms ▓▒░
-··• ping 10.0.1.2 -I enp2s0f0u1
-ping 10.0.3.4 -I enp14s0f3u3
-PING 10.0.1.2 (10.0.1.2) from 10.0.1.10 enp2s0f0u1: 56(84) bytes of data.
-64 bytes from 10.0.1.2: icmp_seq=1 ttl=64 time=0.191 ms
-64 bytes from 10.0.1.2: icmp_seq=2 ttl=64 time=0.394 ms
-64 bytes from 10.0.1.2: icmp_seq=3 ttl=64 time=0.171 ms
+ip route get now shows the correct source interface for each Unraid IP.
 
-```
-</pre>
+Pings to 10.0.1.2 and 10.0.3.4 are successful.</pre>
 </div>
 <div tags="" title="Format disk 4k in windows">
 <pre>https://www.reddit.com/r/unRAID/comments/q3wt7q/format_to_4096_byte_sectors/</pre>
