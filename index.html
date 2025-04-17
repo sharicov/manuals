@@ -14942,10 +14942,21 @@ sudo systemctl enable --now displaylink
 works without freezes in dolphin
 
 
-```
-sudo mkdir /run/media/sharicov/n5105
+Show available nfs shares on unraid (10.0.0.1)
 
-sudo mount -t nfs -o vers=4.2 10.0.0.1:/mnt/user/n5105 /run/media/sharicov/n5105/
+
+
+```
+showmount -e 10.0.0.1
+```
+
+Create n5105 folder and mounting to it n5105 nfs share
+
+
+```
+sudo mkdir /mnt/n5105
+
+sudo mount -t nfs -o vers=4.2 10.0.0.1:/mnt/user/n5105 /mnt/n5105/
 ```
 
 !!Permanent automount solution
