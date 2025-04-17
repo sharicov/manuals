@@ -21451,7 +21451,27 @@ yay -S pcsx2
 
 ```
 sudo pacman -S dolphin-emu    
+
+mkdir -p ~/.config
+
+xdg-mime default dolphin-emu.desktop x-scheme-handler/dolphin
+
+sudo pacman -S qt6-tools
+
+sudo pacman -S qt5-tools
+
+which qtpaths
+
+xdg-mime default dolphin-emu.desktop application/x-dolphin
+
+update-desktop-database ~/.local/share/applications
+
+sudo update-desktop-database /usr/share/applications
+
+xdg-mime query default application/x-dolphin
+
 ```
+
 </pre>
 </div>
 <div tags="" title="Format disk 4k in windows">
