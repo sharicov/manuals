@@ -15088,7 +15088,15 @@ sudo systemctl enable --now mnt-Downloads.automount
 </pre>
 </div>
 <div tags="" title="CachyOS RPCS3 add gamepad">
-<pre>RPCS3 / input /  Handlers=SDL/Devices=your gamepad/Save</pre>
+<pre>RPCS3 / input /  Handlers=SDL/Devices=your gamepad/Save
+
+!!Additional - check gamepad is working
+```
+sudo pacman -S evtest   
+
+sudo evtest /dev/input/by-id/usb-8BitDo_Ultimate_C_2.4G_Wireless_Controller_39F223A054-event-joystick         
+```
+</pre>
 </div>
 <div tags="" title="Caffeine-ng on CachyOS (Arch) prevent from sleep in tray">
 <pre>!!Insatll AUR package manager
