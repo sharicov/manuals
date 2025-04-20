@@ -32465,6 +32465,24 @@ curl -fsSL https://ollama.com/install.sh | sh
 ```
 
 
+!!Start/Status
+
+
+```
+systemctl status ollama.service
+```
+
+If daemon is not running
+
+
+```
+sudo systemctl daemon-reload
+sudo systemctl restart ollama.service
+
+```
+
+
+
 </pre>
 </div>
 <div tags="" title="OMV OpenMediaVault - Fix samba error on execution of exe v2">
