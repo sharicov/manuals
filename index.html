@@ -30377,6 +30377,21 @@ See it's attached
 lsblk | grep nbd0
 ```
 
+See image type/format
+
+
+```
+sudo blkid /dev/nbd0p1                                                                                                                                                                                                                                                                                                          
+```
+
+
+Example output 
+
+```
+/dev/nbd0p1: LABEL="Sovereign Syndicate" BLOCK_SIZE="512" UUID="0E42796742795485" TYPE="ntfs" PARTUUID="5391ecd7-01"
+```
+
+
 
 Disk will appear under
 
