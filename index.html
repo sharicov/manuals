@@ -30442,7 +30442,15 @@ GUI for working with image
 sudo pacman -S partitionmanager  
 ```
 
-Dolphin vhd mount menu - work in progress KDE6
+!!Dolphin vhd mount menu - work in progress KDE6
+
+Check KDE version
+
+
+```
+plasmashell --version
+```
+
 
 
 ```
@@ -30463,8 +30471,16 @@ Actions=mount_vhd
 [Desktop Action mount_vhd]
 Name=Mount VHD
 Icon=drive-harddisk
-Exec=sudo qemu-nbd --connect=/dev/nbd0 %f &amp;&amp; sudo mount /dev/nbd0p1 /mnt/vhd
+Exec=sudo qemu-nbd --connect=/dev/nbd0 %f &amp;&amp; sudo mount -t ntfs-3g /dev/nbd0p1 /mnt/vhd
 ```
+
+Recreate menus and restart dolphin (KDE6 example
+
+
+```
+kquitapp6 plasmashell &amp;&amp; kstart6 plasmashell
+```
+
 </pre>
 </div>
 <div tags="" title="move window to specific monitor v2">
