@@ -12970,8 +12970,7 @@ sudo systemctl enable --now displaylink
 </pre>
 </div>
 <div tags="" title="Arch update and upgrade pacman and yay">
-<pre>
-```
+<pre>```
 sudo -n eos-update --faillock-check --aur
 ```
 </pre>
@@ -30393,6 +30392,28 @@ GUI for working with image
 
 ```
 sudo pacman -S partitionmanager  
+```
+
+Dolphin vhd mount menu - work in progress KDE6
+
+
+```
+sudo mkdir -p /mnt/vhd
+
+cat ~/.local/share/kservices6/ServiceMenus/mount_vhd.desktop                                                                                                                                                                                                                                                                     
+```
+
+
+```
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+Actions=mount_vhd
+
+[Desktop Action mount_vhd]
+Name=Mount VHD
+Icon=drive-harddisk
+Exec=sudo qemu-nbd --connect=/dev/nbd0 %f &amp;&amp; sudo mount /dev/nbd0p1 /mnt/vhd
 ```
 </pre>
 </div>
