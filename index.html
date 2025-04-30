@@ -30391,6 +30391,24 @@ Example output
 /dev/nbd0p1: LABEL="Sovereign Syndicate" BLOCK_SIZE="512" UUID="0E42796742795485" TYPE="ntfs" PARTUUID="5391ecd7-01"
 ```
 
+Fix ntfs errors in attached vhd
+
+
+```
+ sudo ntfsfix /dev/nbd0p1                                                                                                                                                                                                                                                                                                         
+```
+
+Example output
+
+```
+
+Mounting volume... OK
+Processing of $MFT and $MFTMirr completed successfully.
+Checking the alternate boot sector... OK
+NTFS volume version is 3.1.
+NTFS partition /dev/nbd0p1 was processed successfully.
+
+```
 
 
 Disk will appear under
