@@ -30465,13 +30465,19 @@ cat ~/.local/share/kservices6/ServiceMenus/mount_vhd.desktop
 ```
 [Desktop Entry]
 Type=Service
+MimeType=application/x-vhd-disk;
 ServiceTypes=KonqPopupMenu/Plugin
-Actions=mount_vhd
+Actions=mount_vhd;unmount_vhd
 
 [Desktop Action mount_vhd]
 Name=Mount VHD
 Icon=drive-harddisk
-Exec=sudo qemu-nbd --connect=/dev/nbd0 %f &amp;&amp; sudo mount -t ntfs-3g /dev/nbd0p1 /mnt/vhd
+Exec=pkexec qemu-nbd --connect=/dev/nbd0 %f &amp;&amp; pkexec mount -t ntfs-3g /dev/nbd0p1 /mnt/vhd
+
+[Desktop Action unmount_vhd]
+Name=Unmount VHD
+Icon=drive-harddisk
+Exec=pkexec umount /mnt/vhd &amp;&amp; pkexec qemu-nbd --disconnect /dev/nbd0
 ```
 
 Recreate menus and restart dolphin (KDE6 example
