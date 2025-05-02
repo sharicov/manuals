@@ -25736,7 +25736,58 @@ Show capacities of folders
 docker exec -it immich du -sh /
 ```
 
+!!Troubleshooting docker commands
 
+
+```
+docker network inspect bridge
+docker exec -it immich ping PostgreSQL_Immich
+docker logs PostgreSQL_Immich
+docker exec -it PostgreSQL_Immich pg_isready
+docker exec -it PostgreSQL_Immich pg_isready
+docker exec -it PostgreSQL_Immich ls /var/lib/postgresql/data/log/
+docker exec -it PostgreSQL_Immich cat /var/lib/postgresql/data/log/postgresql-2025-05-01_110533.log
+docker exec -it immich psql -U postgres -h 172.17.0.3 -p 5432 -d immich
+docker exec -it immich apt update; apt install inetutils-ping ; ping Redis
+docker logs immich --tail=50
+```
+
+!!Check Number of Indexed Items in Immich Database
+
+Run:
+
+
+```
+docker exec -it PostgreSQL_Immich psql -U postgres -d immich -c "SELECT COUNT(*) FROM assets;"
+```
+
+!!Show Database Path for Stored Files
+Check where Immich stores file paths inside the database:
+
+```
+docker exec -it PostgreSQL_Immich psql -U postgres -d immich -c "SELECT id, original_path FROM assets LIMIT 10;"
+```
+
+!!Show Size of Folders Inside Immich Container
+
+
+```
+docker exec -it immich du -sh /photos/*
+```
+
+✅ This gives a summary of storage usage for library/, thumbs/, upload/, etc.
+
+!!Check Size of Individual Folders
+
+To check specific folder sizes:
+
+
+```
+docker exec -it immich du -sh /photos/library/
+docker exec -it immich du -sh /photos/thumbs/
+docker exec -it immich du -sh /photos/upload/
+
+```
 </pre>
 </div>
 <div tags="" title="immich synchronization between dockers v5">
