@@ -25835,7 +25835,7 @@ docker exec -it PostgreSQL_Immich psql -U postgres -d immich -c "SELECT COUNT(*)
 Check where Immich stores file paths inside the database:
 
 ```
-docker exec -it PostgreSQL_Immich psql -U postgres -d immich -c "SELECT id, original_path FROM assets LIMIT 10;"
+docker exec -it PostgreSQL_Immich psql -U postgres -d immich -c 'SELECT id, "originalPath" FROM assets LIMIT 10;'
 ```
 
 !!Show Size of Folders Inside Immich Container
