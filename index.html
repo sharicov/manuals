@@ -43693,8 +43693,7 @@ http://192.168.3.96:3000/wetty
 </pre>
 </div>
 <div tags="" title="running proton from terminal">
-<pre>
-```
+<pre>```
  export STEAM_COMPAT_CLIENT_INSTALL_PATH=~/.local/share/Steam
 
 ~/.local/share/Steam/steamapps/common/Proton\ 10.0/proton run /mnt/unraid/n5105/Strategy/Tempest\ Rising/Tempest.exe 
@@ -43702,6 +43701,16 @@ http://192.168.3.96:3000/wetty
 ```
 
 To install C++ runtime 
+
+Example game_id ''2493357040''
+
+use protontricks to gete the id of specific game
+
+```
+WINEARCH=win32 WINEPREFIX=~/.local/share/Steam/steamapps/compatdata/&lt;game_id&gt;/pfx winetricks vcrun2022
+```
+
+
 
 
 ```
