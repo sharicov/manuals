@@ -48609,9 +48609,9 @@ ssh -t root@10.0.0.1 "mc /mnt/user/n5105"
 Install steam
 
 ```
-pacman -Su
+sudo pacman -Su
 
-pacman -S steam
+sudo pacman -S steam goverlay lib32-mesa mesa wine-staging winetricks vulkan-icd-loader lib32-vulkan-icd-loader dxvk lib32-dxvk gamemode lib32-gamemode
 ```
 
 
@@ -48623,6 +48623,33 @@ For radeon (6900xt) choose
 7) lib32-vulkan-radeon
 ```
 
+
+```
+yay -S protontricks protonup-qt
+```
+
+!!Steam settings
+
+Select and download latest Proton-GE
+
+```
+protonup-qt
+```
+
+
+Steam/Settings/Compatibility/Enable Steam PLay for all other titles
+
+After reboot
+
+
+Steam/Settings/Compatibility/Choose latest proton-ge
+
+!!Verify vulkan works
+
+
+```
+vulkaninfo | grep GPU
+```
 </pre>
 </div>
 <div tags="" title="Steam fix on CachyOS v3">
