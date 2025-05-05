@@ -33638,7 +33638,29 @@ podman run -d -p 3000:8080   -e OLLAMA_BASE_URL=http://host.containers.internal:
 </pre>
 </div>
 <div tags="" title="Ollama deepseek chat and coder models">
-<pre>For linux guidance and troubleshooting, fits 16GB GPU
+<pre>Install ollama:
+
+
+```
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+Download an run deepseek model
+
+
+```
+ollama run deepseek-llm:7b
+```
+
+Install browser plugin
+
+Use Page assist chrome extension for GUI
+
+''Chrome:'' https://chromewebstore.google.com/detail/page-assist-a-web-ui-for/jfgfiigpkhlkbnfnbobbkinehhfdhndo?pli=1
+
+''Firefox: ''https://addons.mozilla.org/en-US/firefox/addon/page-assist/
+
+For linux guidance and troubleshooting, fits 16GB GPU
 
 
 ```
