@@ -49309,7 +49309,16 @@ Steam/Settings/Compatibility/Run other titles with: GE-Proton
 Restart Steam</pre>
 </div>
 <div tags="" title="stop/remove all/all running docker containers">
-<pre>All running:
+<pre>Show names of running containers
+
+
+```
+docker ps --format "{{.Names}}"
+```
+
+
+
+Stop all running containers:
 
 
 ```
