@@ -13163,7 +13163,41 @@ krfb
 ```
 
 
-Enjoy</pre>
+All monitors are shown
+
+Monitors can be turned on/off using ''xrandr'' command
+
+Show all connected monitors
+
+
+```
+xrandr --query |grep connected
+```
+Output:
+
+
+```
+DP-1 #LG
+DP-3 #PiKVM
+HDMI-A-1 #Hensense
+DVI-I-1 #Asus USB
+```
+
+Turn off specific monitor (ex. LG)
+
+
+```
+xrandr --output DP-1 --off
+```
+
+Turn on specific monitor (ex. LG)
+
+
+```
+xrandr --output DP-1 --auto --right-of HDMI-A-1
+```
+
+</pre>
 </div>
 <div tags="" title="arch or cachyos install asus usb monitor displaylink">
 <pre>```
