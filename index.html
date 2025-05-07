@@ -27990,7 +27990,8 @@ sudo systemctl restart libvirtd.service
 
 
 ```
-sudo pacman -S qemu-full libvirt virt-manager dnsmasq ebtables iptables
+sudo pacman -S qemu-full libvirt virt-manager dnsmasq ebtables iptables  lxc lxcfs
+
 ```
 Enable and Start libvirtd
 
@@ -27998,6 +27999,8 @@ Enable and Start libvirtd
 
 ```
 sudo systemctl enable --now libvirtd
+
+sudo systemctl enable --now libvirtd.socket
 ```
 
 
@@ -28025,7 +28028,37 @@ Run
 virt-manager
 ```
 
-</pre>
+Go to File &gt; Add Connection.
+
+Select QEMU/KVM as the hypervisor.
+
+Choose ''System'' (default) or User session depending on your setup.
+
+Click OK to establish the connection.
+
+Explanation
+
+System session (qemu:///system):
+
+    Runs with system-wide privileges.
+
+    Requires root access or membership in the libvirt group.
+
+    VMs are stored in /var/lib/libvirt/.
+
+    Allows advanced networking options like bridged networking.
+
+    Used by enterprise setups and server environments.
+
+User session (qemu:///session):
+
+    Runs under the current user without requiring root access.
+
+    VMs are stored in the user's home directory (~/.local/share/libvirt/).
+
+    Easier for desktop users but has limitations (e.g., restricted networking).
+
+    Each user has their own separate VM pool.</pre>
 </div>
 <div tags="" title="Lancache DNS and proxy cache for games v1">
 <pre>!Not working on arm64
