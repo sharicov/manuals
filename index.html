@@ -43611,6 +43611,10 @@ sudo pacman -S refind
 sudo refind-install
 ```
 
+
+Manual https://wiki.archlinux.org/title/REFInd
+
+
 !!Refind Themes
 
 https://github.com/martinmilani/rEFInd-theme-collection
@@ -43618,8 +43622,12 @@ https://github.com/martinmilani/rEFInd-theme-collection
 1. Install a Theme (Quick Method)
 bash
 
+```
+
 sudo pacman -S refind-theme-regular  # Official theme collection
 sudo refind-theme-regular           # Installs default theme
+```
+
 
 2. Manual Theme Installation
 
@@ -43636,13 +43644,21 @@ Popular options:
 Example (for Minimal theme):
 bash
 
+```
+
 git clone https://github.com/EvanPurkhiser/rEFInd-minimal.git /tmp/refind-minimal
 sudo cp -r /tmp/refind-minimal /efi/EFI/refind/themes/
+```
+
 
 Step 2: Edit refind.conf
 bash
 
+
+```
 sudo nano /efi/EFI/refind/refind.conf
+```
+
 
 Add/modify:
 ini
