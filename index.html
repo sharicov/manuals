@@ -28334,6 +28334,7 @@ To configure gamepad in mednafen: press ''alt-shift-1'' and start the configurat
 <div tags="" title="Lazydocker like portainer in terminal TUI">
 <pre>Arm64
 
+Install
 
 ```
 docker build -t lazyteam/lazydocker \
@@ -28341,6 +28342,16 @@ docker build -t lazyteam/lazydocker \
 --build-arg GOARCH=arm64 \
 https://github.com/jesseduffield/lazydocker.git
 ```
+
+Run
+
+```
+docker run --rm -it -v \
+/var/run/docker.sock:/var/run/docker.sock \
+-v .:/.config/jesseduffield/lazydocker \
+lazyteam/lazydocker
+```
+
 
 more info: 
 
