@@ -54288,13 +54288,13 @@ scanvt() {
     echo -e "\nScan Results:" | tee -a "$LOG_FILE"
     echo "Total files scanned: $FILE_COUNT" | tee -a "$LOG_FILE"
     INFECTED_FILES=$(echo "$SCAN_OUTPUT" | grep -B1 "detection ratio:" | grep "/" || echo "")
-    INFECTED_COUNT=$(echo "$INFECTED_FILES" | grep -c "/" || echo "0")
+    INFECTED_COUNT=$(echo "$INFECTED_FILES" | grep -c "/" || true)
     echo "Number of infections detected: $INFECTED_COUNT" | tee -a "$LOG_FILE"
-    if [ "$INFECTED_COUNT" -gt 0 ]; then
+    if [ "${INFECTED_COUNT:-0}" -eq 0 ]; then
+        echo -e "\nNo infections detected." | tee -a "$LOG_FILE"
+    else
         echo -e "\nInfected files:" | tee -a "$LOG_FILE"
         echo "$INFECTED_FILES" | tee -a "$LOG_FILE"
-    else
-        echo -e "\nNo infections detected." | tee -a "$LOG_FILE"
     fi
     echo -e "\nScan completed. Log file: $LOG_FILE"
 }
