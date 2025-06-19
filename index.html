@@ -13226,7 +13226,14 @@ pciutils build-essential cmake curl libcurl4-openssl-dev  llama  llama.cpp  pyth
 </pre>
 </div>
 <div tags="" title="arch linux mdf mount and convert">
-<pre>!!Mount option
+<pre>!!Convert option using mdf2iso - ''recommmended''
+
+```
+yay -S mdf2iso
+mdf2iso image.mdf image.iso
+```
+
+!!Mount option
 !!!Create group 
 
 Create the fuse Group and Add Your User
@@ -13268,13 +13275,6 @@ Log out and log back in'' (or restart) for changes to take effect.
 sudo pacman -S fuseiso
 mkdir ~/mnt
 fuseiso image.mdf ~/mnt
-```
-
-!!Convert option using mdf2iso
-
-```
-yay -S mdf2iso
-mdf2iso image.mdf image.iso
 ```
 
 !!GUI mount
