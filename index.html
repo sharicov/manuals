@@ -31264,6 +31264,15 @@ Produkey
 <pre>!!Automatic:
 
 ```
+echo "deb [trusted=yes] https://repo.miniflux.app/apt/ * *" | sudo tee /etc/apt/sources.list.d/miniflux.list
+sudo apt update
+```
+
+
+
+!!Old version of installation manual
+
+```
 curl -s https://apt.miniflux.app/KEY.gpg | sudo apt-key add -
 echo "deb https://apt.miniflux.app/ /" | sudo tee /etc/apt/sources.list.d/miniflux.list &gt; /dev/null
 apt update
