@@ -45806,6 +45806,21 @@ Add in steam/specific game/launch options
 ```
 firejail --noprofile --net=none %command%
 ```
+
+!!To create desktop shortcut with offline steam
+
+
+```
+nano /home/sharicov/Desktop/steam_offline.desktop
+```
+
+Change Exec= to be:
+
+
+```
+Exec=firejail --noprofile --net=none steam %U
+```
+
 </pre>
 </div>
 <div tags="" title="RetroArch allow accessing smb in nobara">
