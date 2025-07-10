@@ -12381,7 +12381,7 @@ Edit ''.bash_profile'' to add new functions ''ncdu_docker'' and ''yazi''
 Add at the end of file:
 
 ```
-function ncdu_docker() { docker run --rm -it -v /:/mnt/root bytesco/ncdu /mnt/root"$@"; }
+function ncdu() { docker run --rm -it -v /:/mnt/root bytesco/ncdu /mnt/root"$@"; }
 
 function yazi() { docker run --rm -it -v /:/mnt/root l33tlamer/yazi; }
 
