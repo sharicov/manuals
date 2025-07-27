@@ -26599,7 +26599,7 @@ Set image folder and DB password
 Example:
 
 ```
-UPLOAD_LOCATION=/media/2TB/InstantUpload
+UPLOAD_LOCATION=/media/512GB/InstantUpload
 
 ```
 
@@ -26709,7 +26709,7 @@ UPLOAD_LOCATION/profile
 ```
 docker exec -t immich_postgres pg_dumpall -c -U postgres | gzip &gt; "immich-app/immich.12.1.24.dump.sql.gz"
 
-cp immich-app/immich.12.1.24.dump.sql.gz  /media/2TB/InstantUpload
+cp immich-app/immich.12.1.24.dump.sql.gz  /media/512GB/InstantUpload
 
 
 screen -S Photos -d -m bash -c "rclone copy -u --progress /media/2TB/InstantUpload/ mailru:/Photos/InstantUpload --max-size 2G"
