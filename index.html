@@ -34324,6 +34324,11 @@ Can be added in dolphin to ''places ''right-clicking on the folder
 sudo pacman -S avahi nss-mdns
 sudo systemctl enable avahi-daemon.service
 sudo systemctl start avahi-daemon.service
+
+sudo systemctl enable rpcbind.service
+sudo systemctl start rpcbind.service
+
+
 ```
 
 ''Note:'' Make sure client ip is set on the ''server'' as accessable with read and write permissions</pre>
