@@ -14589,7 +14589,34 @@ chmod a+x debian12.AppImage
 </pre>
 </div>
 <div tags="" title="Batocera in KVM Qemu from img v4">
-<pre>!!Installation
+<pre>!Short version, script that runs batocera in qemu
+
+
+```
+#!/bin/bash
+# batocera-vm.sh
+
+sudo qemu-system-x86_64 \
+    -m 8192 \
+    -smp cores=4,sockets=1,threads=2 \
+    -cpu host,kvm=on,+topoext \
+    -drive file=batocera-41.img,format=raw,if=virtio \
+    -netdev user,id=net0 \
+    -device virtio-net,netdev=net0 \
+    -enable-kvm \
+    -boot c \
+    -vga virtio \
+    -display sdl \
+    -device qemu-xhci \
+    -device usb-host,vendorid=0x2dc8,productid=0x3106 \
+    -audiodev pa,id=audio0,server=unix:/run/user/1000/pulse/native \
+    -device AC97,audiodev=audio0
+```
+```
+
+
+
+!!Installation
 
 
 ```
@@ -14604,12 +14631,20 @@ sudo systemctl enable --now libvirtd.socket
 
 Check if it's running:
 
+
+```
 sudo systemctl status libvirtd
+```
+
 Add User to the libvirt Group
 
 
+
+```
 sudo usermod -aG libvirt $(whoami)
 sudo usermod -aG kvm $(whoami)
+```
+
 
 
 !!CPU settings for AMD:
