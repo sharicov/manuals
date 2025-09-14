@@ -15134,6 +15134,8 @@ ls -la /mnt/unraid/Emulators/Dreamcast/CDI/
 
 !!Create Symbolic Links to Batocera ROMs Directory
 
+!!!Dreamcast
+
 
 ```
 # Create dreamcast roms directory
@@ -15147,6 +15149,26 @@ ln -s /mnt/unraid/Emulators/Dreamcast/CDI/*.cdi .
 # Verify symlinks were created
 ls -la
 ```
+!!!PS2
+
+
+```
+# Create the ps2 roms directory in Batocera
+mkdir -p /userdata/roms/ps2
+
+# Create symlinks for all PS2 games
+cd /userdata/roms/ps2
+find /mnt/unraid/ -name "*.iso" -exec ln -s {} . \;
+find /mnt/unraid/ -name "*.ISO" -exec ln -s {} . \;
+find /mnt/unraid/ -name "*.bin" -exec ln -s {} . \;
+find /mnt/unraid/ -name "*.BIN" -exec ln -s {} . \;
+find /mnt/unraid/ -name "*.img" -exec ln -s {} . \;
+find /mnt/unraid/ -name "*.IMG" -exec ln -s {} . \;
+
+# Verify symlinks were created
+ls -la | head -20
+```
+
 
 In Batocera GUI enter ''Game Settings'' and ''refresh games''
 
