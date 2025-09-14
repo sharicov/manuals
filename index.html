@@ -14626,6 +14626,39 @@ chmod a+x debian12.AppImage
 <div tags="" title="Batocera in KVM Qemu from img file with opengl 3d acceleration and snapshot - working v7">
 <pre>!Short version, script that runs batocera in qemu
 
+!!Working command with 3d, gamepad, audio and snapshot based
+
+''8'' cores, ''32GB'' RAM
+
+```
+sudo -E qemu-system-x86_64 \
+    -name "Batocera-Gaming-VM" \
+    -m 32G \
+    -smp cores=8,sockets=1,threads=1 \
+    -cpu host,host-cache-info=on,pmu=on,l3-cache=on,+topoext,+svm,+invtsc \
+    -machine type=pc,accel=kvm,usb=on,dump-guest-core=off,kernel_irqchip=on \
+    -drive file=/mnt/unraid/n5105/Emulators/Batocera/HONDA_1TB.img,format=raw,if=virtio,cache=writeback,discard=unmap \
+    -netdev user,id=net0 \
+    -device virtio-net,netdev=net0 \
+    -vga none \
+    -display gtk,gl=on,show-cursor=off \
+    -device virtio-vga-gl,hostmem=16G,blob=true,edid=on \
+    -device qemu-xhci,id=usb \
+    -device usb-host,vendorid=0x2dc8,productid=0x3106,bus=usb.0 \
+    -audiodev alsa,id=audio0,out.dev=hw:0 \
+    -device AC97,audiodev=audio0 \
+    -usb -device usb-tablet -device usb-kbd \
+    -rtc base=localtime,clock=host \
+    -snapshot \
+    -mem-prealloc \
+    -overcommit mem-lock=on \
+    -no-reboot \
+    -no-shutdown \
+    -msg timestamp=on
+
+```
+
+
 !!Writable image with changes saves
 
 ```
