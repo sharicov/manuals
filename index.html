@@ -53265,6 +53265,18 @@ with counts
 ```
 find /path/to/folder -type f | awk -F. 'NF&gt;1 {print $NF}' | sort | uniq -c | sort -nr
 ```
+
+larger than 200mb
+
+
+```
+find /path/to/folder -type f -size +200M \
+  | awk -F. 'NF&gt;1 {print $NF}' \
+  | sort \
+  | uniq -c \
+  | sort -nr
+```
+
 </pre>
 </div>
 <div tags="" title="show open ports Linux v2">
