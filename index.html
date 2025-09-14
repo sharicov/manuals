@@ -15127,7 +15127,19 @@ ln -s /mnt/unraid/Emulators/Dreamcast/CDI/*.cdi .
 ls -la
 ```
 
-In Batocera GUI enter ''Game Settings'' and ''refresh games''</pre>
+In Batocera GUI enter ''Game Settings'' and ''refresh games''
+
+!!Parmanent mount
+
+
+```
+# Edit fstab in Batocera
+nano /etc/fstab
+
+# Add this line at the end:
+//192.168.1.7/n5105 /mnt/unraid cifs username=guest,password=,rw,vers=3.0 0 0
+```
+</pre>
 </div>
 <div tags="" title="Batocera pro custom packages v3">
 <pre>Github repository: https://github.com/DRLEdition19/profork-OFICIAL
