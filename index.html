@@ -53260,17 +53260,10 @@ Run script
 find /path/to/folder -type f | awk -F. 'NF&gt;1 {print $NF}' | sort -u
 ```
 
-with counts
+with counts larger than 200MB
 
 ```
-find /path/to/folder -type f | awk -F. 'NF&gt;1 {print $NF}' | sort | uniq -c | sort -nr
-```
-
-larger than 200mb
-
-
-```
-find /path/to/folder -type f -size +200M \ | awk -F. 'NF&gt;1 {print $NF}' \ | sort \ | uniq -c \ | sort -nr
+find /path/to/folder -type f -size +200M | awk -F. 'NF&gt;1 {print $NF}' | sort | uniq -c | sort -nr
 ```
 
 </pre>
