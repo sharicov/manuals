@@ -16377,36 +16377,52 @@ Click "''Apply Plasma Settings''" to sync your current desktop display configura
 qemu-img create -f raw cachyos.img 25G
 ```
 
+Prepare uefi environment so afterwards img can boot in Ventoy
+
+
+```
+sudo pacman -S edk2-ovmf
+
+pacman -Ql edk2-ovmf | grep OVMF_CODE
+pacman -Ql edk2-ovmf | grep OVMF_VARS
+
+cp /usr/share/edk2/x64/OVMF_VARS.4m.fd ./ovmf_vars.fd
+
+
+```
+
 
 Run qemu installation environment
 ​
 
 ```
 sudo -E qemu-system-x86_64 \
-    -name "CachyOS-Installation" \
-    -m 8G \
-    -smp cores=4,sockets=1,threads=2 \
-    -cpu host,host-cache-info=on,pmu=on,l3-cache=on,+topoext,+svm,+invtsc \
-    -machine type=q35,accel=kvm,usb=on,dump-guest-core=off,kernel_irqchip=on \
-    -drive file=cachyos.img,format=raw,if=virtio,cache=writeback,discard=unmap \
-    -cdrom cachyos-desktop-linux-250828.iso \
-    -boot order=d \
-    -netdev user,id=net0 \
-    -device virtio-net,netdev=net0 \
-    -vga none \
-    -display gtk,gl=on,show-cursor=off \
-    -device virtio-vga-gl,hostmem=8G,blob=true,edid=on \
-    -device qemu-xhci,id=usb \
-    -device usb-tablet,bus=usb.0 \
-    -device usb-kbd,bus=usb.0 \
-    -audiodev pa,id=audio0,server=unix:/run/user/1000/pulse/native \
-    -device AC97,audiodev=audio0 \
-    -rtc base=utc,clock=host \
-    -mem-prealloc \
-    -overcommit mem-lock=on \
-    -no-reboot \
-    -no-shutdown \
-    -msg timestamp=on
+  -name "CachyOS-Installation" \
+  -m 8G \
+  -smp cores=4,sockets=1,threads=2 \
+  -cpu host,host-cache-info=on,pmu=on,l3-cache=on,+topoext,+svm,+invtsc \
+  -machine type=q35,accel=kvm,usb=on,dump-guest-core=off,kernel_irqchip=on \
+  -drive file=cachyos.img,format=raw,if=virtio,cache=writeback,discard=unmap \
+  -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2/x64/OVMF_CODE.4m.fd \
+  -drive if=pflash,format=raw,file=ovmf_vars.fd \
+  -cdrom cachyos-desktop-linux-250828.iso \
+  -boot order=d \
+  -netdev user,id=net0 \
+  -device virtio-net,netdev=net0 \
+  -vga none \
+  -display gtk,gl=on,show-cursor=off \
+  -device virtio-vga-gl,hostmem=8G,blob=true,edid=on \
+  -device qemu-xhci,id=usb \
+  -device usb-tablet,bus=usb.0 \
+  -device usb-kbd,bus=usb.0 \
+  -audiodev pa,id=audio0,server=unix:/run/user/1000/pulse/native \
+  -device AC97,audiodev=audio0 \
+  -rtc base=utc,clock=host \
+  -mem-prealloc \
+  -overcommit mem-lock=on \
+  -no-reboot \
+  -no-shutdown \
+  -msg timestamp=on
 ```
 
 
@@ -16415,7 +16431,6 @@ Post install qemu command
 
 
 ```
-echo '#!/bin/bash
 sudo -E qemu-system-x86_64 \
     -name "CachyOS-Installation" \
     -m 8G \
@@ -16423,6 +16438,8 @@ sudo -E qemu-system-x86_64 \
     -cpu host,host-cache-info=on,pmu=on,l3-cache=on,+topoext,+svm,+invtsc \
     -machine type=q35,accel=kvm,usb=on,dump-guest-core=off,kernel_irqchip=on \
     -drive file=cachyos.img,format=raw,if=virtio,cache=writeback,discard=unmap \
+    -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2/x64/OVMF_CODE.4m.fd \
+    -drive if=pflash,format=raw,file=ovmf_vars.fd \
     -cdrom cachyos-desktop-linux-250828.iso \
     -boot order=d \
     -netdev user,id=net0 \
@@ -16433,7 +16450,7 @@ sudo -E qemu-system-x86_64 \
     -device qemu-xhci,id=usb \
     -device usb-tablet,bus=usb.0 \
     -device usb-kbd,bus=usb.0 \
-    -audiodev alsa,id=audio0,out.dev=hw:0 \
+  -audiodev pa,id=audio0,server=unix:/run/user/1000/pulse/native \
     -device AC97,audiodev=audio0 \
     -rtc base=utc,clock=host \
     -mem-prealloc \
