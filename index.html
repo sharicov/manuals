@@ -16432,9 +16432,9 @@ Post install qemu command
 
 ```
 sudo -E qemu-system-x86_64 \
-    -name "CachyOS-Installation" \
-    -m 8G \
-    -smp cores=4,sockets=1,threads=2 \
+    -name "CachyOS" \
+    -m 16G \
+    -smp cores=8,sockets=1,threads=1 \
     -cpu host,host-cache-info=on,pmu=on,l3-cache=on,+topoext,+svm,+invtsc \
     -machine type=q35,accel=kvm,usb=on,dump-guest-core=off,kernel_irqchip=on \
     -drive file=cachyos.img,format=raw,if=virtio,cache=writeback,discard=unmap \
