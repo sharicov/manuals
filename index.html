@@ -14634,7 +14634,7 @@ chmod a+x debian12.AppImage
 <div tags="" title="Batocera in KVM Qemu from img file with opengl 3d acceleration and snapshot - working v7">
 <pre>!Short version, script that runs batocera in qemu
 
-!!not working (ALSA error) command with 3d, gamepad, audio and snapshot based
+!!Command with 3d, gamepad, audio and snapshot based, best acceleration, for AMD CPU
 
 ''8'' cores, ''32GB'' RAM
 
@@ -14665,7 +14665,29 @@ sudo -E qemu-system-x86_64 \
     -msg timestamp=on
 
 ```
+!!With 3d acceleration (OpenGL+snapshot) 
 
+Use if first command not working (ex. alsa error)
+
+
+```
+sudo qemu-system-x86_64 \
+          -m 8192 \
+          -smp cores=4,sockets=1,threads=2 \
+          -cpu host,kvm=on,+topoext \
+          -drive file=batocera-41.img,format=raw,if=virtio \
+          -netdev user,id=net0 \
+          -device virtio-net,netdev=net0 \
+          -enable-kvm \
+          -boot c \
+          -vga none \
+          -display gtk,gl=on \
+          -device virtio-vga-gl,hostmem=8G,blob=true \
+          -device qemu-xhci \
+          -device usb-host,vendorid=0x2dc8,productid=0x3106 \
+          -audiodev pa,id=audio0,server=unix:/run/user/1000/pulse/native \
+          -device AC97,audiodev=audio0 \
+          -snapshot
 
 !!Writable image with changes saves
 
@@ -14714,27 +14736,7 @@ sudo qemu-system-x86_64 \
 ```
 
 
-!!With 3d acceleration (OpenGL+snapshot)
 
-
-```
-sudo qemu-system-x86_64 \
-          -m 8192 \
-          -smp cores=4,sockets=1,threads=2 \
-          -cpu host,kvm=on,+topoext \
-          -drive file=batocera-41.img,format=raw,if=virtio \
-          -netdev user,id=net0 \
-          -device virtio-net,netdev=net0 \
-          -enable-kvm \
-          -boot c \
-          -vga none \
-          -display gtk,gl=on \
-          -device virtio-vga-gl,hostmem=8G,blob=true \
-          -device qemu-xhci \
-          -device usb-host,vendorid=0x2dc8,productid=0x3106 \
-          -audiodev pa,id=audio0,server=unix:/run/user/1000/pulse/native \
-          -device AC97,audiodev=audio0 \
-          -snapshot
 
 ```
 
