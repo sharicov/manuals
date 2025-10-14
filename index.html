@@ -15198,13 +15198,13 @@ ex. n5105 share on 192.168.1.7 Dreamcast ROMs in Dreamcast/CDI folder
 
 ```
 # Create mount point
-mkdir -p /mnt/unraid
+mkdir -p /userdata/mnt/unraid
 
 # Mount Unraid Samba share (replace with your credentials if needed)
-mount -t cifs //192.168.1.7/n5105 /mnt/unraid -o username=guest,password=,rw,vers=3.0
+mount -t cifs //192.168.1.7/n5105 /userdata/mnt/unraid -o username=guest,password=,rw,vers=3.0
 
 # Verify the mount worked
-ls -la /mnt/unraid/Emulators/Dreamcast/CDI/
+ls -la /userdata/mnt/unraid/Emulators/Dreamcast/CDI/
 
 ```
 
@@ -15222,7 +15222,7 @@ mkdir -p /userdata/roms/dreamcast
 # Create symlinks for Dreamcast games
 cd /userdata/roms/dreamcast
 
-ln -s /mnt/unraid/Emulators/Dreamcast/CDI/*.cdi .
+ln -s /userdata/mnt/unraid/Emulators/Dreamcast/CDI/*.cdi .
 
 # Verify symlinks were created
 ls -la
@@ -15236,12 +15236,12 @@ mkdir -p /userdata/roms/ps2
 
 # Create symlinks for all PS2 games
 cd /userdata/roms/ps2
-find /mnt/unraid/Emulators/PS2 -name "*.iso" -exec ln -s {} . \;
-find /mnt/unraid/Emulators/PS2 -name "*.ISO" -exec ln -s {} . \;
-find /mnt/unraid/Emulators/PS2 -name "*.bin" -exec ln -s {} . \;
-find /mnt/unraid/Emulators/PS2 -name "*.BIN" -exec ln -s {} . \;
-find /mnt/unraid/Emulators/PS2 -name "*.img" -exec ln -s {} . \;
-find /mnt/unraid/Emulators/PS2 -name "*.IMG" -exec ln -s {} . \;
+find /userdata/mnt/unraid/Emulators/PS2 -name "*.iso" -exec ln -s {} . \;
+find /userdata/mnt/unraid/Emulators/PS2 -name "*.ISO" -exec ln -s {} . \;
+find /userdata/mnt/unraid/Emulators/PS2 -name "*.bin" -exec ln -s {} . \;
+find /userdata/mnt/unraid/Emulators/PS2 -name "*.BIN" -exec ln -s {} . \;
+find /userdata/mnt/unraid/Emulators/PS2 -name "*.img" -exec ln -s {} . \;
+find /userdata/mnt/unraid/Emulators/PS2 -name "*.IMG" -exec ln -s {} . \;
 
 # Verify symlinks were created
 ls -la | head -20
@@ -15252,7 +15252,7 @@ ls -la | head -20
 ```
 
 # Create symlinks for all Gamecube games
-ln -s /mnt/unraid/Emulators/Nintendo_GameCube/Games/*.iso .
+ln -s /userdata/mnt/unraid/Emulators/Nintendo_GameCube/Games/*.iso .
 
 # Verify symlinks were created
 ls -la | head -20
@@ -15270,7 +15270,7 @@ Then Scrapper and Scrap now
 nano /etc/fstab
 
 # Add this line at the end:
-//192.168.1.7/n5105 /mnt/unraid cifs username=guest,password=,rw,vers=3.0 0 0
+//192.168.1.7/n5105 /userdata/mnt/unraid cifs username=guest,password=,rw,vers=3.0 0 0
 ```
 
 !!Bonus Delete link files from folder
