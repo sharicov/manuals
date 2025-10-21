@@ -27707,6 +27707,26 @@ To download Windows ISOs with Rufus, it must have "Check for updates" enabled.</
 
 !!For single GPU boot Unraid in ''CLI mode'' otherwise it can't release GPU after stopping the VM and hangs.
 
+When unraid host in CLI mode
+
+Run
+
+
+```
+slim
+```
+
+To switch from GUI to CLI
+
+Press Ctrl+Alt+F1
+
+Run
+
+
+```
+killall slim
+```
+
 !!Don't select GPU and it's audio in IOMMU groups, it can be passthrough without it and when not selected can show unraid cli between VM sessions
 
 !!Disable sleep
