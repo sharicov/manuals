@@ -40698,15 +40698,15 @@ Explanation: speedtest depends on libidn2 library that might not be available on
 <div tags="" title="OSX hackintosh in kvm qemu arch  Ultimate-MacOS-KVM - working v4">
 <pre>Project site: https://github.com/Coopydood/ultimate-macOS-KVM
 
-''Sequoia boots''
+''Sequoia/Tahoia boots''
 
-For tahoe (didn't boot probably needed to specify default CPU and not host) )base.img use web archive (''beta''): https://archive.org/download/macos-tahoe/Latest/BaseSystem.dmg
+For ''Tahoe'' base.img use web archive (''beta''): https://archive.org/download/macos-tahoe/Latest/BaseSystem.dmg
 
-Final Tahoe 26.0.1 25A362 dmg
+Not tested - Final Tahoe 26.0.1 25A362 dmg
 
 https://techrechard.com/download-macos-tahoe-dmg-macos-26/
 
-Prerequisite
+!!Prerequisite
 
 ```
 sudo pacman -S tk
@@ -40722,7 +40722,7 @@ cd ultimate-macOS-KVM
 ```
 
 
-For 5800x3d select 8 cores 1 thread 32G (must enter "G") RAM and 80GB SSD, processor=keep default for AMD (''host'' also possible but needs check)
+For 5800x3d select 8 cores 1 thread 32G (must enter "G") RAM and 80GB SSD, processor=keep default for AMD, use default CPU type - Haswell (''not host'')
 
 For Tahoe select previously downloaded image
 
