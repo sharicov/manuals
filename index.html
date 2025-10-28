@@ -66454,9 +66454,7 @@ apt update
 ```</pre>
 </div>
 <div tags="" title="Yunohost install subdomain certificate - unlimited - working">
-<pre>In yunohost GUI admin / add domain / i want to add a subdomain / type in any name
-
-List LXD containers
+<pre>List LXD containers
 
 ```
 lxc list
@@ -66466,8 +66464,15 @@ Enter yunohost lxd container
 lxc exec yunohost-container -- bash
 ```
 
+Create subdomain
 
-Create subdomain certificat (ex. immich for sharicov.nohost.me)
+
+```
+yunohost domain add immich.sharicov.nohost.me
+```
+
+
+Generate subdomain certificat (ex. immich for sharicov.nohost.me)
 
 
 ```
@@ -66487,7 +66492,17 @@ Target URL: http://192.168.1.44:2283
 
 ```
 
-</pre>
+In yunohost GUI
+
+Add redirect app with reverse proxy to internal resource (immich in this example)
+
+make sure to select subdomain and /
+
+Or 
+
+
+
+In yunohost GUI admin / add domain / i want to add a subdomain / type in any name and then proceed in CLI to generate certificates</pre>
 </div>
 <div created="20210416140522745" creator="sharicov" modified="20210417210828529" modifier="sharicov" revision="41" tags="manual" title="yunohost raspberry disk system samba yandex screen rsync ssh v17" type="text/vnd.tiddlywiki">
 <pre>!!! Open port in yunohost firewall: 
