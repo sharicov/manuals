@@ -16871,6 +16871,9 @@ Special triggers can be set in tray (like specific process etc).</pre>
 <pre>create script in unraid using ''user script plugin''  and run it
 
 
+!!Simple version
+Only capacities
+
 ```
 for d in /mnt/disk[0-9]*; do
   if [ -d "$d" ]; then
@@ -16891,7 +16894,88 @@ Size: 18.19TiB Used: 18.11TiB Free(est): 80.42GiB
 === /mnt/disk2 ===
 Size: 14.55TiB Used: 14.45TiB Free(est): 99.47GiB
 === /mnt/disk3 ===
-Size: 12.73TiB Used: 12.64TiB Free(est): 88.41GiB</pre>
+Size: 12.73TiB Used: 12.64TiB Free(est): 88.41GiB
+
+!!Version with disk temperatures, names and smart statuses
+
+
+```
+#!/bin/bash
+
+for d in /mnt/disk[0-9]*; do
+    if [ -d "$d" ]; then
+        echo "=== $d ==="
+        
+        # Get disk number
+        disk_num=$(basename "$d" | tr -cd "0-9")
+        
+        # Map disk numbers to physical devices
+        case $disk_num in
+            1) device="sdb" ;;
+            2) device="sde" ;;
+            3) device="sdc" ;;
+            *) device="" ;;
+        esac
+        
+        # Get disk info, temperature and SMART status
+        if [ -n "$device" ] &amp;&amp; [ -e "/dev/$device" ]; then
+            # Get disk model
+            model=$(smartctl -i "/dev/$device" 2&gt;/dev/null | grep -E "Model|Device Model" | cut -d: -f2 | sed "s/^ *//" | head -1)
+            
+            # Get temperature
+            temp=$(smartctl -a "/dev/$device" 2&gt;/dev/null | grep -E "Temperature|Airflow_Temperature" | head -1 | awk "{print \$10}")
+            
+            # Get SMART overall health
+            health=$(smartctl -H "/dev/$device" 2&gt;/dev/null | grep "SMART overall-health" | cut -d: -f2 | tr -d " ")
+            
+            echo "Disk: $device - $model"
+            if [ -n "$temp" ]; then
+                echo "Temperature: ${temp}°C"
+            else
+                echo "Temperature: N/A"
+            fi
+            if [ -n "$health" ]; then
+                echo "SMART Health: $health"
+            else
+                echo "SMART Health: Unknown"
+            fi
+        fi
+        
+        # Get disk usage with corrected free space extraction
+        btrfs filesystem usage -h "$d" 2&gt;/dev/null | awk '
+            /Device size:/ {size=$3}
+            /^ *Used:/ &amp;&amp; !/Global reserve/ {used=$2}
+            /Free \(estimated\):/ {free=$3}
+            END {if (size!="") printf "Size: %-8s  Used: %-8s  Free(est): %-8s\n", size, used, free}'
+        
+        echo
+    fi
+done
+```
+
+Output:
+
+
+```
+=== /mnt/disk1 ===
+Disk: sdb - ST20000DM001-3Y3103
+Temperature: 61°C
+SMART Health: PASSED
+Size: 18.19TiB Used: 17.92TiB Free(est): 278.98GiB
+
+=== /mnt/disk2 ===
+Disk: sde - WDC WD160EDGZ-11B2DA0
+Temperature: 62°C
+SMART Health: PASSED
+Size: 14.55TiB Used: 14.54TiB Free(est): 4.43GiB
+
+=== /mnt/disk3 ===
+Disk: sdc - Seagate IronWolf Pro
+Temperature: 52°C
+SMART Health: PASSED
+Size: 12.73TiB Used: 12.72TiB Free(est): 7.62GiB
+```
+</pre>
 </div>
 <div tags="" title="Calibrate Hisense 85A6BG HDR in Linux wayland plasma">
 <pre>|!Setting / Feature        |!SDR (Cinema Day/Night) |!HDR (Game Mode) |
