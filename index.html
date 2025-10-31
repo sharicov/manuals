@@ -66347,7 +66347,28 @@ Guide: https://wiki.coreelec.org/coreelec:aml_usb_tool
 Boots normally, can pin boot into Batocera MicroSD TV-gen3 (holding reset button inside AV port)</pre>
 </div>
 <div tags="" title="x96 s905x3 working armbian">
-<pre>Image: Armbian_22.02.0_Aml_s905x3_bullseye_5.10.96_2022.02.04.1252.img.gz
+<pre>Trixie Debian 13
+Image:
+
+After flashing to microSD
+
+```
+cd /boot
+cp -f u-boot-s905x3.bin u-boot.ext
+cp -f u-boot-s905x3.bin u-boot.emmc
+
+```
+
+in uEnv.txt remove ''-100m'' from .dtb name to enable 1Gbps ethernet
+
+Use pin method to boot from microSD first time: hold ping about 3 seconds while powering the box
+
+!''Do not install to eMMC, will brick the device!''
+
+Resize partition on the fly using separate guide
+
+!!Old Bullseye work out of the box
+Image: Armbian_22.02.0_Aml_s905x3_bullseye_5.10.96_2022.02.04.1252.img.gz
 
 DTB: meson-sm1-x96-max-plus.dtb
 
