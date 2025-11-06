@@ -40562,14 +40562,14 @@ sc config DsExampleSvc start=auto
 !!screen
 
 ```
-screen -DR -S opencode bash -c 'export TERM=xterm-256color; exec opencode'
+export TERM=xterm-256color; screen -DR -S opencode bash -c 'export TERM=xterm-256color; exec opencode'
 ```
 
 !!tmux
 
 
 ```
-tmux new-session -A -s opencode "export TERM=xterm-256color; exec opencode"
+export TERM=xterm-256color; tmux new-session -A -s opencode "export TERM=xterm-256color; exec opencode"
 ```
 
 Exit all tmux sessions
