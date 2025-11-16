@@ -33113,6 +33113,19 @@ export DOCKER_HOST=unix:///run/podman/podman.sock
 
 ```
 
+!!To make it permanent
+
+
+```
+# Add to ~/.bashrc
+echo 'export DOCKER_HOST=unix:///run/podman/podman.sock' &gt;&gt; ~/.bashrc
+
+# Add to ~/.profile (for login shells)
+echo 'export DOCKER_HOST=unix:///run/podman/podman.sock' &gt;&gt; ~/.profile
+
+# Reload your shell
+source ~/.bashrc
+```
 </pre>
 </div>
 <div tags="" title="Lazydocker native manual install on R4S in docker lxd container">
