@@ -24667,18 +24667,18 @@ Add ''modifying your actual host IPs'':
 
 
 ```
-version: '2'
+cat docker-compose.yml
 services:
   app:
     container_name: filestash
     image: machines/filestash:latest
     restart: always
     environment:
-      - APPLICATION_URL=
+      - APPLICATION_URL=""
       - CANARY=true
-      - OFFICE_URL=http://YOUR_R4S_IP:9980
-      - OFFICE_FILESTASH_URL=http://YOUR_R4S_IP:8334
-      - OFFICE_REWRITE_URL=http://YOUR_R4S_IP:9980
+      - OFFICE_URL=http://192.168.1.44:9980
+      - OFFICE_FILESTASH_URL=http://192.168.1.44:8334
+      - OFFICE_REWRITE_URL=http://192.168.1.44:9980
     ports:
       - "8334:8334"
     volumes:
