@@ -38620,9 +38620,9 @@ enp1s0-0::lan  enp1s0-1::lan  enp1s0-2::lan  green:lan  green:wan  red:power
 Link leds to ports:
 
 ```
-echo stmmac-0:01:link &gt; /sys/class/leds/green:lan/trigger
+ echo r8169-0-100:00:link &gt; /sys/class/leds/green:lan/trigger
 
-echo r8169-0-100:00:link &gt; /sys/class/leds/green:wan/trigger
+echo stmmac-0:01:link&gt; /sys/class/leds/green:wan/trigger
 ```
 
 !!Make it permanent
@@ -38645,8 +38645,8 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo stmmac-0:01:link &gt; /sys/class/leds/green:lan/trigger'
-ExecStart=/bin/sh -c 'echo r8169-0-100:00:link &gt; /sys/class/leds/green:wan/trigger'
+ExecStart=/bin/sh -c 'echo stmmac-0:01:link &gt; /sys/class/leds/green:wan/trigger'
+ExecStart=/bin/sh -c 'echo r8169-0-100:00:link &gt; /sys/class/leds/green:lan/trigger'
 RemainAfterExit=yes
 
 [Install]
