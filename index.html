@@ -50595,6 +50595,7 @@ sudo crontab -e
 <pre>```
 0 * * * * /root/monitoring/system_monitor.sh
 0,30 * * * * rclone --config /mnt/t7/rclone.conf copy Yandex:/Documents /mnt/t7/Documents/
+0,45 * * * * rclone --config /mnt/t7/rclone.conf copy /mnt/t7/containers/ Yandex:/Tools/Manuals/containers --exclude "postgres/**"
 0 */3 * * *  rclone --config /mnt/t7/rclone.conf copy  --tpslimit 5 /mnt/t7/shared mailru:/Tools/shared/
 ```
 </pre>
