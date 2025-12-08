@@ -31166,21 +31166,17 @@ hyprctl monitors
 ```
 
 Set my layout by bottom line 4k on the left
-
-
-```
- 4K Hisense monitor as primary, left side
-monitor=HDMI-A-1,3840x2160@60,0x0,1
-
-# LG Ultrawide to the right, aligned at the bottom
-monitor=DP-1,2560x1080@75,3840x1080,1
-```
-!!Set SHIFT Left arrow and SHIFT Right arrow to move active window between screens
-
+and SHIFT Left arrow and SHIFT Right arrow to move active window between screens
 
 Add to  ''.config/hypr/hyprland.conf''
 
 ```
+# 4K Hisense monitor as primary, left side
+monitor=HDMI-A-1,3840x2160@60,0x0,1
+
+# LG Ultrawide to the right, aligned at the bottom
+monitor=DP-1,2560x1080@75,3840x1080,1
+
 bind = $mainMod SHIFT, right, movewindow, mon:DP-1     # Move to Ultrawide (right monitor)
 
 bind = $mainMod SHIFT, left, movewindow, mon:HDMI-A-1  # Move to 4K (left monitor)
