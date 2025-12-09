@@ -67355,7 +67355,9 @@ Changes will be shown under ''Events ''tab in the same view
 Source: https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/advanced-settings.html</pre>
 </div>
 <div tags="" title="wazuh security dashboard server x86 only v18">
-<pre>!!Video review
+<pre>Default port: ''5601'' (or 443)
+
+!!Video review
 https://www.youtube.com/watch?v=3CaG2GI1kn0&amp;t=783s
 
 !Installation
@@ -67628,7 +67630,7 @@ sudo systemctl restart wazuh-agent
 
 Then go to wazuh GUI/agent/integrity/events and you will see the changes
 
-!!Password change (docker single node version) example for 4.7.3 see source site for updated instructions
+!!Password change (docker single node version) example for v4.14.1 see source site for updated instructions
 
 source: https://documentation.wazuh.com/current/deployment-options/docker/wazuh-container.html#change-pwd-existing-usr
 
@@ -67646,7 +67648,7 @@ Stop docker and generate hash for a ''new'' password:
 ```
 docker-compose down
 
-docker run --rm -ti wazuh/wazuh-indexer:4.7.3 bash /usr/share/wazuh-indexer/plugins/opensearch-security/tools/hash.sh
+docker run --rm -ti wazuh/wazuh-indexer:4.14.1 bash /usr/share/wazuh-indexer/plugins/opensearch-security/tools/hash.sh
 ```
 
 Edit configuration file replacing existing hash with the new one:
