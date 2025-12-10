@@ -30963,6 +30963,29 @@ bind = $mainMod SHIFT, right, movewindow, mon:DP-1     # Move to Ultrawide (righ
 bind = $mainMod SHIFT, left, movewindow, mon:HDMI-A-1  # Move to 4K (left monitor)
 ```
 
+Set workspaces for Hisence to be 1 and LG - 2
+
+nano .config/hyprr/hyprland.conf
+
+
+```
+exec-once = hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1
+exec-once = hyprctl dispatch moveworkspacetomonitor 2 DP-1
+
+```
+
+Or run manual commands
+
+
+```
+hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1
+
+hyprctl dispatch moveworkspacetomonitor 2 DP-1
+
+```
+
+
+
 Reload settings
 
 
