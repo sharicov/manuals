@@ -31255,12 +31255,27 @@ increase number of vCpus to 4 or 8</pre>
 curl -fsSL https://install.danklinux.com |sh
 ```
 
+!!Troubleshooting
+
+!!!2 top bars after danklinux installation
+
 If there are two bars after installation run
 
 
 ```
 killall waybar
 ```
+If that helps, but bar appears again find and kill waybar service
+
+
+```
+systemctl --user list-units | grep waybar
+
+systemctl --user disable --now hyde-hyprland-bar.service
+
+systemctl --user disable --now hyde-hyprland-waybar-watcher.service
+```
+
 </pre>
 </div>
 <div tags="" title="Hyprland disable sleep">
