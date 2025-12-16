@@ -69819,7 +69819,35 @@ unplug from the network
 
 Shutdown from vm manager and remove virtual network adapters and start the VM
 
-!!No internet option will appear in the installation wizard</pre>
+In case of unraid -&gt; vm config -&gt; switch to xml mode 
+
+remove
+
+
+```
+  &lt;interface type='bridge'&gt;
+      &lt;mac address='52:54:00:c0:cf:d5'/&gt;
+      &lt;source bridge='br0'/&gt;
+      &lt;model type='virtio-net'/&gt;
+      &lt;address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/&gt;
+    &lt;/interface&gt;
+```
+
+
+!!No internet option will appear in the installation wizard
+
+After installation return back network portion
+
+
+```
+  &lt;interface type='bridge'&gt;
+      &lt;mac address='52:54:00:c0:cf:d5'/&gt;
+      &lt;source bridge='br0'/&gt;
+      &lt;model type='virtio-net'/&gt;
+      &lt;address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/&gt;
+    &lt;/interface&gt;
+```
+</pre>
 </div>
 <div tags="" title="windows 11 fix ping not working between windows machines">
 <pre>Win+I settings/network/ethernet(or wifi)/private network/configure firewal/yes/Private network/turn off (on all windows PCs)</pre>
