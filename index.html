@@ -13164,9 +13164,18 @@ Edit ''.bash_profile'' to add new functions ''ncdu_docker'' and ''yazi''
 Add at the end of file:
 
 ```
-function ncdu() { docker run --rm -it -v /:/mnt/root bytesco/ncdu /mnt/root"$@"; }
+function ncdu() { docker run --rm -it -v /:/mnt/root bytesco/ncdu /mnt/root "$@"; }
 
-function corbanyl() { docker run --rm -it -v /:/mnt/root fathyb/carbonyl"$@";}
+function carbonyl() {
+    local url="$1"
+
+    # If the URL does NOT start with http:// or https://, add http://
+    if [[ "$url" != http://* &amp;&amp; "$url" != https://* ]]; then
+        url="http://$url"
+    fi
+
+    docker run --rm -it -v /:/mnt/root fathyb/carbonyl "$url"
+}
 
 function yazi() { docker run --rm -it -v /:/mnt/root l33tlamer/yazi; }
 
@@ -13183,9 +13192,16 @@ Run
 
 ```
 ncdu_docker /mnt/cache
-
-curl https://rclone.org/install.sh | sudo bash
 ```
+
+Or
+
+
+```
+carbonyl 192.168.1.190
+```
+
+
 !!Check and Remove command
 
 Ex. unrar command
@@ -13201,6 +13217,14 @@ Remove association
 
 ```
 unset -f unrar
+```
+
+!!Install rclone
+
+
+
+```
+curl https://rclone.org/install.sh | sudo bash
 ```
 
 
