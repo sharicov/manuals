@@ -17190,6 +17190,42 @@ flatpak run com.valvesoftware.Steam
 7. Add and run game
 
 Add non-steam game, specify exe location, right-click the game in Library, properties, compatibility, select GE-Proton
+
+
+8. Fixing permissions
+
+
+```
+sudo pacman -S xdg-desktop-portal xdg-desktop-portal-kde
+
+systemctl --user restart xdg-desktop-portal.service
+
+systemctl --user restart xdg-desktop-portal-kde.service
+
+```
+
+If the second command still says “not found”, reboot:
+
+
+reboot
+
+Run Flatseal → Steam → Filesystem → Add:
+Code
+
+
+```
+/mnt/your_nfs_path
+```
+
+
+Or if you prefer CLI:
+Code
+
+
+```
+flatpak override --user --filesystem=/mnt/your_nfs_path com.valvesoftware.Steam
+```
+
 </pre>
 </div>
 <div tags="" title="CachyOS installation in Qemu into img to boot from Ventoy">
