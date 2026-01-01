@@ -13237,9 +13237,9 @@ curl https://rclone.org/install.sh | sudo bash
 
 !!Run on start
 
-add script in user script ''to run once with the array''
+add script in user script ''at first array start only''
 
-Example:
+Example carbonyl:  
 
 
 ```
@@ -13258,6 +13258,30 @@ function carbonyl() {
 EOF
 fi
 ```
+
+Example glances
+
+
+```
+#!/bin/bash
+
+if ! grep -q "function glances" /root/.bash_profile; then
+cat &lt;&lt; 'EOF' &gt;&gt; /root/.bash_profile
+
+function glances() { docker run --rm -it -v /:/mnt/root  --pid host  --net host nicolargo/glances:latest; }
+EOF
+fi
+```
+
+To load immediately
+
+Load new .bash_profile
+
+
+```
+source /root/.bash_profile
+```
+
 
 
 !!Save permanently (not tested yet)
