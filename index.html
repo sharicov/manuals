@@ -31877,23 +31877,24 @@ Modify it to look like follows:
 # INPUT CONFIG
 # ==================
 input {
-    # English (US) primary, Russian phonetic, Hebrew
     kb_layout = us,ru,il
     kb_variant = ,phonetic,
-    kb_options = grp:alt_shift_toggle
-
+    
+    # THIS IS THE KEY FIX - makes keybinds use US layout symbols
+    resolve_binds_by_sym = 0
+    
     numlock_by_default = true
-    # Touchpad settings
+    
     touchpad {
         natural_scroll = true
         disable_while_typing = true
         tap-to-click = true
-        tap-and-drag = true
-        drag_lock = true
-        scroll_factor = 1.0
     }
-
 }
+
+# Manual Alt+Shift layout switching (working reliably)
+bind = ALT_L, SHIFT_L, exec, hyprctl switchxkblayout current next
+bind = ALT_R, SHIFT_R, exec, hyprctl switchxkblayout current next
 ```
 
 To switch from command line:
