@@ -24770,6 +24770,7 @@ services:
     environment:
       - TZ=Asia/Jerusalem
       - DIUN_PROVIDERS_DOCKER=true
+  - DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT=true
       - DIUN_WATCH_SCHEDULE=0 */6 * * *
       - DIUN_LOG_LEVEL=info
 
@@ -24794,6 +24795,17 @@ Start containers
 
 ```
 docker compose up -d
+```
+
+!!Where to see update notifications in Dozzle
+You’re already in the right place:
+
+Dozzle → Hosts → diun → logs
+Every time Diun finds a new image, you’ll see:
+
+
+```
+INF New image found image=...
 ```
 </pre>
 </div>
