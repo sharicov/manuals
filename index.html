@@ -73944,9 +73944,32 @@ x-casaos:
     en_us: app
 ```
 
-text
-title: Filestash with Collabora on ZimaOS Installation Guide
-tags: setup docker zimaos filestash collabora
+If collabora not working install it separately
+
+# Stop and remove the existing Collabora container
+
+```
+sudo docker stop filestash_collabora
+sudo docker rm filestash_collabora
+```
+
+
+# Now recreate it with the correct capabilities
+
+```
+sudo docker run -d \
+  --name filestash_collabora \
+  --network app_filestash_network \
+  --cap-add=SYS_ADMIN \
+  --security-opt apparmor:unconfined \
+  --security-opt seccomp:unconfined \
+  -p 9980:9980 \
+  -e "extra_params=--o:ssl.enable=false --o:ssl.termination=false" \
+  -e aliasgroup1="http://.*:443" \
+  -v collabora_data:/opt/cool \
+  collabora/code:24.04.10.2.1
+
+```
 
 !! Complete Guide: Install Filestash with Collabora on ZimaOS (From Scratch)
 
