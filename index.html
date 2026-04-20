@@ -73865,83 +73865,51 @@ For ZimaOS if installing in VM choose ''SATA'' for target virtual disk</pre>
 Replace ''192.168.1.23'' with correct local IP
 
 ```
-name: app
 services:
-  app:
-    cpu_shares: 90
-    command: []
+  filestash:
     container_name: filestash
-    deploy:
-      resources:
-        limits:
-          memory: 8325218304
-        reservations:
-          devices: []
+    image: machines/filestash:latest
+    restart: unless-stopped
+    ports:
+      - "8334:8334"
     environment:
       - APPLICATION_URL=
       - CANARY=true
-      - OFFICE_FILESTASH_URL=http://192.168.1.23:8334
-      - OFFICE_REWRITE_URL=http://192.168.1.23:9980
-      - OFFICE_URL=http://192.168.1.23:9980
-    image: machines/filestash:latest
-    labels:
-      icon: https://icon.casaos.io/main/all/app.png
-    ports:
-      - target: 8334
-        published: "8334"
-        protocol: tcp
-    restart: always
+      - OFFICE_URL=http://filestash_collabora:9980
+      - OFFICE_FILESTASH_URL=http://filestash:8334
+      - OFFICE_REWRITE_URL=http://filestash_collabora:9980
     volumes:
-      - type: bind
-        source: /tmp/casaos-compose-app-2905553438/[object Object]
-        target: /app/data/state
-    devices: []
-    cap_add: []
-    network_mode: bridge
-    privileged: false
-  wopi_server:
-    cap_add:
-      - MKNOD
-    cpu_shares: 90
-    command: []
+      - filestash_data:/app/data/state/
+    networks:
+      - filestash_network
+    depends_on:
+      - collabora
+
+  collabora:
     container_name: filestash_collabora
-    deploy:
-      resources:
-        limits:
-          memory: 8325218304
-        reservations:
-          devices: []
-    environment:
-      - aliasgroup1=http://.*:443
-      - extra_params=--o:ssl.enable
     image: collabora/code:24.04.10.2.1
-    labels:
-      icon: https://icon.casaos.io/main/all/app.png
+    restart: unless-stopped
+    privileged: true
     ports:
-      - target: 9980
-        published: "9980"
-        protocol: tcp
-    restart: always
+      - "9980:9980"
+    environment:
+      - "extra_params=--o:ssl.enable=false --o:ssl.termination=false"
+      - aliasgroup1="http://.*:443"
     volumes:
-      - type: bind
-        source: /tmp/casaos-compose-app-2905553438/[object Object]
-        target: /opt/cool
-    devices: []
-    network_mode: bridge
-    privileged: false
-x-casaos:
-  author: self
-  category: self
-  hostname: ""
-  icon: https://icon.casaos.io/main/all/app.png
-  index: /
-  is_uncontrolled: false
-  port_map: "8334"
-  scheme: http
-  store_app_id: app
-  title:
-    custom: ""
-    en_us: app
+      - collabora_data:/opt/cool
+    networks:
+      - filestash_network
+
+volumes:
+  filestash_data:
+    name: filestash_data
+  collabora_data:
+    name: collabora_data
+
+networks:
+  filestash_network:
+    name: filestash_network
+    driver: bridge
 ```
 
 If collabora not working install it separately
