@@ -73958,11 +73958,10 @@ sudo docker rm filestash_collabora
 
 ```
 sudo docker run -d \
+sudo docker run -d \
   --name filestash_collabora \
   --network app_filestash_network \
-  --cap-add=SYS_ADMIN \
-  --security-opt apparmor:unconfined \
-  --security-opt seccomp:unconfined \
+  --privileged \
   -p 9980:9980 \
   -e "extra_params=--o:ssl.enable=false --o:ssl.termination=false" \
   -e aliasgroup1="http://.*:443" \
