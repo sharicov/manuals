@@ -30019,28 +30019,31 @@ service_cmd=/usr/bin/service --status-all
 https://github.com/nikunjsingh93/react-glass-keep</pre>
 </div>
 <div tags="" title="glass keep -google keep self hosted alternative">
-<pre>paste yml and replace ''user'' and ''password''
+<pre>paste yml and replace ''user'' (email format) and ''password''
 
 
 ```
 version: "3.8"
 
 services:
-  app:
+  glass-keep:
     image: nikunjsingh/glass-keep:latest
     container_name: glass-keep
     restart: unless-stopped
     environment:
       NODE_ENV: production
       API_PORT: "8080"
+      # !!! IMPORTANT: Change this to a strong, random string !!!
       JWT_SECRET: "replace-with-a-long-random-string"
       DB_FILE: /app/data/notes.db
+      # !!! IMPORTANT: Change 'your-admin-username' to your desired admin username !!!
       ADMIN_EMAILS: "your-admin-username"
       ALLOW_REGISTRATION: "false"
     ports:
       - "8080:8080"
     volumes:
-      - ~/.glass-keep:/app/data
+      # This uses ZimaOS's standard AppData path for persistent storage
+      - /DATA/AppData/glass-keep/data:/app/data
 ```
 
 source: https://github.com/nikunjsingh93/react-glass-keep
