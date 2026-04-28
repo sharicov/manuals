@@ -25402,7 +25402,7 @@ services:
   app:
     image: ghcr.io/ozencb/excalidraw-persist:latest
     ports:
-      - 4001:4000 # Server API
+      - "4001:4000"
     restart: on-failure
     environment:
       - PORT=4000
@@ -25410,6 +25410,7 @@ services:
       - DB_PATH=/app/data/database.sqlite
     volumes:
       - /DATA/AppData/excalidraw/data:/app/data:rw
+
 ```
 
 Logo: https://raw.githubusercontent.com/dennysubke/dennys-umbrel-app-gallery/main/denny-excalidraw/logo.png
