@@ -25401,8 +25401,10 @@ version: '3.7'
 services:
   app:
     image: ghcr.io/ozencb/excalidraw-persist:latest
+    container_name: excalidraw
     ports:
-      - "4001:4000"
+      - "4001:80"      # Web UI
+      - "4002:4000"    # API (optional)
     restart: on-failure
     environment:
       - PORT=4000
@@ -25410,6 +25412,7 @@ services:
       - DB_PATH=/app/data/database.sqlite
     volumes:
       - /DATA/AppData/excalidraw/data:/app/data:rw
+
 
 ```
 
