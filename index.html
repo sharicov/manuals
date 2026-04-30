@@ -31915,6 +31915,22 @@ change setting in
 
 nano  /mnt/user/appdata/homepage/services.yaml
 ```
+
+Example transmission widget
+
+
+```
+- Media &amp; Downloads:
+    - Transmission:
+        icon: transmission.png
+        href: http://192.168.1.7:9091 # Your Transmission Web UI port
+        description: Torrent Client
+        widget:
+          type: transmission
+          url: http://192.168.1.7:9091
+          username: your_username # Optional, only if auth is on
+          password: your_password # Optional, only if auth is on
+```
 </pre>
 </div>
 <div tags="" title="homepage installation - widgets web page with docker support v2">
