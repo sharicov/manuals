@@ -12464,7 +12464,7 @@ wettyoss/wetty                               latest             88a037bc5b60   1
 <pre>yes</pre>
 </div>
 <div created="20210417210700988" modified="20210604055832253" title="$:/state/sidebar">
-<pre>yes</pre>
+<pre>no</pre>
 </div>
 <div created="20210417205130414" modified="20210417205130414" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Saving</pre>
@@ -15130,7 +15130,7 @@ echo "Backup complete!" &amp;&amp; sudo du -sh backups/
 ```
 
 
-Restore:
+Remove existing install (optional):
 
 
 ```
@@ -15140,9 +15140,43 @@ cd ~/containers/filestash
 sudo docker compose down
 
 # Remove old volumes (optional - fresh restore)
-sudo docker volume rm filestash collabora_data 2&gt;/dev/null
-sudo docker volume create filestash
-sudo docker volume create collabora_data
+cd ~/containers/filestash
+
+# Stop and remove containers
+sudo docker compose down
+
+# Remove containers completely (in case they linger)
+sudo docker rm filestash filestash_wopi 2&gt;/dev/null
+
+# Remove volumes (this deletes all data)
+sudo docker volume rm filestash collabora_data
+
+# Remove images
+sudo docker rmi machines/filestash:latest
+sudo docker rmi collabora/code:24.04.10.2.1
+
+```
+
+Verify all gone:
+
+
+```
+# Should show no filestash containers
+sudo docker ps -a | grep filestash
+
+# Should show no filestash images
+sudo docker images | grep -E "filestash|collabora"
+
+# Should show volumes deleted
+sudo docker volume ls | grep -E "filestash|collabora"
+```
+
+
+
+Restore
+
+```
+
 
 # Load images
 sudo docker load -i backups/filestash_image.tar.gz
