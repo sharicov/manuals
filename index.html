@@ -32118,7 +32118,7 @@ Container Path: /mnt/cache
 Host Path: /mnt/cache
 (This is the actual path on your Unraid server)
 
-Access Mode: Read/Write
+Access Mode: Read Only
 
 After you fill in the second row, scroll all the way down and click Save or Apply .
 ```
@@ -32127,16 +32127,23 @@ Same for cache with ''/mnt/cache'' and separate disks if needed like /mnt/disk1
 
 ```
 - resources:
+    label: System
     cpu: true
     memory: true
-    label: Unraid System
 
 - resources:
-    label: Storage
-    disk:
-      - /mnt/cache
-      - /mnt/user
-      - /mnt/disk1
+    label: Array Storage
+    expanded: true
+    disk: /mnt/user
+
+- resources:
+    label: Cache Drive
+    expanded: true
+    disk: /mnt/cache
+
+- search:
+    provider: duckduckgo
+    target: _blank
 ```
 
 !!🔑 Getting API Keys
