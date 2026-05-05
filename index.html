@@ -45943,6 +45943,22 @@ ollama run deepseek-r1:1.5b -- verbose "put your prompt here"
 Video: https://www.youtube.com/watch?v=Gvi8PLkDU54
 
 
+!!Set for Open WebGUI access
+
+
+```
+# Stop Ollama
+sudo systemctl stop ollama
+
+# Set Ollama to listen on all network interfaces
+sudo systemctl set-environment OLLAMA_HOST=0.0.0.0
+
+# Start Ollama again
+sudo systemctl start ollama
+
+# Verify it's now listening on all interfaces
+sudo netstat -tulpn | grep 11434
+```
 </pre>
 </div>
 <div tags="" title="Ollama deepseek on raspberry pi4 Open WebUI GUI install">
