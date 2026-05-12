@@ -66388,6 +66388,30 @@ Source: https://docs.unraid.net/unraid-os/release-notes/7.0.0/</pre>
 <div tags="" title="Unraid 7.2.5 fix disconnecting ethernet - working">
 <pre>Login locally or over wifi
 
+
+!!Temp solution:
+
+
+
+Check if there is bond2 set:
+
+
+```
+ip link show
+```
+
+Key indicators:
+
+* master bond2 - eth2/3/4 are slaves belonging to a bonding interface
+* 
+* bond2 interface listed separately as MASTER
+* 
+* SLAVE flag on eth2/3/4
+* 
+* NO-CARRIER on all of them (no cables plugged in)
+* 
+* bond2 had state DOWN
+
 Disable bond2 via command
 
 Take down bond2 interface
@@ -66420,7 +66444,16 @@ Then check if eth0 got an IP:
 ```
 ip addr show eth0
 ```
-</pre>
+
+!!Permanent solution
+
+Unraid Web UI:
+
+Go to Settings → Network Settings
+
+Set Enable Bonding to No
+
+Click Apply</pre>
 </div>
 <div tags="" title="unraid add disk with data">
 <pre>use a plugin called ''Unassigned Devices'' to mount drives without adding them to an array. This will let you copy over the data.
