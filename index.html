@@ -65343,48 +65343,24 @@ python3 -m pip install --upgrade pip
 <div tags="" title="Terabox rclone">
 <pre>https://github.com/gulp79/rclone-extra
 
-How to Add a Terabox Remote in rclone-extra
-The Terabox backend requires authentication using your account’s cookie because Terabox does not provide an official API. Follow these steps:
+Use the Browser's Cookie Manager (No Developer Tools)
+Since you can't use Developer Tools at all:
 
-1. Install the Modified rclone
-Download and install the custom build from rclone-extra releases or compile it from source:
+Log in to Terabox normally (without any Developer Tools open).
 
-2. Get Your Terabox Authentication Cookie
-You need the Cookie header from your logged-in session:
+Once logged in, click the padlock icon 🔒 next to the URL bar.
 
-Log in to Terabox using your browser.
+Click "Cookies and site data" → "Manage cookies and site data..."
 
-Open Developer Tools (F12) → Network tab.
+In Chrome/Edge: This is under the padlock → Cookies.
 
-Refresh the page and select any request to www.terabox.com.
+In Firefox: Click the shield icon → Clear cookies and site data → Manage Data.
 
-Look for the Request Headers section and copy the entire Cookie value.
+Find the cookies for terabox.com.
 
-Example:
+Look for these important cookies and copy their values:
 
-Cookie: BDUSS=xxxx; STOKEN=xxxx; ...
-3. Configure the Remote
-Run the rclone config command:
-
-rclone config
-Mostra più linee
-
-Choose n for a new remote.
-Enter a name (e.g., terabox).
-Select the backend: terabox.
-When prompted for authentication, paste the full cookie string.
-4. Test the Remote
-Verify the configuration:
-
-rclone ls terabox:
-If everything is correct, you should see your files listed.
-
-Notes
-The cookie may expire after some time; repeat the process if you encounter authentication errors.
-
-For better security, store the cookie in your rclone config file and restrict file permissions:
-
-chmod 600 ~/.config/rclone/rclone.conf</pre>
+ndus</pre>
 </div>
 <div tags="" title="Terminal messages disable Linux">
 <pre>```
