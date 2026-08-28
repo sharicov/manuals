@@ -57921,10 +57921,107 @@ fsck.ext4 /dev/mmcblk0p2 #Fix part, answer yes to remove GDT blocks remnants
 </pre>
 </div>
 <div tags="" title="Resize vm image Unraid">
-<pre>
+<pre>0. Image only resize without filesystem
+
+
 ```
 qemu-img resize -f raw /mnt/cache/domains/HippOS/vdisk1.img 200G
 ```
+
+1. Expand the disk image file itself (you've already done this step!)
+
+```
+qemu-img resize /mnt/cache/domains/CachyOS/vdisk1.img 120G
+```
+2. Load the nbd kernel module
+
+```
+modprobe nbd max_part=8
+
+```
+2.1 Disconnect if already connected
+
+```
+qemu-nbd -d /dev/nbd0 2&gt;/dev/null
+```
+3. Connect the disk image to a network block device (e.g., /dev/nbd0)
+
+```
+qemu-nbd -c /dev/nbd0 -f raw /mnt/cache/domains/CachyOS/vdisk1.img
+```
+4. Now you can use standard Linux tools on /dev/nbd0.
+# First, check your partition layout to find your root partition (e.g., /dev/nbd0p2)
+
+```
+fdisk -l /dev/nbd0
+```
+
+
+
+Output:
+
+```
+
+GPT PMBR size mismatch (125829119 != 251658239) will be corrected by write.
+The backup GPT table is not on the end of the device.
+Disk /dev/nbd0: 120 GiB, 128849018880 bytes, 251658240 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 131072 bytes
+Disklabel type: gpt
+Disk identifier: 24946866-8D95-459C-A552-D779ABE10B92
+
+Device       Start       End   Sectors  Size Type
+/dev/nbd0p1   4096    618495    614400  300M EFI System
+/dev/nbd0p2 618496 125829053 125210558 59.7G Linux filesystem
+
+```
+
+
+```
+lsblk /dev/nbd0
+
+```
+#4.1 Fix warning
+# Step 1: Fix the GPT partition table to recognize the new disk size
+# Use sgdisk to fix the GPT headers (this will correct the warnings)
+
+```
+sgdisk -e /dev/nbd0
+
+```
+5. Resize the partition first
+
+```
+sgdisk -e /dev/nbd0
+parted /dev/nbd0 resizepart 2 100%
+```
+6. Mount the BTRFS filesystem
+
+```
+mkdir -p /mnt/tmp
+mount -t btrfs /dev/nbd0p2 /mnt/tmp
+```
+7. NOW resize the BTRFS filesystem (on the mounted path)
+
+```
+btrfs filesystem resize max /mnt/tmp
+
+```
+8. Verify
+
+```
+df -h /mnt/tmp
+btrfs filesystem show /mnt/tmp
+```
+9. Cleanup
+
+```
+umount /mnt/tmp
+qemu-nbd -d /dev/nbd0
+```
+
+
 
 
 </pre>
