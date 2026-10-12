@@ -68676,6 +68676,31 @@ chmod 777 /mnt/user/Share_Name
 /usr/local/sbin/newperms /mnt/user/Share_Name/Your_Folder
 ```
 
+On windows side:
+
+remove unraid IP credentials using credential manager (search in start menu)
+
+net use
+
+
+```
+net delete &lt;Drive Letter&gt;
+```
+
+
+```
+services.msc
+```
+
+
+Restart Workstation service
+
+
+Mount network drive again
+
+```
+net use &lt;Drive Letter&gt; \\unraid_IP\share /user:unrid_username *
+```
 </pre>
 </div>
 <div tags="" title="Unraid fix Realtek USB 2.5Gbpe r8152 r8156 v2">
