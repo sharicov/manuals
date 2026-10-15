@@ -18035,7 +18035,37 @@ Press ''Win+Space''
 
 Type'' &gt;Wallpaper''
 
-Change theme</pre>
+Change theme
+
+!! Add keyboard layouts
+
+
+```
+ nano ~/.config/caelestia/hypr-user.lua
+```
+
+Add
+
+
+```
+hl.config({
+    input = {
+        kb_layout = "us,ru,il",
+        kb_variant = ",phonetic,",
+        kb_options = "grp:alt_shift_toggle"
+    }
+})
+```
+
+Load layouts:
+
+
+```
+hyprctl reload
+```
+
+
+</pre>
 </div>
 <div tags="" title="Caffeine-ng on CachyOS (Arch) prevent from sleep in tray can be triggered for specific app running">
 <pre>!!Insatll AUR package manager
