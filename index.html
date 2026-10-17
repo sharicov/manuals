@@ -17634,20 +17634,27 @@ watch -n 10  cat /proc/fs/fscache/stats
 
 
 ```
-# 1. Stop cachefilesd
+# 1. Stop the cache service
 sudo systemctl stop cachefilesd
 
-# 2. Create an image file on the NVMe (adjust the path to your actual NVMe mount point, e.g., /mnt/nvme)
-sudo truncate -s 300G /mnt/nvme/fscache.img
+# 2. Unmount the existing cache directory (if already mounted)
+sudo umount /var/cache/fscache 2&gt;/dev/null
 
-# 3. Format as ext4
-sudo mkfs.ext4 /mnt/nvme/fscache.img
+# 3. Create a 15G image file (the root partition has 19G available; adjust if needed)
+sudo truncate -s 15G /var/cache/fscache.img
 
-# 4. Mount to the cache directory (overwrite the original Btrfs directory mount)
-sudo mount -o loop /mnt/nvme/fscache.img /var/cache/fscache
+# 4. Format as ext4
+sudo mkfs.ext4 /var/cache/fscache.img
 
-# 5. Start cachefilesd
+# 5. Mount to the cache directory
+sudo mount -o loop /var/cache/fscache.img /var/cache/fscache
+
+# 6. Confirm the filesystem type
+df -T /var/cache/fscache   # Should show ext4
+
+# 7. Start cachefilesd
 sudo systemctl start cachefilesd
+sudo systemctl status cachefilesd
 ```
 </pre>
 </div>
