@@ -18074,35 +18074,9 @@ Type'' &gt;Wallpaper''
 
 Change theme
 
-!! Add keyboard layouts
 
 
-```
- nano ~/.config/caelestia/hypr-user.lua
-```
-
-Add
-
-
-```
-hl.config({
-    input = {
-        kb_layout = "us,ru,il",
-        kb_variant = ",phonetic,",
-        kb_options = "grp:alt_shift_toggle"
-    }
-})
-```
-
-Load layouts:
-
-
-```
-hyprctl reload
-```
-
-
-For monitor setting including layout:
+!!Monitor setting including layout:
 
 
 ```
@@ -18159,12 +18133,77 @@ hl.config({
 })
 ```
 
+!! Add keyboard layouts only
+
+
+```
+ nano ~/.config/caelestia/hypr-user.lua
+```
+
+Add
+
+
+```
+hl.config({
+    input = {
+        kb_layout = "us,ru,il",
+        kb_variant = ",phonetic,",
+        kb_options = "grp:alt_shift_toggle"
+    }
+})
+```
+
+Load layouts:
+
+
+```
+hyprctl reload
+```
+
 
 !!Keyboard shortcuts:
 
 Super+Space: Start Menu
+
 Super+Left/Right: Changing focus between windows
-Super+Shift+Left/Right: Move window left/right including between monitors</pre>
+
+Super+Shift+Left/Right: Move window left/right including between monitors
+
+Super+T terminal
+
+Super+W Firefox
+
+Super+E Cosmic files
+
+!!TUI login manager
+
+
+```
+sudo pacman -S greetd greetd-tuigreet
+
+sudo nano /etc/greetd/config.toml
+```
+
+Change to be
+
+```
+
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet --remember --cmd 'start-hyprland'"
+user = "greeter"
+```
+
+Start login manager
+
+
+```
+sudo systemctl enable greetd
+sudo systemctl start greetd
+```
+</pre>
 </div>
 <div tags="" title="Caffeine-ng on CachyOS (Arch) prevent from sleep in tray can be triggered for specific app running">
 <pre>!!Insatll AUR package manager
