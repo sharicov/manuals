@@ -17608,113 +17608,136 @@ Flow: ext4 loop → cachefilesd → NFS mount with fsc → verify → monitor.
 
 Step 1: Install cachefilesd
 
-    sudo pacman -S cachefilesd
+```
+sudo pacman -S cachefilesd
+```
 
 Step 2: Create ext4 Loop Device for Cache
 
-    # Create image file (size to fit your games; 15G is minimum for testing)
-    sudo truncate -s 15G /var/cache/fscache.img
+```
+# Create image file (size to fit your games; 15G is minimum for testing)
+sudo truncate -s 15G /var/cache/fscache.img
 
-    # Format as ext4
-    sudo mkfs.ext4 /var/cache/fscache.img
+# Format as ext4
+sudo mkfs.ext4 /var/cache/fscache.img
 
-    # Mount to cache directory
-    sudo mkdir -p /var/cache/fscache
-    sudo mount -o loop /var/cache/fscache.img /var/cache/fscache
+# Mount to cache directory
+sudo mkdir -p /var/cache/fscache
+sudo mount -o loop /var/cache/fscache.img /var/cache/fscache
 
-    # Confirm filesystem type is ext4
-    df -T /var/cache/fscache
+# Confirm filesystem type is ext4
+df -T /var/cache/fscache
+```
 
 Make persistent — add to /etc/fstab:
 
-    /var/cache/fscache.img  /var/cache/fscache  ext4  loop,defaults  0 0
+```
+/var/cache/fscache.img  /var/cache/fscache  ext4  loop,defaults  0 0
+```
 
 Step 3: Verify cachefilesd Config
 
-    grep '^dir' /etc/cachefilesd.conf
-    # Should output: dir /var/cache/fscache
+```
+grep '^dir' /etc/cachefilesd.conf
+# Should output: dir /var/cache/fscache
+```
 
 Default eviction thresholds (brun 10%, bcull 7%, bstop 3%) are percentages of free space — fine for most cases.
 
 Step 4: Start cachefilesd
 
-    sudo systemctl enable --now cachefilesd
-    sudo systemctl status cachefilesd
-    # Look for "Bound cache" and "Daemon Started"
+```
+sudo systemctl enable --now cachefilesd
+sudo systemctl status cachefilesd
+# Look for "Bound cache" and "Daemon Started"
+```
 
 Step 5: Mount NFS with fsc
 
-    sudo mkdir -p /mnt/n5105
-    sudo mount -t nfs -o fsc 192.168.1.7:/mnt/user/n5105 /mnt/n5105
+```
+sudo mkdir -p /mnt/n5105
+sudo mount -t nfs -o fsc 192.168.1.7:/mnt/user/n5105 /mnt/n5105
+```
 
 Persist in /etc/fstab:
 
-    192.168.1.7:/mnt/user/n5105  /mnt/n5105  nfs  fsc,defaults  0 0
+```
+192.168.1.7:/mnt/user/n5105  /mnt/n5105  nfs  fsc,defaults  0 0
+```
 
 Step 6: Verify FSC Enabled
 
-    cat /proc/fs/nfsfs/volumes
-    # Look for: FSC yes
+```
+cat /proc/fs/nfsfs/volumes
+# Look for: FSC yes
+```
 
 Step 7: Test Cache Hit
 
-    # First read — populates cache (wr increases)
-    cat /mnt/n5105/some-large-file &gt; /dev/null
-    grep "IO" /proc/fs/fscache/stats
+```
+# First read — populates cache (wr increases)
+cat /mnt/n5105/some-large-file &gt; /dev/null
+grep "IO" /proc/fs/fscache/stats
 
-    # CRITICAL: drop page cache, otherwise 2nd read is served from RAM
-    sudo sh -c 'echo 3 &gt; /proc/sys/vm/drop_caches'
+# CRITICAL: drop page cache, otherwise 2nd read is served from RAM
+sudo sh -c 'echo 3 &gt; /proc/sys/vm/drop_caches'
 
-    # Second read — hits FS-Cache (rd increases)
-    cat /mnt/n5105/some-large-file &gt; /dev/null
-    grep "IO" /proc/fs/fscache/stats
+# Second read — hits FS-Cache (rd increases)
+cat /mnt/n5105/some-large-file &gt; /dev/null
+grep "IO" /proc/fs/fscache/stats
+```
 
 rd increasing after step 2 confirms the cache works. Without drop_caches, rd stays at 0 and looks like a failure.
 
 Step 8: Monitor Cache
 
-    # Overall usage
-    df -h /var/cache/fscache
+```
+# Overall usage
+df -h /var/cache/fscache
 
-    # Hit/write stats
-    grep "IO" /proc/fs/fscache/stats
+# Hit/write stats
+grep "IO" /proc/fs/fscache/stats
 
-    # Space pressure and eviction
-    grep -E "NoSpace|LRU" /proc/fs/fscache/stats
+# Space pressure and eviction
+grep -E "NoSpace|LRU" /proc/fs/fscache/stats
 
-    # Live monitoring
-    watch -n 5 'grep "IO" /proc/fs/fscache/stats; df -h /var/cache/fscache'
+# Live monitoring
+watch -n 5 'grep "IO" /proc/fs/fscache/stats; df -h /var/cache/fscache'
+```
 
 Counter reference:
 
-    IO: rd                    Cache read hits (grows on re-reads after page cache drop)
-    IO: wr                    Cache writes (grows on first reads of new data)
-    IO: mis                   Cache misses
-    NoSpace: cull             Cache full, evicting old objects (normal)
-    NoSpace: nwr / ncr        Cache refusing new writes — expand cache
-    LRU: rmv / drp            Objects removed/dropped by LRU
-    CaRdOps: rf / CaWrOps: wf Read/write failures (should be 0)
+|!Counter |!Meaning |
+|IO: rd |Cache read hits (grows on re-reads after page cache drop) |
+|IO: wr |Cache writes (grows on first reads of new data) |
+|IO: mis |Cache misses |
+|NoSpace: cull |Cache full, evicting old objects (normal) |
+|NoSpace: nwr / ncr |Cache refusing new writes — expand cache |
+|LRU: rmv / drp |Objects removed/dropped by LRU |
+|CaRdOps: rf / CaWrOps: wf |Read/write failures (should be 0) |
 
 Step 9: Expand Cache When Needed
 
 When NoSpace: nwr or ncr starts growing:
 
-    sudo systemctl stop cachefilesd
-    sudo umount /var/cache/fscache
+```
+sudo systemctl stop cachefilesd
+sudo umount /var/cache/fscache
 
-    sudo truncate -s 300G /path/to/larger/disk/fscache.img
-    sudo mkfs.ext4 /path/to/larger/disk/fscache.img
+sudo truncate -s 300G /path/to/larger/disk/fscache.img
+sudo mkfs.ext4 /path/to/larger/disk/fscache.img
 
-    # Update /etc/fstab to point to new image, then:
-    sudo mount -a
-    sudo systemctl start cachefilesd
+# Update /etc/fstab to point to new image, then:
+sudo mount -a
+sudo systemctl start cachefilesd
+```
 
 Key Gotchas
 
-1. Btrfs backend silently fails — writes appear successful but rd never grows. Always use ext4 or XFS.
-2. Page cache masks hits — always drop_caches before the verification read.
-3. Loop mount must exist before cachefilesd starts — otherwise it binds to an empty/missing directory and fails.
-4. Persist both — loop mount in /etc/fstab and systemctl enable cachefilesd, otherwise cache breaks on reboot.</pre>
+# Btrfs backend silently fails — writes appear successful but rd never grows. Always use ext4 or XFS.
+# Page cache masks hits — always drop_caches before the verification read.
+# Loop mount must exist before cachefilesd starts — otherwise it binds to an empty/missing directory and fails.
+# Persist both — loop mount in /etc/fstab and systemctl enable cachefilesd, otherwise cache breaks on reboot.</pre>
 </div>
 <div tags="" title="caching network drives on windows client (like primocache)">
 <pre>''gpedit.msc /computer configuration/administrative templates/network/offline files/enable transparent caching/enable + set latency to 1ms''
