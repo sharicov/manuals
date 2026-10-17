@@ -17737,7 +17737,24 @@ Key Gotchas
 # Btrfs backend silently fails — writes appear successful but rd never grows. Always use ext4 or XFS.
 # Page cache masks hits — always drop_caches before the verification read.
 # Loop mount must exist before cachefilesd starts — otherwise it binds to an empty/missing directory and fails.
-# Persist both — loop mount in /etc/fstab and systemctl enable cachefilesd, otherwise cache breaks on reboot.</pre>
+# Persist both — loop mount in /etc/fstab and systemctl enable cachefilesd, otherwise cache breaks on reboot.
+
+
+!!Reset cache
+
+
+```
+sudo systemctl stop cachefilesd              ⌂                                                                   
+
+sudo rm -rf /var/cache/fscache/*             ⌂ 
+                                                                                                                     
+sudo systemctl start cachefilesd              ⌂ 
+                                                                                                                     
+sudo sh -c 'echo 3 &gt; /proc/sys/vm/drop_caches'⌂
+                                                                                                                     
+watch -n 5 'grep "IO" /proc/fs/fscache/stats; df -h /var/cache/fscache'
+```
+</pre>
 </div>
 <div tags="" title="caching network drives on windows client (like primocache)">
 <pre>''gpedit.msc /computer configuration/administrative templates/network/offline files/enable transparent caching/enable + set latency to 1ms''
