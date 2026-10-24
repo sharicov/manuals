@@ -59545,7 +59545,7 @@ If menu theme not changing in ''settings/interface/menu + restart''
 Switch video driver settings to d12 or d11 in ''settings/driver/video/d12''</pre>
 </div>
 <div tags="" title="Retroarch useful commands with midnight commander mc integration and zipped archive support on arch cachyOS - working">
-<pre>install retroarch with all cores
+<pre>!!Install retroarch with all cores
 
 
 ```
@@ -59569,7 +59569,7 @@ Check cores integrity
 
 Exit game: ''F1''
 
-Change retroarch skins (ex. ps like interface)
+!!Change retroarch skins (ex. ps like interface)
 
 
 ```
@@ -59577,6 +59577,8 @@ retroarch
 ```
 
 Settings-&gt;User Interface-&gt;Menu-&gt;XMB
+
+!!MC Midnight commander integrations
 
 Configure MC midnight commander to run pce rom files with retroarch on enter
 
@@ -59588,9 +59590,13 @@ In the mc interface, press F9 (or Esc followed by 9) to open the top menu, then 
 # PC Engine ROMs
 Shell=.pce
 Open=retroarch -L /usr/lib/libretro/mednafen_pce_libretro.so %f &amp;
+
+#Dreamcast ROMs
+Shell=.cdi
+Open=retroarch -L /usr/lib/libretro/flycast_libretro.so %p &amp;
 ```
 
-Running zipped ROMs
+!!Running zipped ROMs
 
 ```
 echo 'extraction_directory="/tmp/retroarch_gbc"' &gt;/tmp/rg.cfg &amp;&amp; retroarch --appendconfig /tmp/rg.cfg -L /usr/lib/libretro/gambatte_libretro.so "/mnt/n5105/Emulators/Gameboy Color/PlayGuy_1_03b/roms/Aladdin (USA).zip"
