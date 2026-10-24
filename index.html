@@ -59583,9 +59583,20 @@ Configure MC midnight commander to run pce rom files with retroarch on enter
 Open the extension file editor
 In the mc interface, press F9 (or Esc followed by 9) to open the top menu, then select Command -&gt; Edit extension file.
 
+```
+
 # PC Engine ROMs
 Shell=.pce
-Open=retroarch -L /usr/lib/libretro/mednafen_pce_libretro.so %f &amp;</pre>
+Open=retroarch -L /usr/lib/libretro/mednafen_pce_libretro.so %f &amp;
+```
+
+Running zipped ROMs
+
+
+```
+cd "/mnt/n5105/Emulators/Gameboy Color/PlayGuy_1_03b/roms/" &amp;&amp; unzip -o "Animorphs (USA).zip" -d /tmp/gbc_temp/ &amp;&amp; retroarch -L /usr/lib/libretro/gambatte_libretro.so "/tmp/gbc_temp/Animorphs (USA).gbc"
+```
+</pre>
 </div>
 <div tags="" title="RetroAssembly Web based rom emulator">
 <pre>https://github.com/arianrhodsandlot/retroassembly/releases
