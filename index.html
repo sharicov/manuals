@@ -31195,7 +31195,38 @@ glances
 <div tags="" title="Glass Keep - google keep alternative">
 <pre>Supports google keep exports and imports
 
-https://github.com/nikunjsingh93/react-glass-keep</pre>
+https://github.com/nikunjsingh93/react-glass-keep
+
+
+''change user and password parameters''
+
+```
+# Get the latest image from Docker Hub
+docker pull nikunjsingh/glass-keep:latest
+
+# Create data dir
+mkdir -p ~/.glass-keep
+
+# (optional) stop/remove any old container
+docker rm -f glass-keep 2&gt;/dev/null || true
+
+# Run
+docker run -d \
+  --name glass-keep \
+  --restart unless-stopped \
+  -p 8080:8080 \
+  -e NODE_ENV=production \
+  -e API_PORT=8080 \
+  -e JWT_SECRET \
+  -e DB_FILE="/app/data/notes.db" \
+  -e INITIAL_ADMIN_USERNAME \
+  -e INITIAL_ADMIN_PASSWORD \
+  -e ALLOW_REGISTRATION=false \
+  -v ~/.glass-keep:/app/data \
+  nikunjsingh/glass-keep:latest
+
+```
+</pre>
 </div>
 <div tags="" title="glass keep -google keep self hosted alternative">
 <pre>paste yml and replace ''user'' (email format) and ''password''
