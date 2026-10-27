@@ -18141,11 +18141,12 @@ nmcli device wifi connect "Your_SSID" password "Your_Password"
 
 ```
 sudo pacman -Syu
-sudo pacman -S --needed hyprland kitty xdg-desktop-portal-hyprland base-devel git cmake extra-cmake-modules qt6-declarative qt6-shadertools qt6-wayland wayland-protocols cli11 cpptrace vulkan-headers
+sudo pacman -S hyprland kitty xdg-desktop-portal-hyprland cli11
+sudo pacman -S --needed base-devel git
 ```
 
 
-# ── Step 2: Install yay mc──────────────────────────────
+# ── Step 2: Install yay ──────────────────────────────
 
 ```
 sudo pacman -S yay
@@ -18171,24 +18172,45 @@ Note: accept removing conflicting packages if prompted
 # ── Step 5: Fix Qt mismatch ──────────────────────────
 
 ```
-# Remove the conflicting package just in case
 sudo pacman -Rdd noctalia-qs
 
-# Clone, compile, and install Quickshell
+sudo pacman -S --needed cmake extra-cmake-modules qt6-declarative \
+
+
+    qt6-shadertools qt6-wayland wayland-protocols cli11
+sudo pacman -S cpptrace vulkan-headers
 git clone https://github.com/outfoxxed/quickshell.git
 cd quickshell
 cmake -B build
 cmake --build build
 sudo cmake --install build
-
-# CRITICAL: Create the symlink so Caelestia finds 'qs'
-sudo ln -sf /usr/local/bin/quickshell /usr/local/bin/qs
-
-# Go back to home directory
 cd ~
 ```
 
+# ── Step 5c: Fix if step 5 didn't work ──────────────────────────
 
+
+```
+sudo pacman -Rdd noctalia-qs
+
+sudo pacman -S --needed cmake extra-cmake-modules qt6-declarative \
+
+    qt6-shadertools qt6-wayland wayland-protocols cli11
+
+sudo pacman -S cpptrace vulkan-headers
+
+git clone https://github.com/outfoxxed/quickshell.git
+
+cd quickshell
+
+cmake -B build
+
+cmake --build build
+
+sudo cmake --install build
+
+cd ~
+```
 
 # ── Step 6: Launch ───────────────────────────────────
 
@@ -18232,6 +18254,11 @@ Change theme
 
 
 !!Monitor setting including layout:
+
+
+```
+ nano ~/.config/caelestia/hypr-user.lua
+```
 
 
 ```
@@ -18313,6 +18340,21 @@ Load layouts:
 
 ```
 hyprctl reload
+```
+
+!! Enable middle mouse click copy paste
+
+
+```
+ nano ~/.config/caelestia/hypr-user.lua
+```
+
+```
+hl.config({
+    misc = {
+        middle_click_paste = true,
+    },
+})
 ```
 
 
