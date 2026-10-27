@@ -18174,6 +18174,8 @@ Note: accept removing conflicting packages if prompted
 # ── Step 5: Fix Qt mismatch ──────────────────────────
 
 ```
+sudo ln -sf /usr/local/bin/quickshell /usr/local/bin/qs
+
 sudo pacman -Rdd noctalia-qs
 
 sudo pacman -S --needed cmake extra-cmake-modules qt6-declarative \
