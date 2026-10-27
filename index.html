@@ -18174,20 +18174,20 @@ Note: accept removing conflicting packages if prompted
 # ── Step 5: Fix Qt mismatch ──────────────────────────
 
 ```
-sudo ln -sf /usr/local/bin/quickshell /usr/local/bin/qs
-
+# Remove the conflicting package just in case
 sudo pacman -Rdd noctalia-qs
 
-sudo pacman -S --needed cmake extra-cmake-modules qt6-declarative \
-
-
-    qt6-shadertools qt6-wayland wayland-protocols cli11
-sudo pacman -S cpptrace vulkan-headers
+# Clone, compile, and install Quickshell
 git clone https://github.com/outfoxxed/quickshell.git
 cd quickshell
 cmake -B build
 cmake --build build
 sudo cmake --install build
+
+# CRITICAL: Create the symlink so Caelestia finds 'qs'
+sudo ln -sf /usr/local/bin/quickshell /usr/local/bin/qs
+
+# Go back to home directory
 cd ~
 ```
 
