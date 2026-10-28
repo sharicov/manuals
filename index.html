@@ -47742,47 +47742,108 @@ Available deepseek models:
 https://ollama.com/library/deepseek-r1:14b</pre>
 </div>
 <div tags="" title="Ollama on Radeon AMD GPU">
-<pre>
+<pre>!!1. Clean up previous installations &amp; Install ROCm package
+
+Old manual installations often leave behind binaries in /usr/local/bin or /usr/share that shadow the official package, causing Ollama to run on the CPU.
+fish
+
+
 ```
+# Stop any running service
 sudo systemctl stop ollama
+
+# Remove leftover manual installation directories
 sudo rm -rf /usr/share/ollama
+sudo rm -rf /usr/local/bin/ollama
+sudo rm -rf /usr/local/lib/ollama
+
+# Install the ROCm-enabled package
 sudo pacman -S ollama-rocm
 ```
 
-```
-sudo systemctl edit ollama.service
-```
 
-Add
+!!2. Override the Systemd Service path (Crucial for old installs)
 
-```
-
-[Service]
-Environment="HSA_OVERRIDE_GFX_VERSION=10.3.0"
-```
+If you previously installed Ollama manually, the systemd service file might still point to the deleted /usr/local/bin/ollama. We need to force it to use the pacman-installed binary at /usr/bin/ollama.
+fish
 
 
 ```
+# Create the override directory
+sudo mkdir -p /etc/systemd/system/ollama.service.d
+
+
+
+# Write the override config (Fish-compatible syntax)
+printf '[Service]\nExecStart=\nExecStart=/usr/bin/ollama serve\n' | sudo tee /etc/systemd/system/ollama.service.d/override.conf
+
+# Reload and start the service
 sudo systemctl daemon-reload
 sudo systemctl enable --now ollama
 ```
 
-Check 6900xt is detected
+(Note: If you did a fresh install of Ollama via pacman and never used the official install script, you can skip this step. But it's safe to run anyway.)
+!!3. Verify GPU Detection
+
+The RX 6900XT is natively supported by ROCm as gfx1030. Do not set HSA_OVERRIDE_GFX_VERSION unless ROCm fails to see the card.
+fish
+
 
 ```
+# Add ROCm binaries to Fish shell path
 fish_add_path /opt/rocm/bin
 echo "fish_add_path /opt/rocm/bin" &gt;&gt; ~/.config/fish/config.fish
 
+# Check if ROCm detects the GPU
 rocminfo | grep -i gfx
+
 ```
 
-Run model (pull if required
+You should see gfx1030 in the output.
+!!4. Run the Model &amp; Verify GPU Usage
+
+Run your model (Ollama will automatically pull it if it's not downloaded yet).
+fish
 
 
 ```
 ollama run deepseek-r1:14b
 ```
-</pre>
+
+
+Open another terminal and verify that Ollama is utilizing the GPU:
+fish
+
+
+```
+ollama ps
+```
+
+
+Look at the PROCESSOR column. It should say 100% GPU.
+
+To visually confirm the GPU is working, run:
+fish
+
+
+```
+radeontop
+```
+
+
+The graphics pipe utilization and VRAM usage should spike significantly while the model is generating text.
+!!💡 Troubleshooting: If it still runs on CPU
+
+If ollama ps still shows CPU after following the steps above, check the service logs to see why ROCm failed to initialize:
+fish
+
+
+```
+journalctl -u ollama -n 100 --no-pager | grep -iE "rocm|gpu|library|cpu"
+```
+
+
+Note: Only if the logs say your card is unsupported should you try adding Environment="HSA_OVERRIDE_GFX_VERSION=10.3.0" to the systemd override file. For the 6900XT, this should not be necessary.</pre>
 </div>
 <div tags="" title="ollama show cpu / gpu usage">
 <pre>```
