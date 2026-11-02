@@ -19457,6 +19457,14 @@ prealloc   100%      106M         106M         477M
 ```
 docker inspect glass-keep --format='{{.Config.Image}}'
 ```
+
+Or more precise
+
+
+```
+curl -s 'https://hub.docker.com/v2/repositories/nikunjsingh/glass-keep/tags?page_size=100' | jq -r '.results[] | select(.digest == "sha256:a4243d8608402189a6ecbd68f9c629b95abd4d0e1ef74c0708dca28ea9e59cda") | .name'
+```
+
 </pre>
 </div>
 <div tags="" title="check filesystem type in linux">
