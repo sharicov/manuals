@@ -20081,10 +20081,12 @@ sudo paccache -ruk0
 sudo pacman -Qdtq | sudo pacman -Rns -
 sudo journalctl --vacuum-time=2weeks
 flatpak uninstall --unused
+
+ncdu / --exclude mnt
+
 #uv cache clean
 rm -rf ~/.cache/uv/*
 yay -Yc
-ncdu / --exclude mnt
 rm -rf ~/.cache/yay/*
 ```
 </pre>
