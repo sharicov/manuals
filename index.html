@@ -68312,7 +68312,7 @@ sudo hdparm –tT /dev/sdX
 </pre>
 </div>
 <div tags="" title="Text to speech file powershell wav">
-<pre>create notes.txt
+<pre>create ''notes.txt''
 
 run powershell
 
@@ -68330,6 +68330,24 @@ $synth.SetOutputToWaveFile("$env:USERPROFILE\Desktop\presentation.wav")
 $synth.Speak($text)
 $synth.Dispose()
 ```
+
+This will create a ''presentation.wav ''file on your Desktop.
+
+Step B: Convert to MP3
+Because Windows doesn't natively save straight to MP3 via script, you need to convert the WAV file to MP3. The easiest way without downloading software is to use the built-in VLC Media Player (if you have it installed):
+
+Open ''VLC''.
+
+Go to Media &gt; Convert / Save.
+
+Add your presentation.wav file.
+
+Click Convert / Save.
+
+Choose Audio - MP3 as the profile.
+
+Click Start.
+
 </pre>
 </div>
 <div tags="" title="TiddlyWiki on Github manual v3">
