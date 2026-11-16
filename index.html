@@ -68331,7 +68331,7 @@ $synth = New-Object System.Speech.Synthesis.SpeechSynthesizer
 $synth.SelectVoice("Microsoft Zira Desktop")
 
 # Slow down the speech (0 is normal, -1 is slightly slower, -2 is much slower)
-$synth.Rate = -1 
+$synth.Rate = 0 
 
 # Read the text file from the Desktop
 $text = Get-Content -Path "$env:USERPROFILE\Desktop\notes.txt" -Raw
