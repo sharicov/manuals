@@ -14809,7 +14809,7 @@ yay -S btrfs-assistant compsize duperemove downgrade \
  cosmic-files gvfs gvfs-nfs gvfs-smb mc 7zip unrar udiskie \
  nfs-utils cifs-utils smbclient sshfs \
  xfsprogs f2fs-tools exfatprogs ntfs-3g dosfstools mtools gptfdisk gparted testdisk ddrescue \
- ollama-rocm docker docker-compose qemu-full libvirt virt-manager dnsmasq edk2-ovmf swtpm python-playwright opencode
+ ollama-rocm docker docker-compose qemu-full libvirt virt-manager dnsmasq edk2-ovmf swtpm python-playwright 
 ```
 
 Select ''pipewire-jack'' (not default jack2
@@ -14867,6 +14867,14 @@ newgrp docker
 sudo systemctl start ollama
 sudo systemctl enable ollama
 ```
+
+Install opencode (AI to fix OS in cli)
+
+
+```
+ curl -fsSL https://opencode.ai/install | bash
+```
+
 
 cosmic-files NFS address format: `nfs://IP/mnt/user/share`
 
