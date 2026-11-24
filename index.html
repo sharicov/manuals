@@ -14690,7 +14690,26 @@ Download arch installation image from https://archlinux.org/download/ )1.2GB)
 * Q35, OVMF, CPU host-passthrough, 7 cores / 14 threads pinned (leave one core free)
 * 64 GB RAM, 250 GB vdisk on VirtIO, virtio net, VNC graphics, ISO attached
 * In the XML set `discard='unmap'` on the disk driver line so TRIM frees space on Unraid
-* Start the VM, open VNC
+* Start the VM, open VNC and set temporary root password for ssh connection
+
+
+```
+passwd
+```
+
+
+* Get PC's IP using 
+
+```
+ip a
+```
+* ssh to the PC
+
+
+```
+ssh root@IP
+```
+
 
 !!2. Disk (btrfs + zstd + subvolumes)
 
