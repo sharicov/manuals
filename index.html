@@ -14803,11 +14803,95 @@ cosmic-files NFS address format: `nfs://IP/mnt/user/share`
 
 !!Caelestia
 
+Create config
+
+```
+nano ~/.config/caelestia/hypr-user.lua
+```
+
+
+
+```
+-- ── Keyboard Layouts ──────────────────────────────────────────────
+hl.config({
+    input = {
+        kb_layout = "us,ru,il",
+        kb_variant = ",phonetic,",
+        kb_options = "grp:alt_shift_toggle"
+    }
+})
+
+-- ── Monitors ──────────────────────────────────────────────────────
+-- 4K Hisense monitor, left side
+hl.monitor({
+    output = "HDMI-A-1",
+    mode = "3840x2160@60",
+    position = "0x0",
+    scale = 1
+})
+
+-- LG Ultrawide to the right, aligned at the bottom
+hl.monitor({
+    output = "DP-1",
+    mode = "2560x1080@75",
+    position = "3840x1080",
+    scale = 1
+})
+
+-- ── Workspaces ────────────────────────────────────────────────────
+-- Bind workspace 1 to Hisense monitor
+hl.workspace_rule({
+    workspace = "1",
+    monitor = "HDMI-A-1"
+})
+
+-- Bind workspace 2 to LG monitor
+hl.workspace_rule({
+    workspace = "2",
+    monitor = "DP-1"
+})
+
+-- ── XWayland Primary Display Fix ──────────────────────────────────
+-- Forces games running under XWayland to open on the 4K Hisense
+hl.on("hyprland.start", function()
+    hl.exec_cmd("xrandr --output HDMI-A-1 --primary")
+end)
+
+-- ── Middle Mouse copy paste ──────────────────────────────────
+hl.config({
+    misc = {
+        middle_click_paste = true
+    }
+})
+
+-- Specific rules for Workspace 1 (Hisense 4K)
+hl.workspace_rule({
+    workspace = "1",
+    monitor = "HDMI-A-1",
+    border_size = 2,  -- Adjust this value for the 4K screen
+    gaps_in = 2,
+    gaps_out = 5
+})
+
+-- Specific rules for Workspace 2 (LG Ultrawide)
+hl.workspace_rule({
+    workspace = "2",
+    monitor = "DP-1",
+    border_size = 1,  -- Adjust this value for the LG screen
+    gaps_in = 1,
+    gaps_out = 3
+})
+
+```
 
 ```
 yay -S caelestia-cli 
 
 caelestia install
+
+luac -p ~/.config/caelestia/hypr-user.lua
+
+rm -rf ~/.config/hypr &amp;&amp; ln -s ~/.local/state/caelestia/dots/hypr ~/.config/hypr
 
 yay -S caelestia-shell-plugins-git
 ```
