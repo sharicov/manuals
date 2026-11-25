@@ -19166,6 +19166,25 @@ And enable in plugins/Midnight essential/Celestial mode
 
 Enable in caelestia settings/plugins
 
+add to config lua to change wallpaper each run
+
+
+```
+ nano ~/.config/caelestia/hypr-user.lua
+```
+
+Add
+
+```
+
+hl.on("hyprland.start", function()
+  hl.exec_cmd("wallhaven-fetch daemon")
+end)
+```
+
+
+https://github.com/futurekismo-oss/wallhaven-caelestia-shell-plugin
+
 !!Set dynamic colors 
 
 Colors change according to wallpaper
