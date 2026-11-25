@@ -62586,7 +62586,11 @@ source: https://www.tecmint.com/rsync-local-remote-file-synchronization-commands
 ```
 curl -fsSL https://claude.ai/install.sh | bash
 
-ollama launch claude --model qwen3-coder
+printf "FROM qwen3-coder\nPARAMETER num_ctx 32768\n" &gt; Modelfile.qwen3
+
+ollama create qwen3-coder-32k -f Modelfile.qwen3
+
+ollama launch claude --model qwen3-coder-32k
 ```
 
 Powershell
