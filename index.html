@@ -186,6 +186,8 @@ Error message and password prompt
 
 <li>$:/state/image-picker/system--1365487189</li>
 
+<li>$:/state/search-list/selected-item--874113614</li>
+
 <li>$:/state/showeditpreview</li>
 
 <li>$:/state/sidebar</li>
@@ -12661,6 +12663,9 @@ wettyoss/wetty                               latest             88a037bc5b60   1
 </div>
 <div title="$:/state/image-picker/system--1365487189">
 <pre>show</pre>
+</div>
+<div title="$:/state/search-list/selected-item--874113614">
+<pre>Ollama make office documents plus qrcodes and web search v2-primaryList</pre>
 </div>
 <div created="20210418175850925" modified="20210418175850925" title="$:/state/showeditpreview">
 <pre>yes</pre>
@@ -49081,19 +49086,51 @@ Available deepseek models:
 https://ollama.com/library/deepseek-r1:14b</pre>
 </div>
 <div tags="" title="Ollama make office documents plus qrcodes and web search v2">
-<pre>```
+<pre>Install packages (note ollama for AMD in this example, for nvidia ''ollama-cuda'')
+
+```
+
+mkdir -p ~/llm/
+
+sudo pacman -S python ollama-rocm pango noto-fonts noto-fonts-cjk noto-fonts-emoji
+
+sudo systemctl enable --now ollama
+
+ollama pull qwen3.5:9b
+
+python -m venv ~/llm
+
+
 sudo pacman -S python-pip
 
 pip install ollama playwright ddgs qrcode python-docx python-pptx openpyxl pypdf weasyprint
 
+source ~/llm/bin/activate.fish
+
+playwright install firefox
+
 ~/llm/bin/pip install weasyprint
 
-sudo pacman -S pango noto-fonts noto-fonts-cjk noto-fonts-emoji
+
+```
+
+After creating chat_with_office.py run it
+
+
+```
+python ~/llm/chat_with_office.py
+```
+
+!!Create ''chat_with_office.py''
+
+```
+nano  ~/llm/chat_with_office.py 
 ```
 
 
-nano  ~/llm/chat_with_office.py 
 
+
+Add
 
 ```
 import re, unicodedata
