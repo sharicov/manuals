@@ -62590,6 +62590,8 @@ printf "FROM qwen3-coder\nPARAMETER num_ctx 24576\n" &gt; Modelfile.qwen3
 
 ollama create qwen3-coder-32k -f Modelfile.qwen3
 
+set -Ux CLAUDE_CODE_MAX_CONTEXT_TOKENS 32768
+
 ollama launch claude --model qwen3-coder-32k
 ```
 
